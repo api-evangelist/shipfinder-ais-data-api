@@ -1,0 +1,68 @@
+name: ShipFinder AIS Data API
+description: >-
+  Maritime AIS/vessel-tracking data API providing vessel positions, search, voyage/port data, historical tracks,
+  route/ETA prediction, marine meteorology, China coastline warnings, and TCP/IP event push streams. API-key
+  authenticated (key as query param), JSON responses.
+url: https://shipfinder-ais-data-api.apievangelist.com/apis.yml
+created: '2026-08-04'
+modified: '2026-08-04'
+specificationVersion: '0.21'
+tags:
+  - AIS
+  - Maritime Data
+  - Vessel Tracking
+  - Ship Tracking
+  - Vessel Data
+  - Historical AIS
+  - Geospatial
+  - GIS
+  - Logistics
+  - Supply Chain
+  - Weather
+  - Meteorology
+  - Trade
+  - Commodities
+  - Compliance
+  - Risk
+  - Event Streaming
+  - Webhooks
+apis:
+  - name: ShipFinder AIS Data API
+    description: >-
+      REST/HTTP API for AIS vessel tracking, voyage, history, prediction, meteorology, warnings, and event push
+      datasets. API-key authenticated via query parameter; per-endpoint OpenAPI 3.0.1 fragments embedded in Apifox docs.
+      Also indexed by an llms.txt.
+    humanURL: https://www.shipfinder.com/ais-data-api
+    baseURL: https://api.elaneglobal.com
+    tags:
+      - AIS
+      - Maritime Data
+      - Vessel Tracking
+      - Ship Tracking
+      - Vessel Data
+      - Historical AIS
+      - Geospatial
+      - GIS
+      - Logistics
+      - Supply Chain
+      - Weather
+      - Meteorology
+      - Trade
+      - Commodities
+      - Compliance
+      - Risk
+      - Event Streaming
+      - Webhooks
+    properties:
+      - type: Documentation
+        url: https://docs.shipfinder.com/
+      - type: LLMSTxt
+        url: https://docs.shipfinder.com/llms.txt
+maintainers:
+  - FN: ShipFinder AIS Data API
+    url: https://www.shipfinder.com/
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 88
+  at: '2026-08-04T07:42:52.160Z'
