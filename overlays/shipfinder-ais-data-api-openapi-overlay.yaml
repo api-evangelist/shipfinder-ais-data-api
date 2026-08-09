@@ -1,0 +1,70 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the ShipFinder Global Maritime Data API
+  version: 1.0.0
+extends: openapi/_original/shipfinder-ais-data-api-openapi-original.yml
+x-provenance:
+  generated: '2026-08-09'
+  method: generated
+  note: Records what API Evangelist added on top of the verbatim per-endpoint OpenAPI 3.0.1 fragments ShipFinder
+    publishes on docs.shipfinder.com. The result of applying this overlay is openapi/shipfinder-ais-data-api-openapi.yml.
+    The provider fragments were not mutated.
+actions:
+- target: $.info
+  description: ShipFinder publishes each fragment with an empty info block; supply real title, description, contact
+    and terms from the published documentation.
+  update:
+    title: ShipFinder Global Maritime Data API
+    contact:
+      name: ShipFinder Support
+      email: support@elaneglobal.com
+      url: https://www.shipfinder.com/help-center
+    termsOfService: https://www.shipfinder.com/Home/TermsConditions
+- target: $.servers
+  description: 'The published fragments carry servers: []. The callable host is documented in the endpoint tables
+    and example calls as https://api.elaneglobal.com.'
+  update:
+  - url: https://api.elaneglobal.com
+    description: Production
+- target: $.components.securitySchemes
+  description: 'The fragments carry securitySchemes: {} and security: [] even though every operation requires the
+    API key. Declare the documented apiKey-in-query scheme.'
+  update:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+- target: $.paths.*.*[?(@.operationId == null)]
+  description: No fragment declares an operationId. API Evangelist assigned one per operation, formed from the HTTP
+    method plus the final path segment, so tools and agent skills can reference operations stably.
+  update:
+    x-apievangelist-operationid: assigned
+- target: $.paths.*.*.responses
+  description: 'The fragments key the success response as "0" — the business status code carried in the JSON body
+    — which is not a valid OpenAPI response key. Remapped to "200"; the body envelope still carries status: 0. See
+    errors/ for the full return-code catalog.'
+  update:
+    x-apievangelist-response-key-remap:
+      from: '0'
+      to: '200'
+- target: $.tags
+  description: Folder-style tags ("1 AIS Dataset/1.1 Vessel Position") were normalised to the seven published dataset
+    names and declared at document level.
+  update:
+  - name: AIS Dataset
+  - name: Voyage Dataset
+  - name: History Dataset
+  - name: Prediction Dataset
+  - name: Meteorology Dataset
+  - name: China Coastline Warning Dataset
+  - name: Event Dataset
+- target: $.info
+  description: Cross-link the API Evangelist artifacts derived from this contract.
+  update:
+    x-apievangelist-artifacts:
+      errors: errors/shipfinder-ais-data-api-error-codes.yml
+      vocabulary: vocabulary/shipfinder-ais-data-api-vocabulary.yml
+      conventions: conventions/shipfinder-ais-data-api-conventions.yml
+      authentication: authentication/shipfinder-ais-data-api-authentication.yml
+      webhooks: asyncapi/shipfinder-ais-data-api-webhooks.yml
+      rate_limits: rate-limits/shipfinder-ais-data-api-rate-limits.yml

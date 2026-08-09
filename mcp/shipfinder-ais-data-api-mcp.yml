@@ -1,0 +1,143 @@
+generated: '2026-08-09'
+method: derived
+status: candidate
+source: openapi/shipfinder-ais-data-api-openapi.yml
+note: ShipFinder publishes no MCP server. This is a candidate tool surface derived one-to-one from the 40 operations
+  in the harvested OpenAPI, so an agent runtime can be stood up against the real contract. It is not a ShipFinder-operated
+  endpoint and asserts nothing about ShipFinder.
+server:
+  name: shipfinder
+  transport: null
+  url: null
+search_evidence:
+- checked: '2026-08-09'
+  what: docs.shipfinder.com llms.txt index
+  result: no MCP endpoint listed
+- checked: '2026-08-09'
+  what: shipfinder.com / open.shipfinder.com
+  result: no MCP or agent surface
+- checked: '2026-08-09'
+  what: web search for a ShipFinder MCP server
+  result: none found
+tool_count: 40
+tools:
+- name: get_fleet_position
+  description: 1.1.3 Fleet Position
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getFleetPosition
+- name: get_vessel_flag_info
+  description: 1.5 Vessel Flag Information
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselFlagInfo
+- name: get_vessel_position_multi
+  description: 1.1.2 Multi-vessel Position
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselPositionMulti
+- name: get_vessel_position_single
+  description: 1.1.1 Single Vessel Position
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselPositionSingle
+- name: get_vessel_search
+  description: 1.2 Vessel Search
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselSearch
+- name: get_vessels_in_zone
+  description: 1.4 Vessels in Zone
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselsInZone
+- name: get_vessels_nearby
+  description: 1.3 Vessels Nearby
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselsNearby
+- name: post_add_fleet
+  description: 7.1.1 Create Fleet
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddFleet
+- name: post_add_geofence
+  description: 7.2.1 Geofence Creation
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddGeofence
+- name: post_add_vessel_speed_alert
+  description: 7.3.1 Add Vessel Speed Alert Subscription
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddVesselSpeedAlert
+- name: post_add_vessel_to_fleet
+  description: 7.1.5  Add Vessels to Fleet
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddVesselToFleet
+- name: post_delete_fleet
+  description: '7.1.4 Delete Fleet '
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postDeleteFleet
+- name: post_delete_fleet_vessel
+  description: 7.1.7 Remove Vessels from Fleet
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postDeleteFleetVessel
+- name: delete_geofence
+  description: 7.2.4 Geofence Deletion
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#deleteGeofence
+- name: post_delete_vessel_speed_alert
+  description: 7.3.2 Delete Vessel Speed Alert Subscription
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postDeleteVesselSpeedAlert
+- name: get_fleet
+  description: 7.1.3 Query Fleet
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getFleet
+- name: get_geofence
+  description: 7.2.3 Geofence Query
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getGeofence
+- name: post_update_fleet_info
+  description: 7.1.2 Update Fleet Information
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postUpdateFleetInfo
+- name: post_update_fleet_vessel
+  description: 7.1.6 Batch Update Vessels in Fleet
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postUpdateFleetVessel
+- name: post_update_geofence
+  description: 7.2.2 Geofence Update
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#postUpdateGeofence
+- name: get_vessel_speed_alert_list
+  description: 7.3.3 Query Vessel Speed Alert Subscription List
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselSpeedAlertList
+- name: get_port_call_records_by_port
+  description: 3.6 Port Calls Records for Port
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getPortCallRecordsByPort
+- name: get_port_call_records_by_vessel
+  description: 3.3 Vessel Port Call History
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getPortCallRecordsByVessel
+- name: get_port_call_records_by_vessel_at_port
+  description: 3.4 Vessel Port Call Records at Specific Port
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getPortCallRecordsByVesselAtPort
+- name: get_vessel_current_port_call
+  description: 3.5 Vessel Current Port Call
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselCurrentPortCall
+- name: get_vessel_history_track
+  description: 3.1 Vessel History Track
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselHistoryTrack
+- name: get_vessel_sts_events
+  description: 3.2 Ship-to-Ship (STS) Events
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getVesselStsEvents
+- name: get_cyclone_info
+  description: 5.1.2 Tropical Cyclone Details by Point
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getCycloneInfo
+- name: get_cyclones_list
+  description: 5.1.1 Global Tropical Cyclones List
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getCyclonesList
+- name: get_marine_weather
+  description: 5.3 Global Marine Weather
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getMarineWeather
+- name: get_tide_station_info
+  description: 5.2.2 Query Single Tide Gauge Station Details
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getTideStationInfo
+- name: get_tide_station_list
+  description: 5.2.1 Request parameters for Global Tide Gauge Stations List
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getTideStationList
+- name: get_e_t_a
+  description: 4.3 ETA Query
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getETA
+- name: get_route_plan_point_to_point
+  description: 4.1 Point-to-Point Route Planning
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getRoutePlanPointToPoint
+- name: get_route_plan_port_to_port
+  description: 4.2 Port-to-Port Route Planning
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getRoutePlanPortToPort
+- name: get_port_anchored_vessels
+  description: 2.3 Currently Anchored Vessels
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getPortAnchoredVessels
+- name: get_port_berthed_vessels
+  description: 2.2 Currently Berthed Vessels
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getPortBerthedVessels
+- name: get_port_expected_arrivals
+  description: 2.4 Inbound / Expected Arrivals
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getPortExpectedArrivals
+- name: get_port_info
+  description: 2.1 Port Information
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getPortInfo
+- name: get_navigational_warnings
+  description: 6.1 China Region Navigational Warnings
+  source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getNavigationalWarnings

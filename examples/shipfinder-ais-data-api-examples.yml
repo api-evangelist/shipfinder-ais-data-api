@@ -1,0 +1,1254 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/shipfinder-ais-data-api-openapi.yml
+note: Request and response examples published by ShipFinder inside its per-endpoint OpenAPI fragments, extracted
+  into one browsable catalog. Values are the provider's own sample payloads.
+example_count: 35
+examples:
+- operationId: getFleetPosition
+  method: GET
+  path: /v1/AIS/FleetPosition
+  summary: 1.1.3 Fleet Position
+  source: https://docs.shipfinder.com/430293359e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    total: 3
+    data:
+    - fleet_id: 98f1f00a-d2d4-431b-90bf-d5471b184ff6
+      mmsi: 241673000
+      imo: 9852119
+      call_sign: SVDF6
+      ship_name: SEA EMERALD
+      ship_cnname: ''
+      data_source: 1
+      last_time: 1774950228
+      lat: 25.622803
+      lng: 53.367208
+      ship_type: 80
+      length: 336
+      width: 60
+      left: 31
+      trail: 55
+      draught: 20.4
+      dest: CNZNG
+      destcode: ''
+      eta: 1776283200
+      navistat: 0
+      sog: 0.7003891
+      cog: 286.1
+      hdg: 126
+      rot: -0.01
+    - fleet_id: 98f1f00a-d2d4-431b-90bf-d5471b184ff6
+      mmsi: 477985700
+      imo: 9308479
+      call_sign: VRDJ3
+      ship_name: DAPENG SUN
+      ship_cnname: ''
+      data_source: 1
+      last_time: 1774950155
+      lat: 21.452173
+      lng: 114.80732
+      ship_type: 80
+      length: 291
+      width: 43
+      left: 22
+      trail: 55
+      draught: 9.6
+      dest: CN DPGAU DAM
+      destcode: ''
+      eta: 1775660400
+      navistat: 0
+      sog: 16.2140083
+      cog: 178.8
+      hdg: 179
+      rot: 0
+- operationId: getVesselFlagInfo
+  method: GET
+  path: /v1/AIS/VesselFlagInfo
+  summary: 1.5 Vessel Flag Information
+  source: https://docs.shipfinder.com/429919472e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      mmsi: 477172700
+      registry: Panama
+- operationId: getVesselPositionMulti
+  method: GET
+  path: /v1/AIS/VesselPositionMulti
+  summary: 1.1.2 Multi-vessel Position
+  source: https://docs.shipfinder.com/430292321e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+    - mmsi: 477232800
+      imo: 9789647
+      call_sign: VRSG2
+      ship_name: COSCO PISCES
+      ship_cnname: ''
+      data_source: 1
+      ship_type: 100
+      length: 400
+      width: 59
+      left: 24
+      trail: 241
+      draught: 12.5
+      dest: 'ESVLC > SGSIN-PWBGA '
+      destcode: ''
+      eta: 1775145600
+      navistat: 0
+      lat: 4.095627
+      lng: 92.529245
+      sog: 12.7
+      cog: 48.5
+      hdg: 49
+      rot: 0
+      last_time: 1774945102
+    - mmsi: 477172700
+      imo: 9783538
+      call_sign: VRRV4
+      ship_name: COSCO SHIPPING LIBRA
+      ship_cnname: ''
+      data_source: 1
+      ship_type: 100
+      length: 399
+      width: 59
+      left: 33
+      trail: 256
+      draught: 13
+      dest: SHANGHAI,CN
+      destcode: CNSHG
+      eta: 1776691800
+      navistat: 0
+      lat: -21.220912
+      lng: 6.866182
+      sog: 17.9
+      cog: 142.9
+      hdg: 143
+      rot: 0
+      last_time: 1774945234
+- operationId: getVesselPositionSingle
+  method: GET
+  path: /v1/AIS/VesselPositionSingle
+  summary: 1.1.1 Single Vessel Position
+  source: https://docs.shipfinder.com/428990613e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      mmsi: 413961925
+      imo: 0
+      call_sign: P
+      ship_name: WANHONGYUAN369
+      ship_cnname: 皖鸿远369
+      data_source: 0
+      ship_type: 70
+      length: 68
+      width: 13
+      left: 8
+      trail: 18
+      draught: 4.8
+      dest: TAIZHOU,CN
+      destcode: CNTZO
+      eta: 1745827548
+      navistat: 0
+      lat: 32.192517
+      lng: 119.628093
+      sog: 6.2
+      cog: 80.8
+      hdg: 511
+      rot: 0
+      last_time: 1745827548
+- operationId: getVesselSearch
+  method: GET
+  path: /v1/AIS/VesselSearch
+  summary: 1.2 Vessel Search
+  source: https://docs.shipfinder.com/428749512e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    total: 3
+    data:
+    - match_type: 1
+      mmsi: 356688000
+      imo: 9738777
+      call_sign: 3EKQ
+      ship_name: DENEB LEADER
+      data_source: 0
+      last_time: 1773728217
+    - match_type: 1
+      mmsi: 346559616
+      imo: 9738777
+      call_sign: 3EKQ
+      ship_name: DENEB LEADER
+      data_source: 0
+      last_time: 1772838361
+    - match_type: 1
+      mmsi: 525007112
+      imo: 0
+      call_sign: ''
+      ship_name: DENEB LEADER
+      data_source: 0
+      last_time: 1765181535
+- operationId: getVesselsInZone
+  method: GET
+  path: /v1/AIS/VesselsInZone
+  summary: 1.4 Vessels in Zone
+  source: https://docs.shipfinder.com/429583708e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      total: 54
+      scode: 20
+      continue: 0
+      ship_list:
+      - mmsi: 370286000
+        imo: 9844100
+        call_sign: HOLO
+        ship_name: SEA VICTORIA
+        ship_cnname: ''
+        data_source: 0
+        ship_type: 70
+        length: 340
+        width: 62
+        left: 36
+        trail: 51
+        draught: 12.7
+        dest: SINGAPORE,SG
+        destcode: SGSIN
+        eta: '1746547200'
+        navistat: 0
+        lat: 34.606657
+        lng: 121.966072
+        sog: 12.8
+        cog: 111.4
+        hdg: 114
+        rot: 0
+        last_time: 1745904185
+      - mmsi: 412304788
+        imo: 0
+        call_sign: ''
+        ship_name: SUGANYU04788
+        ship_cnname: 苏赣渔04788
+        data_source: 0
+        ship_type: 30
+        length: 0
+        width: 0
+        left: 0
+        trail: 0
+        draught: 0
+        dest: ''
+        destcode: ''
+        eta: ''
+        navistat: 0
+        lat: 34.507535
+        lng: 121.96778
+        sog: 8.6
+        cog: 246.9
+        hdg: 511
+        rot: 0
+        last_time: 1745902562
+- operationId: getVesselsNearby
+  method: GET
+  path: /v1/AIS/VesselsNearby
+  summary: 1.3 Vessels Nearby
+  source: https://docs.shipfinder.com/429003024e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    total: 221
+    data:
+    - mmsi: 413761246
+      imo: 0
+      call_sign: YR0
+      ship_name: PINGNANHONGSHUN3778
+      ship_cnname: 平南宏顺3778
+      data_source: 0
+      last_time: 1747292158
+      lat: 23.453682
+      lng: 110.52463
+      ship_type: 70
+      length: 81
+      width: 16
+      left: 10
+      trail: 5
+      draught: 4.3
+      dest: GUANGZHOU,CN
+      destcode: CNGZG
+      eta: 1744896600
+      navistat: 1
+      sog: 0
+      cog: 0
+      hdg: 0
+      rot: 0
+    - mmsi: 413761521
+      imo: 0
+      call_sign: YR7
+      ship_name: PINGNANRONGDA333
+      ship_cnname: 平南荣达333
+      data_source: 0
+      last_time: 1747292207
+      lat: 23.472812
+      lng: 110.50188
+      ship_type: 70
+      length: 82
+      width: 16
+      left: 7
+      trail: 9
+      draught: 1.2
+      dest: 'XZ                  '
+      destcode: ''
+      eta: 1748394000
+      navistat: 1
+      sog: 0
+      cog: 0
+      hdg: 0
+      rot: 0
+    - mmsi: 413762746
+      imo: 0
+      call_sign: JKKKJK
+      ship_name: GUIPINGHANGKAI3358
+      ship_cnname: 桂平航凯3358
+      data_source: 0
+      last_time: 1747292077
+      lat: 23.468075
+      lng: 110.513635
+      ship_type: 70
+      length: 61
+      width: 13
+      left: 7
+      trail: 8
+      draught: 0
+      dest: ''
+      destcode: ''
+      eta: 0
+      navistat: 255
+      sog: 0
+      cog: 18.2
+      hdg: 511
+      rot: -2.77
+- operationId: postAddFleet
+  method: POST
+  path: /v1/Event/AddFleet
+  summary: 7.1.1 Create Fleet
+  source: https://docs.shipfinder.com/432035260e0
+  request_example:
+    key: 1F6D701272402D1E7D8D316CCE519123
+    fleet_name: myfleet123
+    mmsis: 477985700,412751690
+    monitor: '6'
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+      fleet_name: 自有船队在途监控
+      mmsis: 412751690,477985700
+      monitor: '6'
+- operationId: postAddGeofence
+  method: POST
+  path: /v1/Event/AddGeofence
+  summary: 7.2.1 Geofence Creation
+  source: https://docs.shipfinder.com/433382008e0
+  request_example:
+    key: 1F6D701272402D1E7D8D316CCE519123
+    area_bounds: 119.846180,32.345143-119.814280,32.311867-119.4661,32.291067-119.375887,32.213847
+    area_name: area-1
+    filter_type: '3'
+    fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+    url: http://192.186.1.1:8000/shipxy/testdemo
+- operationId: postAddVesselToFleet
+  method: POST
+  path: /v1/Event/AddVesselToFleet
+  summary: 7.1.5  Add Vessels to Fleet
+  source: https://docs.shipfinder.com/432100231e0
+  request_example:
+    key: 1F6D701272402D1E7D8D316CCE519123
+    fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+    mmsis: '413983657'
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+      fleet_name: myfleet123
+      mmsis: 412751690,413983657,477985700
+      monitor: '6'
+- operationId: postDeleteFleet
+  method: POST
+  path: /v1/Event/DeleteFleet
+  summary: '7.1.4 Delete Fleet '
+  source: https://docs.shipfinder.com/432076110e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+      fleet_name: 自有船队在途监控
+      mmsis: 413983657,412751690
+      monitor: '6'
+- operationId: postDeleteFleetVessel
+  method: POST
+  path: /v1/Event/DeleteFleetVessel
+  summary: 7.1.7 Remove Vessels from Fleet
+  source: https://docs.shipfinder.com/432106004e0
+  request_example:
+    key: 1F6D701272402D1E7D8D316CCE519123
+    fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+    mmsis: '413461440'
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+      fleet_name: 自有船队在途监控
+      mmsis: 413983657,412751690
+      monitor: '6'
+- operationId: deleteGeofence
+  method: DELETE
+  path: /v1/Event/DeleteGeofence
+  summary: 7.2.4 Geofence Deletion
+  source: https://docs.shipfinder.com/433422419e0
+  request_example:
+    key: 1F6D701272402D1E7D8D316CCE519123
+    area_id: 65a03820-31dd-4db6-afd4-9517b81f94e1
+- operationId: postUpdateFleetInfo
+  method: POST
+  path: /v1/Event/UpdateFleetInfo
+  summary: 7.1.2 Update Fleet Information
+  source: https://docs.shipfinder.com/432048484e0
+  request_example:
+    key: 1F6D701272402D1E7D8D316CCE519123
+    fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+    mmsis: '477985700'
+    monitor: '5'
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+      fleet_name: 自有船队在途监控
+      mmsis: 412751690,477985700
+      monitor: '4'
+- operationId: postUpdateFleetVessel
+  method: POST
+  path: /v1/Event/UpdateFleetVessel
+  summary: 7.1.6 Batch Update Vessels in Fleet
+  source: https://docs.shipfinder.com/432080706e0
+  request_example:
+    key: 1F6D701272402D1E7D8D316CCE519123
+    fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+    mmsis: 413461440,412751690,413983657
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+      fleet_name: myfleet123
+      mmsis: 413983657,413461440,412751690
+      monitor: '6'
+- operationId: postUpdateGeofence
+  method: POST
+  path: /v1/Event/UpdateGeofence
+  summary: 7.2.2 Geofence Update
+  source: https://docs.shipfinder.com/433396710e0
+  request_example:
+    key: 1F6D701272402D1E7D8D316CCE519123
+    area_id: 65a03820-31dd-4db6-afd4-9517b81f94e1
+    area_bounds: 119.846180,32.345143-119.814280,32.311867-119.4661,32.291067-119.375887,32.213847
+    area_name: area-1
+    filter_type: '3'
+    fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+    url: http://192.186.1.1:8000/shipxy/testdemo
+- operationId: getPortCallRecordsByPort
+  method: GET
+  path: /v1/History/PortCallRecordsByPort
+  summary: 3.6 Port Calls Records for Port
+  source: https://docs.shipfinder.com/430531632e0
+  response_status: '200'
+  response_example: "{\r\n  \"status\": 0,\r\n  \"msg\": \"\",\r\n  \"total\": 5140,\r\n  \"data\": [\r\n    {\r\
+    \n      \"imo\": 0,\r\n      \"mmsi\": 413842124,\r\n      \"ship_type\": \"70\",\r\n      \"ship_name\": \"\
+    ZHEJIAXINGHUO03191\",\r\n      \"call_sign\": \"0\",\r\n      \"currentport\": {\r\n        \"port_code\": \"\
+    27999\",\r\n        \"port_cnname\": \"上海\",\r\n        \"port_name\": \"Shanghai\",\r\n        \"port_time_zone\"\
+    : \"+8\",\r\n        \"terminal_name\": \"\",\r\n        \"berth_name\": \"\",\r\n        \"arrival_anchorage\"\
+    : ,\r\n        \"ata\": 1744468393,\r\n        \"atb\": 1744468393,\r\n        \"atd\": 1744635846,\r\n    \
+    \    \"arrival_draught\": 0,\r\n        \"departure_draught\": 0,\r\n        \"stay_time\": 46.51,\r\n     \
+    \   \"stay_terminal_time\": 46.51\r\n      },\r\n      \"previousport\": {\r\n        \"port_code\": \"27999\"\
+    ,\r\n        \"port_cnname\": \"上海\",\r\n        \"port_name\": \"Shanghai\",\r\n        \"port_time_zone\"\
+    : \"+8\",\r\n        \"arrival_anchorage\": \"\",\r\n        \"ata\": 1744110014,\r\n        \"atb\": 1744110014,\r\
+    \n        \"atd\": 1744120857\r\n      },\r\n      \"nextport\": {\r\n        \"port_code\": \"213479\",\r\n\
+    \        \"port_cnname\": \"奉贤\",\r\n        \"port_name\": \"Fengxian\",\r\n        \"port_time_zone\": \"\
+    +8\",\r\n        \"arrival_anchorage\": \"\",\r\n        \"ata\": 1744484085,\r\n        \"atb\": 1744484085,\r\
+    \n        \"atd\": 1744498411\r\n      }\r\n    },\r\n    {\r\n      \"imo\": 9302530,\r\n      \"mmsi\": 412046070,\r\
+    \n      \"ship_type\": \"90\",\r\n      \"ship_name\": \"HU JIU 18\",\r\n      \"call_sign\": \"BSAR\",\r\n\
+    \      \"currentport\": {\r\n        \"port_code\": \"27999\",\r\n        \"port_cnname\": \"上海\",\r\n     \
+    \   \"port_name\": \"Shanghai\",\r\n        \"port_time_zone\": \"+8\",\r\n        \"terminal_name\": \"Eastern\
+    \ Tankstore Shanghai\",\r\n        \"berth_name\": \"No 2\",\r\n        \"arrival_anchorage\": \"\",\r\n   \
+    \     \"ata\": 1744469305,\r\n        \"atb\": 1744469305,\r\n        \"atd\": 1745489204,\r\n        \"arrival_draught\"\
+    : 3500,\r\n        \"departure_draught\": 3500,\r\n        \"stay_time\": 283.31,\r\n        \"stay_terminal_time\"\
+    : 283.31\r\n      },\r\n      \"previousport\": {\r\n        \"port_code\": \"213784\",\r\n        \"port_cnname\"\
+    : \"崇明\",\r\n        \"port_name\": \"Chongming\",\r\n        \"port_time_zone\": \"+8\",\r\n        \"arrival_anchorage\"\
+    : \"\",\r\n        \"ata\": 1744469305,\r\n        \"atb\": 1744469305,\r\n        \"atd\": 1745489204\r\n \
+    \     },\r\n      \"nextport\": {\r\n        \"port_code\": \"213784\",\r\n        \"port_cnname\": \"崇明\",\r\
+    \n        \"port_name\": \"Chongming\",\r\n        \"port_time_zone\": \"+8\",\r\n        \"arrival_anchorage\"\
+    : \"\",\r\n        \"ata\": 1744469305,\r\n        \"atb\": 1744469305,\r\n        \"atd\": 1745489204\r\n \
+    \     }\r\n    },\r\n    ......\r\n  ]\r\n}"
+- operationId: getPortCallRecordsByVessel
+  method: GET
+  path: /v1/History/PortCallRecordsByVessel
+  summary: 3.3 Vessel Port Call History
+  source: https://docs.shipfinder.com/430426234e0
+  response_status: '200'
+  response_example: "{\r\n  \"status\": 0,\r\n  \"msg\": \"\",\r\n  \"data\": [\r\n    {\r\n      \"ship_name\"\
+    : \"COSCOSHIPPINGLIBRA\",\r\n      \"call_sign\": \"VRRV4\",\r\n      \"imo\": 9783538,\r\n      \"mmsi\": 477172700,\r\
+    \n      \"ship_type\": 71,\r\n      \"port_cnname\": \"广州\",\r\n      \"port_name\": \"Guangzhou\",\r\n    \
+    \  \"port_time_zone\": \"+8\",\r\n      \"port_code\": \"CNGZG\",\r\n      \"terminal_name\": \"\",\r\n    \
+    \  \"berth_name\": \"\",\r\n      \"port_country_cnname\": \"中国\",\r\n      \"port_country_name\": \"China\"\
+    ,\r\n      \"port_country_code\": \"CN\",\r\n      \"arrval_anchorage\": ,\r\n      \"ata\": 1745058319,\r\n\
+    \      \"atb\": 1745058319,\r\n      \"atd\": 1745120468,\r\n      \"arrival_draught\": 13.5,\r\n      \"departure_draught\"\
+    : 14.5,\r\n      \"stay_time\": 17.26,\r\n      \"stay_interminal_time\": 17.26\r\n    }\r\n  ]\r\n}"
+- operationId: getPortCallRecordsByVesselAtPort
+  method: GET
+  path: /v1/History/PortCallRecordsByVesselAtPort
+  summary: 3.4 Vessel Port Call Records at Specific Port
+  source: https://docs.shipfinder.com/430484162e0
+  response_status: '200'
+  response_example: "{\r\n  \"status\": 0,\r\n  \"msg\": \"\",\r\n  \"total\": 1,\r\n  \"data\": [\r\n    {\r\n\
+    \      \"ship_name\": \"COSCO SHIPPING LIBRA\",\r\n      \"call_sign\": \"VRRV4\",\r\n      \"imo\": 9783538,\r\
+    \n      \"mmsi\": 477172700,\r\n      \"ship_type\": \"60\",\r\n      \"port_cnname\": \"新加坡\",\r\n      \"\
+    port_name\": \"Singapore\",\r\n      \"port_time_zone\": \"+8\",\r\n      \"port_code\": \"SGSIN\",\r\n    \
+    \  \"terminal_name\": \"\",\r\n      \"berth_name\": \"\",\r\n      \"port_country_cnname\": \"新加坡\",\r\n  \
+    \    \"port_country_name\": \"Singapore\",\r\n      \"port_country_code\": \"SG\",\r\n      \"arriveanchorage\"\
+    : ,\r\n      \"ata\": 1745058319,\r\n      \"atb\": 1745058319,\r\n      \"atd\": 1745120468,\r\n      \"arrival_draught\"\
+    : 13500,\r\n      \"departure_draught\": 0,\r\n      \"stay_time\": 17.26,\r\n      \"stay_terminal_time\":\
+    \ 17.26\r\n    }\r\n  ]\r\n}"
+- operationId: getVesselCurrentPortCall
+  method: GET
+  path: /v1/History/VesselCurrentPortCall
+  summary: 3.5 Vessel Current Port Call
+  source: https://docs.shipfinder.com/430498718e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    total: 1
+    data:
+    - ship_name: COSCO SHIPPING LIBRA
+      call_sign: VRRV4
+      imo: 9783538
+      mmsi: 477172700
+      ship_type: '60'
+      current_sea_area: Persian gulf
+      sea_area_code: '4266'
+      current_city: ''
+      current_city_code: ''
+      lng: 54.659412
+      lat: 24.813847
+      previousport:
+        port_code: '208866'
+        port_name: Jebel Ali
+        port_cnname: 杰贝阿里
+        port_time_zone: '+4'
+        port_country_name: United Arab Emirates
+        port_country_cnname: 阿联酋
+        port_country_code: AE
+        arrive_anchorage: 1746526617
+        ata: 1746526617
+        atb: 1746540887
+        atd: 1746691874
+      currentport:
+        port_code: '337404'
+        port_name: Khalifa Port
+        port_cnname: 哈里发港
+        port_time_zone: '+4'
+        country_en: United Arab Emirates
+        port_country_cnname: 阿联酋
+        country_code: AE
+        arriveanchorage: 1746707992
+        ata: 1746707992
+        atb: 1746716722
+- operationId: getVesselHistoryTrack
+  method: GET
+  path: /v1/History/VesselHistoryTrack
+  summary: 3.1 Vessel History Track
+  source: https://docs.shipfinder.com/430346103e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+    - data_source: 0
+      utc: 1744017444
+      lng: 121.730682
+      lat: 38.272802
+      sog: 16.6
+      cog: 295.2
+    - data_source: 0
+      utc: 1744017749
+      lng: 121.703605
+      lat: 38.282833
+      sog: 16.7
+      cog: 294.9
+    - data_source: 0
+      utc: 1744018056
+      lng: 121.676097
+      lat: 38.293053
+      sog: 16.8
+      cog: 294.5
+    - data_source: 0
+      utc: 1744018361
+      lng: 121.648798
+      lat: 38.303138
+      sog: 16.8
+      cog: 294.7
+    - data_source: 0
+      utc: 1744018662
+      lng: 121.621805
+      lat: 38.313288
+      sog: 16.9
+      cog: 296.8
+    - data_source: 0
+      utc: 1744018968
+      lng: 121.594477
+      lat: 38.324208
+      sog: 17
+      cog: 296.7
+    - data_source: 0
+      utc: 1744019268
+      lng: 121.567605
+      lat: 38.334835
+      sog: 17
+      cog: 296.1
+    - data_source: 0
+      utc: 1744019568
+      lng: 121.540758
+      lat: 38.345627
+      sog: 17.1
+      cog: 297.1
+- operationId: getVesselStsEvents
+  method: GET
+  path: /v1/History/VesselStsEvents
+  summary: 3.2 Ship-to-Ship (STS) Events
+  source: https://docs.shipfinder.com/430352093e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      ship_data:
+        mmsi: 477172700
+        imo: 9783538
+        call_sign: VRRV4
+        ship_name: COSCO SHIPPING LIBRA
+        ship_type: 70
+      approach_data:
+      - approach_ship:
+          mmsi: 477947300
+          imo: 9493107
+          call_sign: VRKQ6
+          ship_name: CSB HERALD
+          ship_type: 70
+        approach_event:
+          approach_time: 1751260066
+          separation_time: 1751260429
+          duration: 6.05
+          approach_zone: 3
+          lat: 31.372347
+          lng: 121.689075
+          port_code: ''
+          sog: 1.75
+      - approach_ship:
+          mmsi: 413372190
+          imo: 1400704
+          call_sign: BPPZ
+          ship_name: ZHONG HAI TUO 3
+          ship_type: 52
+        approach_event:
+          approach_time: 1751260138
+          separation_time: 1751262848
+          duration: 45.17
+          approach_zone: 3
+          lat: 31.372347
+          lng: 121.689075
+          port_code: ''
+          sog: 0.82
+      - approach_ship:
+          mmsi: 413377870
+          imo: 1400704
+          call_sign: BPQJ
+          ship_name: ZHONG HAI TUO 7
+          ship_type: 52
+        approach_event:
+          approach_time: 1751260161
+          separation_time: 1751260467
+          duration: 5.1
+          approach_zone: 3
+          lat: 31.372347
+          lng: 121.689075
+          port_code: ''
+          sog: 1.75
+- operationId: getCycloneInfo
+  method: GET
+  path: /v1/Meteorology/CycloneInfo
+  summary: 5.1.2 Tropical Cyclone Details by Point
+  source: https://docs.shipfinder.com/431698143e0
+  response_status: '200'
+  response_example: "{\r\n  \"status\": 0,\r\n  \"msg\": \"\",\r\n  \"total\": 15,\r\n  \"data\": [\r\n    {\r\n\
+    \      \"typhoon_id\": \"3063123\",\r\n      \"typhoon_time\": \"202507231400\",\r\n      \"forecast\": \"BABJ\"\
+    ,\r\n      \"fhour\": \"24\",\r\n      \"lat\": 16.8667,\r\n      \"lng\": 119.9667,\r\n      \"grade\": 10,\r\
+    \n      \"mspeed\": 28,\r\n      \"pressure\": 985,\r\n      \"kspeed\": 0,\r\n      \"direction\": \"\",\r\n\
+    \      \"radius7\": 0,\r\n      \"radius10\": 0,\r\n      \"radius7_s\": \"180,120,150,200\",\r\n      \"radius10_s\"\
+    : \"0\",\r\n      \"radius12_s\": \"0\"\r\n    },\r\n    {\r\n      \"typhoon_id\": \"3063123\",\r\n      \"\
+    typhoon_time\": \"202507231400\",\r\n      \"forecast\": \"\",\r\n      \"fhour\": \"\",\r\n      \"lat\": 17.6,\r\
+    \n      \"lng\": 118.7,\r\n      \"grade\": 8,\r\n      \"mspeed\": 18,\r\n      \"pressure\": 992,\r\n    \
+    \  \"kspeed\": 13,\r\n      \"direction\": \"S\",\r\n      \"radius7\": 180,\r\n      \"radius10\": 0,\r\n \
+    \     \"radius7_s\": \"180,120,150,200\",\r\n      \"radius10_s\": \"0\",\r\n      \"radius12_s\": \"0\"\r\n\
+    \    },\r\n    .....\r\n  ]\r\n}"
+- operationId: getCyclonesList
+  method: GET
+  path: /v1/Meteorology/CyclonesList
+  summary: 5.1.1 Global Tropical Cyclones List
+  source: https://docs.shipfinder.com/431698053e0
+  response_status: '200'
+  response_example: "{\r\n  \"status\": 0,\r\n  \"msg\": \"\",\r\n  \"total\": 425,\r\n  \"data\": [\r\n     {\r\
+    \n      \"typhoon_id\": \"3064324\",\r\n      \"typhoon_code\": 0,\r\n      \"typhoon_cncode\": \"2509\",\r\n\
+    \      \"typhoon_cnname\": \"罗莎\",\r\n      \"typhoon_name\": \"KROSA\",\r\n      \"current_year\": 2025,\r\n\
+    \      \"dataMark\": \"\"\r\n    },\r\n    {\r\n      \"typhoon_id\": \"3063123\",\r\n      \"typhoon_code\"\
+    : 0,\r\n      \"typhoon_cncode\": \"2508\",\r\n      \"typhoon_cnname\": \"竹节草\",\r\n      \"typhoon_name\"\
+    : \"CO-MAY\",\r\n      \"current_year\": 2025,\r\n      \"dataMark\": \"\"\r\n    },\r\n    {\r\n      \"typhoon_id\"\
+    : \"3062724\",\r\n      \"typhoon_code\": 0,\r\n      \"typhoon_cncode\": \"2507\",\r\n      \"typhoon_cnname\"\
+    : \"范斯高\",\r\n      \"typhoon_name\": \"FRANCISCO\",\r\n      \"current_year\": 2025,\r\n      \"dataMark\"\
+    : \"\"\r\n    },\r\n    ......\r\n    ]\r\n}"
+- operationId: getMarineWeather
+  method: GET
+  path: /v1/Meteorology/MarineWeather
+  summary: 5.3 Global Marine Weather
+  source: https://docs.shipfinder.com/431272522e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      bm500: -32767
+      humidity: 93.5
+      oceandir: 234
+      oceanspeed: 0.2
+      pressure: 1008.5
+      swelldir: 158.7
+      swellheight: 2
+      swellperiod: 5.8
+      temperature: 24.5
+      visibility: 24134.8
+      waveheight: 2
+      winddir: 183.2
+      windspeed: 10.1
+      publish_time: 1746748800
+      lng: 123.58414
+      lat: 27.37979
+- operationId: getTideStationInfo
+  method: GET
+  path: /v1/Meteorology/TideStationInfo
+  summary: 5.2.2 Query Single Tide Gauge Station Details
+  source: https://docs.shipfinder.com/431865286e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      overview:
+      - tide_date: '2025-03-05'
+        tide_time1: 00:10
+        tide_time2: 06:33
+        tide_time3: '12:43'
+        tide_time4: '19:12'
+        tide_height1: 3.8
+        tide_height2: 0.1
+        tide_height3: 4.2
+        tide_height4: 0.6
+        tide_lowhigh1: high tide 1
+        tide_lowhigh2: low tide 2
+        tide_lowhigh3: high tide 3
+        tide_lowhigh4: low tide 4
+      - tide_date: '2025-03-04'
+        tide_time1: 05:55
+        tide_time2: '11:56'
+        tide_time3: '18:22'
+        tide_time4: '     '
+        tide_height1: 0
+        tide_height2: 4.2
+        tide_height3: 0.3
+        tide_height4: 0
+        tide_lowhigh1: low tide 1
+        tide_lowhigh2: high tide 2
+        tide_lowhigh3: high tide 3
+        tide_lowhigh4: high tide 4
+      - tide_date: '2025-03-03'
+        tide_time1: 05:19
+        tide_time2: '11:13'
+        tide_time3: '17:38'
+        tide_time4: '23:29'
+        tide_height1: 0
+        tide_height2: 4.1
+        tide_height3: 0.1
+        tide_height4: 4.1
+        tide_lowhigh1: low tide 1
+        tide_lowhigh2: high tide 2
+        tide_lowhigh3: low tide 3
+        tide_lowhigh4: high tide 4
+      - tide_date: '2025-03-02'
+        tide_time1: 04:44
+        tide_time2: '10:33'
+        tide_time3: '16:55'
+        tide_time4: '22:51'
+        tide_height1: 0.1
+        tide_height2: 4
+        tide_height3: 0
+        tide_height4: 4.2
+        tide_lowhigh1: low tide 1
+        tide_lowhigh2: high tide 2
+        tide_lowhigh3: low tide 3
+        tide_lowhigh4: high tide 4
+      - tide_date: '2025-03-01'
+        tide_time1: 04:10
+        tide_time2: 09:56
+        tide_time3: '16:14'
+        tide_time4: '22:14'
+        tide_height1: 0.2
+        tide_height2: 3.8
+        tide_height3: 0
+        tide_height4: 4.3
+        tide_lowhigh1: low tide 1
+        tide_lowhigh2: high tide 2
+        tide_lowhigh3: low tide 3
+        tide_lowhigh4: high tide 4
+      detail:
+      - tide_date: '2025-03-05'
+        h0: 3.79
+        h1: 3.64
+        h2: 3.1
+        h3: 2.31
+        h4: 1.44
+        h5: 0.65
+        h6: 0.14
+        h7: 0.11
+        h8: 0.64
+        h9: 1.57
+        h10: 2.62
+        h11: 3.52
+        h12: 4.07
+        h13: 4.17
+        h14: 3.86
+        h15: 3.22
+        h16: 2.4
+        h17: 1.59
+        h18: 0.92
+        h19: 0.6
+        h20: 0.75
+        h21: 1.3
+        h22: 2.04
+        h23: 2.77
+      - tide_date: '2025-03-04'
+        h0: 3.99
+        h1: 3.53
+        h2: 2.74
+        h3: 1.81
+        h4: 0.91
+        h5: 0.22
+        h6: -0.03
+        h7: 0.33
+        h8: 1.2
+        h9: 2.29
+        h10: 3.29
+        h11: 3.98
+        h12: 4.2
+        h13: 3.95
+        h14: 3.32
+        h15: 2.45
+        h16: 1.56
+        h17: 0.78
+        h18: 0.33
+        h19: 0.41
+        h20: 1
+        h21: 1.87
+        h22: 2.78
+        h23: 3.47
+      - tide_date: '2025-03-03'
+        h0: 3.9
+        h1: 3.2
+        h2: 2.28
+        h3: 1.32
+        h4: 0.49
+        h5: 0.02
+        h6: 0.14
+        h7: 0.84
+        h8: 1.87
+        h9: 2.93
+        h10: 3.73
+        h11: 4.1
+        h12: 3.97
+        h13: 3.41
+        h14: 2.56
+        h15: 1.64
+        h16: 0.79
+        h17: 0.21
+        h18: 0.14
+        h19: 0.67
+        h20: 1.59
+        h21: 2.63
+        h22: 3.5
+        h23: 3.99
+      - tide_date: '2025-03-02'
+        h0: 3.62
+        h1: 2.76
+        h2: 1.8
+        h3: 0.9
+        h4: 0.26
+        h5: 0.11
+        h6: 0.57
+        h7: 1.46
+        h8: 2.48
+        h9: 3.35
+        h10: 3.87
+        h11: 3.9
+        h12: 3.48
+        h13: 2.71
+        h14: 1.8
+        h15: 0.93
+        h16: 0.25
+        h17: 0.01
+        h18: 0.38
+        h19: 1.25
+        h20: 2.35
+        h21: 3.36
+        h22: 4.04
+        h23: 4.22
+      - tide_date: '2025-03-01'
+        h0: 3.2
+        h1: 2.29
+        h2: 1.38
+        h3: 0.62
+        h4: 0.25
+        h5: 0.44
+        h6: 1.11
+        h7: 2.02
+        h8: 2.9
+        h9: 3.54
+        h10: 3.75
+        h11: 3.49
+        h12: 2.85
+        h13: 2.01
+        h14: 1.15
+        h15: 0.42
+        h16: 0.04
+        h17: 0.21
+        h18: 0.94
+        h19: 2
+        h20: 3.1
+        h21: 3.92
+        h22: 4.31
+        h23: 4.18
+- operationId: getTideStationList
+  method: GET
+  path: /v1/Meteorology/TideStationList
+  summary: 5.2.1 Request parameters for Global Tide Gauge Stations List
+  source: https://docs.shipfinder.com/431857907e0
+  response_status: '200'
+  response_example: "{\r\n  \"status\": 0,\r\n  \"msg\": \"\",\r\n  \"total\": 4708,\r\n  \"data\": [\r\n    {\r\
+    \n     \"port_code\": 4001466,\r\n      \"port_cnname\": \"\",\r\n      \"port_name\": \"Camocim\",\r\n    \
+    \  \"port_country_cnname\": \"巴西\",\r\n      \"port_country_name\": \"Brazil\",\r\n      \"lat\": -2.88333,\r\
+    \n      \"lng\": -40.85,\r\n      \"port_time_zone\": \"UTC-3\",\r\n      \"datumn\": \"182\"\r\n    },\r\n\
+    \    {\r\n      \"port_code\": 8000001,\r\n      \"port_cnname\": \"丹东\",\r\n      \"port_name\": \"DANDONG\"\
+    ,\r\n      \"port_country_cnname\": \"中国\",\r\n      \"port_country_name\": \"China\",\r\n      \"lat\": 40.11667,\r\
+    \n      \"lng\": 124.4,\r\n      \"port_time_zone\": \"UTC+8\",\r\n      \"datumn\": \"150\"\r\n    },\r\n \
+    \   ......\r\n    ]\r\n}"
+- operationId: getETA
+  method: GET
+  path: /v1/Prediction/ETA
+  summary: 4.3 ETA Query
+  source: https://docs.shipfinder.com/431244206e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      ship:
+        mmsi: 477172700
+        imo: 9783538
+        ship_name: COSCO SHIPPING LIBRA
+        call_sign: VRRV4
+        ship_type: 71
+      location:
+        lng: 54.659382
+        lat: 24.813853
+        sog: 0
+        sea_area: Persian Gulf
+        sea_area_code: 4266
+      preport:
+        port_code: AEKHL
+        port_cnname: 哈里发港
+        port_name: Khalifa Port
+        time_zone: 4
+        port_country_code: AE
+        port_country_name: United Arab Emirates
+        port_country_cnname: 阿联酋
+        ata: 1746707992
+        atb: 1746716722
+        atd: 0
+      nextport:
+        port_code: CNSHG
+        port_cnname: 上海
+        port_name: Shanghai
+        time_zone: 8
+        port_country_code: CN
+        port_country_name: China
+        port_country_cnname: 中国
+        sailed_distance: 0
+        sailed_time: 0
+        ais_speed: 7.67
+        speed: 20
+        eta: 1747770560
+        remaining_distance: 5608.53
+- operationId: getRoutePlanPointToPoint
+  method: GET
+  path: /v1/Prediction/RoutePlanPointToPoint
+  summary: 4.1 Point-to-Point Route Planning
+  source: https://docs.shipfinder.com/431124483e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      distance: 915.22
+      route:
+      - lng: 113.571144
+        lat: 22.844316
+      - lng: 113.56867
+        lat: 22.82417
+      - lng: 113.59017
+        lat: 22.81067
+      - lng: 113.6135
+        lat: 22.78583
+      - lng: 113.66833
+        lat: 22.69617
+      - lng: 113.68733
+        lat: 22.64817
+      - lng: 113.80333
+        lat: 22.52833
+      - lng: 114
+        lat: 22
+      - lng: 116
+        lat: 22
+      - lng: 117
+        lat: 22.5
+      - lng: 122.5
+        lat: 28
+      - lng: 123
+        lat: 29
+      - lng: 123
+        lat: 30
+      - lng: 122.5
+        lat: 30.5
+      - lng: 122.064
+        lat: 31.1225
+      - lng: 121.87067
+        lat: 31.17867
+      - lng: 121.73775
+        lat: 31.28425
+      - lng: 121.58414
+        lat: 31.37979
+- operationId: getRoutePlanPortToPort
+  method: GET
+  path: /v1/Prediction/RoutePlanPortToPort
+  summary: 4.2 Port-to-Port Route Planning
+  source: https://docs.shipfinder.com/431244012e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    data:
+      distance: 915.22
+      route:
+      - lng: 113.571144
+        lat: 22.844316
+      - lng: 113.56867
+        lat: 22.82417
+      - lng: 113.59017
+        lat: 22.81067
+      - lng: 113.6135
+        lat: 22.78583
+      - lng: 113.66833
+        lat: 22.69617
+      - lng: 113.68733
+        lat: 22.64817
+      - lng: 113.80333
+        lat: 22.52833
+      - lng: 114
+        lat: 22
+      - lng: 116
+        lat: 22
+      - lng: 117
+        lat: 22.5
+      - lng: 122.5
+        lat: 28
+      - lng: 123
+        lat: 29
+      - lng: 123
+        lat: 30
+      - lng: 122.5
+        lat: 30.5
+      - lng: 122.064
+        lat: 31.1225
+      - lng: 121.87067
+        lat: 31.17867
+      - lng: 121.73775
+        lat: 31.28425
+      - lng: 121.58414
+        lat: 31.37979
+- operationId: getPortAnchoredVessels
+  method: GET
+  path: /v1/Voyage/PortAnchoredVessels
+  summary: 2.3 Currently Anchored Vessels
+  source: https://docs.shipfinder.com/430236145e0
+  response_status: '200'
+  response_example: "{\r\n    \"status\": 0,\r\n    \"msg\": \"\",\r\n    \"total\": 241,\r\n    \"data\": [\r\n\
+    \        {\r\n            \"mmsi\": 413611860,\r\n            \"imo\": 1400704,\r\n            \"call_sign\"\
+    : \"\",\r\n            \"ship_name\": \"QIANKUN02\",\r\n            \"ship_type\": 79,\r\n            \"length\"\
+    : 102.0,\r\n            \"width\": 18.0,\r\n            \"left\": 9.0,\r\n            \"trail\": 90.0,\r\n \
+    \           \"draught\": 4.1,\r\n            \"arrival_time\": \"1753237238\",\r\n            \"stay_time\"\
+    : 34.6\r\n        },\r\n        {\r\n            \"mmsi\": 413720847,\r\n            \"imo\": 0,\r\n       \
+    \     \"call_sign\": \"NZEXVC\",\r\n            \"ship_name\": \"WANXUANCHENGHT9678\",\r\n            \"ship_type\"\
+    : 0,\r\n            \"length\": 883.0,\r\n            \"width\": 32.0,\r\n            \"left\": 32.0,\r\n  \
+    \          \"trail\": 387.0,\r\n            \"draught\": 0.0,\r\n            \"arrival_time\": \"1753080812\"\
+    ,\r\n            \"stay_time\": 2641.7\r\n        },\r\n        ......\r\n    ]\r\n}"
+- operationId: getPortBerthedVessels
+  method: GET
+  path: /v1/Voyage/PortBerthedVessels
+  summary: 2.2 Currently Berthed Vessels
+  source: https://docs.shipfinder.com/430197412e0
+  response_status: '200'
+  response_example: "{\r\n  \"status\": 0,\r\n  \"msg\": \"\",\r\n  \"total\": 713,\r\n  \"data\": [\r\n    {\r\n\
+    \      \"mmsi\": 100900006,\r\n      \"imo\": 0,\r\n      \"call_sign\": \"YYYY\",\r\n      \"ship_name\": \"\
+    AISTESTSHIP\",\r\n      \"ship_type\": 70,\r\n      \"length\": 50,\r\n      \"width\": 6,\r\n      \"left\"\
+    : 5,\r\n      \"trail\": 10,\r\n      \"draught\": 0,\r\n      \"arrival_time\": \"1746484554\",\r\n      \"\
+    stay_time\": 2166.2\r\n    },\r\n    {\r\n      \"mmsi\": 100900100,\r\n      \"imo\": 0,\r\n      \"call_sign\"\
+    : \"YYYY\",\r\n      \"ship_name\": \"AISTESTSHIP\",\r\n      \"ship_type\": 70,\r\n      \"length\": 50,\r\n\
+    \      \"width\": 6,\r\n      \"left\": 5,\r\n      \"trail\": 10,\r\n      \"draught\": 0,\r\n      \"arrival_time\"\
+    : \"1746609269\",\r\n      \"stay_time\": 87.7\r\n    },\r\n    ........\r\n  ]\r\n}"
+- operationId: getPortExpectedArrivals
+  method: GET
+  path: /v1/Voyage/PortExpectedArrivals
+  summary: 2.4 Inbound / Expected Arrivals
+  source: https://docs.shipfinder.com/430249182e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    total: 1
+    data:
+    - mmsi: 760004503
+      ship_name: TINO 3
+      imo: 0
+      dwt: 0
+      ship_type: 0
+      length: 12
+      width: 33
+      draught: 5.7
+      preport_name: Manzanillo
+      last_time: 1774921277
+      eta: 1775100580
+      dest: Callao
+      ship_flag: Peru
+- operationId: getPortInfo
+  method: GET
+  path: /v1/Voyage/PortInfo
+  summary: 2.1 Port Information
+  source: https://docs.shipfinder.com/429932201e0
+  response_status: '200'
+  response_example:
+    status: 0
+    msg: ''
+    total: 1
+    data:
+    - port_code: SGSGP
+      port_name: Sigapore
+      port_cnname: 新加坡
+      port_time_zone: '+8'
+      port_country_name: Singapore
+      port_country_cnname: 新加坡
+      port_country_code: SG
+- operationId: getNavigationalWarnings
+  method: GET
+  path: /v1/Warning/NavigationalWarnings
+  summary: 6.1 China Region Navigational Warnings
+  source: https://docs.shipfinder.com/431872073e0
+  response_status: '200'
+  response_example: "{\r\n    \"status\": 0,\r\n    \"msg\": \"\",\r\n    \"total\": 158,\r\n    \"data\": [\r\n\
+    \        {\r\n            \"warning_type\": 12,\r\n            \"source\": \"中国海事局\",\r\n            \"title\"\
+    : \"TRIAL VOYAGE-H561-SD442/25\",\r\n            \"range_type\": 2,\r\n            \"range_points\": \"120.233333,38.416667;120.450000,38.416667;120.450000,38.208333;120.233333,38.279167&121.716667,38.500000;121.916667,38.500000;121.916667,38.250000;121.716667,38.333333&123.166667,37.800000;123.191667,37.800000;123.191667,37.783333;123.166667,37.783333\"\
+    ,\r\n            \"expire_time\": \"2025-07-14 12:00:00\",\r\n            \"pub_time\": \"2025-07-09 13:40:00\"\
+    ,\r\n            \"content\": \"<p align=\\\"justify\\\">SD442/25，BOHAI STRAIT,&nbsp;FROM &nbsp;092200UTC&nbsp;&nbsp;TO\
+    \ &nbsp;111400UTC&nbsp;&nbsp;JUL，H561 TRIAL VOYAGE IN AREA 1 BOUNDED BY THE LINES JOINING 38-25.00N 120-14.00E、38-25.00N\
+    \ 120-27.00E、38-12.50N 120-27.00E、38-16.75N 120-14.00E&nbsp;AND AREA 2 BOUNDED BY THE LINES JOINING 38-30.00N\
+    \ 121-43.00E、38-30.00N 121-55.00E、38-15.00N 121-55.00E、38-20.00N 121-43.00E.FROM &nbsp;111400UTC&nbsp;&nbsp;TO\
+    \ &nbsp;120200UTC&nbsp;&nbsp;JUL,H561 TRIAL VOYAGE IN AREA 3 BOUNDED BY THE LINES JOINING 37-48.00N 123-10.00E、37-48.00N\
+    \ 123-11.50E、37-47.00N 123-11.50E、37-47.00N 123-10.00E.FROM 120200UTC TO 141200UTC JUL,H561 TRIAL VOYAGE IN\
+    \ AREA 2 BOUNDED BY THE LINES JOINING 38-30.00N 121-43.00E、38-30.00N 121-55.00E、38-15.00N 121-55.00E、38-20.00N\
+    \ 121-43.00E.CAUTION TO AVOID. SHANDONG MSA CHINA.</p>\"\r\n        },\r\n        {\r\n            \"warning_type\"\
+    : 12,\r\n            \"source\": \"中国海事局\",\r\n            \"title\": \"黄浦江7月11日水上交通管制-沪航警455/25\",\r\n    \
+    \        \"range_points\": \"\",\r\n            \"pub_time\": \"2025-07-09 13:15:00\",\r\n            \"content\"\
+    : \"<p style=\\\"text-indent: 2em;\\\">沪航警455/25黄浦江7月11日0815时至0945时，在黄浦江苏州河口至轮渡泰公线之间水域范围内进行帆船展示，届时实行水上交通管制，请过往船舶注意。</p>\"\
+    \r\n        },\r\n        {\r\n            \"warning_type\": 12,\r\n            \"source\": \"中国海事局\",\r\n \
+    \           \"title\": \"中华人民共和国重庆海事局航行警告（渝航警50/25）\",\r\n            \"pub_time\": \"2025-07-09 13:00:00\"\
+    ,\r\n            \"content\": \"<p><strong>渝航警</strong><strong>50</strong><strong>/25</strong>“长江救捞一号”轮拖带“航道趸03604”由猪圈门航道码头（长江上游航道里程723km）至扁担石航道基地（长江上游航道里程731km）。</p>\\\
+    n\\n<p>计划运行时刻：拟定于2025年7月10日1000时船队在猪圈门航道码头编队开航上行，1100时抵达扁担石航道基地。</p>\\n\\n<p>请过往船舶加强瞭望，主动与该拖带船队联系，辨明动态，提早统一会让意图，谨慎操作，以策安全。</p>\"\
+    \r\n        },\r\n        {\r\n            \"warning_type\": 3,\r\n            \"source\": \"中国海事局\",\r\n  \
+    \          \"title\": \"冀航警379/25 军事任务\",\r\n            \"range_points\": \"\",\r\n            \"pub_time\"\
+    : \"2025-07-09 11:28:00\",\r\n            \"content\": \"<p>冀航警379/25，渤海，7月10日0000时至7月11日2400时，</p>\\n\\n<p>以N&nbsp;39°24′35″、E&nbsp;119°13′44″为顶点，正东方向至N&nbsp;39°24′35″、E&nbsp;119°17′32″，再至N&nbsp;39°19′21″、E&nbsp;119°29′47″端点，顶点正南偏西6°方向至N&nbsp;39°11′16″、E&nbsp;119°11′54″端点，以顶点为中心半径25公里的部分圆弧将两个端点连接，形成不规则的闭合范围。该区域内进行实弹射击活动。禁止驶入。</p>\"\
+    \r\n        },\r\n        {\r\n            \"warning_type\": 12,\r\n            \"source\": \"中国海事局\",\r\n \
+    \           \"title\": \"MILITARY MISSION——LN222/25\",\r\n            \"range_type\": 2,\r\n            \"range_points\"\
+    : \"121.636667,38.861667;121.636667,38.570000;121.131667,38.565000;121.235000,38.803333\",\r\n            \"\
+    expire_time\": \"2025-07-27 16:00:00\",\r\n            \"pub_time\": \"2025-07-09 11:00:00\",\r\n          \
+    \  \"content\": \"<p>LN222/25&nbsp;BOHAI STRAIT AND NORTH YELLOW SEA MILITARY MISSION IN AREA BOUNDED BY THE\
+    \ LINES JOINING 38-51.7N121-38.2E,38-34.2N121-38.2E,38-33.9N121-07.9E,38-48.2N121-14.1E FROM 130800UTC TO 270800UTC\
+    \ JUL.ENTERING PROHIBITED. LIAONING MSA CHINA.</p>\"\r\n        },\r\n        {\r\n            \"warning_type\"\
+    : 1,\r\n            \"source\": \"中国海事局\",\r\n            \"title\": \"军事任务——辽航警222/25\",\r\n            \"\
+    range_type\": 2,\r\n            \"range_points\": \"121.636667,38.861667;121.636667,38.570000;121.131667,38.565000;121.235000,38.803333\"\
+    ,\r\n            \"expire_time\": \"2025-07-27 16:00:00\",\r\n            \"pub_time\": \"2025-07-09 10:59:00\"\
+    ,\r\n            \"content\": \"<p>辽航警222/25，渤海海峡黄海北部，自7月13日1600时至27日1600时在38-51.7N121-38.2E、38-34.2N121-38.2E、38-33.9N121-07.9E、38-48.2N121-14.1E诸点连线范围内执行军事任务。禁止驶入。</p>\"\
+    \r\n        },\r\n        {\r\n            \"warning_type\": 12,\r\n            \"source\": \"中国海事局\",\r\n \
+    \           \"title\": \"YANGANGRONGHEQIHAO AND YANGANGRONGHEBAHAO   TOWING ZHAOSHANGZHONGGONG3-SD441/25\",\r\
+    \n            \"range_type\": 4,\r\n            \"range_points\": \"121.450000,37.600000;121.583333,37.666667;122.158333,37.666667;122.275000,37.520833;122.263333,37.507000;122.228333,37.480000\"\
+    ,\r\n            \"expire_time\": \"2025-07-11 16:00:00\",\r\n            \"pub_time\": \"2025-07-09 10:53:00\"\
+    ,\r\n            \"content\": \"<p>SD441/25,BOHAI SEA,FROM 090800UTC TO &nbsp;110800UTC JUL,TUG YANGANGRONGHEQIHAO\
+    \ AND YANGANGRONGHEBAHAO TOWING ZHAOSHANGZHONGGONG3,FROM 37-36.00N 121-27.00E&nbsp;TO 37-28.25N 122-13.83E,MAINLY\
+    \ VIA:37-40.00N 121-35.00E, 37-40.00N 122-09.50E,37-31.24N 122-16.50E,37-30.42N 122-15.80E, 37-28.80N 122-13.70E,TOWING\
+    \ LENGTH 400 METERS,SPEED 5 KNOTS.CAUTION TO AVOID.SHANDONG MSA CHINA.</p>\"\r\n        },\r\n        {\r\n\
+    \            \"warning_type\": 12,\r\n            \"source\": \"中国海事局\",\r\n            \"title\": \"拖带作业-烟港融合七号、烟港融合八号拖带招商重工3-鲁航警494/25\"\
+    ,\r\n            \"range_type\": 4,\r\n            \"range_points\": \"121.45,37.6;122.230556,37.470833;121.583333,37.666667;122.158333,37.666667;122.275,37.404;122.263333,37.390333;122.228333,37.363\"\
+    ,\r\n            \"expire_time\": \"2025-07-11 16:00:00\",\r\n            \"pub_time\": \"2025-07-09 10:52:00\"\
+    ,\r\n            \"content\": \"<p>鲁航警494/25，渤海海峡，7月9日1600时至11日1600时，烟港融合七号、烟港融合八号拖带招商重工3,自37-36.00N 121-27.00E至37-28.25N\
+    \ 122-13.83E，主要经过以下各点：37-40.00N 121-35.00E、37-40.00N 122-09.50E、37-31.24N 122-16.50E、37-30.42N 122-15.80E、37-28.80N\
+    \ 122-13.70E，拖带长度400米，航速5节。注意避让。</p>\"\r\n        },\r\n        {\r\n            \"warning_type\": 4,\r\n  \
+    \          \"source\": \"中国海事局\",\r\n            \"title\": \"水深测量—津航警242/25\",\r\n            \"expire_time\"\
+    : \"2025-07-25 18:00:00\",\r\n            \"pub_time\": \"2025-07-09 09:36:00\",\r\n            \"content\"\
+    : \"<p>津航警242/25&nbsp;天津港 自7月10日至25日，每天0600时至1800时，由顺航测11轮在大沽口港区大沽沙航道及附近水域进行水深测量作业。希各航船注意。</p>\"\r\n       \
+    \ },\r\n        ......\r\n    ]\r\n}"
+x-evidence:
+  derived_from: openapi/shipfinder-ais-data-api-openapi.yml
+  fetched: '2026-08-09'

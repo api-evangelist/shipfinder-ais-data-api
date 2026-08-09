@@ -1,0 +1,70 @@
+# Provenance: harvested verbatim by API Evangelist on 2026-08-09
+# source: https://docs.shipfinder.com/llms.txt (HTTP 200, text/plain)
+# method: searched
+# ShipFinder
+
+## Docs
+- [Global Maritime Data API Documentation](https://docs.shipfinder.com/8952919m0.md): 
+- [Shipfinder API  Integration Tutorial](https://docs.shipfinder.com/9177505m0.md): 
+- 1 AIS Dataset [1.1 Vessel Position](https://docs.shipfinder.com/80556381f0.md): 
+- [2 Voyage Dataset](https://docs.shipfinder.com/80637458f0.md): 
+- 5 Meteorology Dataset [5.1 Global Tropical Cyclone](https://docs.shipfinder.com/80958485f0.md): 
+- 5 Meteorology Dataset [5.2 Global Port Tide Predictions](https://docs.shipfinder.com/80986430f0.md): 
+- 7 Event Dataset [7.1 Monitored Fleet Management](https://docs.shipfinder.com/81016299f0.md): 
+- 7 Event Dataset [7.2 Geofence Monitoring Push](https://docs.shipfinder.com/81261421f0.md): 
+- 7 Event Dataset [7.3 Vessel Speed Alert Push](https://docs.shipfinder.com/81276319f0.md): 
+- Appendix [Vessel Type Comparison Table ](https://docs.shipfinder.com/8401311m0.md): 
+- Appendix [Service Return Code](https://docs.shipfinder.com/8401497m0.md): 
+- Appendix [Sea Area Reference Table](https://docs.shipfinder.com/8401498m0.md): 
+- Appendix [Navigation Status Comparison Table](https://docs.shipfinder.com/8401506m0.md): 
+- Appendix [Deviation Node List](https://docs.shipfinder.com/8401507m0.md): 
+- Appendix [Aids to Navigation (AtoN) Type Table](https://docs.shipfinder.com/8401508m0.md): 
+
+## API Docs
+- 1 AIS Dataset > 1.1 Vessel Position [1.1.1 Single Vessel Position](https://docs.shipfinder.com/428990613e0.md): 
+- 1 AIS Dataset > 1.1 Vessel Position [1.1.2 Multi-vessel Position](https://docs.shipfinder.com/430292321e0.md): 
+- 1 AIS Dataset > 1.1 Vessel Position [1.1.3 Fleet Position](https://docs.shipfinder.com/430293359e0.md): 
+- 1 AIS Dataset [1.2 Vessel Search](https://docs.shipfinder.com/428749512e0.md): ## Description
+- 1 AIS Dataset [1.3 Vessels Nearby](https://docs.shipfinder.com/429003024e0.md): ## Description
+- 1 AIS Dataset [1.4 Vessels in Zone](https://docs.shipfinder.com/429583708e0.md): ## Description
+- 1 AIS Dataset [1.5 Vessel Flag Information](https://docs.shipfinder.com/429919472e0.md): ## Description
+- 2 Voyage Dataset [2.1 Port Information](https://docs.shipfinder.com/429932201e0.md): ## Description
+- 2 Voyage Dataset [2.2 Currently Berthed Vessels](https://docs.shipfinder.com/430197412e0.md): ## Description
+- 2 Voyage Dataset [2.3 Currently Anchored Vessels](https://docs.shipfinder.com/430236145e0.md): ## Description
+- 2 Voyage Dataset [2.4 Inbound / Expected Arrivals](https://docs.shipfinder.com/430249182e0.md): ## Description
+- 3 History Dataset [3.1 Vessel History Track](https://docs.shipfinder.com/430346103e0.md): ## Description
+- 3 History Dataset [3.2 Ship-to-Ship (STS) Events](https://docs.shipfinder.com/430352093e0.md): ## Description
+- 3 History Dataset [3.3 Vessel Port Call History](https://docs.shipfinder.com/430426234e0.md): ## Description
+- 3 History Dataset [3.4 Vessel Port Call Records at Specific Port](https://docs.shipfinder.com/430484162e0.md): ## Description
+- 3 History Dataset [3.5 Vessel Current Port Call](https://docs.shipfinder.com/430498718e0.md): ## Description
+- 3 History Dataset [3.6 Port Calls Records for Port](https://docs.shipfinder.com/430531632e0.md): ## Description
+- 4 Prediction Dataset [4.1 Point-to-Point Route Planning](https://docs.shipfinder.com/431124483e0.md): # 4.1 Point-to-Point Route Planning
+- 4 Prediction Dataset [4.2 Port-to-Port Route Planning](https://docs.shipfinder.com/431244012e0.md): ## Description
+- 4 Prediction Dataset [4.3 ETA Query](https://docs.shipfinder.com/431244206e0.md): ## Description
+- 5 Meteorology Dataset > 5.1 Global Tropical Cyclone [5.1.1 Global Tropical Cyclones List](https://docs.shipfinder.com/431698053e0.md): 
+- 5 Meteorology Dataset > 5.1 Global Tropical Cyclone [5.1.2 Tropical Cyclone Details by Point](https://docs.shipfinder.com/431698143e0.md): 
+- 5 Meteorology Dataset > 5.2 Global Port Tide Predictions [5.2.1 Request parameters for Global Tide Gauge Stations List](https://docs.shipfinder.com/431857907e0.md): 
+- 5 Meteorology Dataset > 5.2 Global Port Tide Predictions [5.2.2 Query Single Tide Gauge Station Details](https://docs.shipfinder.com/431865286e0.md): 
+- 5 Meteorology Dataset [5.3 Global Marine Weather](https://docs.shipfinder.com/431272522e0.md): ## Description
+- 6 China Region Coastline Warning Dataset [6.1 China Region Navigational Warnings](https://docs.shipfinder.com/431872073e0.md): ## Description
+- 7 Event Dataset > 7.1 Monitored Fleet Management [7.1.1 Create Fleet](https://docs.shipfinder.com/432035260e0.md): **Endpoint**
+- 7 Event Dataset > 7.1 Monitored Fleet Management [7.1.2 Update Fleet Information](https://docs.shipfinder.com/432048484e0.md): **Endpoint**
+- 7 Event Dataset > 7.1 Monitored Fleet Management [7.1.3 Query Fleet](https://docs.shipfinder.com/432057101e0.md): **Endpoint**
+- 7 Event Dataset > 7.1 Monitored Fleet Management [7.1.4 Delete Fleet ](https://docs.shipfinder.com/432076110e0.md): **Endpoint**
+- 7 Event Dataset > 7.1 Monitored Fleet Management [7.1.5  Add Vessels to Fleet](https://docs.shipfinder.com/432100231e0.md): **Endpoint**
+- 7 Event Dataset > 7.1 Monitored Fleet Management [7.1.6 Batch Update Vessels in Fleet](https://docs.shipfinder.com/432080706e0.md): **Endpoint**
+- 7 Event Dataset > 7.1 Monitored Fleet Management [7.1.7 Remove Vessels from Fleet](https://docs.shipfinder.com/432106004e0.md): **Endpoint**
+- 7 Event Dataset > 7.2 Geofence Monitoring Push [7.2.1 Geofence Creation](https://docs.shipfinder.com/433382008e0.md): 
+- 7 Event Dataset > 7.2 Geofence Monitoring Push [7.2.2 Geofence Update](https://docs.shipfinder.com/433396710e0.md): 
+- 7 Event Dataset > 7.2 Geofence Monitoring Push [7.2.3 Geofence Query](https://docs.shipfinder.com/433414777e0.md): 
+- 7 Event Dataset > 7.2 Geofence Monitoring Push [7.2.4 Geofence Deletion](https://docs.shipfinder.com/433422419e0.md): 
+- 7 Event Dataset > 7.2 Geofence Monitoring Push [7.2.5 Geofence Monitoring Push](https://docs.shipfinder.com/433428967e0.md): After a geofence is created, the system will automatically track vessel entry and exit events within the area according to the filter type selected during creation. If you monitor the entry and exit of a specific fleet, you must add vessel information to be monitored to the fleet first. For fleet management, please refer to section 7.1.
+- 7 Event Dataset > 7.3 Vessel Speed Alert Push [7.3.1 Add Vessel Speed Alert Subscription](https://docs.shipfinder.com/433460139e0.md): 
+- 7 Event Dataset > 7.3 Vessel Speed Alert Push [7.3.2 Delete Vessel Speed Alert Subscription](https://docs.shipfinder.com/433471968e0.md): 
+- 7 Event Dataset > 7.3 Vessel Speed Alert Push [7.3.3 Query Vessel Speed Alert Subscription List](https://docs.shipfinder.com/433473614e0.md): 
+- 7 Event Dataset > 7.3 Vessel Speed Alert Push [7.3.4 Vessel Speed Anomaly Push](https://docs.shipfinder.com/433493965e0.md): ### Endpoint
+- 7 Event Dataset [7.4 Real-time Vessel Position Push](https://docs.shipfinder.com/432751579e0.md): ## Description
+- 7 Event Dataset [7.5 Arrival/Departure Event Push](https://docs.shipfinder.com/433316672e0.md): ## Description
+- 7 Event Dataset [7.6 Vessel Dynamic ETA Push](https://docs.shipfinder.com/433432729e0.md): ## Description
+- 7 Event Dataset [7.7 Vessel AIS Signal Loss Event Push](https://docs.shipfinder.com/433437582e0.md): ## Description
+- 7 Event Dataset [7.8 Vessel STS Event Push](https://docs.shipfinder.com/433444123e0.md): ## Description

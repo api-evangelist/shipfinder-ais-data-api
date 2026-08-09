@@ -1,0 +1,145 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/shipfinder-ais-data-api-openapi.yml
+note: Entity graph derived from the identifier fields and response shapes of the 40 published operations. The API
+  exposes no $ref-linked component schemas — every fragment inlines its own object — so entities are derived from
+  the repeated identifier fields (mmsi/imo/call_sign for vessels, port_code/destcode for ports, fleet_id, area_id)
+  rather than from schema references.
+entities:
+- name: Vessel
+  primary_key: mmsi
+  alternate_keys:
+  - imo
+  - call_sign
+  description: An AIS-transmitting vessel. Carries identity (ship_name, ship_cnname, ship_type, flag), dimensions
+    (length, width, draught) and dynamic state (lat, lng, sog, cog, hdg, rot, navistat, last_time).
+  vocabularies:
+  - vessel_type
+  - navigation_status
+- name: Port
+  primary_key: port_code
+  description: A port identified by UN/LOCODE, with name, coordinates and time zone.
+- name: PortCall
+  primary_key: null
+  description: A vessel's arrival at and departure from a port, with timestamps and berth/anchorage state.
+- name: Track
+  primary_key: null
+  description: An ordered series of historical AIS positions for one vessel over a time window.
+- name: StsEvent
+  primary_key: null
+  description: A ship-to-ship rendezvous between two vessels, with location and start/end time.
+- name: Fleet
+  primary_key: fleet_id
+  description: A customer-defined watchlist of vessels, with the push monitor types enabled on it.
+- name: Geofence
+  primary_key: area_id
+  description: A customer-defined monitored area, with a vessel filter and an optional zone-level webhook URL.
+- name: SpeedAlertSubscription
+  primary_key: null
+  description: A per-vessel speed range whose breach triggers a push event.
+- name: Route
+  primary_key: null
+  description: A planned sea route between two points or two ports, with waypoints, distance and deviation nodes.
+  vocabularies:
+  - deviation_node
+  - sea_area
+- name: TropicalCyclone
+  primary_key: typhoon_id
+  description: An active tropical cyclone with track points, wind radii and forecast.
+- name: TideStation
+  primary_key: scode
+  description: A tide gauge station with predicted tide heights.
+- name: MarineWeather
+  primary_key: null
+  description: Wind, wave, current and visibility conditions at a coordinate and time.
+- name: NavigationalWarning
+  primary_key: null
+  description: An official navigational warning for the China coastline region.
+relationships:
+- from: Fleet
+  to: Vessel
+  type: has_many
+  via: mmsis
+- from: Geofence
+  to: Vessel
+  type: has_many
+  via: filter (all / by ship_type / by fleet)
+- from: Vessel
+  to: PortCall
+  type: has_many
+  via: mmsi
+- from: Port
+  to: PortCall
+  type: has_many
+  via: port_code
+- from: Vessel
+  to: Track
+  type: has_many
+  via: mmsi
+- from: Vessel
+  to: StsEvent
+  type: has_many
+  via: mmsi
+- from: Vessel
+  to: Port
+  type: belongs_to
+  via: destcode (declared destination)
+- from: Route
+  to: Port
+  type: belongs_to
+  via: start_port_code / end_port_code
+- from: SpeedAlertSubscription
+  to: Vessel
+  type: belongs_to
+  via: mmsi
+operations_by_dataset:
+  AIS:
+  - getFleetPosition
+  - getVesselFlagInfo
+  - getVesselPositionMulti
+  - getVesselPositionSingle
+  - getVesselSearch
+  - getVesselsInZone
+  - getVesselsNearby
+  Event:
+  - postAddFleet
+  - postAddGeofence
+  - postAddVesselSpeedAlert
+  - postAddVesselToFleet
+  - postDeleteFleet
+  - postDeleteFleetVessel
+  - deleteGeofence
+  - postDeleteVesselSpeedAlert
+  - getFleet
+  - getGeofence
+  - postUpdateFleetInfo
+  - postUpdateFleetVessel
+  - postUpdateGeofence
+  - getVesselSpeedAlertList
+  History:
+  - getPortCallRecordsByPort
+  - getPortCallRecordsByVessel
+  - getPortCallRecordsByVesselAtPort
+  - getVesselCurrentPortCall
+  - getVesselHistoryTrack
+  - getVesselStsEvents
+  Meteorology:
+  - getCycloneInfo
+  - getCyclonesList
+  - getMarineWeather
+  - getTideStationInfo
+  - getTideStationList
+  Prediction:
+  - getETA
+  - getRoutePlanPointToPoint
+  - getRoutePlanPortToPort
+  Voyage:
+  - getPortAnchoredVessels
+  - getPortBerthedVessels
+  - getPortExpectedArrivals
+  - getPortInfo
+  Warning:
+  - getNavigationalWarnings
+x-evidence:
+  derived_from: openapi/shipfinder-ais-data-api-openapi.yml
+  fetched: '2026-08-09'

@@ -1,0 +1,16 @@
+generated: '2026-08-09'
+method: generated
+source: openapi/shipfinder-ais-data-api-openapi.yml
+workflows:
+- file: track-a-vessel.yml
+  workflowId: trackAVessel
+  title: Find a vessel and read its position and recent track
+  summary: Find a vessel and read its position and recent track
+- file: port-congestion-snapshot.yml
+  workflowId: portCongestionSnapshot
+  title: Resolve a port and read berthed, anchored and inbound vessels
+  summary: Resolve a port and read berthed, anchored and inbound vessels
+- file: voyage-plan-and-eta.yml
+  workflowId: voyagePlanAndEta
+  title: Plan a port-to-port route, predict ETA and check active tropical cyclones
+  summary: Plan a port-to-port route, predict ETA and check active tropical cyclones

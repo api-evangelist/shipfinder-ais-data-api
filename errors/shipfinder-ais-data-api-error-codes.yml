@@ -1,0 +1,98 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.shipfinder.com/8401497m0.md
+format: vendor-envelope
+note: 'ShipFinder does not use RFC 9457 problem+json. Errors are signalled inside a JSON envelope returned with
+  HTTP 200: {"status": <int>, "msg": "<message>", "data": ...}. status 0 means success; any non-zero value is the
+  error. The transport status code is not a reliable error signal — agents must read the envelope "status" field.'
+envelope:
+  media_type: application/json
+  status_field: status
+  message_field: msg
+  payload_field: data
+  success_value: 0
+  http_status_on_error: 200
+x-evidence:
+  fetched: '2026-08-09'
+  url: https://docs.shipfinder.com/8401497m0.md
+  http_status: 200
+code_count: 26
+codes:
+- code: 0
+  title: Success
+  class: success
+- code: 1
+  title: Failure
+  class: server
+- code: 3
+  title: Operation target does not exist (e.g., vessel, fleet, etc.)
+  class: not-found
+- code: 6
+  title: Key expired
+  class: auth
+- code: 7
+  title: Key locked
+  class: auth
+- code: 9
+  title: Key does not exist
+  class: auth
+- code: 12
+  title: Request data volume exceeds limit, execution rejected
+  class: quota
+- code: 13
+  title: Server busy
+  class: server
+- code: 14
+  title: Request from unbound domain
+  class: auth
+- code: 15
+  title: Multi-vessel request quantity exceeds limit
+  class: quota
+- code: 16
+  title: Regional vessel query out of specified area
+  class: validation
+- code: 17
+  title: Invalid write authorization code
+  class: auth
+- code: 19
+  title: Internal program error
+  class: server
+- code: 21
+  title: No service usage permission
+  class: authorization
+- code: 22
+  title: Vessel query quantity exceeds limit
+  class: quota
+- code: 23
+  title: Vessel query frequency exceeds limit
+  class: rate-limit
+- code: 24
+  title: Queried vessel outside the specified vessel set
+  class: authorization
+- code: 25
+  title: Vessel archive query quantity exceeds limit
+  class: quota
+- code: 26
+  title: Vessel current status query quantity exceeds limit
+  class: quota
+- code: 27
+  title: Queried port outside the specified port set
+  class: authorization
+- code: 28
+  title: Track query time exceeds limit
+  class: quota
+- code: 29
+  title: Request frequency too high, please try again later
+  class: rate-limit
+- code: 30
+  title: Request parameter exceeds limit
+  class: validation
+- code: 100
+  title: Parameter error (missing required parameters or invalid parameters)
+  class: validation
+- code: 10000
+  title: Network connection failed
+  class: network
+- code: 10001
+  title: Unsupported operation
+  class: validation

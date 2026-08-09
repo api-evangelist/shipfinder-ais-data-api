@@ -1,0 +1,71 @@
+generated: '2026-08-09'
+method: derived
+source:
+- openapi/shipfinder-ais-data-api-openapi.yml
+- https://docs.shipfinder.com/
+- https://docs.shipfinder.com/8401497m0.md
+authentication:
+  style: api-key
+  transport: query parameter "key" (GET) or JSON body property "key" (POST/DELETE)
+  artifact: authentication/shipfinder-ais-data-api-authentication.yml
+base_url: https://api.elaneglobal.com
+media_types:
+  request:
+  - application/json (POST/DELETE only)
+  response:
+  - application/json
+response_envelope:
+  shape: '{"status": <int>, "msg": "<string>", "data": <object|array>}'
+  success_value: 0
+  errors_in_body: true
+  http_status_on_error: 200
+  artifact: errors/shipfinder-ais-data-api-error-codes.yml
+idempotency:
+  supported: false
+  evidence: No Idempotency-Key header or equivalent parameter appears in any of the 40 published operations, and
+    the documentation describes none. Write operations are Event-dataset fleet/geofence/alert management calls,
+    which are natural-key based (fleet_name, area_name) rather than idempotency-key based.
+pagination:
+  supported: false
+  evidence: No page/offset/cursor parameters are declared. Bulk-listing operations bound result size with a "max"
+    parameter and with server-side quota limits (envelope status 12/15/22/25/26 signal that a request exceeded a
+    volume limit) rather than paging.
+  result_cap_parameter: max
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  request_id_header: null
+  evidence: No request-id / correlation-id header is documented or declared in the spec.
+versioning:
+  scheme: uri-path
+  current: v1
+  example: https://api.elaneglobal.com/v1/AIS/VesselPositionSingle
+  artifact: lifecycle/shipfinder-ais-data-api-lifecycle.yml
+rate_limit_signaling:
+  headers: null
+  in_band: true
+  evidence: 'Rate and quota exhaustion is reported in the response envelope: status 23 (vessel query frequency exceeds
+    limit) and status 29 (request frequency too high). No X-RateLimit-* headers are documented.'
+  artifact: rate-limits/shipfinder-ais-data-api-rate-limits.yml
+time:
+  format: Unix epoch seconds (UTC) on most fields; some request parameters take "YYYY-MM-DD HH:MM:SS" UTC
+  timezone_parameter: time_zone (offered by several Voyage/History operations)
+geospatial:
+  coordinate_system: WGS84
+  fields:
+  - lat
+  - lng
+  units: decimal degrees
+identifiers:
+  mmsi: 9-digit Maritime Mobile Service Identity
+  imo: 7-digit IMO number
+  port_code: UN/LOCODE, e.g. SGSGP
+events:
+  style: HTTP webhook push to a customer-configured receiving URL
+  artifact: asyncapi/shipfinder-ais-data-api-events-asyncapi.yml
+  catalog: asyncapi/shipfinder-ais-data-api-webhooks.yml
+x-evidence:
+  derived_from: openapi/shipfinder-ais-data-api-openapi.yml
+  fetched: '2026-08-09'

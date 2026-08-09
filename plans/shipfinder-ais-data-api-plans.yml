@@ -1,0 +1,55 @@
+generated: '2026-08-09'
+method: searched
+source: https://www.shipfinder.com/home/plans_pricing
+note: 'The published pricing page covers the ShipFinder *web account* subscription. API data services are priced
+  separately and are quote-based: the page states "Pricing is separate from online subscriptions" and routes API
+  buyers to a "Request API Access" contact form. No public API price list exists.'
+api_pricing:
+  model: quote
+  self_service_trial: true
+  trial: Starter (Trial) API key, self-service from the console
+  contact: shipfinder@elaneglobal.com
+currency: USD
+billing_periods:
+- monthly
+- yearly
+payment_methods:
+- Credit card (Visa, MasterCard, American Express)
+- PayPal
+- Wire transfer (annual plans)
+plans:
+- name: Basic
+  price: 0
+  unit: free
+  note: Registration required
+  limits:
+    satellite_ais_vessels: 1
+    historical_track: 3 days
+    fleet_management: 10 vessels
+- name: Standard
+  price: 290
+  unit: year
+  list_price: 348
+  limits:
+    satellite_ais_vessels: 5
+    historical_track: 14 days
+    fleet_management: 20 vessels
+- name: Professional
+  price: 990
+  unit: year
+  list_price: 1199
+  limits:
+    satellite_ais_vessels: unlimited
+    historical_track: 6 months
+    fleet_management: 100 vessels
+- name: Enterprise
+  price: null
+  unit: quote
+  limits:
+    satellite_ais_vessels: unlimited
+    historical_track: 10 years+
+    fleet_management: 5000 vessels
+x-evidence:
+  url: https://www.shipfinder.com/home/plans_pricing
+  http_status: 200
+  fetched: '2026-08-09'

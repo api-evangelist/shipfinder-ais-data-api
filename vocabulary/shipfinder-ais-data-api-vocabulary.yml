@@ -1,0 +1,497 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.shipfinder.com/llms.txt
+name: ShipFinder maritime reference vocabularies
+description: Controlled vocabularies ShipFinder publishes as appendix reference tables in its API documentation.
+  Each one binds to a numeric code field returned by, or accepted as a parameter of, the REST API. Captured verbatim
+  from the published tables.
+x-evidence:
+  fetched: '2026-08-09'
+  index: https://docs.shipfinder.com/llms.txt
+  http_status: 200
+vocabularies:
+- name: vessel_type
+  title: Vessel Type Comparison Table
+  description: Vessel type comparison table (AIS ship_type numeric codes)
+  binds_to_field: ship_type
+  source: https://docs.shipfinder.com/8401311m0.md
+  term_count: 27
+  terms:
+  - code: 20-29
+    term: Wing-in-Ground (WIG)
+  - code: '30'
+    term: Fishing Ship
+  - code: '31'
+    term: Tug
+  - code: '32'
+    term: Tug (length of ship > 200m or breadth of ship > 25m)
+  - code: '33'
+    term: Dredger
+  - code: '34'
+    term: Diving Support Vessel
+  - code: '35'
+    term: Military Vessel
+  - code: '36'
+    term: Sailing Vessel
+  - code: '37'
+    term: Pleasure Craft
+  - code: 40-49
+    term: High-speed Vessel
+  - code: '50'
+    term: Pilot Vessel
+  - code: '51'
+    term: Search and Rescue Vessel
+  - code: '52'
+    term: Tug
+  - code: '53'
+    term: Port Supply Vessel
+  - code: '54'
+    term: Pollution Control Vessel
+  - code: '55'
+    term: Patrol Vessel
+  - code: '56'
+    term: Spare - for assignment to local vessels
+  - code: '57'
+    term: Spare - for assignment to local vessels
+  - code: '58'
+    term: Hospital Ship
+  - code: '59'
+    term: Ships complying with Resolution 18 (Mob-83)
+  - code: 60-69
+    term: Passenger Ship
+  - code: 70-79
+    term: Cargo Ship
+  - code: 80-89
+    term: Oil Tanker
+  - code: 90-99
+    term: Other Vessel
+  - code: '100'
+    term: Container Ship
+  - code: '255'
+    term: Invalid value, displays as 255 when information cannot be correctly obtained
+  - code: Other values
+    term: Other values represent unknown types
+- name: navigation_status
+  title: Navigation Status Comparison Table
+  description: Navigation status comparison table (AIS navistat codes)
+  binds_to_field: navistat
+  source: https://docs.shipfinder.com/8401506m0.md
+  term_count: 11
+  terms:
+  - code: '0'
+    term: Underway
+  - code: '1'
+    term: At Anchor
+  - code: '2'
+    term: Out of Control
+  - code: '3'
+    term: Maneuver Restricted
+  - code: '4'
+    term: Draught Restricted
+  - code: '5'
+    term: Moored
+  - code: '6'
+    term: Stranding
+  - code: '7'
+    term: Fishing
+  - code: '8'
+    term: Sail-Powered
+  - code: '255'
+    term: Invalid value, displays as 255 when information cannot be correctly obtained
+  - code: Other values
+    term: Other values represent unknown states
+- name: sea_area
+  title: Sea Area Reference Table
+  description: Sea area reference table used to map sea areas in ETA queries
+  binds_to_field: sea area code
+  source: https://docs.shipfinder.com/8401498m0.md
+  term_count: 67
+  terms:
+  - code: '1'
+    term: Baltic Sea
+  - code: '2'
+    term: Kattegat
+  - code: '3'
+    term: Skaggerak
+  - code: '4'
+    term: North Sea
+  - code: '5'
+    term: Greenland Sea
+  - code: '6'
+    term: Norwegian Sea
+  - code: '7'
+    term: Barentsz Sea
+  - code: '8'
+    term: White Sea
+  - code: '9'
+    term: Kara Sea
+  - code: '10'
+    term: Laptev Sea
+  - code: '11'
+    term: East Siberian Sea
+  - code: '12'
+    term: Chukchi Sea
+  - code: '13'
+    term: Beaufort Sea
+  - code: '14'
+    term: Northwestern Passages
+  - code: '15'
+    term: Davis Strait
+  - code: '16'
+    term: Hudson Bay
+  - code: '17'
+    term: Arctic Ocean
+  - code: '18'
+    term: Inner Seas off the West Coast of Scotland
+  - code: '19'
+    term: Irish Sea and St. George's Channel
+  - code: '20'
+    term: Bristol Channel
+  - code: '21'
+    term: English Channel
+  - code: '22'
+    term: Bay of Biscay
+  - code: '23'
+    term: North Atlantic Ocean
+  - code: '24'
+    term: Gulf of St-Lawrence
+  - code: '25'
+    term: Bay of Fundy
+  - code: '26'
+    term: Gulf of Mexico
+  - code: '27'
+    term: Caribbean Sea
+  - code: '28'
+    term: Mediterranean Sea
+  - code: '29'
+    term: Sea of Marmara
+  - code: '30'
+    term: Black Sea
+  - code: '31'
+    term: Sea of Azov
+  - code: '32'
+    term: South Atlantic Ocean
+  - code: '33'
+    term: Rio de La Plata
+  - code: '34'
+    term: Gulf of Guinea
+  - code: '35'
+    term: Gulf of Suez
+  - code: '36'
+    term: Gulf of Aqaba
+  - code: '37'
+    term: Red Sea
+  - code: '38'
+    term: Gulf of Aden
+  - code: '39'
+    term: Arabian Sea
+  - code: '40'
+    term: Gulf of Oman
+  - code: '41'
+    term: Persian Gulf
+  - code: '42'
+    term: Laccadive Sea
+  - code: '43'
+    term: Bay of Bengal
+  - code: '44'
+    term: Andaman or Burma Sea
+  - code: '45'
+    term: Indian Ocean
+  - code: '46'
+    term: Malacca Strait
+  - code: '47'
+    term: Gulf of Thailand
+  - code: '48'
+    term: East Indian Archipelago (Indonesia)
+  - code: '49'
+    term: South China Sea
+  - code: '50'
+    term: Eastern China Sea
+  - code: '51'
+    term: Yellow Sea
+  - code: '52'
+    term: Japan Sea
+  - code: '53'
+    term: Inland Sea
+  - code: '54'
+    term: Sea of Okhotsk
+  - code: '55'
+    term: Bering Sea
+  - code: '56'
+    term: Philippine Sea
+  - code: '57'
+    term: North Pacific Ocean
+  - code: '58'
+    term: Gulf of Alaska
+  - code: '59'
+    term: The Coastal Waters of Southeast Alaska and British Columbia
+  - code: '60'
+    term: Gulf of California
+  - code: '61'
+    term: South Pacific Ocean
+  - code: '62'
+    term: Great Australian Bight
+  - code: '63'
+    term: Tasman Sea
+  - code: '64'
+    term: Coral Sea
+  - code: '65'
+    term: Solomon Sea
+  - code: '66'
+    term: Bismarck Sea
+  - code: '67'
+    term: Southern Ocean
+- name: deviation_node
+  title: Deviation Node List
+  description: Deviation node list used by the route-planning operations
+  binds_to_field: avoid / through
+  source: https://docs.shipfinder.com/8401507m0.md
+  term_count: 42
+  terms:
+  - code: '1'
+    term: MALACCA STRAIT
+  - code: '2'
+    term: SUEZ CANAL
+  - code: '3'
+    term: SUNDA STRAIT
+  - code: '4'
+    term: PANAMA CANAL
+  - code: '5'
+    term: LOMBOK STRAIT
+  - code: '6'
+    term: TAIWAN STRAIT
+  - code: '7'
+    term: BAB EL MANDEB STRAIT
+  - code: '8'
+    term: TSUSHIMA STRAIT
+  - code: '9'
+    term: DAVIS STRAIT
+  - code: '11'
+    term: PALK STRAIT
+  - code: '12'
+    term: MAKASSAR STRAIT
+  - code: '13'
+    term: BASS STRAIT
+  - code: '14'
+    term: KATTEGAT STRAIT
+  - code: '15'
+    term: LUZON STRAIT
+  - code: '16'
+    term: MESSINA STRAIT
+  - code: '17'
+    term: CAPE OF GOOD HOPE
+  - code: '18'
+    term: MOZAMBIQUE CHANNEL
+  - code: '19'
+    term: MAGELLAN STRAIT
+  - code: '20'
+    term: STRAIT OF JUAN DE FUCA
+  - code: '21'
+    term: TORRES STRAIT
+  - code: '22'
+    term: GIBRALTAR STRAIT
+  - code: '23'
+    term: NEMURO STRAIT
+  - code: '24'
+    term: COOK STRAIT
+  - code: '25'
+    term: DIXON ENTRANCE
+  - code: '26'
+    term: GREATER BEIT STRAIT
+  - code: '28'
+    term: YUCATAN CHANNEL
+  - code: '29'
+    term: SKAGERRAK STRAIT
+  - code: '30'
+    term: TSUGARU STRAIT
+  - code: '31'
+    term: ENGLISH CHANNEL
+  - code: '34'
+    term: WINDWARD PASSAGE
+  - code: '35'
+    term: TATAR STRAIT
+  - code: '36'
+    term: HUDSON STRAIT
+  - code: '37'
+    term: HECATE STRAIT
+  - code: '38'
+    term: DOVER STRAIT
+  - code: '39'
+    term: MIYAKO STRAIT
+  - code: '40'
+    term: BERING STRAIT
+  - code: '41'
+    term: DRAKE PASSAGE
+  - code: '42'
+    term: FLORIDA STRAIT
+  - code: '43'
+    term: STRAIT OF BELLE ISLE
+  - code: '44'
+    term: KOREA STRAIT
+  - code: '46'
+    term: SOYA KAIKYO
+  - code: '47'
+    term: DENMARK STRAIT
+- name: aton_type
+  title: Aids to Navigation (AtoN) Type Table
+  description: Aids to Navigation (AtoN) type table
+  binds_to_field: AtoN type
+  source: https://docs.shipfinder.com/8401508m0.md
+  term_count: 32
+  terms:
+  - code: '0'
+    term: Fixed Aids to Navigation
+    definition: Default, AtoN Type Not Specified
+  - code: '1'
+    term: Fixed Aids to Navigation
+    definition: Reference Point
+  - code: '2'
+    term: Fixed Aids to Navigation
+    definition: Radar Beacon (RACON)
+  - code: '3'
+    term: Fixed Aids to Navigation
+    definition: Fixed Offshore Structures, e.g. Oil Platforms, Wind Farms (this code denotes obstructions equivalent
+      to AtoN AIS stations)
+  - code: '4'
+    term: Fixed Aids to Navigation
+    definition: Spare, Reserved for Future Use
+  - code: '5'
+    term: Fixed Aids to Navigation
+    definition: Light, Non-Sector
+  - code: '6'
+    term: Fixed Aids to Navigation
+    definition: Sector Light
+  - code: '7'
+    term: Fixed Aids to Navigation
+    definition: Front Light
+  - code: '8'
+    term: Fixed Aids to Navigation
+    definition: Rear Light
+  - code: '9'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Cardinal North (N)
+  - code: '10'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Cardinal East (E)
+  - code: '11'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Cardinal South (S)
+  - code: '12'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Cardinal West (W)
+  - code: '13'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Port-hand
+  - code: '14'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Starboard-hand
+  - code: '15'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Preferred Channel Port-hand
+  - code: '16'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Preferred Channel Starboard-hand
+  - code: '17'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Isolated Danger
+  - code: '18'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Safe Water
+  - code: '19'
+    term: Fixed Aids to Navigation
+    definition: Beacon, Special Mark
+  - code: '20'
+    term: Floating Aids to Navigation
+    definition: Cardinal North (N) Beacon
+  - code: '21'
+    term: Floating Aids to Navigation
+    definition: Cardinal East (E) Beacon
+  - code: '22'
+    term: Floating Aids to Navigation
+    definition: Cardinal South (S) Beacon
+  - code: '23'
+    term: Floating Aids to Navigation
+    definition: Cardinal West (W) Beacon
+  - code: '24'
+    term: Floating Aids to Navigation
+    definition: Port-hand Beacon
+  - code: '25'
+    term: Floating Aids to Navigation
+    definition: Starboard-hand Beacon
+  - code: '26'
+    term: Floating Aids to Navigation
+    definition: Preferred Channel Port-hand
+  - code: '27'
+    term: Floating Aids to Navigation
+    definition: Preferred Channel Starboard-hand
+  - code: '28'
+    term: Floating Aids to Navigation
+    definition: Isolated Danger
+  - code: '29'
+    term: Floating Aids to Navigation
+    definition: Safe Water
+  - code: '30'
+    term: Floating Aids to Navigation
+    definition: Special Mark
+  - code: '31'
+    term: Floating Aids to Navigation
+    definition: Lightship/LANBY (Large Automated Navigation Buoy) / Drilling Platform
+- name: service_return_code
+  title: Service Return Code
+  description: Service return codes carried in the JSON response envelope
+  binds_to_field: status
+  source: https://docs.shipfinder.com/8401497m0.md
+  term_count: 26
+  terms:
+  - code: '0'
+    term: Success
+  - code: '1'
+    term: Failure
+  - code: '3'
+    term: Operation target does not exist (e.g., vessel, fleet, etc.)
+  - code: '6'
+    term: Key expired
+  - code: '7'
+    term: Key locked
+  - code: '9'
+    term: Key does not exist
+  - code: '12'
+    term: Request data volume exceeds limit, execution rejected
+  - code: '13'
+    term: Server busy
+  - code: '14'
+    term: Request from unbound domain
+  - code: '15'
+    term: Multi-vessel request quantity exceeds limit
+  - code: '16'
+    term: Regional vessel query out of specified area
+  - code: '17'
+    term: Invalid write authorization code
+  - code: '19'
+    term: Internal program error
+  - code: '21'
+    term: No service usage permission
+  - code: '22'
+    term: Vessel query quantity exceeds limit
+  - code: '23'
+    term: Vessel query frequency exceeds limit
+  - code: '24'
+    term: Queried vessel outside the specified vessel set
+  - code: '25'
+    term: Vessel archive query quantity exceeds limit
+  - code: '26'
+    term: Vessel current status query quantity exceeds limit
+  - code: '27'
+    term: Queried port outside the specified port set
+  - code: '28'
+    term: Track query time exceeds limit
+  - code: '29'
+    term: Request frequency too high, please try again later
+  - code: '30'
+    term: Request parameter exceeds limit
+  - code: '100'
+    term: Parameter error (missing required parameters or invalid parameters)
+  - code: '10000'
+    term: Network connection failed
+  - code: '10001'
+    term: Unsupported operation

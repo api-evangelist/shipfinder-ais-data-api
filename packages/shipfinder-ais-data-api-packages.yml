@@ -1,0 +1,42 @@
+generated: '2026-08-09'
+method: searched
+source: registry probes
+packages: []
+summary: No first-party ShipFinder client library was found in any public package registry.
+x-evidence:
+  checked: '2026-08-09'
+  registries:
+  - registry: npm
+    query: '@shipfinder/sdk'
+    url: https://registry.npmjs.org/@shipfinder%2Fsdk
+    http_status: 404
+  - registry: npm
+    query: shipfinder
+    url: https://registry.npmjs.org/shipfinder
+    http_status: 404
+  - registry: npm
+    query: shipfinder-sdk
+    url: https://registry.npmjs.org/shipfinder-sdk
+    http_status: 404
+  - registry: npm
+    query: elaneglobal
+    url: https://registry.npmjs.org/elaneglobal
+    http_status: 404
+  - registry: pypi
+    query: shipfinder
+    url: https://pypi.org/pypi/shipfinder/json
+    http_status: 404
+  - registry: pypi
+    query: shipfinder-api
+    url: https://pypi.org/pypi/shipfinder-api/json
+    http_status: 404
+  - registry: pypi
+    query: elaneglobal
+    url: https://pypi.org/pypi/elaneglobal/json
+    http_status: 404
+  note: 'The ShipFinder API marketing page at https://open.shipfinder.com/ (HTTP 200) shows tabbed code samples
+    labelled "@shipfinder/sdk · v1" (JavaScript) and "shipfinder · python · v1", importing { ShipFinder } from "@shipfinder/sdk".
+    Neither package is published: every registry lookup above returned 404. The same snippets use "Authorization:
+    Bearer YOUR_API_KEY" against GET /v1/vessel/position, which is not the documented authentication scheme (key
+    query parameter) nor a documented path. Recorded here so the marketing claim is not mistaken for a shipped SDK
+    — no SDKs pointer is wired in apis.yml.'

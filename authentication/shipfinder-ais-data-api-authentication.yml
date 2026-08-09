@@ -1,0 +1,55 @@
+generated: '2026-08-09'
+method: searched
+source: openapi/shipfinder-ais-data-api-openapi.yml
+docs: https://docs.shipfinder.com/9177505m0
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+  - body
+  oauth2_flows: []
+  oauth2: false
+  openid_connect: false
+  mutual_tls: false
+schemes:
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  parameter: key
+  sources:
+  - openapi/shipfinder-ais-data-api-openapi.yml
+  description: Every GET operation carries the API key as the "key" query parameter. The ten POST/DELETE Event-dataset
+    operations accept the same key as a "key" property in the JSON request body. There is no bearer token, no OAuth
+    2.0 and no OIDC surface.
+key_management:
+  console: https://open.shipfinder.com/v1/console/overview
+  signup: https://www.shipfinder.com/home/register
+  tutorial: https://docs.shipfinder.com/9177505m0
+  key_types:
+  - name: Starter (Trial) Key
+    self_service: true
+    description: Preset permission scope for evaluation and integration testing; usable immediately. One Starter
+      key per account.
+  - name: Custom (Production / Test) Key
+    self_service: false
+    description: Created with no active services. The ShipFinder business team confirms requirements by email and
+      enables the corresponding per-service permissions, normally within one business day.
+  max_keys_per_account: 5
+  domain_binding: Keys can be bound to a calling domain. A request from an unbound domain is rejected with envelope
+    status 14.
+  per_service_permissions: Datasets are individually permissioned. Calling a service the key is not entitled to
+    returns envelope status 21 (no service usage permission).
+notes:
+- The key travels in the query string, so it appears in server logs, proxies and browser history; ShipFinder documents
+  no header-based alternative.
+- 'The marketing page at https://open.shipfinder.com/ shows an illustrative snippet using "Authorization: Bearer
+  YOUR_API_KEY" against GET /v1/vessel/position. Neither the bearer scheme nor that path exists in the published
+  API documentation — treat the marketing snippet as illustrative.'
+x-evidence:
+- url: https://docs.shipfinder.com/9177505m0.md
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://open.shipfinder.com/
+  http_status: 200
+  fetched: '2026-08-09'

@@ -1,0 +1,221 @@
+generated: '2026-08-09'
+method: probed
+source: direct HTTP probes
+summary: ShipFinder serves no /.well-known/ discovery documents. On api.elaneglobal.com, www.shipfinder.com, open.shipfinder.com
+  and api.shipfinder.com every /.well-known/* path returns HTTP 200 with an HTML shell (a catch-all, not a document)
+  — a soft 404. Only docs.shipfinder.com answers honestly with 404. No security.txt, no OIDC/OAuth metadata, no
+  api-catalog, no ai-plugin, no agent card.
+documents: []
+probes:
+- host: api.elaneglobal.com
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.elaneglobal.com
+  path: /.well-known/openid-configuration
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.elaneglobal.com
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.elaneglobal.com
+  path: /.well-known/api-catalog
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.elaneglobal.com
+  path: /.well-known/ai-plugin.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.elaneglobal.com
+  path: /.well-known/agent-card.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.elaneglobal.com
+  path: /.well-known/agent.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: docs.shipfinder.com
+  path: /.well-known/security.txt
+  status: 404
+  result: not found
+- host: docs.shipfinder.com
+  path: /.well-known/openid-configuration
+  status: 404
+  result: not found
+- host: docs.shipfinder.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+  result: not found
+- host: docs.shipfinder.com
+  path: /.well-known/api-catalog
+  status: 404
+  result: not found
+- host: docs.shipfinder.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+  result: not found
+- host: docs.shipfinder.com
+  path: /.well-known/agent-card.json
+  status: 404
+  result: not found
+- host: docs.shipfinder.com
+  path: /.well-known/agent.json
+  status: 404
+  result: not found
+- host: www.shipfinder.com
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: www.shipfinder.com
+  path: /.well-known/openid-configuration
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: www.shipfinder.com
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: www.shipfinder.com
+  path: /.well-known/api-catalog
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: www.shipfinder.com
+  path: /.well-known/ai-plugin.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: www.shipfinder.com
+  path: /.well-known/agent-card.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: www.shipfinder.com
+  path: /.well-known/agent.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: open.shipfinder.com
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: open.shipfinder.com
+  path: /.well-known/openid-configuration
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: open.shipfinder.com
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: open.shipfinder.com
+  path: /.well-known/api-catalog
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: open.shipfinder.com
+  path: /.well-known/ai-plugin.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: open.shipfinder.com
+  path: /.well-known/agent-card.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: open.shipfinder.com
+  path: /.well-known/agent.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.shipfinder.com
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.shipfinder.com
+  path: /.well-known/openid-configuration
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.shipfinder.com
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.shipfinder.com
+  path: /.well-known/api-catalog
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.shipfinder.com
+  path: /.well-known/ai-plugin.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.shipfinder.com
+  path: /.well-known/agent-card.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+- host: api.shipfinder.com
+  path: /.well-known/agent.json
+  status: 200
+  content_type: text/html
+  result: soft-404 — SPA catch-all returns the marketing/console HTML shell for every /.well-known/* path; no discovery
+    document is served
+x-evidence:
+  checked: '2026-08-09'
+  hosts:
+  - api.elaneglobal.com
+  - docs.shipfinder.com
+  - www.shipfinder.com
+  - open.shipfinder.com
+  - api.shipfinder.com
+  paths:
+  - /.well-known/security.txt
+  - /.well-known/openid-configuration
+  - /.well-known/oauth-authorization-server
+  - /.well-known/api-catalog
+  - /.well-known/ai-plugin.json
+  - /.well-known/agent-card.json
+  - /.well-known/agent.json

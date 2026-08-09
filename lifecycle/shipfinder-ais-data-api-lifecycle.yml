@@ -1,0 +1,28 @@
+generated: '2026-08-09'
+method: derived
+source:
+- openapi/shipfinder-ais-data-api-openapi.yml
+- https://docs.shipfinder.com/
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.shipfinder.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  evidence: 'No deprecation or sunset policy is published. Every one of the 40 published operations carries deprecated:
+    false in the provider fragment.'
+sla:
+  url: null
+  uptime_target: null
+  evidence: No SLA or uptime commitment is published on the public surface.
+status_page: null
+status_page_evidence:
+- url: https://status.shipfinder.com/
+  result: DNS does not resolve
+changelog: null
+changelog_evidence: No dated changelog or release-notes page was found on shipfinder.com or docs.shipfinder.com.
+deprecated_operations: []
+x-evidence:
+  fetched: '2026-08-09'
+  derived_from: openapi/shipfinder-ais-data-api-openapi.yml

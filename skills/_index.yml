@@ -1,0 +1,66 @@
+generated: '2026-08-09'
+method: generated
+source: openapi/shipfinder-ais-data-api-openapi.yml
+note: Packaged agent skills for the ShipFinder Global Maritime Data API. Every step is grounded in an operationId
+  that exists in the harvested OpenAPI; ShipFinder publishes no agent skills of its own.
+skills:
+- file: shipfinder-ais-data-api-track-a-vessel.md
+  name: Find and track a vessel
+  description: Resolve a vessel from a name, call sign, MMSI or IMO, read its current AIS position, and replay its
+    recent track.
+  api: openapi/shipfinder-ais-data-api-openapi.yml
+  operations:
+  - getVesselSearch
+  - getVesselPositionSingle
+  - getVesselPositionMulti
+  - getVesselHistoryTrack
+  - getVesselFlagInfo
+- file: shipfinder-ais-data-api-port-call-intelligence.md
+  name: Build port call intelligence for a port
+  description: Look up a port, list what is berthed, anchored and inbound right now, and pull its historical port-call
+    record.
+  api: openapi/shipfinder-ais-data-api-openapi.yml
+  operations:
+  - getPortInfo
+  - getPortBerthedVessels
+  - getPortAnchoredVessels
+  - getPortExpectedArrivals
+  - getPortCallRecordsByPort
+- file: shipfinder-ais-data-api-voyage-eta-and-routing.md
+  name: Plan a voyage and predict arrival
+  description: Plan a sea route between two ports or coordinates, predict ETA, and check the weather and cyclone
+    picture along the way.
+  api: openapi/shipfinder-ais-data-api-openapi.yml
+  operations:
+  - getRoutePlanPortToPort
+  - getRoutePlanPointToPoint
+  - getETA
+  - getMarineWeather
+  - getCyclonesList
+  - getCycloneInfo
+  - getTideStationList
+  - getTideStationInfo
+- file: shipfinder-ais-data-api-fleet-monitoring-and-push.md
+  name: Monitor a fleet and receive push events
+  description: Create a monitored fleet, bind vessels to it, and subscribe to ShipFinder push events for position,
+    arrival/departure, ETA, AIS signal loss and ship-to-ship activity.
+  api: openapi/shipfinder-ais-data-api-openapi.yml
+  operations:
+  - postAddFleet
+  - getFleet
+  - postUpdateFleetInfo
+  - postAddVesselToFleet
+  - postUpdateFleetVessel
+  - postDeleteFleetVessel
+  - postDeleteFleet
+- file: shipfinder-ais-data-api-geofence-alerting.md
+  name: Geofence a sea area and alert on entry and exit
+  description: Create a monitored geographic area with a vessel filter, and receive entry/exit push events for it.
+  api: openapi/shipfinder-ais-data-api-openapi.yml
+  operations:
+  - postAddGeofence
+  - getGeofence
+  - postUpdateGeofence
+  - deleteGeofence
+  - getVesselsInZone
+  - getVesselsNearby

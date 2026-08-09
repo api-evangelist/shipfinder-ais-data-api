@@ -1,0 +1,917 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.shipfinder.com/llms.txt
+surface: webhooks
+summary: ShipFinder ships a push (webhook) event surface as dataset 7, the Event Dataset. The subscriber configures
+  a receiving URL in the console (or per geofence zone), binds vessels to a monitored fleet or geofence, and ShipFinder
+  POSTs JSON to that URL. Seven event types are documented, each with a published payload schema. All push services
+  are premium and require per-key permission enablement. No signature, replay-protection or retry policy is documented.
+security:
+  signature: null
+  retries: null
+  replay_protection: null
+  evidence: The documentation describes no webhook signing header, no retry/backoff policy and no delivery-acknowledgement
+    contract.
+event_count: 7
+events:
+- name: geofenceMonitoringPush
+  title: Geofence Monitoring Push
+  summary: Vessel entry into / exit from a monitored geofence.
+  delivery: HTTP POST to a customer-configured receiving URL
+  configured_in: ShipFinder console (Fleet & Areas > Webhook URL Management); a zone-level URL overrides the account-level
+    URL
+  subscription_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddGeofence
+  premium: false
+  content_type: application/json
+  payload_schema:
+    type: object
+    properties:
+      mmsi:
+        type: integer
+        description: 9-digit numeric code of MMSI
+      imo:
+        type: integer
+        description: 7-digit numeric code of IMO
+      call_sign:
+        type: string
+        description: 'Call Sign '
+      ship_name:
+        type: string
+        description: Vessel name
+      area_id:
+        type: string
+        description: Unique identifier of the geofence.
+      area_name:
+        type: string
+        description: Name of the created geofence.
+      event_type:
+        type: integer
+        description: 1=Area Entry; 2=Area Exit; 3=Suspected Area Crossing
+      event_time:
+        type: integer
+        description: AIS event occurrence time (UTC) in Unix timestamp.
+    required:
+    - mmsi
+    - imo
+    - call_sign
+    - ship_name
+    - area_id
+    - area_name
+    - event_type
+    - event_time
+    x-apifox-orders:
+    - mmsi
+    - imo
+    - call_sign
+    - ship_name
+    - area_id
+    - area_name
+    - event_type
+    - event_time
+  example:
+    mmsi: 413362630
+    imo: 0
+    call_sign: FH
+    ship_name: LING HAI JUN 5298
+    area_id: 14338eee-440b-453d-bc52-df878c425cfa
+    area_name: area-1
+    event_type: 1
+    event_time: 1747707475
+  source: https://docs.shipfinder.com/433428967e0.md
+- name: vesselSpeedAnomalyPush
+  title: Vessel Speed Anomaly Push
+  summary: A monitored vessel drops below or exceeds its subscribed speed range.
+  delivery: HTTP POST to a customer-configured receiving URL
+  configured_in: ShipFinder console (Fleet & Areas > Webhook URL Management); a zone-level URL overrides the account-level
+    URL
+  subscription_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddVesselSpeedAlert
+  premium: false
+  content_type: application/json
+  payload_schema:
+    title: ''
+    type: object
+    properties:
+      data:
+        type: object
+        properties:
+          mmsi:
+            type: integer
+            description: 9-digit numeric code of MMSI
+          imo:
+            type: integer
+            description: 7-digit numeric code of IMO
+          call_sign:
+            type: string
+            description: 'Call Sign '
+          ship_name:
+            type: string
+            description: Vessel name
+          event_type:
+            type: integer
+            description: '1=Below the allowed speed range;
+
+              2=Above the allowed speed range'
+          lng:
+            type: number
+            description: Coordinate longitude, WGS84 coordinate system
+          lat:
+            type: number
+            description: Coordinate latitude, WGS84 coordinate system
+          navistat:
+            type: integer
+            description: "Vessel navigation status when the event is triggered. \nDefult=0. Please see References.\
+              \ A return value of -1 or 255 indicates invalid data."
+          event_time:
+            type: integer
+            description: 'AIS event occurrence time.Format: YYYY-MM-DD HH:MM:SS, UTC.'
+        x-apifox-orders:
+        - mmsi
+        - imo
+        - call_sign
+        - ship_name
+        - event_type
+        - lng
+        - lat
+        - navistat
+        - event_time
+        required:
+        - mmsi
+        - imo
+        - call_sign
+        - ship_name
+        - event_type
+        - lng
+        - lat
+        - navistat
+        - event_time
+    x-apifox-orders:
+    - data
+    required:
+    - data
+  example: null
+  source: https://docs.shipfinder.com/433493965e0.md
+- name: realtimeVesselPositionPush
+  title: Real-time Vessel Position Push
+  summary: One packet of real-time position data for every vessel in a monitored fleet, every 10 minutes.
+  delivery: HTTP POST to a customer-configured receiving URL
+  configured_in: ShipFinder console (Fleet & Areas > Webhook URL Management); a zone-level URL overrides the account-level
+    URL
+  subscription_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddFleet
+  premium: true
+  content_type: application/json
+  payload_schema:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            mmsi:
+              type: integer
+              description: 9-digit numeric code of MMSI
+            imo:
+              type: integer
+              description: 7-digit numeric code of IMO
+            call_sign:
+              type: string
+              description: 'Call Sign '
+            ship_name:
+              type: string
+              description: Vessel name
+            ship_cnname:
+              type: string
+              description: Chinese name of the vessel
+            data_source:
+              type: integer
+              description: 0=Terrestrial AIS stations or Shipborne AIS; 1=Satellite AIS
+            lat:
+              type: number
+              description: Coordinate latitude, WGS84 coordinate system
+            lng:
+              type: number
+              description: Coordinate longitude, WGS84 coordinate system
+            ship_type:
+              type: integer
+              description: 'Numeric code of vessel type: see References for details '
+            length:
+              type: number
+              description: 'Vessel length in meters, valid value range: 0–1022'
+            width:
+              type: number
+              description: Vessel breadth in meters (nautical standard term)
+            left:
+              type: number
+              description: Port distance in meters
+            trail:
+              type: number
+              description: Stern Distance in meters
+            draught:
+              type: number
+              description: Vessel draught depth in meters
+            dest:
+              type: string
+              description: Standardized destination port names, e.g., SINGAPORE, SG
+            destcode:
+              type: string
+              description: Port code of the destination, e.g., SGSGP
+            navistat:
+              type: integer
+              description: 0, Vessel navigation status; -1=invalid data
+            sog:
+              type: number
+              description: Real-time vessel speed over ground in knots; -1=invalid data
+            cog:
+              type: number
+              description: Course over ground in degrees ; -1=invalid data
+            hdg:
+              type: number
+              description: Vessel heading in degrees; 511=invalid data
+            rot:
+              type: number
+              description: Vessel heading in degrees; 511=invalid data
+            eta:
+              type: integer
+              description: Estimated Time of Arrival in Unix timestamp
+            last_time:
+              type: integer
+              description: AIS last update time in Unix timestamp
+          required:
+          - mmsi
+          - imo
+          - call_sign
+          - ship_name
+          - ship_cnname
+          - data_source
+          - last_time
+          - lat
+          - lng
+          - ship_type
+          - length
+          - width
+          - left
+          - trail
+          - draught
+          - dest
+          - destcode
+          - eta
+          - navistat
+          - sog
+          - cog
+          - hdg
+          - rot
+          x-apifox-orders:
+          - mmsi
+          - imo
+          - call_sign
+          - ship_name
+          - ship_cnname
+          - data_source
+          - last_time
+          - lat
+          - lng
+          - ship_type
+          - length
+          - width
+          - left
+          - trail
+          - draught
+          - dest
+          - destcode
+          - eta
+          - navistat
+          - sog
+          - cog
+          - hdg
+          - rot
+    required:
+    - data
+    x-apifox-orders:
+    - data
+  example:
+    data:
+    - mmsi: 563018400
+      imo: 9761463
+      call_sign: 9V3642
+      ship_name: XIN LONG YANG
+      ship_cnname: null
+      data_source: 0
+      last_time: 1748330914
+      lat: 31.375355
+      lng: 121.687177
+      ship_type: 80
+      length: 333
+      width: 60
+      left: 37
+      trail: 56
+      draught: 5.6
+      dest: CXD
+      destcode: ''
+      eta: 1746979200
+      navistat: 5
+      sog: 0
+      cog: 360
+      hdg: 118
+      rot: 0
+    - mmsi: 538007628
+      imo: 9334143
+      call_sign: V7VR3
+      ship_name: MATSON LANAI
+      ship_cnname: null
+      data_source: 1
+      last_time: 1748329979
+      lat: 48.37769
+      lng: 171.07297
+      ship_type: 70
+      length: 260
+      width: 32
+      left: 17
+      trail: 68
+      draught: 10.2
+      dest: LONG BEACH,US
+      destcode: USLGB
+      eta: 1748881800
+      navistat: 0
+      sog: 22.2198448
+      cog: 80.6
+      hdg: 82
+      rot: 0
+  source: https://docs.shipfinder.com/432751579e0.md
+- name: arrivalDeparturePush
+  title: Arrival/Departure Event Push
+  summary: A monitored vessel enters a port area or leaves a port berth.
+  delivery: HTTP POST to a customer-configured receiving URL
+  configured_in: ShipFinder console (Fleet & Areas > Webhook URL Management); a zone-level URL overrides the account-level
+    URL
+  subscription_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddFleet
+  premium: true
+  content_type: application/json
+  payload_schema:
+    type: object
+    properties:
+      mmsi:
+        type: integer
+        description: 9-digit numeric code of MMSI
+      imo:
+        type: integer
+        description: 7-digit numeric code of IMO
+      call_sign:
+        type: string
+        description: 'Call Sign '
+      ship_name:
+        type: string
+        description: Vessel name
+      event_type:
+        type: integer
+        description: Type of arrival/departure event. 1 = Arrival To Port (ATA); 2 = Arrival To Berth (ATB); 3 =
+          Departure From Port (ATD)
+      port_code:
+        type: string
+        description: Standard 5-digit port code
+      port_name:
+        type: string
+        description: Name of the port
+      port_cnname:
+        type: string
+        description: Chinese name of the port
+      port_time_zone:
+        type: string
+        description: Time zone of the port’s location
+      port_country_name:
+        type: string
+        description: Name of the country/region where the port is located
+      port_country_cnname:
+        type: string
+        description: Chinese name of the country/region where the port is located
+      port_country_code:
+        type: string
+        description: Standard code of the country/region where the port is located
+      terminal_name:
+        type: string
+        description: Name of the terminal where the vessel berthed.
+      event_time:
+        type: integer
+        description: Event Occurrence Time (UTC) in Unix timstamp. 1741685830
+    required:
+    - mmsi
+    - imo
+    - call_sign
+    - ship_name
+    - event_type
+    - event_time
+    - port_code
+    - port_name
+    - port_cnname
+    - port_time_zone
+    - port_country_name
+    - port_country_cnname
+    - port_country_code
+    - terminal_name
+    x-apifox-orders:
+    - mmsi
+    - imo
+    - call_sign
+    - ship_name
+    - event_type
+    - event_time
+    - port_code
+    - port_name
+    - port_cnname
+    - port_time_zone
+    - port_country_name
+    - port_country_cnname
+    - port_country_code
+    - terminal_name
+  example:
+    mmsi: 440137620
+    imo: 0
+    call_sign: 123HAHA
+    ship_name: HAHAHOHO
+    event_type: 3
+    event_time: 1747603250
+    port_code: KRINC
+    port_name: Incheon
+    port_cnname: 仁川
+    port_time_zone: '9.0'
+    port_country_name: Korea, North
+    port_country_cnname: 韩国
+    port_country_code: KR
+    terminal_name: ''
+  source: https://docs.shipfinder.com/433316672e0.md
+- name: vesselDynamicEtaPush
+  title: Vessel Dynamic ETA Push
+  summary: Dynamic ETA for every vessel in a monitored fleet, pushed every 10 minutes.
+  delivery: HTTP POST to a customer-configured receiving URL
+  configured_in: ShipFinder console (Fleet & Areas > Webhook URL Management); a zone-level URL overrides the account-level
+    URL
+  subscription_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddFleet
+  premium: true
+  content_type: application/json
+  payload_schema:
+    type: object
+    properties:
+      ship:
+        type: object
+        properties:
+          mmsi:
+            type: integer
+          imo:
+            type: integer
+          ship_name:
+            type: string
+          call_sign:
+            type: string
+          ship_type:
+            type: integer
+        required:
+        - mmsi
+        - imo
+        - ship_name
+        - call_sign
+        - ship_type
+        x-apifox-orders:
+        - mmsi
+        - imo
+        - ship_name
+        - call_sign
+        - ship_type
+      Location:
+        type: object
+        properties:
+          lng:
+            type: number
+          lat:
+            type: number
+          sog:
+            type: integer
+          sea_area:
+            type: string
+          sea_area_code:
+            type: integer
+        required:
+        - lng
+        - lat
+        - sog
+        - sea_area
+        - sea_area_code
+        x-apifox-orders:
+        - lng
+        - lat
+        - sog
+        - sea_area
+        - sea_area_code
+      Preport:
+        type: object
+        properties:
+          port_code:
+            type: string
+          port_cnname:
+            type: string
+          port_name:
+            type: string
+          time_zone:
+            type: integer
+          port_country_code:
+            type: string
+          port_country_name:
+            type: string
+          port_country_cnname:
+            type: string
+          ata:
+            type: integer
+          atb:
+            type: integer
+          atd:
+            type: integer
+        required:
+        - port_code
+        - port_cnname
+        - port_name
+        - time_zone
+        - port_country_code
+        - port_country_name
+        - port_country_cnname
+        - ata
+        - atb
+        - atd
+        x-apifox-orders:
+        - port_code
+        - port_cnname
+        - port_name
+        - time_zone
+        - port_country_code
+        - port_country_name
+        - port_country_cnname
+        - ata
+        - atb
+        - atd
+      Nextport:
+        type: object
+        properties:
+          port_code:
+            type: string
+          port_cnname:
+            type: string
+          port_name:
+            type: string
+          time_zone:
+            type: integer
+          port_country_code:
+            type: string
+          port_country_name:
+            type: string
+          port_country_cnname:
+            type: string
+          sailed_distance:
+            type: integer
+          sailed_time:
+            type: integer
+          ais_speed:
+            type: integer
+          speed:
+            type: integer
+          remaining_distance:
+            type: integer
+          eta:
+            type: integer
+        required:
+        - port_code
+        - port_cnname
+        - port_name
+        - time_zone
+        - port_country_code
+        - port_country_name
+        - port_country_cnname
+        - sailed_distance
+        - sailed_time
+        - ais_speed
+        - speed
+        - eta
+        - remaining_distance
+        x-apifox-orders:
+        - port_code
+        - port_cnname
+        - port_name
+        - time_zone
+        - port_country_code
+        - port_country_name
+        - port_country_cnname
+        - sailed_distance
+        - sailed_time
+        - ais_speed
+        - speed
+        - eta
+        - remaining_distance
+    required:
+    - ship
+    - Location
+    - Preport
+    - Nextport
+    x-apifox-orders:
+    - ship
+    - Location
+    - Preport
+    - Nextport
+  example: "{\r\n    \"ship\": {\r\n        \"mmsi\": 412047710,\r\n        \"imo\": 1400704,\r\n        \"ship_name\"\
+    : \"HAI GANG 31\",\r\n        \"call_sign\": \"\",\r\n        \"ship_type\": 71\r\n    },\r\n    \"Location\"\
+    : {\r\n        \"lng\": 121.668107,\r\n        \"lat\": 31.330947,\r\n        \"sog\": 0.0,\r\n        \"sea_area\"\
+    : \"East China Sea\",\r\n        \"sea_area_code\": 4302\r\n    },\r\n    \"Preport\": {\r\n        \"port_code\"\
+    : \"CNSHG\",\r\n        \"port_cnname\": \"上海\",\r\n        \"port_name\": \"Shanghai\",\r\n        \"time_zone\"\
+    : 8,\r\n        \"port_country_code\": \"CN\",\r\n        \"port_country_name\": \"China\",\r\n        \"port_country_cnname\"\
+    : \"中国\",\r\n        \"ata\": 1748075898,\r\n        \"atb\": 1748075898,\r\n        \"atd\": 0\r\n    },\r\n\
+    \    \"Nextport\": {\r\n        \"port_code\": \"\",\r\n        \"port_cnname\": \"\",\r\n        \"port_name\"\
+    : \"\",\r\n        \"time_zone\": 0,\r\n        \"port_country_code\": \"\",\r\n        \"port_country_name\"\
+    : \"\",\r\n        \"port_country_cnname\": \"\",\r\n        \"sailed_distance\": 0.0,\r\n        \"sailed_time\"\
+    : 0,\r\n        \"ais_speed\": 0.0,\r\n        \"speed\": 0.0,\r\n        \"eta\": 0,\r\n        \"remaining_distance\"\
+    : 0.0\r\n    }\r\n},\r\n{\r\n    \"ship\": {\r\n        \"mmsi\": 413364980,\r\n        \"imo\": 1400704,\r\n\
+    \        \"ship_name\": \"JIN YANG 31\",\r\n        \"call_sign\": \"YYYY\",\r\n        \"ship_type\": null\r\
+    \n    },\r\n    \"Location\": {\r\n        \"lng\": 121.794187,\r\n        \"lat\": 31.365287,\r\n        \"\
+    sog\": 6.0,\r\n        \"sea_area\": \"East China Sea\",\r\n        \"sea_area_code\": 4302\r\n    },\r\n  \
+    \  \"Preport\": {\r\n        \"port_code\": \"CNCGM\",\r\n        \"port_cnname\": \"崇明\",\r\n        \"port_name\"\
+    : \"Chongming\",\r\n        \"time_zone\": 8,\r\n        \"port_country_code\": \"CN\",\r\n        \"port_country_name\"\
+    : \"China\",\r\n        \"port_country_cnname\": \"中国\",\r\n        \"ata\": 1747828295,\r\n        \"atb\"\
+    : 1747828295,\r\n        \"atd\": 1747951481\r\n    },\r\n    \"Nextport\": {\r\n        \"port_code\": \"CNSHG\"\
+    ,\r\n        \"port_cnname\": \"上海\",\r\n        \"port_name\": \"Shanghai\",\r\n        \"time_zone\": 8,\r\
+    \n        \"port_country_code\": \"CN\",\r\n        \"port_country_name\": \"China\",\r\n        \"port_country_cnname\"\
+    : \"中国\",\r\n        \"sailed_distance\": 380.64,\r\n        \"sailed_time\": 380467,\r\n        \"ais_speed\"\
+    : 7.82,\r\n        \"speed\": 3.6,\r\n        \"eta\": 1748336095,\r\n        \"remaining_distance\": 14.56\r\
+    \n    }\r\n}"
+  source: https://docs.shipfinder.com/433432729e0.md
+- name: vesselAisSignalLossPush
+  title: Vessel AIS Signal Loss Event Push
+  summary: A monitored vessel stops reporting AIS for more than 15 minutes, or resumes reporting.
+  delivery: HTTP POST to a customer-configured receiving URL
+  configured_in: ShipFinder console (Fleet & Areas > Webhook URL Management); a zone-level URL overrides the account-level
+    URL
+  subscription_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddFleet
+  premium: true
+  content_type: application/json
+  payload_schema:
+    type: object
+    properties:
+      mmsi:
+        type: integer
+        description: 9-digit numeric code of MMSI
+      ship_name:
+        type: string
+        description: Vessel name
+      event_type:
+        type: integer
+        description: 1=AIS signal lost; 2=AIS signal restored
+      lng:
+        type: number
+        description: Coordinate longitude, WGS84 coordinate system
+      lat:
+        type: number
+        description: Coordinate latitude, WGS84 coordinate system
+      sog:
+        type: number
+        description: Real-time vessel speed over ground in knots; -1=invalid data
+      event_time:
+        type: integer
+        description: AIS event occurrence time (UTC) in Unix timestamp.
+    required:
+    - mmsi
+    - ship_name
+    - event_time
+    - event_type
+    - lng
+    - lat
+    - sog
+    x-apifox-orders:
+    - mmsi
+    - ship_name
+    - event_time
+    - event_type
+    - lng
+    - lat
+    - sog
+  example:
+    mmsi: 440137620
+    ship_name: HAHAHOHO
+    event_time: 1748317501
+    event_type: 1
+    lng: 126.572912
+    lat: 37.43327
+    sog: 9.4
+  source: https://docs.shipfinder.com/433437582e0.md
+- name: vesselStsEventPush
+  title: Vessel STS Event Push
+  summary: Two monitored vessels stay closely berthed or sail side by side for more than 5 minutes (ship-to-ship
+    operation).
+  delivery: HTTP POST to a customer-configured receiving URL
+  configured_in: ShipFinder console (Fleet & Areas > Webhook URL Management); a zone-level URL overrides the account-level
+    URL
+  subscription_operation: openapi/shipfinder-ais-data-api-openapi.yml#postAddFleet
+  premium: true
+  content_type: application/json
+  payload_schema:
+    type: object
+    properties:
+      status:
+        type: integer
+      msg:
+        type: string
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            ship_data:
+              type: object
+              properties:
+                mmsi:
+                  type: integer
+                  description: 9-digit numeric code of MMSI
+                imo:
+                  type: integer
+                  description: 7-digit numeric code of IMO
+                call_sign:
+                  type: string
+                  description: 'Call Sign '
+                ship_name:
+                  type: string
+                  description: Vessel name
+                ship_type:
+                  type: integer
+                  description: 'Numeric code of vessel type: see References for details '
+              required:
+              - mmsi
+              - imo
+              - call_sign
+              - ship_name
+              - ship_type
+              x-apifox-orders:
+              - mmsi
+              - imo
+              - call_sign
+              - ship_name
+              - ship_type
+              description: Basic information of monitored vessel
+            approach_ship_data:
+              type: object
+              properties:
+                mmsi:
+                  type: integer
+                  description: 9-digit numeric code of MMSI
+                imo:
+                  type: integer
+                  description: 7-digit numeric code of IMO
+                call_sign:
+                  type: string
+                  description: 'Call Sign '
+                ship_name:
+                  type: string
+                  description: Vessel name
+                ship_type:
+                  type: integer
+                  description: 'Numeric code of vessel type: see References for details '
+              required:
+              - mmsi
+              - imo
+              - call_sign
+              - ship_name
+              - ship_type
+              x-apifox-orders:
+              - mmsi
+              - imo
+              - call_sign
+              - ship_name
+              - ship_type
+              description: Basic information of STS vessel
+            approach_data:
+              type: object
+              properties:
+                approach_state:
+                  type: integer
+                  description: '1= STS start
+
+                    2= STS end '
+                approach_zone:
+                  type: integer
+                  description: 'STS operation area:
+
+                    1=STS in port area;
+
+                    2=STS at anchorage;
+
+                    3=STS in other areas.'
+                lat:
+                  type: number
+                  description: Coordinate latitude, WGS84 coordinate system
+                lng:
+                  type: number
+                  description: Coordinate longitude, WGS84 coordinate system
+                port_code:
+                  type: string
+                  description: 5-digit code of the corresponding port. Returned only when the STS event takes place
+                    in the port or anchorage area.
+                position:
+                  type: string
+                  description: 'Position description obtained by reverse geocoding based on the event coordinates.
+
+                    Only returned when the STS event is classified as "other areas".'
+                sog:
+                  type: number
+                  description: Real-time vessels speed over ground at the time of STS, in knots.
+                approach_time:
+                  type: integer
+                  description: Start time of the STS event, represented as a Unix timestamp
+              required:
+              - approach_state
+              - approach_time
+              - approach_zone
+              - lat
+              - lng
+              - port_code
+              - position
+              - sog
+              x-apifox-orders:
+              - approach_state
+              - approach_time
+              - approach_zone
+              - lat
+              - lng
+              - port_code
+              - position
+              - sog
+              description: STS information
+          required:
+          - ship_data
+          - approach_ship_data
+          - approach_data
+          x-apifox-orders:
+          - ship_data
+          - approach_ship_data
+          - approach_data
+      total:
+        type: integer
+        description: Number of Pushed Records
+    required:
+    - status
+    - msg
+    - data
+    - total
+    x-apifox-orders:
+    - status
+    - msg
+    - data
+    - total
+  example:
+    status: 0
+    msg: ''
+    data:
+    - ship_data:
+        mmsi: 413302610
+        imo: 2368
+        call_sign: BUAD
+        ship_name: XIN XIANG 19
+        ship_type: 80
+      approach_ship_data:
+        mmsi: 412303320
+        imo: 1
+        call_sign: TKHK0
+        ship_name: CHANGYINGHUANBAO 1
+        ship_type: 80
+      approach_data:
+        approach_state: 1
+        approach_time: 1749003230
+        approach_zone: 1
+        lat: 38.98177
+        lng: 117.732707
+        port_code: CNTNG
+        position: TIANJIN
+        sog: 19.83
+    - ship_data:
+        mmsi: 413798783
+        imo: 444559
+        call_sign: '456789'
+        ship_name: HUAFENG19
+        ship_type: 70
+      approach_ship_data:
+        mmsi: 413798691
+        imo: 48
+        call_sign: '0'
+        ship_name: JIEJIANG666
+        ship_type: 70
+      approach_data:
+        approach_state: 1
+        approach_time: 1749002528
+        approach_zone: 1
+        lat: 30.739703
+        lng: 111.265193
+        port_code: CNYIC
+        position: YICHANG
+        sog: 42.76
+    total: 2
+  source: https://docs.shipfinder.com/433444123e0.md
+x-evidence:
+  fetched: '2026-08-09'
+  pages:
+  - https://docs.shipfinder.com/433428967e0.md
+  - https://docs.shipfinder.com/433493965e0.md
+  - https://docs.shipfinder.com/432751579e0.md
+  - https://docs.shipfinder.com/433316672e0.md
+  - https://docs.shipfinder.com/433432729e0.md
+  - https://docs.shipfinder.com/433437582e0.md
+  - https://docs.shipfinder.com/433444123e0.md

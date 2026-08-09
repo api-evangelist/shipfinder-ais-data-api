@@ -1,0 +1,197 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.shipfinder.com/llms.txt
+model: per-key quota, negotiated per service; not numerically published
+summary: ShipFinder does not publish numeric rate limits. Every dataset carries a "Request Limits" statement saying
+  calls are subject to quota restrictions according to the permission type attached to the API key, with the actual
+  figures visible only in the console or via the support team. Vessel Search is the single endpoint documented as
+  having no frequency limit once access is granted. Exhaustion is signalled in the response envelope, not in headers.
+headers: null
+in_band_codes:
+- status: 12
+  meaning: Request data volume exceeds limit, execution rejected
+- status: 15
+  meaning: Multi-vessel request quantity exceeds limit
+- status: 22
+  meaning: Vessel query quantity exceeds limit
+- status: 23
+  meaning: Vessel query frequency exceeds limit
+- status: 25
+  meaning: Vessel archive query quantity exceeds limit
+- status: 26
+  meaning: Vessel current status query quantity exceeds limit
+- status: 28
+  meaning: Track query time exceeds limit
+- status: 29
+  meaning: Request frequency too high, please try again later
+- status: 30
+  meaning: Request parameter exceeds limit
+default_data_windows:
+- scope: Vessel history track
+  window: latest month by default; longer periods on request
+- scope: Port call records
+  window: latest month by default; 6/12 months or longer on request
+premium_services:
+- 2.4 Inbound / Expected Arrivals
+- 3.2 Ship-to-Ship (STS) Events
+- 5.3 Global Marine Weather
+- 6.1 China Region Navigational Warnings
+- 7.5 Arrival/Departure Event Push
+- 7.6 Vessel Dynamic ETA Push
+- 7.7 Vessel AIS Signal Loss Event Push
+- 7.8 Vessel STS Event Push
+contact: support@elaneglobal.com
+documented_limits:
+- endpoint: 1.2 Vessel Search
+  source: https://docs.shipfinder.com/428749512e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. This API has no access frequency limits—unlimited
+    calls are allowed once access permission is granted. To apply for or inquire about your access permission, please
+    contact our support team: support@elaneglobal.com.'
+- endpoint: 1.3 Vessels Nearby
+  source: https://docs.shipfinder.com/429003024e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 1.4 Vessels in Zone
+  source: https://docs.shipfinder.com/429583708e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 1.5 Vessel Flag Information
+  source: https://docs.shipfinder.com/429919472e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 2.1 Port Information
+  source: https://docs.shipfinder.com/429932201e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 2.2 Currently Berthed Vessels
+  source: https://docs.shipfinder.com/430197412e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 2.3 Currently Anchored Vessels
+  source: https://docs.shipfinder.com/430236145e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 2.4 Inbound / Expected Arrivals
+  source: https://docs.shipfinder.com/430249182e0.md
+  premium: true
+  statement: 'This is a premium service that requires advanced permission application prior to use. An API key must
+    be created before using this service. Service calls are subject to quota restrictions according to your permission
+    type.To view your current service access permissions or activate service permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 3.1 Vessel History Track
+  source: https://docs.shipfinder.com/430346103e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. Service calls are subject to quota restrictions
+    according to your permission type. The service only supports querying vessel tracks within the latest month
+    by default. To view your current service access permissions or access vessel track records from an earlier time
+    period, please contact our support team: support@elaneglobal.com.'
+- endpoint: 3.2 Ship-to-Ship (STS) Events
+  source: https://docs.shipfinder.com/430352093e0.md
+  premium: true
+  statement: 'This is a premium service that requires advanced permission application prior to use. An API key must
+    be created before using this service. Service calls are subject to quota restrictions according to your permission
+    type.To view your current service access permissions or activate service permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 3.3 Vessel Port Call History
+  source: https://docs.shipfinder.com/430426234e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. Service calls are subject to quota restrictions
+    according to your permission type. This service queries port call records within the latest month by default.
+    To view your current service access permissions or enable the query for port call records covering 6 months,
+    12 months or a longer period, please contact our support team: support@elaneglobal.com.'
+- endpoint: 3.4 Vessel Port Call Records at Specific Port
+  source: https://docs.shipfinder.com/430484162e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. Service calls are subject to quota restrictions
+    according to your permission type. This service queries port call records within the latest month by default.
+    To view your current service access permissions or enable the query for port call records covering 6 months,
+    12 months or a longer period, please contact our support team: support@elaneglobal.com.'
+- endpoint: 3.5 Vessel Current Port Call
+  source: https://docs.shipfinder.com/430498718e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 3.6 Port Calls Records for Port
+  source: https://docs.shipfinder.com/430531632e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. Service calls are subject to quota restrictions
+    according to your permission type. This service queries port call records within the latest month by default.
+    To view your current service access permissions or enable the query for port call records covering 6 months,
+    12 months or a longer period, please contact our support team: support@elaneglobal.com.'
+- endpoint: 4.1 Point-to-Point Route Planning
+  source: https://docs.shipfinder.com/431124483e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 4.2 Port-to-Port Route Planning
+  source: https://docs.shipfinder.com/431244012e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 4.3 ETA Query
+  source: https://docs.shipfinder.com/431244206e0.md
+  premium: false
+  statement: 'An API key must be created before using this service. API calls are subject to quota restrictions
+    according to your permission type. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 5.3 Global Marine Weather
+  source: https://docs.shipfinder.com/431272522e0.md
+  premium: true
+  statement: '- This is a premium service that requires advanced permission application prior to use. - An API key
+    must be created in the Dashboard before using this service. - Service calls are subject to quota restrictions
+    according to your permission type; your current service access permissions can be viewed in the Dashboard. -
+    Please contact our support team to activate service permissions.'
+- endpoint: 6.1 China Region Navigational Warnings
+  source: https://docs.shipfinder.com/431872073e0.md
+  premium: true
+  statement: 'This is a premium service that requires advanced permission application prior to use. An API key must
+    be created before using this service. The corresponding monitored fleet vessels and push receiving URL must
+    be configured under the API key. To view your current service access permissions, please contact our support
+    team: support@elaneglobal.com.'
+- endpoint: 7.5 Arrival/Departure Event Push
+  source: https://docs.shipfinder.com/433316672e0.md
+  premium: true
+  statement: This is a premium service that requires advanced permission application prior to use. An API key must
+    be created in the Dashboard before using this service. The corresponding monitored fleet vessels and push receiving
+    URL must be configured under the API key. Your current service access permissions can be viewed in the Dashboard.
+    Please contact our support team to activate service permissions.
+- endpoint: 7.6 Vessel Dynamic ETA Push
+  source: https://docs.shipfinder.com/433432729e0.md
+  premium: true
+  statement: This is a premium service that requires advanced permission application prior to use. An API key must
+    be created in the Dashboard before using this service. The corresponding monitored fleet vessels and push receiving
+    URL must be configured under the API key. Your current service access permissions can be viewed in the Dashboard.
+    Please contact our support team to activate service permissions.
+- endpoint: 7.7 Vessel AIS Signal Loss Event Push
+  source: https://docs.shipfinder.com/433437582e0.md
+  premium: true
+  statement: '- This is a premium service that requires advanced permission application prior to use. - An API key
+    must be created in the Dashboard before using this service. The corresponding monitored fleet vessels and push
+    receiving URL must be configured under the API key. - Your current service access permissions can be viewed
+    in the Dashboard. Please contact our support team to activate service permissions.'
+- endpoint: 7.8 Vessel STS Event Push
+  source: https://docs.shipfinder.com/433444123e0.md
+  premium: true
+  statement: This is a premium service that requires advanced permission application prior to use. An API key must
+    be created in the Dashboard before using this service. The corresponding monitored fleet vessels and push receiving
+    URL must be configured under the API key. Your current service access permissions can be viewed in the Dashboard.
+    Please contact our support team to activate service permissions.
+x-evidence:
+  fetched: '2026-08-09'
+  pages: 23
