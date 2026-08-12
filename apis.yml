@@ -38,45 +38,137 @@ tags:
   - Event Streaming
   - Webhooks
 apis:
-  - name: ShipFinder AIS Data API
-    description: >-
-      REST/HTTP API for AIS vessel tracking, voyage, history, prediction, meteorology, China coastline warnings,
-      and event push datasets. Forty operations under https://api.elaneglobal.com/v1/, authenticated with an API
-      key in the "key" query parameter and returning a {status, msg, data} JSON envelope. ShipFinder publishes
-      an OpenAPI 3.0.1 fragment on each endpoint documentation page, indexed by its llms.txt; API Evangelist
-      assembled those fragments into a single contract.
-    humanURL: https://www.shipfinder.com/ais-data-api
-    baseURL: https://api.elaneglobal.com
-    tags:
-      - AIS
-      - Maritime Data
-      - Vessel Tracking
-      - Ship Tracking
-      - Vessel Data
-      - Historical AIS
-      - Geospatial
-      - GIS
-      - Logistics
-      - Supply Chain
-      - Weather
-      - Meteorology
-      - Trade
-      - Commodities
-      - Compliance
-      - Risk
-      - Event Streaming
-      - Webhooks
-    properties:
-      - type: OpenAPI
-        url: openapi/shipfinder-ais-data-api-openapi.yml
-      - type: Documentation
-        url: https://docs.shipfinder.com/
-      - type: APIReference
-        url: https://docs.shipfinder.com/8952919m0
-      - type: GettingStarted
-        url: https://docs.shipfinder.com/9177505m0
-      - type: LLMSTxt
-        url: https://docs.shipfinder.com/llms.txt
+- aid: shipfinder-ais-data-api:shipfinder-ais-data-api-ais-dataset-api
+  name: ShipFinder AIS Data API AIS Dataset API
+  description: The AIS Dataset API from ShipFinder AIS Data API — 7 operation(s) for ais dataset.
+  humanURL: https://www.shipfinder.com/ais-data-api
+  baseURL: https://api.elaneglobal.com
+  tags:
+  - AIS Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/shipfinder-ais-data-api-ais-dataset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shipfinder.com/
+  - type: APIReference
+    url: https://docs.shipfinder.com/8952919m0
+  - type: GettingStarted
+    url: https://docs.shipfinder.com/9177505m0
+  - type: LLMSTxt
+    url: https://docs.shipfinder.com/llms.txt
+- aid: shipfinder-ais-data-api:shipfinder-ais-data-api-china-coastline-warning-dataset-api
+  name: ShipFinder AIS Data API China Coastline Warning Dataset API
+  description: >-
+    The China Coastline Warning Dataset API from ShipFinder AIS Data API — 1 operation(s) for china coastline
+    warning dataset.
+  humanURL: https://www.shipfinder.com/ais-data-api
+  baseURL: https://api.elaneglobal.com
+  tags:
+  - China Coastline Warning Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/shipfinder-ais-data-api-china-coastline-warning-dataset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shipfinder.com/
+  - type: APIReference
+    url: https://docs.shipfinder.com/8952919m0
+  - type: GettingStarted
+    url: https://docs.shipfinder.com/9177505m0
+  - type: LLMSTxt
+    url: https://docs.shipfinder.com/llms.txt
+- aid: shipfinder-ais-data-api:shipfinder-ais-data-api-event-dataset-api
+  name: ShipFinder AIS Data API Event Dataset API
+  description: The Event Dataset API from ShipFinder AIS Data API — 14 operation(s) for event dataset.
+  humanURL: https://www.shipfinder.com/ais-data-api
+  baseURL: https://api.elaneglobal.com
+  tags:
+  - Event Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/shipfinder-ais-data-api-event-dataset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shipfinder.com/
+  - type: APIReference
+    url: https://docs.shipfinder.com/8952919m0
+  - type: GettingStarted
+    url: https://docs.shipfinder.com/9177505m0
+  - type: LLMSTxt
+    url: https://docs.shipfinder.com/llms.txt
+- aid: shipfinder-ais-data-api:shipfinder-ais-data-api-history-dataset-api
+  name: ShipFinder AIS Data API History Dataset API
+  description: >-
+    The History Dataset API from ShipFinder AIS Data API — 6 operation(s) for history dataset.
+  humanURL: https://www.shipfinder.com/ais-data-api
+  baseURL: https://api.elaneglobal.com
+  tags:
+  - History Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/shipfinder-ais-data-api-history-dataset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shipfinder.com/
+  - type: APIReference
+    url: https://docs.shipfinder.com/8952919m0
+  - type: GettingStarted
+    url: https://docs.shipfinder.com/9177505m0
+  - type: LLMSTxt
+    url: https://docs.shipfinder.com/llms.txt
+- aid: shipfinder-ais-data-api:shipfinder-ais-data-api-meteorology-dataset-api
+  name: ShipFinder AIS Data API Meteorology Dataset API
+  description: >-
+    The Meteorology Dataset API from ShipFinder AIS Data API — 5 operation(s) for meteorology dataset.
+  humanURL: https://www.shipfinder.com/ais-data-api
+  baseURL: https://api.elaneglobal.com
+  tags:
+  - Meteorology Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/shipfinder-ais-data-api-meteorology-dataset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shipfinder.com/
+  - type: APIReference
+    url: https://docs.shipfinder.com/8952919m0
+  - type: GettingStarted
+    url: https://docs.shipfinder.com/9177505m0
+  - type: LLMSTxt
+    url: https://docs.shipfinder.com/llms.txt
+- aid: shipfinder-ais-data-api:shipfinder-ais-data-api-prediction-dataset-api
+  name: ShipFinder AIS Data API Prediction Dataset API
+  description: >-
+    The Prediction Dataset API from ShipFinder AIS Data API — 3 operation(s) for prediction dataset.
+  humanURL: https://www.shipfinder.com/ais-data-api
+  baseURL: https://api.elaneglobal.com
+  tags:
+  - Prediction Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/shipfinder-ais-data-api-prediction-dataset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shipfinder.com/
+  - type: APIReference
+    url: https://docs.shipfinder.com/8952919m0
+  - type: GettingStarted
+    url: https://docs.shipfinder.com/9177505m0
+  - type: LLMSTxt
+    url: https://docs.shipfinder.com/llms.txt
+- aid: shipfinder-ais-data-api:shipfinder-ais-data-api-voyage-dataset-api
+  name: ShipFinder AIS Data API Voyage Dataset API
+  description: The Voyage Dataset API from ShipFinder AIS Data API — 4 operation(s) for voyage dataset.
+  humanURL: https://www.shipfinder.com/ais-data-api
+  baseURL: https://api.elaneglobal.com
+  tags:
+  - Voyage Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/shipfinder-ais-data-api-voyage-dataset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shipfinder.com/
+  - type: APIReference
+    url: https://docs.shipfinder.com/8952919m0
+  - type: GettingStarted
+    url: https://docs.shipfinder.com/9177505m0
+  - type: LLMSTxt
+    url: https://docs.shipfinder.com/llms.txt
 maintainers:
   - FN: ShipFinder AIS Data API
     email: support@elaneglobal.com
