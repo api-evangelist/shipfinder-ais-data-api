@@ -14,7 +14,7 @@ description: >-
   index, and several controlled vocabularies (AIS vessel type, navigation status, sea areas, deviation nodes,
   AtoN types, service return codes).
 image: https://www.shipfinder.com/Content/images/newlogo.svg
-url: https://shipfinder-ais-data-api.apievangelist.com/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/shipfinder-ais-data-api/refs/heads/main/apis.yml
 created: '2026-08-04'
 modified: '2026-08-09'
 specificationVersion: '0.21'
