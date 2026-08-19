@@ -1,0 +1,1663 @@
+{
+  "item": [
+    {
+      "id": "838f9d5b-be02-4f17-ba48-e7f344be246f",
+      "name": "Event Dataset",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ffa3c72-b45a-4421-995c-337ae0f0201d",
+          "name": "7.1.1 Create Fleet",
+          "request": {
+            "name": "7.1.1 Create Fleet",
+            "description": {
+              "content": "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Event/AddFleet`  | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/AddFleet?key=1F6D701272402D1E7D8D316CCE519123&fleet_name=myfleet123&mmsis=477985700,412751690&monitor=6\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard.\n\n\nNote:\nEach monitoring type selected in the monitor field requires corresponding permissions to be enabled first.If you lack the required permissions, the system will return:\"You do not have access permission\".\nIf your services are already activated but the number of monitored vessels exceeds your permitted quota, the system will return:\"The number of queryable vessels exceeds the limit\".\nYou may check your current permission quota in the Permission section of the dashboard. To upgrade your services or expand your vessel monitoring quota, please contact our support team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "AddFleet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"fleet_name\": \"<string>\",\n  \"mmsis\": \"<string>\",\n  \"monitor\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8f6ff52d-880e-42f6-b59b-5af347c4b3ef",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "AddFleet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"1F6D701272402D1E7D8D316CCE519123\",\n  \"fleet_name\": \"myfleet123\",\n  \"mmsis\": \"477985700,412751690\",\n  \"monitor\": \"6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n    \"fleet_name\": \"自有船队在途监控\",\n    \"mmsis\": \"412751690,477985700\",\n    \"monitor\": \"6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d932c17-e70d-4e6f-acaa-77cfcc3574a1",
+          "name": "7.2.1 Geofence Creation",
+          "request": {
+            "name": "7.2.1 Geofence Creation",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "AddGeofence"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"area_bounds\": \"<string>\",\n  \"area_name\": \"<string>\",\n  \"filter_type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"fleet_id\": \"<string>\",\n  \"ship_type\": \"<string>\",\n  \"length\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe14ec61-b3cd-47ca-aa31-9befb95cad38",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "AddGeofence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"1F6D701272402D1E7D8D316CCE519123\",\n  \"area_bounds\": \"119.846180,32.345143-119.814280,32.311867-119.4661,32.291067-119.375887,32.213847\",\n  \"area_name\": \"area-1\",\n  \"filter_type\": \"3\",\n  \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n  \"url\": \"http://192.186.1.1:8000/shipxy/testdemo\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"msg\": \"string\",\n  \"data\": {\n    \"area_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "399478b6-572c-4097-a10a-0783f7600b0e",
+          "name": "7.3.1 Add Vessel Speed Alert Subscription",
+          "request": {
+            "name": "7.3.1 Add Vessel Speed Alert Subscription",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "AddVesselSpeedAlert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"mmsi\": \"<string>\",\n  \"speed_limit\": \"<string>\",\n  \"speed_duration\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbfae1cf-63d8-41b0-8918-e206a27368b2",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "AddVesselSpeedAlert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"mmsi\": \"<string>\",\n  \"speed_limit\": \"<string>\",\n  \"speed_duration\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7982,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "064290eb-44e6-448a-9a38-666bf7f700c2",
+          "name": "7.1.5  Add Vessels to Fleet",
+          "request": {
+            "name": "7.1.5  Add Vessels to Fleet",
+            "description": {
+              "content": "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n|`https://api.elaneglobal.com/v1/Event/AddVesselToFleet` | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/AddVesselToFleet?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86&mmsis=413983657\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.\n\n**Note:** When adding vessels to a fleet, the system will validate your vessel monitoring quota. If the total number of vessels exceeds your permitted limit, the system will return the error: \"The number of vessels exceeds the permission limit.\" You may add an unlimited number of vessels to a fleet that has no monitoring permissions bound (this option is available when creating fleets via the dashboard). However, such fleets will not support any query or monitoring functions. The same quota validation will apply if you bind monitoring permissions to this fleet at a later stage, and the same over-limit error will be triggered if applicable. |",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "AddVesselToFleet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"fleet_id\": \"<string>\",\n  \"mmsis\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "90ddadaf-ac73-40d3-89bd-e1a0072f93fe",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "AddVesselToFleet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"1F6D701272402D1E7D8D316CCE519123\",\n  \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n  \"mmsis\": \"413983657\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n    \"fleet_name\": \"myfleet123\",\n    \"mmsis\": \"412751690,413983657,477985700\",\n    \"monitor\": \"6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "100d20c9-eb3b-4d30-b307-be86675df135",
+          "name": "7.1.4 Delete Fleet ",
+          "request": {
+            "name": "7.1.4 Delete Fleet ",
+            "description": {
+              "content": "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n|`https://api.elaneglobal.com/v1/Event/DeleteFleet` | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/DeleteFleet?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.\n\n**Note:**  \nAfter a fleet is deleted, all related push services will stop including data from this fleet, including: fleet vessel queries, real-time position push, arrival/departure event push, ETA push, and AIS event push. If no other fleets remain bound to the push service, no further messages will be pushed.  \nThe geofence alert push follows a different logic: if the bound fleet is deleted, the system will push alerts for all vessels entering or exiting the geofence. To modify geofence alerts, you must bind a new fleet or set new filters. To disable geofence alerts entirely, you must delete the geofence.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "DeleteFleet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "fleet_id",
+                  "value": "<string>",
+                  "description": "(Required) Unique identifier for the fleet, used for subsequent maintenance of fleet information."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8991cc4e-eaa7-41c0-8e06-5fadb234fa57",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "DeleteFleet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "fleet_id",
+                      "value": "3f2062c6-b796-4a03-b923-48628794dd86"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n    \"fleet_name\": \"自有船队在途监控\",\n    \"mmsis\": \"413983657,412751690\",\n    \"monitor\": \"6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5140206e-7fab-40f6-92f5-741c538eb5f4",
+          "name": "7.1.7 Remove Vessels from Fleet",
+          "request": {
+            "name": "7.1.7 Remove Vessels from Fleet",
+            "description": {
+              "content": "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| https://api.elaneglobal.com/v1/Event/DeleteFleetVessel | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/DeleteFleetVessel?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86&mmsis=413461440\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "DeleteFleetVessel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"fleet_id\": \"<string>\",\n  \"mmsis\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14cda52c-6453-4261-91cf-a1925494bd4d",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "DeleteFleetVessel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"1F6D701272402D1E7D8D316CCE519123\",\n  \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n  \"mmsis\": \"413461440\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n    \"fleet_name\": \"自有船队在途监控\",\n    \"mmsis\": \"413983657,412751690\",\n    \"monitor\": \"6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "474c3ed6-7599-4b56-bdcf-a6641c1b6707",
+          "name": "7.2.4 Geofence Deletion",
+          "request": {
+            "name": "7.2.4 Geofence Deletion",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "DeleteGeofence"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"area_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6515a3c9-ad9a-4862-b9b2-d63dcbb7cc74",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "DeleteGeofence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"1F6D701272402D1E7D8D316CCE519123\",\n  \"area_id\": \"65a03820-31dd-4db6-afd4-9517b81f94e1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7918,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1ac01b2-7c96-42ee-ad87-c211cdd8c359",
+          "name": "7.3.2 Delete Vessel Speed Alert Subscription",
+          "request": {
+            "name": "7.3.2 Delete Vessel Speed Alert Subscription",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "DeleteVesselSpeedAlert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"mmsi\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20afcc84-cf15-48b9-9001-8f1ea673a641",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "DeleteVesselSpeedAlert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"mmsi\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7918,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f618f164-f7aa-4ca7-be1d-4657bcbe0ce8",
+          "name": "7.1.3 Query Fleet",
+          "request": {
+            "name": "7.1.3 Query Fleet",
+            "description": {
+              "content": "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Event/GetFleet` | Get |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/GetFleet?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "GetFleet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "fleet_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9eeb8ffb-663b-42cf-9326-d12670520845",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "GetFleet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "fleet_id",
+                      "value": "3f2062c6-b796-4a03-b923-48628794dd86"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 2303,\n  \"msg\": \"string\",\n  \"data\": {\n    \"fleet_id\": \"string\",\n    \"fleet_name\": \"string\",\n    \"mmsis\": \"string\",\n    \"monitor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1288ff88-4283-4328-b21e-e3f76b2d7fc6",
+          "name": "7.2.3 Geofence Query",
+          "request": {
+            "name": "7.2.3 Geofence Query",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "GetGeofence"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "area_id",
+                  "value": "<string>",
+                  "description": "(Required) Unique identifier of the geofence, used for subsequent query, update and deletion operations."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a39b5e3-1dc8-4a34-93ce-8d6ae707ca3d",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "GetGeofence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "area_id",
+                      "value": "65a03820-31dd-4db6-afd4-9517b81f94e1"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6866,\n  \"msg\": \"string\",\n  \"data\": {\n    \"area_id\": \"string\",\n    \"area_bounds\": \"string\",\n    \"area_name\": \"string\",\n    \"url\": \"string\",\n    \"filter_type\": 6604,\n    \"ship_type\": \"string\",\n    \"length\": \"string\",\n    \"fleet_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56601ae2-6fdc-49f1-9032-94dd494ec41f",
+          "name": "7.1.2 Update Fleet Information",
+          "request": {
+            "name": "7.1.2 Update Fleet Information",
+            "description": {
+              "content": "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Event/UpdateFleetInfo`  | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/UpdateFleetInfo?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86&mmsis=477985700&monitor=5\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.\n\nNote:\nWhen updating fleet information, the submitted data will overwrite the existing records entirely, not incrementally. Please use this operation with caution, especially for the vessel list and monitoring content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "UpdateFleetInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"fleet_id\": \"<string>\",\n  \"mmsis\": \"<string>\",\n  \"monitor\": \"<string>\",\n  \"fleet_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "372f758e-4b9e-4000-9f1e-5c2ce83d91c4",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "UpdateFleetInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"1F6D701272402D1E7D8D316CCE519123\",\n  \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n  \"mmsis\": \"477985700\",\n  \"monitor\": \"5\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n    \"fleet_name\": \"自有船队在途监控\",\n    \"mmsis\": \"412751690,477985700\",\n    \"monitor\": \"4\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b64762ad-a3d9-40f5-bec9-49d2fb92eaed",
+          "name": "7.1.6 Batch Update Vessels in Fleet",
+          "request": {
+            "name": "7.1.6 Batch Update Vessels in Fleet",
+            "description": {
+              "content": "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Event/UpdateFleetVessel` | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/UpdateFleetVessel?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86&mmsis=413461440,412751690,413983657\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "UpdateFleetVessel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"fleet_id\": \"<string>\",\n  \"mmsis\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42820aa4-7d93-42f7-adff-bf82e2bed248",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "UpdateFleetVessel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"1F6D701272402D1E7D8D316CCE519123\",\n  \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n  \"mmsis\": \"413461440,412751690,413983657\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n    \"fleet_name\": \"myfleet123\",\n    \"mmsis\": \"413983657,413461440,412751690\",\n    \"monitor\": \"6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f345e153-954f-47aa-966d-c5633e676f1f",
+          "name": "7.2.2 Geofence Update",
+          "request": {
+            "name": "7.2.2 Geofence Update",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "UpdateGeofence"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"area_id\": \"<string>\",\n  \"area_bounds\": \"<string>\",\n  \"area_name\": \"<string>\",\n  \"filter_type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"fleet_id\": \"<string>\",\n  \"ship_type\": \"<string>\",\n  \"length\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8fbdd37-932e-4d0d-bfed-a04fe831c098",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "UpdateGeofence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"1F6D701272402D1E7D8D316CCE519123\",\n  \"area_id\": \"65a03820-31dd-4db6-afd4-9517b81f94e1\",\n  \"area_bounds\": \"119.846180,32.345143-119.814280,32.311867-119.4661,32.291067-119.375887,32.213847\",\n  \"area_name\": \"area-1\",\n  \"filter_type\": \"3\",\n  \"fleet_id\": \"3f2062c6-b796-4a03-b923-48628794dd86\",\n  \"url\": \"http://192.186.1.1:8000/shipxy/testdemo\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"msg\": \"string\",\n  \"data\": {\n    \"area_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60b95056-0a32-429a-b210-c0bec152368e",
+          "name": "7.3.3 Query Vessel Speed Alert Subscription List",
+          "request": {
+            "name": "7.3.3 Query Vessel Speed Alert Subscription List",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Event",
+                "VesselSpeedAlertList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "Your personal Shipfinderer API key to verify service permissions"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7870e458-5139-4420-8ee1-2ede07810a02",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Event",
+                    "VesselSpeedAlertList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": ""
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3375,\n  \"data\": {\n    \"mmsi\": 5987,\n    \"speed_limit\": \"string\",\n    \"speed_duration\": 9678.381381989577\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elaneglobal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d04f7fb9-1133-4a05-bf6f-0ddba4c80097",
+    "name": "ShipFinder Global Maritime Data Event Dataset API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the \"key\" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.\n\nAssembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider's; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published \"0\" response key to \"200\" (see overlays/).\n\nContact Support:\n Name: ShipFinder Support\n Email: support@elaneglobal.com",
+      "type": "text/plain"
+    }
+  }
+}

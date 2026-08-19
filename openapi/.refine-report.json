@@ -1,0 +1,35 @@
+{
+  "provider": "shipfinder-ais-data-api",
+  "sources": [
+    "shipfinder-ais-data-api-ais-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-china-coastline-warning-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-event-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-history-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-meteorology-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-prediction-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-voyage-dataset-api-openapi.yml"
+  ],
+  "outputs": [
+    "shipfinder-ais-data-api-ais-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-china-coastline-warning-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-event-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-history-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-meteorology-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-prediction-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-voyage-dataset-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "shipfinder-ais-data-api-ais-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "shipfinder-ais-data-api-china-coastline-warning-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "shipfinder-ais-data-api-event-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "shipfinder-ais-data-api-history-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "shipfinder-ais-data-api-meteorology-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "shipfinder-ais-data-api-prediction-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "shipfinder-ais-data-api-voyage-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

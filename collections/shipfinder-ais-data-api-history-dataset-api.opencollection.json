@@ -1,0 +1,374 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipFinder Global Maritime Data History Dataset API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "History Dataset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "3.6 Port Calls Records for Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/History/PortCallRecordsByPort",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "port_code",
+                "value": "CNSHG",
+                "type": "query",
+                "description": "Standard 5-digit port code"
+              },
+              {
+                "name": "start_time",
+                "value": "1744467589",
+                "type": "query",
+                "description": "Start time of historical berthing records, represented as a Unix timestamp. Both start_time and end_time are mandatory, defining the closed query interval [start_time, end_time]. A single query is limited to a maximum of 1 year (366 days) of port call records."
+              },
+              {
+                "name": "end_time",
+                "value": "1744967589",
+                "type": "query",
+                "description": "End time of historical berthing records, represented as a Unix timestamp."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Optional query type:\n1=Query by ATA (Actual Time of Arrival);\n2=Query by ATD (Actual Time of Departure).\nDefault: 1"
+              },
+              {
+                "name": "time_zone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone type (optional): 1=Local time zone (UTC if unavailable); 2=UTC+8; 3=UTC (Greenwich Mean Time). Default value: 2"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\n\nThis Port Calls Records for Port service retrieves all vessels that have called at a port within a specified time frame by the port’s 5-digit port code. Returned data includes vessel basic details, port call records at the target port, and the corresponding previous/next port of call records for each vessel.\n\n## Use Cases\n\n1. **Logistics Tracking**  \n   Query and analyze the number of calling vessels, their berth distribution and port call time windows at a port during a specifie"
+        },
+        {
+          "info": {
+            "name": "3.3 Vessel Port Call History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/History/PortCallRecordsByVessel",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "477172700",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI\n"
+              },
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query",
+                "description": "7-digit numeric code of IMO"
+              },
+              {
+                "name": "ship_name",
+                "value": "",
+                "type": "query",
+                "description": "Vessel name. \nNote: Port call records for all distinct vessels sharing the same name will be returned if duplicate vessel names exist."
+              },
+              {
+                "name": "call_sign",
+                "value": "",
+                "type": "query",
+                "description": "Call Sign.\nMatching Rule: Spaces are optional; letters are case-insensitive. The sequence and quantity of letters and digits must be consistent with the queried call sign.\nNote: Port call records for all distinct vessels with an identical call sign will be returned if duplicate call signs exist."
+              },
+              {
+                "name": "start_time",
+                "value": "1744967589",
+                "type": "query",
+                "description": "Start time of historical berthing records, represented as a Unix timestamp.\nBoth start_time and end_time are mandatory, defining the closed query interval [start_time, end_time]. A single query is limited to a maximum of 1 year (366 days) of port call records."
+              },
+              {
+                "name": "end_time",
+                "value": "1745572389",
+                "type": "query",
+                "description": "End time of historical berthing records, represented as a Unix timestamp."
+              },
+              {
+                "name": "time_zone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone type (optional):\n1=Local time zone (UTC if unavailable);\n2=UTC+8;\n3=UTC (Greenwich Mean Time).\nDefault value: 2"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Vessel Port Call History queries a vessel’s historical port call records within a specified time period. It returns the vessel’s anchorage arrival time, port limits arrival time, berthing time, port dwell time, inbound and outbound draft conditions, and other relevant details.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Analyze whether foreign vessels have berthed at high-risk ports based on historical berthing records, and verify the authenticity and accuracy of entry decl"
+        },
+        {
+          "info": {
+            "name": "3.4 Vessel Port Call Records at Specific Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/History/PortCallRecordsByVesselAtPort",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "477172700",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI\n"
+              },
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query",
+                "description": "7-digit numeric code of IMO"
+              },
+              {
+                "name": "ship_name",
+                "value": "",
+                "type": "query",
+                "description": "Vessel name"
+              },
+              {
+                "name": "call_sign",
+                "value": "",
+                "type": "query",
+                "description": "Call Sign"
+              },
+              {
+                "name": "port_code",
+                "value": "CNGZG",
+                "type": "query",
+                "description": "Standard five-digit port code"
+              },
+              {
+                "name": "start_time",
+                "value": "1744967589",
+                "type": "query",
+                "description": "Start time of historical berthing records, represented as a Unix timestamp.\nBoth start_time and end_time are mandatory, defining the closed query interval [start_time, end_time]. A single query is limited to a maximum of 1 year (366 days) of port call records."
+              },
+              {
+                "name": "end_time",
+                "value": "1745572389",
+                "type": "query",
+                "description": "End time of historical berthing records, represented as a Unix timestamp."
+              },
+              {
+                "name": "time_zone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone type (optional):\n1=Local time zone (UTC if unavailable);\n2=UTC+8;\n3=UTC (Greenwich Mean Time).\nDefault value: 2"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Vessel Port Call Records queries a vessel’s port call records at a specific designated port within a specified time period. It returns the vessel’s time of arrival at the anchorage, time of arrival within port limits, time of berthing at the berth, port stay duration, as well as the vessel’s draft conditions upon port entry and departure.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Analyze whether foreign vessels have berthed at high-risk ports based on historical port call"
+        },
+        {
+          "info": {
+            "name": "3.5 Vessel Current Port Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/History/VesselCurrentPortCall",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "477172700",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI\n"
+              },
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query",
+                "description": "7-digit numeric code of IMO"
+              },
+              {
+                "name": "ship_name",
+                "value": "",
+                "type": "query",
+                "description": "Vessel name"
+              },
+              {
+                "name": "call_sign",
+                "value": "",
+                "type": "query",
+                "description": "Call Sign"
+              },
+              {
+                "name": "time_zone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone type (optional):\n1=Local time zone (UTC if unavailable);\n2=UTC+8;\n3=UTC (Greenwich Mean Time).\nDefault value: 2"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Vessel Current Port Call queries whether a vessel has an active port call. If an active port call exists, it returns the details of the current port of call and port entry time.\n\n## Use Cases\n**Logistics Tracking**  \nTrack the vessel’s current berthing status. Combined with the real-time vessel position push service or port arrival/departure event push service, it supports vessel speed variation monitoring, and enables queries of the detailed port information as well as the sp"
+        },
+        {
+          "info": {
+            "name": "3.1 Vessel History Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/History/VesselHistoryTrack",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "477172700",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI"
+              },
+              {
+                "name": "start_time",
+                "value": "1744017189",
+                "type": "query",
+                "description": "Query start time, represented as a Unix timestamp."
+              },
+              {
+                "name": "end_time",
+                "value": "1744019589",
+                "type": "query",
+                "description": "Query end time, represented as a Unix timestamp."
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query",
+                "description": "Output data format selection: 0=Binary data in Base64 encoding; 1=JSON format. Default value: 1"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\n\nThe Vessel History Track retrieves historical track points of a vessel by its MMSI number and a specified time period.\n\n## Use Cases\n\n1. **Logistics Tracking**  \n   Track vessel historical track data, and support track query, track visualization and track playback in combination with nautical charts.\n\n2. **Vessel Behavior Analysis**  \n   Analyze whether a vessel has abnormal navigational behaviors based on each track point in the historical voyage data, combined with meteorologic"
+        },
+        {
+          "info": {
+            "name": "3.2 Ship-to-Ship (STS) Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/History/VesselStsEvents",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "477172700",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI"
+              },
+              {
+                "name": "start_time",
+                "value": "1749956794",
+                "type": "query",
+                "description": "Start time represented as a UTC timestamp. The start time must be later than the current time."
+              },
+              {
+                "name": "end_time",
+                "value": "1751446602",
+                "type": "query",
+                "description": "End time represented as a UTC timestamp. The interval between the start time and end time shall not exceed 1 week for a single request."
+              },
+              {
+                "name": "approach_zone",
+                "value": "3",
+                "type": "query",
+                "description": "STS operation area:\n1=STS in port area;\n2=STS at anchorage;\n3=STS in other areas."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Ship-to-Ship (STS) Events queries whether a specified vessel has had ship-to-ship (STS) operations within a specified time period. If STS events are detected, it will return details of the paired vessel, as well as the STS position, coordinates, start time and end time of the event.\n\n## Applicable Scenarios\n**Freight Logistics**\n1. **Normal STS Transshipment**  \n   Monitor the cargo transfer flow where large vessels transship cargo to small crafts via STS operations. Track and"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

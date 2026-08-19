@@ -1,0 +1,261 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipFinder Global Maritime Data AIS Dataset API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AIS Dataset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "1.1.3 Fleet Position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/AIS/FleetPosition",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "fleet ID personal Shipfinder API key to verify service permissions"
+              },
+              {
+                "name": "fleet_id",
+                "value": "98f1f00a-d2d4-431b-90bf-d5471b184ff6",
+                "type": "query",
+                "description": "All vessel positions under the fleet can be retrieved by the fleet ID maintained in the Dashboard. "
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "1.1.3 Fleet Position"
+        },
+        {
+          "info": {
+            "name": "1.5 Vessel Flag Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/AIS/VesselFlagInfo",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "477172700",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Vessel Flag Information queries the flag state (country/region) information of the matching vessel by the vessel’s MMSI number.\n\n## Use Case\n### Maritime Supervision\nUsing the vessel MMSI numbers obtained from area-based vessel search results or port berthing vessel lists, this service quickly matches the country/region of registration for the target vessels. It supports analysis of the proportion and operational behaviors of foreign vessels within the port or specific designa"
+        },
+        {
+          "info": {
+            "name": "1.1.2 Multi-vessel Position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/AIS/VesselPositionMulti",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsis",
+                "value": "477232800,477172700",
+                "type": "query",
+                "description": "For Multi-Vessel Search, 9-digit MMSIs shall be separated by English commas, with a maximum of 100 vessels per search. <br> **Note:** The required parameter is MMSIs (plural form), not the singular MMSI. For multi-vessel search, requests will still be processed successfully even if invalid parameter content is submitted. However, only valid 9-digit MMSIs will be counted toward your usage credits, and invalid MMSIs will not be recorded as used credits."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "\n"
+        },
+        {
+          "info": {
+            "name": "1.1.1 Single Vessel Position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/AIS/VesselPositionSingle",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinder API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "413149000",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI "
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "1.1.1 Single Vessel Position"
+        },
+        {
+          "info": {
+            "name": "1.2 Vessel Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/AIS/VesselSearch",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "keywords",
+                "value": "DENEB LEADER",
+                "type": "query",
+                "description": "The input keywords for vessel query can be vessel name, call sign, MMSI, IMO, etc. \nMatching Rule: MMSI is a 9-digit code; IMO is a 7-digit code."
+              },
+              {
+                "name": "max",
+                "value": "5",
+                "type": "query",
+                "description": "The maximum number of results to return, with a maximum value of 100."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Vessel Search  API performs partial matching searches against keywords (MMSI, IMO Number, Vessel Name, Call Sign, etc.) to retrieve eligible vessel static records. It returns all historical MMSI records linked to a specified IMO Number, or information of all vessels that have ever used the given vessel name in history.\n\n**Note:**  \nMaritime Mobile Service Identity (MMSI) is a 9-digit numeric code used in maritime radio communication systems for unique identification of individ"
+        },
+        {
+          "info": {
+            "name": "1.4 Vessels in Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/AIS/VesselsInZone",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "region",
+                "value": "121.289063,35.424868-122.783203,35.281501-122.167969,33.979809",
+                "type": "query",
+                "description": "Geographic area defined by coordinates. Longitude and latitude are separated by a comma; multiple coordinate points are separated by a hyphen. \nExample: lng,lat-lng,lat-lng,lat-lng,lat\nNote: \n1. Multiple coordinate points must be listed sequentially in clockwise or counterclockwise order.\n2. A minimum of 3 coordinate points is required; 2 points only form a straight line and cannot define a closed geographic area.\n3. Longitude must be entered before latitude for every coordinate pair.\n4. The queried geographic area shall not exceed the assigned permission scope.\n5. Within the authorized scope, users may split the target area into multiple smaller subareas to request data based on actual business scenarios."
+              },
+              {
+                "name": "output",
+                "value": "1",
+                "type": "query",
+                "description": "Data output format selector: 0 = Binary data encoded in Base64 1 = JSON format Default value: 1"
+              },
+              {
+                "name": "scode",
+                "value": "",
+                "type": "query",
+                "description": "Session token for area-based vessel query . Used to retrieve remaining vessel data when the full dataset cannot be returned in a single request due to an oversized search area.\nNote: \n1. A single HTTP request returns a maximum of 2,666 vessel records. Use the scode returned from the initial query to fetch remaining data. The query region must remain unchanged; otherwise, a new query session will be generated.\n2. Check the continue field in the response. A value of 0 indicates all vessel data in the target area has been fully retrieved, and no additional requests are needed."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Vessels in Zone retrieves all AIS data of vessels within a specified geographic area in a single request. You may pass multiple latitude and longitude coordinates to define a custom polygonal search area.\n\nThe recommended area size for a single request is within 1°×1° to ensure full data return in one call; otherwise, you will need to make multiple requests with the scode token to fetch all vessel data in the target area.\n\nThe JSON format returns approximately 2,600 vessel rec"
+        },
+        {
+          "info": {
+            "name": "1.3 Vessels Nearby",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/AIS/VesselsNearby",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "413149000",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Vessels Nearby retrieves vessel data within a 10 nautical mile radius circular area centered on the position of a target vessel by querying the vessel’s MMSI. The returned vessel dataset is sorted by distance in ascending order (from nearest to farthest).\n\nThe response includes IMO number, call sign, vessel name , vessel type, length and breadth. It also contains the latest real time AIS updates: vessel position, navigation status, destination port, speed over ground, estimate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

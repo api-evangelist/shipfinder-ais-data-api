@@ -1,0 +1,161 @@
+openapi: 3.2.0
+info:
+  title: ShipFinder Global Maritime Data China Coastline Warning Dataset API
+  description: 'REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the "key" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.
+
+
+    Assembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider''s; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published "0" response key to "200" (see overlays/).'
+  version: 1.0.0
+  contact:
+    name: ShipFinder Support
+    email: support@elaneglobal.com
+    url: https://www.shipfinder.com/help-center
+  termsOfService: https://www.shipfinder.com/Home/TermsConditions
+servers:
+- url: https://api.elaneglobal.com
+  description: Production
+security:
+- apiKeyQuery: []
+tags:
+- name: China Coastline Warning Dataset
+paths:
+  /v1/Warning/NavigationalWarnings:
+    get:
+      summary: 6.1 China Region Navigational Warnings
+      deprecated: false
+      description: "## Description\nThe China Region Navigational Warnings is used to query navigation warning data in China’s coastal areas, including military operations, vessel drills, live-fire exercises, vessel operations, buoy dynamics, vessel grounding, vessel sea trials, shipwrecks, casualties, construction operations and other events.\nThe data is sourced from the China Maritime Safety Administration (MSA).\n\n## Use Cases\n**Vessel Navigation Safety**\n- **Hazard Area Avoidance**\n  Navigation warning data helps vessels stay away from dangerous zones, such as military exercise areas, shipwreck areas, sand mining operation areas, etc.\n  For example, when the maritime authority issues a navigation warning for military exercises in a certain sea area, vessels can adjust their routes according to the data to avoid entering the zone, thus reducing risks such as collisions and accidental intrusion into hazardous areas.\n\n**Port Management**\n- **Port Operation Optimization**\n  Port authorities can use navigation warning data to grasp the dynamics of incoming vessels in advance and arrange port operations reasonably, including berth allocation, pilotage services, etc.\n- **Port Safety Assurance**\n  Timely access to navigation warnings around ports helps port authorities monitor navigation safety in surrounding waters and prevent accidents such as vessel collisions and groundings.\n\n**Maritime Big Data Analysis**\n- **Risk Assessment**\n  Shipping companies can conduct risk assessments using navigation warning data, analyze the risk level of specific routes or areas, and provide a basis for insurance pricing and risk management.\n\n## Request Limits\nThis is a premium service that requires advanced permission application prior to use.\nAn API key must be created before using this service. The corresponding monitored fleet vessels and push receiving URL must be configured under the API key.\n To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Warning/NavigationalWarnings` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Warning/NavigationalWarnings?key=1F6D701272402D1E7D8D316CCE519123&start_time=2024-07-21%2020:00&end_time=2024-09-21%2020:00\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      tags:
+      - China Coastline Warning Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        description: Used to filter the publish time of navigation warnings.
+        required: true
+        example: 2024-07-21 20:00
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        description: Used to filter the publish time of navigation warnings.
+        required: true
+        example: 2024-09-21 20:00
+        schema:
+          type: string
+      - name: warning_type
+        in: query
+        description: 'Filter by warning type.
+
+          0=Default (all types returned); 1=Military operations; 2=Vessel drills; 3=Live-fire exercises; 4=Vessel operations; 5=AtoN (Aids to Navigation) dynamics; 6= Vessel grounding; 7=Vessel sea trials; 8=Sinking / Shipwreck; 9=Casualties; 10=Construction operations; 11=Navigation warning cancellation; 12=Others'
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  total:
+                    type: integer
+                    description: Total number of navigation warnings within the query period
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        warning_type:
+                          type: integer
+                          description: 1=Military operations; 2=Vessel drills; 3=Live-fire exercises; 4=Vessel operations; 5=AtoN (Aids to Navigation) dynamics; 6= Vessel grounding; 7=Vessel sea trials; 8=Sinking / Shipwreck; 9=Casualties; 10=Construction operations; 11=Navigation warning cancellation; 12=Others
+                        source:
+                          type: string
+                          description: China Maritime Safety Administration (MSA)
+                        title:
+                          type: string
+                          description: Navigation warning title
+                        range_type:
+                          type: integer
+                          description: 1=Single coordinate point; 2=Polygon area; 3=Circular area; 4=No coordinate information
+                        range_points:
+                          type: string
+                          description: 'Coordinate system WGS84.
+
+                            Longitude and latitude are separated by comma , . Multiple coordinates are separated by semicolon ;.Multiple areas are separated by &.'
+                        expire_time:
+                          type: string
+                          description: 'Format: YYYY-MM-DD HH:MM, UTC+8'
+                        pub_time:
+                          type: string
+                          description: 'Format: YYYY-MM-DD HH:MM, UTC+8'
+                        content:
+                          type: string
+                          description: Navigation warning content
+                      required:
+                      - warning_type
+                      - source
+                      - title
+                      - range_points
+                      - pub_time
+                      - content
+                      - range_type
+                      - expire_time
+                      x-apifox-orders:
+                      - warning_type
+                      - source
+                      - title
+                      - range_type
+                      - range_points
+                      - expire_time
+                      - pub_time
+                      - content
+                    description: Navigation warning information
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example: "{\n    \"status\": 0,\n    \"msg\": \"\",\n    \"total\": 158,\n    \"data\": [\n        {\n            \"warning_type\": 12,\n            \"source\": \"中国海事局\",\n            \"title\": \"TRIAL VOYAGE-H561-SD442/25\",\n            \"range_type\": 2,\n            \"range_points\": \"120.233333,38.416667;120.450000,38.416667;120.450000,38.208333;120.233333,38.279167&121.716667,38.500000;121.916667,38.500000;121.916667,38.250000;121.716667,38.333333&123.166667,37.800000;123.191667,37.800000;123.191667,37.783333;123.166667,37.783333\",\n            \"expire_time\": \"2025-07-14 12:00:00\",\n            \"pub_time\": \"2025-07-09 13:40:00\",\n            \"content\": \"<p align=\\\"justify\\\">SD442/25，BOHAI STRAIT,&nbsp;FROM &nbsp;092200UTC&nbsp;&nbsp;TO &nbsp;111400UTC&nbsp;&nbsp;JUL，H561 TRIAL VOYAGE IN AREA 1 BOUNDED BY THE LINES JOINING 38-25.00N 120-14.00E、38-25.00N 120-27.00E、38-12.50N 120-27.00E、38-16.75N 120-14.00E&nbsp;AND AREA 2 BOUNDED BY THE LINES JOINING 38-30.00N 121-43.00E、38-30.00N 121-55.00E、38-15.00N 121-55.00E、38-20.00N 121-43.00E.FROM &nbsp;111400UTC&nbsp;&nbsp;TO &nbsp;120200UTC&nbsp;&nbsp;JUL,H561 TRIAL VOYAGE IN AREA 3 BOUNDED BY THE LINES JOINING 37-48.00N 123-10.00E、37-48.00N 123-11.50E、37-47.00N 123-11.50E、37-47.00N 123-10.00E.FROM 120200UTC TO 141200UTC JUL,H561 TRIAL VOYAGE IN AREA 2 BOUNDED BY THE LINES JOINING 38-30.00N 121-43.00E、38-30.00N 121-55.00E、38-15.00N 121-55.00E、38-20.00N 121-43.00E.CAUTION TO AVOID. SHANDONG MSA CHINA.</p>\"\n        },\n        {\n            \"warning_type\": 12,\n            \"source\": \"中国海事局\",\n            \"title\": \"黄浦江7月11日水上交通管制-沪航警455/25\",\n            \"range_points\": \"\",\n            \"pub_time\": \"2025-07-09 13:15:00\",\n            \"content\": \"<p style=\\\"text-indent: 2em;\\\">沪航警455/25黄浦江7月11日0815时至0945时，在黄浦江苏州河口至轮渡泰公线之间水域范围内进行帆船展示，届时实行水上交通管制，请过往船舶注意。</p>\"\n        },\n        {\n            \"warning_type\": 12,\n            \"source\": \"中国海事局\",\n            \"title\": \"中华人民共和国重庆海事局航行警告（渝航警50/25）\",\n            \"pub_time\": \"2025-07-09 13:00:00\",\n            \"content\": \"<p><strong>渝航警</strong><strong>50</strong><strong>/25</strong>“长江救捞一号”轮拖带“航道趸03604”由猪圈门航道码头（长江上游航道里程723km）至扁担石航道基地（长江上游航道里程731km）。</p>\\n\\n<p>计划运行时刻：拟定于2025年7月10日1000时船队在猪圈门航道码头编队开航上行，1100时抵达扁担石航道基地。</p>\\n\\n<p>请过往船舶加强瞭望，主动与该拖带船队联系，辨明动态，提早统一会让意图，谨慎操作，以策安全。</p>\"\n        },\n        {\n            \"warning_type\": 3,\n            \"source\": \"中国海事局\",\n            \"title\": \"冀航警379/25 军事任务\",\n            \"range_points\": \"\",\n            \"pub_time\": \"2025-07-09 11:28:00\",\n            \"content\": \"<p>冀航警379/25，渤海，7月10日0000时至7月11日2400时，</p>\\n\\n<p>以N&nbsp;39°24′35″、E&nbsp;119°13′44″为顶点，正东方向至N&nbsp;39°24′35″、E&nbsp;119°17′32″，再至N&nbsp;39°19′21″、E&nbsp;119°29′47″端点，顶点正南偏西6°方向至N&nbsp;39°11′16″、E&nbsp;119°11′54″端点，以顶点为中心半径25公里的部分圆弧将两个端点连接，形成不规则的闭合范围。该区域内进行实弹射击活动。禁止驶入。</p>\"\n        },\n        {\n            \"warning_type\": 12,\n            \"source\": \"中国海事局\",\n            \"title\": \"MILITARY MISSION——LN222/25\",\n            \"range_type\": 2,\n            \"range_points\": \"121.636667,38.861667;121.636667,38.570000;121.131667,38.565000;121.235000,38.803333\",\n            \"expire_time\": \"2025-07-27 16:00:00\",\n            \"pub_time\": \"2025-07-09 11:00:00\",\n            \"content\": \"<p>LN222/25&nbsp;BOHAI STRAIT AND NORTH YELLOW SEA MILITARY MISSION IN AREA BOUNDED BY THE LINES JOINING 38-51.7N121-38.2E,38-34.2N121-38.2E,38-33.9N121-07.9E,38-48.2N121-14.1E FROM 130800UTC TO 270800UTC JUL.ENTERING PROHIBITED. LIAONING MSA CHINA.</p>\"\n        },\n        {\n            \"warning_type\": 1,\n            \"source\": \"中国海事局\",\n            \"title\": \"军事任务——辽航警222/25\",\n            \"range_type\": 2,\n            \"range_points\": \"121.636667,38.861667;121.636667,38.570000;121.131667,38.565000;121.235000,38.803333\",\n            \"expire_time\": \"2025-07-27 16:00:00\",\n            \"pub_time\": \"2025-07-09 10:59:00\",\n            \"content\": \"<p>辽航警222/25，渤海海峡黄海北部，自7月13日1600时至27日1600时在38-51.7N121-38.2E、38-34.2N121-38.2E、38-33.9N121-07.9E、38-48.2N121-14.1E诸点连线范围内执行军事任务。禁止驶入。</p>\"\n        },\n        {\n            \"warning_type\": 12,\n            \"source\": \"中国海事局\",\n            \"title\": \"YANGANGRONGHEQIHAO AND YANGANGRONGHEBAHAO   TOWING ZHAOSHANGZHONGGONG3-SD441/25\",\n            \"range_type\": 4,\n            \"range_points\": \"121.450000,37.600000;121.583333,37.666667;122.158333,37.666667;122.275000,37.520833;122.263333,37.507000;122.228333,37.480000\",\n            \"expire_time\": \"2025-07-11 16:00:00\",\n            \"pub_time\": \"2025-07-09 10:53:00\",\n            \"content\": \"<p>SD441/25,BOHAI SEA,FROM 090800UTC TO &nbsp;110800UTC JUL,TUG YANGANGRONGHEQIHAO AND YANGANGRONGHEBAHAO TOWING ZHAOSHANGZHONGGONG3,FROM 37-36.00N 121-27.00E&nbsp;TO 37-28.25N 122-13.83E,MAINLY VIA:37-40.00N 121-35.00E, 37-40.00N 122-09.50E,37-31.24N 122-16.50E,37-30.42N 122-15.80E, 37-28.80N 122-13.70E,TOWING LENGTH 400 METERS,SPEED 5 KNOTS.CAUTION TO AVOID.SHANDONG MSA CHINA.</p>\"\n        },\n        {\n            \"warning_type\": 12,\n            \"source\": \"中国海事局\",\n            \"title\": \"拖带作业-烟港融合七号、烟港融合八号拖带招商重工3-鲁航警494/25\",\n            \"range_type\": 4,\n            \"range_points\": \"121.45,37.6;122.230556,37.470833;121.583333,37.666667;122.158333,37.666667;122.275,37.404;122.263333,37.390333;122.228333,37.363\",\n            \"expire_time\": \"2025-07-11 16:00:00\",\n            \"pub_time\": \"2025-07-09 10:52:00\",\n            \"content\": \"<p>鲁航警494/25，渤海海峡，7月9日1600时至11日1600时，烟港融合七号、烟港融合八号拖带招商重工3,自37-36.00N 121-27.00E至37-28.25N 122-13.83E，主要经过以下各点：37-40.00N 121-35.00E、37-40.00N 122-09.50E、37-31.24N 122-16.50E、37-30.42N 122-15.80E、37-28.80N 122-13.70E，拖带长度400米，航速5节。注意避让。</p>\"\n        },\n        {\n            \"warning_type\": 4,\n            \"source\": \"中国海事局\",\n            \"title\": \"水深测量—津航警242/25\",\n            \"expire_time\": \"2025-07-25 18:00:00\",\n            \"pub_time\": \"2025-07-09 09:36:00\",\n            \"content\": \"<p>津航警242/25&nbsp;天津港 自7月10日至25日，每天0600时至1800时，由顺航测11轮在大沽口港区大沽沙航道及附近水域进行水深测量作业。希各航船注意。</p>\"\n        },\n        ......\n    ]\n}"
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 6 China Region Coastline Warning Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431872073-run
+      operationId: getNavigationalWarnings
+      externalDocs:
+        description: 6.1 China Region Navigational Warnings
+        url: https://docs.shipfinder.com/431872073e0
+components:
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: ShipFinder API key, created in the console at https://open.shipfinder.com/v1/console/overview. Starter (trial) keys are self-service; Custom (production) keys require per-service enablement by the ShipFinder business team. Keys may be bound to a domain (return code 14 = request from unbound domain).
+externalDocs:
+  description: Global Maritime Data API Documentation
+  url: https://docs.shipfinder.com/
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  index: https://docs.shipfinder.com/llms.txt
+  operations: 40
+  note: Path/operation content verbatim from provider-published fragments; see -openapi-original.yml.

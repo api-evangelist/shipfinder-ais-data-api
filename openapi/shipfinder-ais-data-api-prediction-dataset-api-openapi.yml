@@ -1,0 +1,667 @@
+openapi: 3.2.0
+info:
+  title: ShipFinder Global Maritime Data Prediction Dataset API
+  description: 'REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the "key" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.
+
+
+    Assembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider''s; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published "0" response key to "200" (see overlays/).'
+  version: 1.0.0
+  contact:
+    name: ShipFinder Support
+    email: support@elaneglobal.com
+    url: https://www.shipfinder.com/help-center
+  termsOfService: https://www.shipfinder.com/Home/TermsConditions
+servers:
+- url: https://api.elaneglobal.com
+  description: Production
+security:
+- apiKeyQuery: []
+tags:
+- name: Prediction Dataset
+paths:
+  /v1/Prediction/ETA:
+    get:
+      summary: 4.3 ETA Query
+      deprecated: false
+      description: "## Description\nQuery the berthing information of the vessel at the departure port, the actual departure time, as well as the total voyage, the distance already traveled, and the Estimated Time of Arrival to the next destination port.\n\n## Use Case\n**Logistics Tracking**  \nQuery the berthing time and departure time of the vessel at the departure port, as well as the Estimated Time of Arrival at the destination port. By coordinating with vessel berthing records or vessel arrival and departure event notifications, it is possible to track the arrival and departure times, berthing terminal information, and sailing status of each voyage of the vessel.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Prediction/ETA` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/ETA?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&port_code=CNSHG&speed=20\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      tags:
+      - Prediction Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: mmsi
+        in: query
+        description: 9-digit numeric code of MMSI
+        required: true
+        example: 477172700
+        schema:
+          type: integer
+      - name: port_code
+        in: query
+        description: 'Standard 5-digit port code.
+
+          When this parameter is not specified, the endpoint defaults to the next destination port declared in the vessel’s AIS message.'
+        required: false
+        example: CNSHG
+        schema:
+          type: string
+      - name: speed
+        in: query
+        description: 'Sustained speed for the subsequent voyage, unit: knots (kn).
+
+          When this parameter is not specified, , ETA is calculated using the vessel’s average sailing speed over the latest month (the average excludes speed data recorded while the vessel was at anchor in port areas).'
+        required: false
+        example: 20
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      ship:
+                        type: object
+                        properties:
+                          mmsi:
+                            type: integer
+                            description: 9-digit numeric code of MMSI
+                          imo:
+                            type: integer
+                            description: 7-digit numeric code of IMO
+                          ship_name:
+                            type: string
+                            description: Vessel name
+                          call_sign:
+                            type: string
+                            description: 'Call Sign '
+                          ship_type:
+                            type: integer
+                            description: 'Type of vessels: see Appendix for details. '
+                        required:
+                        - mmsi
+                        - imo
+                        - ship_name
+                        - call_sign
+                        - ship_type
+                        x-apifox-orders:
+                        - mmsi
+                        - imo
+                        - ship_name
+                        - call_sign
+                        - ship_type
+                      location:
+                        type: object
+                        properties:
+                          lng:
+                            type: number
+                            description: Longitude of the STS event position, under the WGS84 coordinate system
+                          lat:
+                            type: number
+                            description: Latitude of the STS event position, under the WGS84 coordinate system
+                          sea_area:
+                            type: string
+                            description: Name of the sea area
+                          sea_area_code:
+                            type: integer
+                            description: Code of the sea area
+                          sog:
+                            type: integer
+                            description: Real-time vessel speed over ground in knots; -1=invalid data
+                        required:
+                        - lng
+                        - lat
+                        - sog
+                        - sea_area
+                        - sea_area_code
+                        x-apifox-orders:
+                        - lng
+                        - lat
+                        - sog
+                        - sea_area
+                        - sea_area_code
+                      preport:
+                        type: object
+                        properties:
+                          port_code:
+                            type: string
+                            description: Standard 5-digit port code
+                          port_cnname:
+                            type: string
+                            description: Chinese name of the port
+                          port_name:
+                            type: string
+                            description: Name of the port
+                          time_zone:
+                            type: string
+                            description: Time zone of the port’s location
+                          port_country_code:
+                            type: string
+                            description: Standard code of the country/region where the port is located
+                          port_country_name:
+                            type: string
+                            description: Name of the country/region where the port is located
+                          port_country_cnname:
+                            type: string
+                            description: Chinese name of the country/region where the port is located
+                          ata:
+                            type: integer
+                            description: Actual time of arrival at the port. Time zone varies based on the time_zone parameter.
+                          atb:
+                            type: integer
+                            description: Actual time of berthing at the terminal. Time zone varies based on the time_zone parameter.
+                          atd:
+                            type: integer
+                            description: Actual time of departure from the port. Time zone varies based on the time_zone parameter.
+                        required:
+                        - port_code
+                        - port_cnname
+                        - port_name
+                        - time_zone
+                        - port_country_code
+                        - port_country_name
+                        - port_country_cnname
+                        - ata
+                        - atb
+                        - atd
+                        x-apifox-orders:
+                        - port_code
+                        - port_cnname
+                        - port_name
+                        - time_zone
+                        - port_country_code
+                        - port_country_name
+                        - port_country_cnname
+                        - ata
+                        - atb
+                        - atd
+                      nextport:
+                        type: object
+                        properties:
+                          port_code:
+                            type: string
+                            description: Standard 5-digit port code
+                          port_cnname:
+                            type: string
+                            description: Chinese name of the port
+                          port_name:
+                            type: string
+                            description: Name of the port
+                          time_zone:
+                            type: integer
+                            description: Time zone of the port’s location
+                          port_country_code:
+                            type: string
+                            description: Standard code of the country/region where the port is located
+                          port_country_name:
+                            type: string
+                            description: Name of the country/region where the port is located
+                          port_country_cnname:
+                            type: string
+                            description: Chinese name of the country/region where the port is located
+                          sailed_distance:
+                            type: number
+                            description: 'Distance already covered on the voyage. Unit: nautical miles (NM)'
+                          sailed_time:
+                            type: number
+                            description: 'Elapsed sailing time for the voyage. Unit: hours'
+                          ais_speed:
+                            type: number
+                            description: 'Average speed derived from AIS data. Unit: knots (kn)'
+                          speed:
+                            type: number
+                            description: 'Average speed used for ETA computation.
+
+                              If a value is provided for the speed request parameter, ETA is calculated using the input value; otherwise, the historical average speed from AIS is applied.
+
+                              Unit: knots (kn)'
+                          remaining_distance:
+                            type: number
+                            description: 'Estimated remaining voyage distance. Unit: nautical miles (NM).'
+                          eta:
+                            type: integer
+                            description: Estimated Time of Arrival in Unix timestamp
+                        required:
+                        - port_code
+                        - port_cnname
+                        - port_name
+                        - time_zone
+                        - port_country_code
+                        - port_country_name
+                        - port_country_cnname
+                        - sailed_distance
+                        - sailed_time
+                        - ais_speed
+                        - speed
+                        - eta
+                        - remaining_distance
+                        x-apifox-orders:
+                        - port_code
+                        - port_cnname
+                        - port_name
+                        - time_zone
+                        - port_country_code
+                        - port_country_name
+                        - port_country_cnname
+                        - sailed_distance
+                        - sailed_time
+                        - ais_speed
+                        - speed
+                        - eta
+                        - remaining_distance
+                    required:
+                    - ship
+                    - location
+                    - preport
+                    - nextport
+                    x-apifox-orders:
+                    - ship
+                    - location
+                    - preport
+                    - nextport
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  ship:
+                    mmsi: 477172700
+                    imo: 9783538
+                    ship_name: COSCO SHIPPING LIBRA
+                    call_sign: VRRV4
+                    ship_type: 71
+                  location:
+                    lng: 54.659382
+                    lat: 24.813853
+                    sog: 0
+                    sea_area: Persian Gulf
+                    sea_area_code: 4266
+                  preport:
+                    port_code: AEKHL
+                    port_cnname: 哈里发港
+                    port_name: Khalifa Port
+                    time_zone: 4
+                    port_country_code: AE
+                    port_country_name: United Arab Emirates
+                    port_country_cnname: 阿联酋
+                    ata: 1746707992
+                    atb: 1746716722
+                    atd: 0
+                  nextport:
+                    port_code: CNSHG
+                    port_cnname: 上海
+                    port_name: Shanghai
+                    time_zone: 8
+                    port_country_code: CN
+                    port_country_name: China
+                    port_country_cnname: 中国
+                    sailed_distance: 0
+                    sailed_time: 0
+                    ais_speed: 7.67
+                    speed: 20
+                    eta: 1747770560
+                    remaining_distance: 5608.53
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 4 Prediction Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431244206-run
+      operationId: getETA
+      externalDocs:
+        description: 4.3 ETA Query
+        url: https://docs.shipfinder.com/431244206e0
+  /v1/Prediction/RoutePlanPointToPoint:
+    get:
+      summary: 4.1 Point-to-Point Route Planning
+      deprecated: false
+      description: "# 4.1 Point-to-Point Route Planning\n\n## Description\nThe Point-to-Point Route Planning queries the route plan between two coordinate waypoints, or from a departure waypoint to a destination port. Returns the total nautical distance of the route and the latitude/longitude coordinates of all waypoints along the route.\n\n## Use Cases\n1. **Logistics Tracking**  \n   Save the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the vessel’s real-time position and the planned path. You may also overlay historical vessel tracks with the planned route to visualize and compare discrepancies between the actual voyage track and the planned path.\n\n2. **Navigation Guidance**  \n   During vessel transit, retrieve the recommended sailing route in real time based on the vessel’s current position and destination port. The route can be combined with meteorological data for adverse weather avoidance, or used to plot simulated future sailing routes on electronic charts.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint`  | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint?key=1F6D701272402D1E7D8D316CCE519123&start_point=113.571144,22.844316&end_point=121.58414,31.37979\n\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint?key=1F6D701272402D1E7D8D316CCE519123&start_point=113.571144,22.844316&end_port_code=CNQDG\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      tags:
+      - Prediction Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: start_point
+        in: query
+        description: Departure position, formatted as lng,lat (longitude first, latitude second), separated by an English comma.
+        required: true
+        example: 113.571144,22.844316
+        schema:
+          type: string
+      - name: end_point
+        in: query
+        description: 'Destination position, formatted as lng,lat (longitude first, latitude second), separated by an English comma.
+
+          Note: Mutually exclusive with end_port_code; one field is mandatory.
+
+          If both fields are populated, route planning will be calculated based on end_port_code.'
+        required: true
+        example: 121.58414,31.37979
+        schema:
+          type: string
+      - name: end_port_code
+        in: query
+        description: Standard 5-digit port code of the destination port.
+        required: false
+        schema:
+          type: string
+      - name: avoid
+        in: query
+        description: 'Waypoint IDs to be avoided; see Appendix for details
+
+          Use commas to separate multiple IDs; leave blank for no avoidance.
+
+          Maximum 10 avoidance waypoints per request.'
+        required: false
+        schema:
+          type: string
+      - name: through
+        in: query
+        description: 'Required waypoints along the route, formatted as lng,lat-lng,lat; use hyphens (-) to separate multiple waypoints.
+
+          Leave blank if no mandatory waypoints are needed.
+
+          Maximum 30 mandatory waypoints per request.'
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      distance:
+                        type: number
+                        description: Total distance of the planned route in nautical miles (NM).
+                      route:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            lng:
+                              type: number
+                              description: Waypoint longitude, WGS84 coordinate system
+                            lat:
+                              type: number
+                              description: Waypoint latitude, WGS84 coordinate system
+                          required:
+                          - lng
+                          - lat
+                          x-apifox-orders:
+                          - lng
+                          - lat
+                        description: Route Details
+                    required:
+                    - distance
+                    - route
+                    x-apifox-orders:
+                    - distance
+                    - route
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  distance: 915.22
+                  route:
+                  - lng: 113.571144
+                    lat: 22.844316
+                  - lng: 113.56867
+                    lat: 22.82417
+                  - lng: 113.59017
+                    lat: 22.81067
+                  - lng: 113.6135
+                    lat: 22.78583
+                  - lng: 113.66833
+                    lat: 22.69617
+                  - lng: 113.68733
+                    lat: 22.64817
+                  - lng: 113.80333
+                    lat: 22.52833
+                  - lng: 114
+                    lat: 22
+                  - lng: 116
+                    lat: 22
+                  - lng: 117
+                    lat: 22.5
+                  - lng: 122.5
+                    lat: 28
+                  - lng: 123
+                    lat: 29
+                  - lng: 123
+                    lat: 30
+                  - lng: 122.5
+                    lat: 30.5
+                  - lng: 122.064
+                    lat: 31.1225
+                  - lng: 121.87067
+                    lat: 31.17867
+                  - lng: 121.73775
+                    lat: 31.28425
+                  - lng: 121.58414
+                    lat: 31.37979
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 4 Prediction Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431124483-run
+      operationId: getRoutePlanPointToPoint
+      externalDocs:
+        description: 4.1 Point-to-Point Route Planning
+        url: https://docs.shipfinder.com/431124483e0
+  /v1/Prediction/RoutePlanPortToPort:
+    get:
+      summary: 4.2 Port-to-Port Route Planning
+      deprecated: false
+      description: "## Description\nThe Port-to-Port Route Planning queries the route plan between two ports, and obtain the total mileage of the route as well as the latitude and longitude coordinates of the points the route passes through.\n\n## Use Case\n**Logistics Tracking**  \nSave the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the vessel’s real-time position and the planned path. You may also overlay historical vessel tracks with the planned route for visualization, and compare discrepancies between the actual voyage track and the planned path.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort`  | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort?key=1F6D701272402D1E7D8D316CCE519123&start_port_code=CNGZG&end_port_code=CNSHG&avoid=11\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      tags:
+      - Prediction Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: start_port_code
+        in: query
+        description: Standard 5-digit port code of the departure port.
+        required: true
+        example: CNGZG
+        schema:
+          type: string
+      - name: end_port_code
+        in: query
+        description: Standard 5-digit port code of the arrival port.
+        required: true
+        example: CNSHG
+        schema:
+          type: string
+      - name: avoid
+        in: query
+        description: 'Waypoint IDs to be avoided; see Appendix for details
+
+          Use commas to separate multiple IDs; leave blank for no avoidance.
+
+          Maximum 10 avoidance waypoints per request.'
+        required: false
+        example: '11'
+        schema:
+          type: string
+      - name: through
+        in: query
+        description: 'Required waypoints along the route, formatted as lng,lat-lng,lat; use hyphens (-) to separate multiple waypoints.
+
+          Leave blank if no mandatory waypoints are needed.
+
+          Maximum 30 mandatory waypoints per request.'
+        required: false
+        example: 0
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      distance:
+                        type: number
+                        description: Total distance of the planned route in nautical miles (NM).
+                      route:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            lng:
+                              type: number
+                              description: Waypoint longitude, WGS84 coordinate system
+                            lat:
+                              type: number
+                              description: Waypoint latitude, WGS84 coordinate system
+                          required:
+                          - lng
+                          - lat
+                          x-apifox-orders:
+                          - lng
+                          - lat
+                        description: Route Details
+                    required:
+                    - distance
+                    - route
+                    x-apifox-orders:
+                    - distance
+                    - route
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  distance: 915.22
+                  route:
+                  - lng: 113.571144
+                    lat: 22.844316
+                  - lng: 113.56867
+                    lat: 22.82417
+                  - lng: 113.59017
+                    lat: 22.81067
+                  - lng: 113.6135
+                    lat: 22.78583
+                  - lng: 113.66833
+                    lat: 22.69617
+                  - lng: 113.68733
+                    lat: 22.64817
+                  - lng: 113.80333
+                    lat: 22.52833
+                  - lng: 114
+                    lat: 22
+                  - lng: 116
+                    lat: 22
+                  - lng: 117
+                    lat: 22.5
+                  - lng: 122.5
+                    lat: 28
+                  - lng: 123
+                    lat: 29
+                  - lng: 123
+                    lat: 30
+                  - lng: 122.5
+                    lat: 30.5
+                  - lng: 122.064
+                    lat: 31.1225
+                  - lng: 121.87067
+                    lat: 31.17867
+                  - lng: 121.73775
+                    lat: 31.28425
+                  - lng: 121.58414
+                    lat: 31.37979
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 4 Prediction Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431244012-run
+      operationId: getRoutePlanPortToPort
+      externalDocs:
+        description: 4.2 Port-to-Port Route Planning
+        url: https://docs.shipfinder.com/431244012e0
+components:
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: ShipFinder API key, created in the console at https://open.shipfinder.com/v1/console/overview. Starter (trial) keys are self-service; Custom (production) keys require per-service enablement by the ShipFinder business team. Keys may be bound to a domain (return code 14 = request from unbound domain).
+externalDocs:
+  description: Global Maritime Data API Documentation
+  url: https://docs.shipfinder.com/
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  index: https://docs.shipfinder.com/llms.txt
+  operations: 40
+  note: Path/operation content verbatim from provider-published fragments; see -openapi-original.yml.

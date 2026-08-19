@@ -1,0 +1,1033 @@
+openapi: 3.2.0
+info:
+  title: ShipFinder Global Maritime Data Meteorology Dataset API
+  description: 'REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the "key" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.
+
+
+    Assembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider''s; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published "0" response key to "200" (see overlays/).'
+  version: 1.0.0
+  contact:
+    name: ShipFinder Support
+    email: support@elaneglobal.com
+    url: https://www.shipfinder.com/help-center
+  termsOfService: https://www.shipfinder.com/Home/TermsConditions
+servers:
+- url: https://api.elaneglobal.com
+  description: Production
+security:
+- apiKeyQuery: []
+tags:
+- name: Meteorology Dataset
+paths:
+  /v1/Meteorology/CycloneInfo:
+    get:
+      summary: 5.1.2 Tropical Cyclone Details by Point
+      deprecated: false
+      description: ''
+      tags:
+      - Meteorology Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: typhoon_id
+        in: query
+        description: 'Obtained via the Global Tropical Cyclones List. '
+        required: true
+        example: '2477927'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        typhoon_id:
+                          type: string
+                          description: Typhoon Serial Number
+                        typhoon_time:
+                          type: string
+                          description: Formation time of the tropical cyclone, defaulted to UTC+0 time. Add 8 hours when converting to China Standard Time (CST/UTC+8).
+                        forecast:
+                          type: string
+                          description: 'Marker for forecast/observed data points: Empty=Actual observation point; Non-empty=Forecast prediction point'
+                        fhour:
+                          type: string
+                          description: 'Time offset for forecast data, representing the hours ahead of the issuance time for which the cyclone parameters are predicted.Example: fhour=12 indicates the data is a 12‑hour ahead forecast issued at the reference timestamp.
+
+                            Note: For historical tropical cyclones, measured observational data overwrites the original forecast data, and the fhour field is returned empty.'
+                        lat:
+                          type: number
+                          description: Coordinate latitude, WGS84 coordinate system
+                        lng:
+                          type: number
+                          description: Coordinate longitude, WGS84 coordinate system
+                        grade:
+                          type: integer
+                          description: 'Tropical cyclone wind scale (range: 5–18)'
+                        mspeed:
+                          type: number
+                          description: 'Maximum sustained wind speed, Unit: meters per second (m/s)'
+                        pressure:
+                          type: number
+                          description: 'Tropical cyclone central pressure, Unit: hectopascals (hPa)'
+                        kspeed:
+                          type: number
+                          description: 'Cyclone translation speed, Unit: kilometers per hour (km/h)'
+                        direction:
+                          type: string
+                          description: 'Cyclone movement direction: East (E), West (W), South (S), North (N)'
+                        radius7:
+                          type: number
+                          description: 'Radius of 7-grade gale-force wind circle, Unit: kilometers (km)'
+                        radius10:
+                          type: number
+                          description: 'Radius of 10-grade storm-force wind circle, Unit: kilometers (km)'
+                        radius7_s:
+                          type: string
+                          description: '7-grade gale-force wind circle radius by quadrant, Unit: kilometers (km).
+
+                            Format: NE,SE,SW,NW (Northeast, Southeast, Southwest, Northwest)'
+                        radius10_s:
+                          type: string
+                          description: '10-grade storm-force wind circle radius by quadrant, Unit: kilometers (km)'
+                        radius12_s:
+                          type: string
+                          description: '12-grade hurricane-force wind circle radius by quadrant, Unit: kilometers (km)'
+                      required:
+                      - typhoon_id
+                      - typhoon_time
+                      - forecast
+                      - fhour
+                      - lat
+                      - lng
+                      - grade
+                      - mspeed
+                      - pressure
+                      - direction
+                      - radius7
+                      - radius10
+                      - radius7_s
+                      - radius10_s
+                      - radius12_s
+                      - kspeed
+                      x-apifox-orders:
+                      - typhoon_id
+                      - typhoon_time
+                      - forecast
+                      - fhour
+                      - lat
+                      - lng
+                      - grade
+                      - mspeed
+                      - pressure
+                      - kspeed
+                      - direction
+                      - radius7
+                      - radius10
+                      - radius7_s
+                      - radius10_s
+                      - radius12_s
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example: "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 15,\n  \"data\": [\n    {\n      \"typhoon_id\": \"3063123\",\n      \"typhoon_time\": \"202507231400\",\n      \"forecast\": \"BABJ\",\n      \"fhour\": \"24\",\n      \"lat\": 16.8667,\n      \"lng\": 119.9667,\n      \"grade\": 10,\n      \"mspeed\": 28,\n      \"pressure\": 985,\n      \"kspeed\": 0,\n      \"direction\": \"\",\n      \"radius7\": 0,\n      \"radius10\": 0,\n      \"radius7_s\": \"180,120,150,200\",\n      \"radius10_s\": \"0\",\n      \"radius12_s\": \"0\"\n    },\n    {\n      \"typhoon_id\": \"3063123\",\n      \"typhoon_time\": \"202507231400\",\n      \"forecast\": \"\",\n      \"fhour\": \"\",\n      \"lat\": 17.6,\n      \"lng\": 118.7,\n      \"grade\": 8,\n      \"mspeed\": 18,\n      \"pressure\": 992,\n      \"kspeed\": 13,\n      \"direction\": \"S\",\n      \"radius7\": 180,\n      \"radius10\": 0,\n      \"radius7_s\": \"180,120,150,200\",\n      \"radius10_s\": \"0\",\n      \"radius12_s\": \"0\"\n    },\n    .....\n  ]\n}"
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 5 Meteorology Dataset/5.1 Global Tropical Cyclone
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431698143-run
+      operationId: getCycloneInfo
+      externalDocs:
+        description: 5.1.2 Tropical Cyclone Details by Point
+        url: https://docs.shipfinder.com/431698143e0
+  /v1/Meteorology/CyclonesList:
+    get:
+      summary: 5.1.1 Global Tropical Cyclones List
+      deprecated: false
+      description: ''
+      tags:
+      - Meteorology Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        typhoon_id:
+                          type: string
+                          description: "Obtained via the Global Tropical Cyclones List. \nNote: Tropical cyclone names are often reused, but each cyclone carries a unique typhoon_id. To query the latest cyclone data, first pull the up-to-date typhoon_id from the list, then use it to retrieve full cyclone details."
+                        typhoon_code:
+                          type: integer
+                          description: International serial number of the tropical cyclone
+                        typhoon_cncode:
+                          type: string
+                          description: Chinese serial number of the tropical cyclone; the first two digits represent the year, and the last two digits indicate sequential order by occurrence time
+                        typhoon_cnname:
+                          type: string
+                          description: Chinese name of the tropical cyclone
+                        typhoon_name:
+                          type: string
+                          description: Name of the tropical cyclone
+                        current_year:
+                          type: integer
+                          description: Year the tropical cyclone formed
+                        dataMark:
+                          type: string
+                          description: 'Indicator of whether the cyclone is active: ing=In progress; blank=Concluded'
+                      required:
+                      - typhoon_id
+                      - typhoon_code
+                      - typhoon_cncode
+                      - typhoon_cnname
+                      - typhoon_name
+                      - current_year
+                      - dataMark
+                      x-apifox-orders:
+                      - typhoon_id
+                      - typhoon_code
+                      - typhoon_cncode
+                      - typhoon_cnname
+                      - typhoon_name
+                      - current_year
+                      - dataMark
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example: "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 425,\n  \"data\": [\n     {\n      \"typhoon_id\": \"3064324\",\n      \"typhoon_code\": 0,\n      \"typhoon_cncode\": \"2509\",\n      \"typhoon_cnname\": \"罗莎\",\n      \"typhoon_name\": \"KROSA\",\n      \"current_year\": 2025,\n      \"dataMark\": \"\"\n    },\n    {\n      \"typhoon_id\": \"3063123\",\n      \"typhoon_code\": 0,\n      \"typhoon_cncode\": \"2508\",\n      \"typhoon_cnname\": \"竹节草\",\n      \"typhoon_name\": \"CO-MAY\",\n      \"current_year\": 2025,\n      \"dataMark\": \"\"\n    },\n    {\n      \"typhoon_id\": \"3062724\",\n      \"typhoon_code\": 0,\n      \"typhoon_cncode\": \"2507\",\n      \"typhoon_cnname\": \"范斯高\",\n      \"typhoon_name\": \"FRANCISCO\",\n      \"current_year\": 2025,\n      \"dataMark\": \"\"\n    },\n    ......\n    ]\n}"
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 5 Meteorology Dataset/5.1 Global Tropical Cyclone
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431698053-run
+      operationId: getCyclonesList
+      externalDocs:
+        description: 5.1.1 Global Tropical Cyclones List
+        url: https://docs.shipfinder.com/431698053e0
+  /v1/Meteorology/MarineWeather:
+    get:
+      summary: 5.3 Global Marine Weather
+      deprecated: false
+      description: "## Description\nThe Global Marine Weather queries global marine meteorological data by geographic coordinates, covering core navigation-critical weather indicators including sea level pressure, pressure-driven current direction, wind direction, wind speed, significant wave height, visibility, etc.\n\nNote: Meteorological monitoring data is incomplete in certain regions. A return value of -32767 for fields such as barometric pressure and swell height indicates no valid meteorological readings are available for the queried location.\n\n## Use Cases\n1. **Route Planning & Optimization**  \n   Dynamic Route Adjustment: Retrieve real-time marine meteorological data during vessel transit. In the event of sudden severe weather or fluctuating meteorological conditions, adjust the sailing route promptly to avoid navigational hazards and guarantee maritime safety.\n2. **Vessel Navigation Safety**  \n   - Severe Weather Warning: Obtain advance forecasts of hazardous marine weather including tropical cyclones, storm surges, cold wave gales, and sea fog. Vessels may implement preemptive measures (e.g., altering course, adjusting speed, seeking a lee anchorage) to reduce sailing risks in adverse weather and lower accident probability.\n   - Visibility Monitoring & Early Warning: Low-visibility events (e.g., sea fog) severely impact navigation safety. Visibility data from marine weather outputs enables vessels to assess visibility conditions in surrounding waters and deploy contingency measures in advance.\n3. **Port Operations & Management**  \n   Vessel Port Entry/Exit Scheduling: Port authorities may optimize vessel arrival/departure timetables based on marine meteorological data, suspending berthing/unberthing operations during severe weather to ensure the safety and efficiency of port activities.\n4. **Vessel Insurance Pricing & Risk Assessment**  \n   Risk Quantification: By analyzing historical marine meteorological data combined with vessel type, planned route, and sailing season, insurers can accurately quantify risk exposure under varying meteorological conditions and formulate rational premium rates.\n5. **Vessel Entry Risk Assessment for Border Inspection & Customs**  \n   - Adverse Weather Impact Evaluation: Border inspection and customs authorities review marine meteorological data along the vessel’s transit path to verify exposure to severe weather, and assess potential damages including hull structural impairment and cargo loss.\n   - Sailing Trajectory Analysis: Correlate marine meteorological data with the vessel’s sailing trajectory to verify route compliance and identify abnormal detours or idle periods. Vessels with anomalous trajectories inconsistent with prevailing meteorological conditions shall undergo targeted inspection to deter illicit trade, smuggling, stowaway trafficking and other illegal activities.\n\n## Request Limits\n- This is a premium service that requires advanced permission application prior to use.\n- An API key must be created in the Dashboard before using this service.\n- Service calls are subject to quota restrictions according to your permission type; your current service access permissions can be viewed in the Dashboard.\n- Please contact our support team to activate service permissions.\n\n## Endpoint\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Meteorology/MarineWeather ` | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Meteorology/MarineWeather?key=1F6D701272402D1E7D8D316CCE519123&lng=123.58414&lat=27.37979\n\n\n**Note:**\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. \n"
+      tags:
+      - Meteorology Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: lng
+        in: query
+        description: Coordinate longitude, WGS84 coordinate system
+        required: true
+        example: 123.58414
+        schema:
+          type: number
+      - name: lat
+        in: query
+        description: Coordinate latitude, WGS84 coordinate system
+        required: true
+        example: 27.37979
+        schema:
+          type: number
+      - name: weather_time
+        in: query
+        description: 'UTC time in Unix timestamp format. When this parameter is not specified, the latest available meteorological data will be returned.
+
+          Note: Only forecast data for the following fixed UTC hours daily is queryable within the next 7 days: 02:00:00, 08:00:00, 14:00:00, 20:00:00.'
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: Descriptive status of the data query result
+                  msg:
+                    type: string
+                    description: System response status code; refer to the Appendix for return code definitions
+                  data:
+                    type: object
+                    properties:
+                      bm500:
+                        type: number
+                        description: 500mb elevation pressure, unit (gpm), when the return value is -32767, it indicates that there is no corresponding data returned here.
+                      humidity:
+                        type: number
+                        description: 'Relative humidity, Unit: %'
+                      oceandir:
+                        type: number
+                        description: 'Ocean current direction, Unit: degrees (°)'
+                      oceanspeed:
+                        type: number
+                        description: 'Ocean current speed, Unit: meters per second (m/s)'
+                      pressure:
+                        type: number
+                        description: 'Sea level barometric pressure, Unit: hectopascals (hPa)'
+                      swelldir:
+                        type: number
+                        description: 'Swell propagation direction, Unit: degrees (°)'
+                      swellheight:
+                        type: number
+                        description: 'Significant swell height, Unit: meters (m)'
+                      swellperiod:
+                        type: number
+                        description: 'Swell wave period, Unit: seconds (s)'
+                      temperature:
+                        type: number
+                        description: 'Sea surface temperature (SST), Unit: degrees Celsius (℃)'
+                      visibility:
+                        type: number
+                        description: 'Horizontal atmospheric visibility, Unit: meters (m)'
+                      waveheight:
+                        type: number
+                        description: 'Significant total wave height (wind wave + swell), Unit: meters (m)'
+                      winddir:
+                        type: number
+                        description: 'Surface wind direction, Unit: degrees (°)'
+                      windspeed:
+                        type: number
+                        description: 'Surface wind speed, Unit: meters per second (m/s)'
+                      publish_time:
+                        type: integer
+                        description: Timestamp of the meteorological forecast issuance
+                      lng:
+                        type: number
+                        description: Longitude of the forecast grid point
+                      lat:
+                        type: number
+                        description: Latitude of the forecast grid point
+                    required:
+                    - bm500
+                    - humidity
+                    - oceandir
+                    - oceanspeed
+                    - pressure
+                    - swelldir
+                    - swellheight
+                    - swellperiod
+                    - temperature
+                    - visibility
+                    - waveheight
+                    - winddir
+                    - windspeed
+                    - publish_time
+                    - lng
+                    - lat
+                    x-apifox-orders:
+                    - bm500
+                    - humidity
+                    - oceandir
+                    - oceanspeed
+                    - pressure
+                    - swelldir
+                    - swellheight
+                    - swellperiod
+                    - temperature
+                    - visibility
+                    - waveheight
+                    - winddir
+                    - windspeed
+                    - publish_time
+                    - lng
+                    - lat
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  bm500: -32767
+                  humidity: 93.5
+                  oceandir: 234
+                  oceanspeed: 0.2
+                  pressure: 1008.5
+                  swelldir: 158.7
+                  swellheight: 2
+                  swellperiod: 5.8
+                  temperature: 24.5
+                  visibility: 24134.8
+                  waveheight: 2
+                  winddir: 183.2
+                  windspeed: 10.1
+                  publish_time: 1746748800
+                  lng: 123.58414
+                  lat: 27.37979
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 5 Meteorology Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431272522-run
+      operationId: getMarineWeather
+      externalDocs:
+        description: 5.3 Global Marine Weather
+        url: https://docs.shipfinder.com/431272522e0
+  /v1/Meteorology/TideStationInfo:
+    get:
+      summary: 5.2.2 Query Single Tide Gauge Station Details
+      deprecated: false
+      description: ''
+      tags:
+      - Meteorology Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: port_code
+        in: query
+        description: Unique ID of the port tide gauge station
+        required: true
+        example: 4000189
+        schema:
+          type: integer
+      - name: start_date
+        in: query
+        description: 'Start date for tidal data query. Format: YYYY-MM-DD. Historical data queries are supported from 2020 onwards.'
+        required: true
+        example: '2025-03-01'
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: "End date for tidal data query. Format: YYYY-MM-DD. \nNotes:\n1. Single query time range shall not exceed 90 days.\n2. Forecast data is limited to 30 days in advance; requests beyond this range will return an error.\n3. Historical tidal data is available for all dates from 2020 onwards.\n4. Tidal data is updated once daily.\n5. Future timestamps return forecast data; historical timestamps are overwritten with observed tidal data."
+        required: true
+        example: '2025-03-05'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      overview:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            tide_date:
+                              type: string
+                              description: Calendar date of tidal records
+                            tide_time1:
+                              type: string
+                              description: First tidal time point on the query date
+                            tide_time2:
+                              type: string
+                              description: Second tidal time point on the query date
+                            tide_time3:
+                              type: string
+                              description: Third tidal time point on the query date
+                            tide_time4:
+                              type: string
+                              description: Fourth tidal time point on the query date
+                            tide_height1:
+                              type: number
+                              description: 'Tidal height at the first time point, Unit: meters (m)'
+                            tide_height2:
+                              type: number
+                              description: 'Tidal height at the second time point, Unit: meters (m)'
+                            tide_height3:
+                              type: number
+                              description: 'Tidal height at the third time point, Unit: meters (m)'
+                            tide_height4:
+                              type: number
+                              description: 'Tidal height at the fourth time point, Unit: meters (m)'
+                            tide_lowhigh1:
+                              type: string
+                              description: Stage label for the first tidal event (e.g., High Tide, Low Tide)
+                            tide_lowhigh2:
+                              type: string
+                              description: Stage label for the second tidal event (e.g., High Tide, Low Tide)
+                            tide_lowhigh3:
+                              type: string
+                              description: Stage label for the third tidal event (e.g., High Tide, Low Tide)
+                            tide_lowhigh4:
+                              type: string
+                              description: Stage label for the fourth tidal event (e.g., High Tide, Low Tide)
+                          required:
+                          - tide_date
+                          - tide_time1
+                          - tide_time2
+                          - tide_time3
+                          - tide_time4
+                          - tide_height1
+                          - tide_height2
+                          - tide_height3
+                          - tide_height4
+                          - tide_lowhigh1
+                          - tide_lowhigh2
+                          - tide_lowhigh3
+                          - tide_lowhigh4
+                          x-apifox-orders:
+                          - tide_date
+                          - tide_time1
+                          - tide_time2
+                          - tide_time3
+                          - tide_time4
+                          - tide_height1
+                          - tide_height2
+                          - tide_height3
+                          - tide_height4
+                          - tide_lowhigh1
+                          - tide_lowhigh2
+                          - tide_lowhigh3
+                          - tide_lowhigh4
+                      detail:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            tide_date:
+                              type: string
+                              description: Tide Date
+                            h0:
+                              type: number
+                              description: 'Tidal height at 00:00 midnight, Unit: meters (m)'
+                            h1:
+                              type: number
+                              description: 'Tidal height at 01:00 midnight, Unit: meters (m)'
+                            h2:
+                              type: number
+                              description: 'Tidal height at 02:00 midnight, Unit: meters (m)'
+                            h3:
+                              type: number
+                              description: 'Tidal height at 03:00 midnight, Unit: meters (m)'
+                            h4:
+                              type: number
+                              description: 'Tidal height at 04:00 midnight, Unit: meters (m)'
+                            h5:
+                              type: number
+                              description: 'Tidal height at 05:00 midnight, Unit: meters (m)'
+                            h6:
+                              type: number
+                              description: 'Tidal height at 06:00 midnight, Unit: meters (m)'
+                            h7:
+                              type: number
+                              description: 'Tidal height at 07:00 midnight, Unit: meters (m)'
+                            h8:
+                              type: number
+                              description: 'Tidal height at 08:00 midnight, Unit: meters (m)'
+                            h9:
+                              type: number
+                              description: 'Tidal height at 09:00 midnight, Unit: meters (m)'
+                            h10:
+                              type: number
+                              description: 'Tidal height at 10:00 midnight, Unit: meters (m)'
+                            h11:
+                              type: number
+                              description: 'Tidal height at 11:00 midnight, Unit: meters (m)'
+                            h12:
+                              type: number
+                              description: 'Tidal height at 12:00 midnight, Unit: meters (m)'
+                            h13:
+                              type: number
+                              description: 'Tidal height at 13:00 midnight, Unit: meters (m)'
+                            h14:
+                              type: number
+                              description: 'Tidal height at 14:00 midnight, Unit: meters (m)'
+                            h15:
+                              type: number
+                              description: 'Tidal height at 15:00 midnight, Unit: meters (m)'
+                            h16:
+                              type: number
+                              description: 'Tidal height at 16:00 midnight, Unit: meters (m)'
+                            h17:
+                              type: number
+                              description: 'Tidal height at 17:00 midnight, Unit: meters (m)'
+                            h18:
+                              type: number
+                              description: 'Tidal height at 18:00 midnight, Unit: meters (m)'
+                            h19:
+                              type: number
+                              description: 'Tidal height at 19:00 midnight, Unit: meters (m)'
+                            h20:
+                              type: number
+                              description: 'Tidal height at 20:00 midnight, Unit: meters (m)'
+                            h21:
+                              type: number
+                              description: 'Tidal height at 21:00 midnight, Unit: meters (m)'
+                            h22:
+                              type: number
+                              description: 'Tidal height at 22:00 midnight, Unit: meters (m)'
+                            h23:
+                              type: number
+                              description: 'Tidal height at 23:00 midnight, Unit: meters (m)'
+                          required:
+                          - tide_date
+                          - h0
+                          - h1
+                          - h2
+                          - h3
+                          - h4
+                          - h5
+                          - h6
+                          - h7
+                          - h8
+                          - h9
+                          - h10
+                          - h11
+                          - h12
+                          - h13
+                          - h14
+                          - h15
+                          - h16
+                          - h17
+                          - h18
+                          - h19
+                          - h20
+                          - h21
+                          - h22
+                          - h23
+                          x-apifox-orders:
+                          - tide_date
+                          - h0
+                          - h1
+                          - h2
+                          - h3
+                          - h4
+                          - h5
+                          - h6
+                          - h7
+                          - h8
+                          - h9
+                          - h10
+                          - h11
+                          - h12
+                          - h13
+                          - h14
+                          - h15
+                          - h16
+                          - h17
+                          - h18
+                          - h19
+                          - h20
+                          - h21
+                          - h22
+                          - h23
+                    required:
+                    - overview
+                    - detail
+                    x-apifox-orders:
+                    - overview
+                    - detail
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  overview:
+                  - tide_date: '2025-03-05'
+                    tide_time1: 00:10
+                    tide_time2: 06:33
+                    tide_time3: '12:43'
+                    tide_time4: '19:12'
+                    tide_height1: 3.8
+                    tide_height2: 0.1
+                    tide_height3: 4.2
+                    tide_height4: 0.6
+                    tide_lowhigh1: high tide 1
+                    tide_lowhigh2: low tide 2
+                    tide_lowhigh3: high tide 3
+                    tide_lowhigh4: low tide 4
+                  - tide_date: '2025-03-04'
+                    tide_time1: 05:55
+                    tide_time2: '11:56'
+                    tide_time3: '18:22'
+                    tide_time4: '     '
+                    tide_height1: 0
+                    tide_height2: 4.2
+                    tide_height3: 0.3
+                    tide_height4: 0
+                    tide_lowhigh1: low tide 1
+                    tide_lowhigh2: high tide 2
+                    tide_lowhigh3: high tide 3
+                    tide_lowhigh4: high tide 4
+                  - tide_date: '2025-03-03'
+                    tide_time1: 05:19
+                    tide_time2: '11:13'
+                    tide_time3: '17:38'
+                    tide_time4: '23:29'
+                    tide_height1: 0
+                    tide_height2: 4.1
+                    tide_height3: 0.1
+                    tide_height4: 4.1
+                    tide_lowhigh1: low tide 1
+                    tide_lowhigh2: high tide 2
+                    tide_lowhigh3: low tide 3
+                    tide_lowhigh4: high tide 4
+                  - tide_date: '2025-03-02'
+                    tide_time1: 04:44
+                    tide_time2: '10:33'
+                    tide_time3: '16:55'
+                    tide_time4: '22:51'
+                    tide_height1: 0.1
+                    tide_height2: 4
+                    tide_height3: 0
+                    tide_height4: 4.2
+                    tide_lowhigh1: low tide 1
+                    tide_lowhigh2: high tide 2
+                    tide_lowhigh3: low tide 3
+                    tide_lowhigh4: high tide 4
+                  - tide_date: '2025-03-01'
+                    tide_time1: 04:10
+                    tide_time2: 09:56
+                    tide_time3: '16:14'
+                    tide_time4: '22:14'
+                    tide_height1: 0.2
+                    tide_height2: 3.8
+                    tide_height3: 0
+                    tide_height4: 4.3
+                    tide_lowhigh1: low tide 1
+                    tide_lowhigh2: high tide 2
+                    tide_lowhigh3: low tide 3
+                    tide_lowhigh4: high tide 4
+                  detail:
+                  - tide_date: '2025-03-05'
+                    h0: 3.79
+                    h1: 3.64
+                    h2: 3.1
+                    h3: 2.31
+                    h4: 1.44
+                    h5: 0.65
+                    h6: 0.14
+                    h7: 0.11
+                    h8: 0.64
+                    h9: 1.57
+                    h10: 2.62
+                    h11: 3.52
+                    h12: 4.07
+                    h13: 4.17
+                    h14: 3.86
+                    h15: 3.22
+                    h16: 2.4
+                    h17: 1.59
+                    h18: 0.92
+                    h19: 0.6
+                    h20: 0.75
+                    h21: 1.3
+                    h22: 2.04
+                    h23: 2.77
+                  - tide_date: '2025-03-04'
+                    h0: 3.99
+                    h1: 3.53
+                    h2: 2.74
+                    h3: 1.81
+                    h4: 0.91
+                    h5: 0.22
+                    h6: -0.03
+                    h7: 0.33
+                    h8: 1.2
+                    h9: 2.29
+                    h10: 3.29
+                    h11: 3.98
+                    h12: 4.2
+                    h13: 3.95
+                    h14: 3.32
+                    h15: 2.45
+                    h16: 1.56
+                    h17: 0.78
+                    h18: 0.33
+                    h19: 0.41
+                    h20: 1
+                    h21: 1.87
+                    h22: 2.78
+                    h23: 3.47
+                  - tide_date: '2025-03-03'
+                    h0: 3.9
+                    h1: 3.2
+                    h2: 2.28
+                    h3: 1.32
+                    h4: 0.49
+                    h5: 0.02
+                    h6: 0.14
+                    h7: 0.84
+                    h8: 1.87
+                    h9: 2.93
+                    h10: 3.73
+                    h11: 4.1
+                    h12: 3.97
+                    h13: 3.41
+                    h14: 2.56
+                    h15: 1.64
+                    h16: 0.79
+                    h17: 0.21
+                    h18: 0.14
+                    h19: 0.67
+                    h20: 1.59
+                    h21: 2.63
+                    h22: 3.5
+                    h23: 3.99
+                  - tide_date: '2025-03-02'
+                    h0: 3.62
+                    h1: 2.76
+                    h2: 1.8
+                    h3: 0.9
+                    h4: 0.26
+                    h5: 0.11
+                    h6: 0.57
+                    h7: 1.46
+                    h8: 2.48
+                    h9: 3.35
+                    h10: 3.87
+                    h11: 3.9
+                    h12: 3.48
+                    h13: 2.71
+                    h14: 1.8
+                    h15: 0.93
+                    h16: 0.25
+                    h17: 0.01
+                    h18: 0.38
+                    h19: 1.25
+                    h20: 2.35
+                    h21: 3.36
+                    h22: 4.04
+                    h23: 4.22
+                  - tide_date: '2025-03-01'
+                    h0: 3.2
+                    h1: 2.29
+                    h2: 1.38
+                    h3: 0.62
+                    h4: 0.25
+                    h5: 0.44
+                    h6: 1.11
+                    h7: 2.02
+                    h8: 2.9
+                    h9: 3.54
+                    h10: 3.75
+                    h11: 3.49
+                    h12: 2.85
+                    h13: 2.01
+                    h14: 1.15
+                    h15: 0.42
+                    h16: 0.04
+                    h17: 0.21
+                    h18: 0.94
+                    h19: 2
+                    h20: 3.1
+                    h21: 3.92
+                    h22: 4.31
+                    h23: 4.18
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 5 Meteorology Dataset/5.2 Global Port Tide Predictions
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431865286-run
+      operationId: getTideStationInfo
+      externalDocs:
+        description: 5.2.2 Query Single Tide Gauge Station Details
+        url: https://docs.shipfinder.com/431865286e0
+  /v1/Meteorology/TideStationList:
+    get:
+      summary: 5.2.1 Request parameters for Global Tide Gauge Stations List
+      deprecated: false
+      description: ''
+      tags:
+      - Meteorology Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        port_code:
+                          type: integer
+                          description: Port Tidal Observation Station ID
+                        port_cnname:
+                          type: string
+                          description: Chinese name of the port
+                        port_name:
+                          type: string
+                          description: Name of the port
+                        port_country_cnname:
+                          type: string
+                          description: Chinese name of the country/region where the port is located
+                        port_country_name:
+                          type: string
+                          description: Name of the country/region where the port is located
+                        lat:
+                          type: number
+                          description: Coordinate latitude, WGS84 coordinate system
+                        lng:
+                          type: number
+                          description: Coordinate longitude, WGS84 coordinate system
+                        port_time_zone:
+                          type: string
+                          description: Time zone of the port’s location
+                        datumn:
+                          type: number
+                          description: 'Vertical offset of the tidal datum below mean sea level, Unit: centimeters (cm)'
+                      required:
+                      - port_code
+                      - port_cnname
+                      - port_name
+                      - port_country_cnname
+                      - port_country_name
+                      - lat
+                      - lng
+                      - port_time_zone
+                      - datumn
+                      x-apifox-orders:
+                      - port_code
+                      - port_cnname
+                      - port_name
+                      - port_country_cnname
+                      - port_country_name
+                      - lat
+                      - lng
+                      - port_time_zone
+                      - datumn
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example: "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 4708,\n  \"data\": [\n    {\n     \"port_code\": 4001466,\n      \"port_cnname\": \"\",\n      \"port_name\": \"Camocim\",\n      \"port_country_cnname\": \"巴西\",\n      \"port_country_name\": \"Brazil\",\n      \"lat\": -2.88333,\n      \"lng\": -40.85,\n      \"port_time_zone\": \"UTC-3\",\n      \"datumn\": \"182\"\n    },\n    {\n      \"port_code\": 8000001,\n      \"port_cnname\": \"丹东\",\n      \"port_name\": \"DANDONG\",\n      \"port_country_cnname\": \"中国\",\n      \"port_country_name\": \"China\",\n      \"lat\": 40.11667,\n      \"lng\": 124.4,\n      \"port_time_zone\": \"UTC+8\",\n      \"datumn\": \"150\"\n    },\n    ......\n    ]\n}"
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 5 Meteorology Dataset/5.2 Global Port Tide Predictions
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431857907-run
+      operationId: getTideStationList
+      externalDocs:
+        description: 5.2.1 Request parameters for Global Tide Gauge Stations List
+        url: https://docs.shipfinder.com/431857907e0
+components:
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: ShipFinder API key, created in the console at https://open.shipfinder.com/v1/console/overview. Starter (trial) keys are self-service; Custom (production) keys require per-service enablement by the ShipFinder business team. Keys may be bound to a domain (return code 14 = request from unbound domain).
+externalDocs:
+  description: Global Maritime Data API Documentation
+  url: https://docs.shipfinder.com/
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  index: https://docs.shipfinder.com/llms.txt
+  operations: 40
+  note: Path/operation content verbatim from provider-published fragments; see -openapi-original.yml.

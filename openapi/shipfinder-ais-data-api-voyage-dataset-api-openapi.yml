@@ -1,0 +1,605 @@
+openapi: 3.2.0
+info:
+  title: ShipFinder Global Maritime Data Voyage Dataset API
+  description: 'REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the "key" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.
+
+
+    Assembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider''s; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published "0" response key to "200" (see overlays/).'
+  version: 1.0.0
+  contact:
+    name: ShipFinder Support
+    email: support@elaneglobal.com
+    url: https://www.shipfinder.com/help-center
+  termsOfService: https://www.shipfinder.com/Home/TermsConditions
+servers:
+- url: https://api.elaneglobal.com
+  description: Production
+security:
+- apiKeyQuery: []
+tags:
+- name: Voyage Dataset
+paths:
+  /v1/Voyage/PortAnchoredVessels:
+    get:
+      summary: 2.3 Currently Anchored Vessels
+      deprecated: false
+      description: "## Description\n\nThe Currently Anchored Vessels retrieves information of all vessels currently at the port anchorage using the port’s five-digit port code. Returned data includes the total count of vessels waiting at the port anchorage, vessel type, basic vessel details, port arrival time and vessel dwell time.\n\n## Use Cases\n\n1. Analyze the average patterns of vessel operation duration based on the dwell time of different vessel types in the returned dataset.\n2. For logistic operations, filter vessels by type from the list of currently berthed vessels to identify suitable carriers for cargo transportation.\n3. For vessel bunkering and marine equipment upgrade scenarios, obtain the list of in-port vessels first, then query vessel profiles to check equipment and other details, so as to identify targets eligible for bunkering services or equipment upgrade recommendations.\n\n## Request Limits\n\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Voyage/PortAnchoredVessels` | GET |\n\n## Example API Call\n\nhttps://api.elaneglobal.com/v1/Voyage/PortAnchoredVessels?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG\n\n**Note:**  \n\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \nTo trial the service, please create your own key in the Dashboard.\n"
+      tags:
+      - Voyage Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: port_code
+        in: query
+        description: Standard five-digit port code
+        required: true
+        example: CNSHG
+        schema:
+          type: string
+      - name: ship_type
+        in: query
+        description: 'Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified.'
+        required: false
+        schema:
+          type: integer
+      - name: search_type
+        in: query
+        description: 'Query filtering type:
+
+          1=Exclude vessels that have not reported AIS data for an extended period; 0=Return all vessels.
+
+          Note: Vessels with modified MMSI numbers may show as staying within the port boundary for a prolonged duration. This parameter can be used to filter out such vessels.'
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                  total:
+                    type: integer
+                    description: Total number of vessels currently berthed at the port
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        mmsi:
+                          type: integer
+                          description: 9-digit numeric code of MMSI
+                        imo:
+                          type: integer
+                          description: 7-digit numeric code of IMO
+                        call_sign:
+                          type: string
+                          description: 'Call Sign '
+                        ship_name:
+                          type: string
+                          description: Vessel name
+                        ship_type:
+                          type: integer
+                          description: 'Numeric code of vessel type: see Appendix for details '
+                        length:
+                          type: number
+                          description: 'Ship length, meters, range (0 - 1022) '
+                        width:
+                          type: number
+                          description: 'Vessel length in meters, valid value range: 0–1022'
+                        left:
+                          type: number
+                          description: Vessel breadth in meters (nautical standard term)
+                        trail:
+                          type: number
+                          description: Port distance in meters
+                        draught:
+                          type: number
+                          description: Stern Distance in meters
+                        stay_time:
+                          type: number
+                          description: Continuous dwell time of the vessel at the current port, measured in minutes.
+                        arrival_time:
+                          type: integer
+                          description: Vessel arrival time in Unix timestamp
+                      required:
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - arrival_time
+                      - stay_time
+                      x-apifox-orders:
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - arrival_time
+                      - stay_time
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example: "{\n    \"status\": 0,\n    \"msg\": \"\",\n    \"total\": 241,\n    \"data\": [\n        {\n            \"mmsi\": 413611860,\n            \"imo\": 1400704,\n            \"call_sign\": \"\",\n            \"ship_name\": \"QIANKUN02\",\n            \"ship_type\": 79,\n            \"length\": 102.0,\n            \"width\": 18.0,\n            \"left\": 9.0,\n            \"trail\": 90.0,\n            \"draught\": 4.1,\n            \"arrival_time\": \"1753237238\",\n            \"stay_time\": 34.6\n        },\n        {\n            \"mmsi\": 413720847,\n            \"imo\": 0,\n            \"call_sign\": \"NZEXVC\",\n            \"ship_name\": \"WANXUANCHENGHT9678\",\n            \"ship_type\": 0,\n            \"length\": 883.0,\n            \"width\": 32.0,\n            \"left\": 32.0,\n            \"trail\": 387.0,\n            \"draught\": 0.0,\n            \"arrival_time\": \"1753080812\",\n            \"stay_time\": 2641.7\n        },\n        ......\n    ]\n}"
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 2 Voyage Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430236145-run
+      operationId: getPortAnchoredVessels
+      externalDocs:
+        description: 2.3 Currently Anchored Vessels
+        url: https://docs.shipfinder.com/430236145e0
+  /v1/Voyage/PortBerthedVessels:
+    get:
+      summary: 2.2 Currently Berthed Vessels
+      deprecated: false
+      description: "## Description\n\nThe Currently Berthed Vessels retrieves information on all vessels currently berthed at a target port using the port’s five-digit port code. Returned data includes the total count of berthed vessels, vessel type, basic vessel details, port arrival time, and vessel dwell time.\n\n## Use Cases\n\n1. Analyze the average patterns of vessel operation duration based on the dwell time of different vessel types in the returned dataset.\n2. For logistic operations, filter vessels by type from the list of currently berthed vessels to identify suitable carriers for cargo transportation.\n3. For vessel bunkering and marine equipment upgrade scenarios, obtain the list of in-port vessels first, then query vessel profiles to check equipment and other details, so as to identify targets eligible for bunkering services or equipment upgrade recommendations.\n\n## Request Limits\n\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Voyage/PortBerthedVessels` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Voyage/PortBerthedVessels?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of Shipfinder.com, bound to the domain api.shipfinder.com. Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain. To trial the service, please create your own key in the Dashboard.\n"
+      tags:
+      - Voyage Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: port_code
+        in: query
+        description: Standard five-digit port code
+        required: true
+        example: CNSHG
+        schema:
+          type: string
+      - name: ship_type
+        in: query
+        description: 'Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified.'
+        required: false
+        schema:
+          type: integer
+      - name: search_type
+        in: query
+        description: 'Query filtering type:
+
+          1=Exclude vessels that have not reported AIS data for an extended period; 0=Return all vessels.
+
+          Note: Vessels with modified MMSI numbers may show as staying within the port boundary for a prolonged duration. This parameter can be used to filter out such vessels.'
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                  total:
+                    type: integer
+                    description: Total number of vessels currently berthed at the port
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        mmsi:
+                          type: integer
+                          description: 9-digit numeric code of MMSI
+                        imo:
+                          type: integer
+                          description: 7-digit numeric code of IMO
+                        call_sign:
+                          type: string
+                          description: 'Call Sign '
+                        ship_name:
+                          type: string
+                          description: Vessel name
+                        ship_type:
+                          type: number
+                          description: 'Numeric code of vessel type: see Appendix for details '
+                        length:
+                          type: number
+                          description: 'Ship length, meters, range (0 - 1022) '
+                        width:
+                          type: number
+                          description: 'Vessel length in meters, valid value range: 0–1022'
+                        left:
+                          type: number
+                          description: Vessel breadth in meters (nautical standard term)
+                        trail:
+                          type: number
+                          description: Port distance in meters
+                        draught:
+                          type: number
+                          description: Stern Distance in meters
+                        stay_time:
+                          type: number
+                          description: Continuous dwell time of the vessel at the current port, measured in minutes
+                        arrival_time:
+                          type: integer
+                          description: 'Vessel arrival time. Format: YYYY-MM-DD HH:MM:SS, UTC'
+                      required:
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - arrival_time
+                      - stay_time
+                      x-apifox-orders:
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - arrival_time
+                      - stay_time
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example: "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 713,\n  \"data\": [\n    {\n      \"mmsi\": 100900006,\n      \"imo\": 0,\n      \"call_sign\": \"YYYY\",\n      \"ship_name\": \"AISTESTSHIP\",\n      \"ship_type\": 70,\n      \"length\": 50,\n      \"width\": 6,\n      \"left\": 5,\n      \"trail\": 10,\n      \"draught\": 0,\n      \"arrival_time\": \"1746484554\",\n      \"stay_time\": 2166.2\n    },\n    {\n      \"mmsi\": 100900100,\n      \"imo\": 0,\n      \"call_sign\": \"YYYY\",\n      \"ship_name\": \"AISTESTSHIP\",\n      \"ship_type\": 70,\n      \"length\": 50,\n      \"width\": 6,\n      \"left\": 5,\n      \"trail\": 10,\n      \"draught\": 0,\n      \"arrival_time\": \"1746609269\",\n      \"stay_time\": 87.7\n    },\n    ........\n  ]\n}"
+          headers: {}
+          x-apifox-name: 成功
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 2 Voyage Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430197412-run
+      operationId: getPortBerthedVessels
+      externalDocs:
+        description: 2.2 Currently Berthed Vessels
+        url: https://docs.shipfinder.com/430197412e0
+  /v1/Voyage/PortExpectedArrivals:
+    get:
+      summary: 2.4 Inbound / Expected Arrivals
+      deprecated: false
+      description: "## Description\nThe Inbound/Expected Arrivals retrieves the list and detailed information of vessels expected to arrive at a target port within a specified future time period, using the port’s five-digit port code and the query time period.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Filter vessels by type and flag state based on the inbound vessel schedule for a specified future period. It allows advance allocation of customs or border inspection resources, and supports risk vessel analysis by combining historical abnormal AIS events, vessel alongside records and other relevant information.\n\n2. **Logistics Vessel Sourcing**  \n   Filter the list of inbound cargo vessels at ports near the shipping warehouse, and launch cargo booking solicitations by referring to the operating company information in vessel profiles or the vessel contact list maintained in the corporate shipping capacity pool.\n\n3. **Maritime Traffic Analysis**  \n   Analyze port carrying capacity and the attribute profiles of all inbound vessels scheduled to arrive at the port.\n\n## Request Limits\nThis is a premium service that requires advanced permission application prior to use.\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.To view your current service access permissions or activate service permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n|  `https://api.elaneglobal.com/v1/Voyage/PortExpectedArrivals` | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Voyage/PortExpectedArrivals?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG&start_time=1746612218&end_time=1747044218&ship_type=0\n\n**Note:**  \nThe key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \nTo trial the service, please create your own key in the Dashboard.\n\n## Request Parameters\n| Parameter | Legend | Type | Required | Description |\n|-----------|--------|------|----------|-------------|\n| key | Authorization Code | string | yes | Your personal Shipfinder API key to verify service permissions |\n| port_code | Standard Port Code | string | yes | Standard five-digit port code |\n| start_time | Start Time | int | yes | Start time represented as a UTC timestamp. The start time must be later than the current time. |\n| end_time | End Time | int | yes | End time represented as a UTC timestamp. The interval between the start time and end time shall not exceed 1 week for a single request. |\n| ship_type | Ship Type | int | no | Filter the type of vessels: see References for details. All vessels will be returned if this parameter is not specified. |"
+      tags:
+      - Voyage Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: port_code
+        in: query
+        description: Standard five-digit port code
+        required: true
+        example: PECLL
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        description: Start time represented as a UTC timestamp. The start time must be later than the current time.
+        required: true
+        example: 1746612218
+        schema:
+          type: integer
+      - name: end_time
+        in: query
+        description: End time represented as a UTC timestamp. The interval between the start time and end time shall not exceed 1 week for a single request.
+        required: true
+        example: 1747044218
+        schema:
+          type: integer
+      - name: ship_type
+        in: query
+        description: 'Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified.'
+        required: false
+        example: 0
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                  total:
+                    type: integer
+                    description: Total number of vessels expected to arrive at the port within the specified time period.
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        mmsi:
+                          type: integer
+                          description: 9-digit numeric code of MMSI
+                        ship_name:
+                          type: string
+                          description: Vessel name
+                        imo:
+                          type: integer
+                          description: 7-digit numeric code of IMO
+                        dwt:
+                          type: integer
+                          description: Vessel deadweight tonnage.
+                        ship_type:
+                          type: integer
+                          description: 'Numeric code of vessel type: see Appendix for details '
+                        length:
+                          type: number
+                          description: 'Vessel length in meters, valid value range: 0–1022'
+                        width:
+                          type: number
+                          description: Vessel breadth in meters (nautical standard term)
+                        draught:
+                          type: number
+                          description: Vessel draught depth in meters
+                        dest:
+                          type: string
+                          description: Standardized destination port names, e.g., SINGAPORE, SG
+                        ship_flag:
+                          type: string
+                          description: Name of the vessel’s flag state
+                        preport_name:
+                          type: string
+                          description: 'Chinese Name of the port of departure '
+                        last_time:
+                          type: integer
+                          description: AIS last update time in Unix timestamp
+                        eta:
+                          type: integer
+                          description: Estimated Time of Arrival in Unix timestamp
+                      required:
+                      - mmsi
+                      - ship_name
+                      - length
+                      - width
+                      - draught
+                      - preport_name
+                      - last_time
+                      - eta
+                      - dest
+                      - ship_flag
+                      x-apifox-orders:
+                      - mmsi
+                      - ship_name
+                      - imo
+                      - dwt
+                      - ship_type
+                      - length
+                      - width
+                      - draught
+                      - dest
+                      - preport_name
+                      - last_time
+                      - eta
+                      - ship_flag
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example:
+                status: 0
+                msg: ''
+                total: 1
+                data:
+                - mmsi: 760004503
+                  ship_name: TINO 3
+                  imo: 0
+                  dwt: 0
+                  ship_type: 0
+                  length: 12
+                  width: 33
+                  draught: 5.7
+                  preport_name: Manzanillo
+                  last_time: 1774921277
+                  eta: 1775100580
+                  dest: Callao
+                  ship_flag: Peru
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 2 Voyage Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430249182-run
+      operationId: getPortExpectedArrivals
+      externalDocs:
+        description: 2.4 Inbound / Expected Arrivals
+        url: https://docs.shipfinder.com/430249182e0
+  /v1/Voyage/PortInfo:
+    get:
+      summary: 2.1 Port Information
+      deprecated: false
+      description: "## Description\n\nThe Port Information supports partial search against the global port database. You can retrieve basic port information via partial search using port names or five-digit port code, time zone, and other related details.The five-digit port code returned in the results serves as the unique identifier for port-level data queries.\n\n## Use Cases\n\nThe five-digit port code obtained from this service can be used in conjunction with the following maritime query services:\n- Vessel Call Records at Specified Port\n- Port Vessel Arrival Notices\n- Port Berthing Vessels Query\n- Port Anchored Vessels Query\n\n## Request Limits\n\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Voyage/PortInfo` | GET |\n\n## Example API Call\n\nhttps://api.elaneglobal.com/v1/Voyage/PortInfo?key=1F6D701272402D1E7D8D316CCE519123&keywords=qingdao&max=6\n\n\n**Note**: \n\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.\nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please create your own key in the Dashboard."
+      tags:
+      - Voyage Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: 'The input keyword for port query can be the port name The maximum number of results to return, with a maximum value of 100.(Chinese supported) or the standard five-digit port code. '
+        required: true
+        example: qingdao
+        schema:
+          type: string
+      - name: max
+        in: query
+        description: ''
+        required: false
+        example: 6
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        port_code:
+                          type: string
+                          description: Standard five-digit port code
+                        port_name:
+                          type: string
+                          description: Name of the port
+                        port_cnname:
+                          type: string
+                          description: Chinese name of the port
+                        port_time_zone:
+                          type: string
+                          description: Time zone of the port’s location
+                        port_country_name:
+                          type: string
+                          description: Name of the country/region where the port is located
+                        port_country_cnname:
+                          type: string
+                          description: Chinese name of the country/region where the port is located
+                        port_country_code:
+                          type: string
+                          description: Standard code of the country/region where the port is located
+                      x-apifox-orders:
+                      - port_code
+                      - port_name
+                      - port_cnname
+                      - port_time_zone
+                      - port_country_name
+                      - port_country_cnname
+                      - port_country_code
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example:
+                status: 0
+                msg: ''
+                total: 1
+                data:
+                - port_code: SGSGP
+                  port_name: Sigapore
+                  port_cnname: 新加坡
+                  port_time_zone: '+8'
+                  port_country_name: Singapore
+                  port_country_cnname: 新加坡
+                  port_country_code: SG
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 2 Voyage Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-429932201-run
+      operationId: getPortInfo
+      externalDocs:
+        description: 2.1 Port Information
+        url: https://docs.shipfinder.com/429932201e0
+components:
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: ShipFinder API key, created in the console at https://open.shipfinder.com/v1/console/overview. Starter (trial) keys are self-service; Custom (production) keys require per-service enablement by the ShipFinder business team. Keys may be bound to a domain (return code 14 = request from unbound domain).
+externalDocs:
+  description: Global Maritime Data API Documentation
+  url: https://docs.shipfinder.com/
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  index: https://docs.shipfinder.com/llms.txt
+  operations: 40
+  note: Path/operation content verbatim from provider-published fragments; see -openapi-original.yml.

@@ -1,0 +1,891 @@
+{
+  "item": [
+    {
+      "id": "dd32fee3-b574-4475-b328-2eb14af15f9f",
+      "name": "AIS Dataset",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ae7d45d-9c21-4f1a-a8b9-f99758c62f2c",
+          "name": "1.1.3 Fleet Position",
+          "request": {
+            "name": "1.1.3 Fleet Position",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "AIS",
+                "FleetPosition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) fleet ID personal Shipfinder API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "fleet_id",
+                  "value": "<string>",
+                  "description": "(Required) All vessel positions under the fleet can be retrieved by the fleet ID maintained in the Dashboard. "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "373ce0c3-88ed-4065-b249-260e177759c0",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "AIS",
+                    "FleetPosition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "fleet_id",
+                      "value": "98f1f00a-d2d4-431b-90bf-d5471b184ff6"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 3,\n  \"data\": [\n    {\n      \"fleet_id\": \"98f1f00a-d2d4-431b-90bf-d5471b184ff6\",\n      \"mmsi\": 241673000,\n      \"imo\": 9852119,\n      \"call_sign\": \"SVDF6\",\n      \"ship_name\": \"SEA EMERALD\",\n      \"ship_cnname\": \"\",\n      \"data_source\": 1,\n      \"last_time\": 1774950228,\n      \"lat\": 25.622803,\n      \"lng\": 53.367208,\n      \"ship_type\": 80,\n      \"length\": 336,\n      \"width\": 60,\n      \"left\": 31,\n      \"trail\": 55,\n      \"draught\": 20.4,\n      \"dest\": \"CNZNG\",\n      \"destcode\": \"\",\n      \"eta\": 1776283200,\n      \"navistat\": 0,\n      \"sog\": 0.7003891,\n      \"cog\": 286.1,\n      \"hdg\": 126,\n      \"rot\": -0.01\n    },\n    {\n      \"fleet_id\": \"98f1f00a-d2d4-431b-90bf-d5471b184ff6\",\n      \"mmsi\": 477985700,\n      \"imo\": 9308479,\n      \"call_sign\": \"VRDJ3\",\n      \"ship_name\": \"DAPENG SUN\",\n      \"ship_cnname\": \"\",\n      \"data_source\": 1,\n      \"last_time\": 1774950155,\n      \"lat\": 21.452173,\n      \"lng\": 114.80732,\n      \"ship_type\": 80,\n      \"length\": 291,\n      \"width\": 43,\n      \"left\": 22,\n      \"trail\": 55,\n      \"draught\": 9.6,\n      \"dest\": \"CN DPGAU DAM\",\n      \"destcode\": \"\",\n      \"eta\": 1775660400,\n      \"navistat\": 0,\n      \"sog\": 16.2140083,\n      \"cog\": 178.8,\n      \"hdg\": 179,\n      \"rot\": 0\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9336801-f83d-416f-8b0c-fa434b585f6b",
+          "name": "1.5 Vessel Flag Information",
+          "request": {
+            "name": "1.5 Vessel Flag Information",
+            "description": {
+              "content": "## Description\nThe Vessel Flag Information queries the flag state (country/region) information of the matching vessel by the vessel’s MMSI number.\n\n## Use Case\n### Maritime Supervision\nUsing the vessel MMSI numbers obtained from area-based vessel search results or port berthing vessel lists, this service quickly matches the country/region of registration for the target vessels. It supports analysis of the proportion and operational behaviors of foreign vessels within the port or specific designated maritime areas.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/AIS/VesselFlagInfo` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/AIS/VesselFlagInfo?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "AIS",
+                "VesselFlagInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<integer>",
+                  "description": "(Required) 9-digit numeric code of MMSI"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "afb76077-4a92-4d80-8ee2-0cd6490c6823",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "AIS",
+                    "VesselFlagInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "477172700"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"mmsi\": 477172700,\n    \"registry\": \"Panama\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58c1ce2c-ba23-4e91-962c-180e754e4701",
+          "name": "1.1.2 Multi-vessel Position",
+          "request": {
+            "name": "1.1.2 Multi-vessel Position",
+            "description": {
+              "content": "\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "AIS",
+                "VesselPositionMulti"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsis",
+                  "value": "<string>",
+                  "description": "(Required) For Multi-Vessel Search, 9-digit MMSIs shall be separated by English commas, with a maximum of 100 vessels per search. <br> **Note:** The required parameter is MMSIs (plural form), not the singular MMSI. For multi-vessel search, requests will still be processed successfully even if invalid parameter content is submitted. However, only valid 9-digit MMSIs will be counted toward your usage credits, and invalid MMSIs will not be recorded as used credits."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "21fda323-4e54-413a-a840-7c77e848ca23",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "AIS",
+                    "VesselPositionMulti"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsis",
+                      "value": "477232800,477172700"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": [\n    {\n      \"mmsi\": 477232800,\n      \"imo\": 9789647,\n      \"call_sign\": \"VRSG2\",\n      \"ship_name\": \"COSCO PISCES\",\n      \"ship_cnname\": \"\",\n      \"data_source\": 1,\n      \"ship_type\": 100,\n      \"length\": 400,\n      \"width\": 59,\n      \"left\": 24,\n      \"trail\": 241,\n      \"draught\": 12.5,\n      \"dest\": \"ESVLC > SGSIN-PWBGA \",\n      \"destcode\": \"\",\n      \"eta\": 1775145600,\n      \"navistat\": 0,\n      \"lat\": 4.095627,\n      \"lng\": 92.529245,\n      \"sog\": 12.7,\n      \"cog\": 48.5,\n      \"hdg\": 49,\n      \"rot\": 0,\n      \"last_time\": 1774945102\n    },\n    {\n      \"mmsi\": 477172700,\n      \"imo\": 9783538,\n      \"call_sign\": \"VRRV4\",\n      \"ship_name\": \"COSCO SHIPPING LIBRA\",\n      \"ship_cnname\": \"\",\n      \"data_source\": 1,\n      \"ship_type\": 100,\n      \"length\": 399,\n      \"width\": 59,\n      \"left\": 33,\n      \"trail\": 256,\n      \"draught\": 13,\n      \"dest\": \"SHANGHAI,CN\",\n      \"destcode\": \"CNSHG\",\n      \"eta\": 1776691800,\n      \"navistat\": 0,\n      \"lat\": -21.220912,\n      \"lng\": 6.866182,\n      \"sog\": 17.9,\n      \"cog\": 142.9,\n      \"hdg\": 143,\n      \"rot\": 0,\n      \"last_time\": 1774945234\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a1cdef7-ed3e-4378-b19b-726de51a4b6a",
+          "name": "1.1.1 Single Vessel Position",
+          "request": {
+            "name": "1.1.1 Single Vessel Position",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "AIS",
+                "VesselPositionSingle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinder API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<string>",
+                  "description": "(Required) 9-digit numeric code of MMSI "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5966e499-a232-4fc8-8cff-38ce0ed9878d",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "AIS",
+                    "VesselPositionSingle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "413149000"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"mmsi\": 413961925,\n    \"imo\": 0,\n    \"call_sign\": \"P\",\n    \"ship_name\": \"WANHONGYUAN369\",\n    \"ship_cnname\": \"皖鸿远369\",\n    \"data_source\": 0,\n    \"ship_type\": 70,\n    \"length\": 68,\n    \"width\": 13,\n    \"left\": 8,\n    \"trail\": 18,\n    \"draught\": 4.8,\n    \"dest\": \"TAIZHOU,CN\",\n    \"destcode\": \"CNTZO\",\n    \"eta\": 1745827548,\n    \"navistat\": 0,\n    \"lat\": 32.192517,\n    \"lng\": 119.628093,\n    \"sog\": 6.2,\n    \"cog\": 80.8,\n    \"hdg\": 511,\n    \"rot\": 0,\n    \"last_time\": 1745827548\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "814e9e1d-c4f6-4f36-875f-dc3e6b2ad332",
+          "name": "1.2 Vessel Search",
+          "request": {
+            "name": "1.2 Vessel Search",
+            "description": {
+              "content": "## Description\nThe Vessel Search  API performs partial matching searches against keywords (MMSI, IMO Number, Vessel Name, Call Sign, etc.) to retrieve eligible vessel static records. It returns all historical MMSI records linked to a specified IMO Number, or information of all vessels that have ever used the given vessel name in history.\n\n**Note:**  \nMaritime Mobile Service Identity (MMSI) is a 9-digit numeric code used in maritime radio communication systems for unique identification of individual and group call stations. Unique to each vessel, an MMSI code may be changed upon vessel sale; its first three digits indicate the country or region of registration.  \nIMO Number (International Maritime Organization Number) is a unique 7-digit identifier assigned to each vessel by the International Maritime Organization, used for global tracking and administration of vessel identity, technical specifications and safety records.\n\n## Use Cases\nThis service is generally integrated into systems or platforms. Returned MMSI numbers can act as input parameters for Single Vessel Position Query and Vessel Historical Track Query, to retrieve real-time vessel position, operational status and historical voyage track.  \nIf you have a defined vessel MMSI list, you may skip this service and use Single Vessel Position  API or Multi-Vessel Position  API directly for fleet monitoring and management.\n\n## Request Limits\nAn API key must be created before using this service. This API has no access frequency limits—unlimited calls are allowed once access permission is granted. To apply for or inquire about your access permission, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method | Remarks |\n| --- | --- | --- |\n|  `https://api.elaneglobal.com/v1/AIS/VesselSearch`  | GET | When using partial matching with vessel name or IMO number, multiple results will be returned. You can distinguish them by referring to the latest AIS report time. Vessels may have their MMSI changed during ownership transfers or certain leasing processes. Old MMSI numbers will still be retained in records—filter them based on your specific use case. |\n\n## Example API Call\nhttps://api.elaneglobal.com/apicall/v3/VesselSearch?key=1F6D701272402D1E7D8D316CCE519123&keywords=DENEBLEADER&max=5\nNote:\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "AIS",
+                "VesselSearch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>",
+                  "description": "(Required) The input keywords for vessel query can be vessel name, call sign, MMSI, IMO, etc. \nMatching Rule: MMSI is a 9-digit code; IMO is a 7-digit code."
+                },
+                {
+                  "disabled": false,
+                  "key": "max",
+                  "value": "<integer>",
+                  "description": "The maximum number of results to return, with a maximum value of 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e01f4d8-f074-401e-9168-6a00104009f0",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "AIS",
+                    "VesselSearch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "DENEB LEADER"
+                    },
+                    {
+                      "key": "max",
+                      "value": "5"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 3,\n  \"data\": [\n    {\n      \"match_type\": 1,\n      \"mmsi\": 356688000,\n      \"imo\": 9738777,\n      \"call_sign\": \"3EKQ\",\n      \"ship_name\": \"DENEB LEADER\",\n      \"data_source\": 0,\n      \"last_time\": 1773728217\n    },\n    {\n      \"match_type\": 1,\n      \"mmsi\": 346559616,\n      \"imo\": 9738777,\n      \"call_sign\": \"3EKQ\",\n      \"ship_name\": \"DENEB LEADER\",\n      \"data_source\": 0,\n      \"last_time\": 1772838361\n    },\n    {\n      \"match_type\": 1,\n      \"mmsi\": 525007112,\n      \"imo\": 0,\n      \"call_sign\": \"\",\n      \"ship_name\": \"DENEB LEADER\",\n      \"data_source\": 0,\n      \"last_time\": 1765181535\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "778f116e-3fe3-48eb-af0a-e306b37d34a7",
+          "name": "1.4 Vessels in Zone",
+          "request": {
+            "name": "1.4 Vessels in Zone",
+            "description": {
+              "content": "## Description\nThe Vessels in Zone retrieves all AIS data of vessels within a specified geographic area in a single request. You may pass multiple latitude and longitude coordinates to define a custom polygonal search area.\n\nThe recommended area size for a single request is within 1°×1° to ensure full data return in one call; otherwise, you will need to make multiple requests with the scode token to fetch all vessel data in the target area.\n\nThe JSON format returns approximately 2,600 vessel records per response, while the binary format returns around 8,000 records. For large search areas, you may split the area into smaller subareas and request data sequentially, and use the scode token to retrieve remaining vessel data iteratively.\n\nWe also provide customized push services for Vessels in Zone, supporting integration via TCP/IP or Kafka. Please contact our support team for more information: support@elaneglobal.com\n\n## Use Cases\n1. **Customs and Border Inspection Area Monitoring**  \n   Monitor all vessels in coastal or key designated areas, track the vessel watchlist, and oversee vessel operating behaviors.\n2. **Port Vessel Density Analysis**  \n   Define a zone near the port to capture all vessel information within the scope, filter vessels by category and destination port data, and analyze the vessel distribution density around the port.\n3. **Logistics Vessel Matching**  \n   Specify a zone around the departure port/warehouse, filter information and destination ports of all cargo vessels, and generate a shortlist of qualified cargo vessels by combining vessel profile queries, historical behavior, ETA and other datasets.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n\n## Endpoint\n| Endpoint | HTTP Method | Remarks |\n|----------|-------------|---------|\n|  `https://api.elaneglobal.com/v1/AIS/VesselsInZone`  | GET | Vessels that have not reported AIS data for more than 2 hours will be excluded from the area-based search results, as their presence in the target area cannot be verified.TCP/IP custom push services can be customized to your actual needs, supporting multiple filtering rules: designated geographic area, vessel type/length, and custom dedicated fleet lists. Push frequency and returned data fields can also be defined as required. |\n\n## Example API call\nhttps://api.elaneglobal.com/v1/AIS/VesselsInZone?key=1F6D701272402D1E7D8D316CCE519123&region=121.289063,35.424868-122.783203,35.281501-122.167969,33.979809&output=1\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.\nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "AIS",
+                "VesselsInZone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "(Required) Geographic area defined by coordinates. Longitude and latitude are separated by a comma; multiple coordinate points are separated by a hyphen. \nExample: lng,lat-lng,lat-lng,lat-lng,lat\nNote: \n1. Multiple coordinate points must be listed sequentially in clockwise or counterclockwise order.\n2. A minimum of 3 coordinate points is required; 2 points only form a straight line and cannot define a closed geographic area.\n3. Longitude must be entered before latitude for every coordinate pair.\n4. The queried geographic area shall not exceed the assigned permission scope.\n5. Within the authorized scope, users may split the target area into multiple smaller subareas to request data based on actual business scenarios."
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<integer>",
+                  "description": "Data output format selector: 0 = Binary data encoded in Base64 1 = JSON format Default value: 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "scode",
+                  "value": "<integer>",
+                  "description": "Session token for area-based vessel query . Used to retrieve remaining vessel data when the full dataset cannot be returned in a single request due to an oversized search area.\nNote: \n1. A single HTTP request returns a maximum of 2,666 vessel records. Use the scode returned from the initial query to fetch remaining data. The query region must remain unchanged; otherwise, a new query session will be generated.\n2. Check the continue field in the response. A value of 0 indicates all vessel data in the target area has been fully retrieved, and no additional requests are needed."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "792223bb-7a66-41d9-bc11-28c45c18b4b2",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "AIS",
+                    "VesselsInZone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "region",
+                      "value": "121.289063,35.424868-122.783203,35.281501-122.167969,33.979809"
+                    },
+                    {
+                      "key": "output",
+                      "value": "1"
+                    },
+                    {
+                      "key": "scode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"total\": 54,\n    \"scode\": 20,\n    \"continue\": 0,\n    \"ship_list\": [\n      {\n        \"mmsi\": 370286000,\n        \"imo\": 9844100,\n        \"call_sign\": \"HOLO\",\n        \"ship_name\": \"SEA VICTORIA\",\n        \"ship_cnname\": \"\",\n        \"data_source\": 0,\n        \"ship_type\": 70,\n        \"length\": 340,\n        \"width\": 62,\n        \"left\": 36,\n        \"trail\": 51,\n        \"draught\": 12.7,\n        \"dest\": \"SINGAPORE,SG\",\n        \"destcode\": \"SGSIN\",\n        \"eta\": \"1746547200\",\n        \"navistat\": 0,\n        \"lat\": 34.606657,\n        \"lng\": 121.966072,\n        \"sog\": 12.8,\n        \"cog\": 111.4,\n        \"hdg\": 114,\n        \"rot\": 0,\n        \"last_time\": 1745904185\n      },\n      {\n        \"mmsi\": 412304788,\n        \"imo\": 0,\n        \"call_sign\": \"\",\n        \"ship_name\": \"SUGANYU04788\",\n        \"ship_cnname\": \"苏赣渔04788\",\n        \"data_source\": 0,\n        \"ship_type\": 30,\n        \"length\": 0,\n        \"width\": 0,\n        \"left\": 0,\n        \"trail\": 0,\n        \"draught\": 0,\n        \"dest\": \"\",\n        \"destcode\": \"\",\n        \"eta\": \"\",\n        \"navistat\": 0,\n        \"lat\": 34.507535,\n        \"lng\": 121.96778,\n        \"sog\": 8.6,\n        \"cog\": 246.9,\n        \"hdg\": 511,\n        \"rot\": 0,\n        \"last_time\": 1745902562\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcc1db76-df2b-4a4a-a917-e8579e303471",
+          "name": "1.3 Vessels Nearby",
+          "request": {
+            "name": "1.3 Vessels Nearby",
+            "description": {
+              "content": "## Description\nThe Vessels Nearby retrieves vessel data within a 10 nautical mile radius circular area centered on the position of a target vessel by querying the vessel’s MMSI. The returned vessel dataset is sorted by distance in ascending order (from nearest to farthest).\n\nThe response includes IMO number, call sign, vessel name , vessel type, length and breadth. It also contains the latest real time AIS updates: vessel position, navigation status, destination port, speed over ground, estimated time of arrival at the destination port, vessel heading, course over ground and other standard AIS parameters.\n\n## Use Cases\n1. **Offshore Construction Safety Monitoring**  \n   Centered on construction vessels, the service returns a list of vessels within a 10 nautical mile radius to monitor their positions and trajectories. If any vessel approaches the construction zone, the construction team can issue timely warnings or adjust construction plans accordingly.\n\n2. **Maritime Collision Avoidance Early Warning**  \n   Centered on underway vessels, the service monitors the positions and courses of nearby vessels to assess collision risks. If potential collision risks are detected, the vessel operator can implement immediate collision avoidance maneuvers.\n\n3. **Maritime Emergency Search and Rescue**  \n   Centered on distressed vessels, the service locates and coordinates nearby vessels to conduct search and rescue (SAR) operations.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/AIS/VesselsNearby` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/AIS/VesselsNearby?key=1F6D701272402D1E7D8D316CCE519123&mmsi=413881597\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.\nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "AIS",
+                "VesselsNearby"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<integer>",
+                  "description": "(Required) 9-digit numeric code of MMSI"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6fa67c58-fd30-40b6-9604-e03924581ffb",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "AIS",
+                    "VesselsNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "413149000"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 221,\n  \"data\": [\n    {\n      \"mmsi\": 413761246,\n      \"imo\": 0,\n      \"call_sign\": \"YR0\",\n      \"ship_name\": \"PINGNANHONGSHUN3778\",\n      \"ship_cnname\": \"平南宏顺3778\",\n      \"data_source\": 0,\n      \"last_time\": 1747292158,\n      \"lat\": 23.453682,\n      \"lng\": 110.52463,\n      \"ship_type\": 70,\n      \"length\": 81,\n      \"width\": 16,\n      \"left\": 10,\n      \"trail\": 5,\n      \"draught\": 4.3,\n      \"dest\": \"GUANGZHOU,CN\",\n      \"destcode\": \"CNGZG\",\n      \"eta\": 1744896600,\n      \"navistat\": 1,\n      \"sog\": 0,\n      \"cog\": 0,\n      \"hdg\": 0,\n      \"rot\": 0\n    },\n    {\n      \"mmsi\": 413761521,\n      \"imo\": 0,\n      \"call_sign\": \"YR7\",\n      \"ship_name\": \"PINGNANRONGDA333\",\n      \"ship_cnname\": \"平南荣达333\",\n      \"data_source\": 0,\n      \"last_time\": 1747292207,\n      \"lat\": 23.472812,\n      \"lng\": 110.50188,\n      \"ship_type\": 70,\n      \"length\": 82,\n      \"width\": 16,\n      \"left\": 7,\n      \"trail\": 9,\n      \"draught\": 1.2,\n      \"dest\": \"XZ                  \",\n      \"destcode\": \"\",\n      \"eta\": 1748394000,\n      \"navistat\": 1,\n      \"sog\": 0,\n      \"cog\": 0,\n      \"hdg\": 0,\n      \"rot\": 0\n    },\n    {\n      \"mmsi\": 413762746,\n      \"imo\": 0,\n      \"call_sign\": \"JKKKJK\",\n      \"ship_name\": \"GUIPINGHANGKAI3358\",\n      \"ship_cnname\": \"桂平航凯3358\",\n      \"data_source\": 0,\n      \"last_time\": 1747292077,\n      \"lat\": 23.468075,\n      \"lng\": 110.513635,\n      \"ship_type\": 70,\n      \"length\": 61,\n      \"width\": 13,\n      \"left\": 7,\n      \"trail\": 8,\n      \"draught\": 0,\n      \"dest\": \"\",\n      \"destcode\": \"\",\n      \"eta\": 0,\n      \"navistat\": 255,\n      \"sog\": 0,\n      \"cog\": 18.2,\n      \"hdg\": 511,\n      \"rot\": -2.77\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elaneglobal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da66749e-1237-4a7c-80b8-b770b00d619e",
+    "name": "ShipFinder Global Maritime Data AIS Dataset API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the \"key\" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.\n\nAssembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider's; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published \"0\" response key to \"200\" (see overlays/).\n\nContact Support:\n Name: ShipFinder Support\n Email: support@elaneglobal.com",
+      "type": "text/plain"
+    }
+  }
+}

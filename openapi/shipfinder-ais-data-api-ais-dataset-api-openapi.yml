@@ -1,0 +1,1450 @@
+openapi: 3.2.0
+info:
+  title: ShipFinder Global Maritime Data AIS Dataset API
+  description: 'REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the "key" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.
+
+
+    Assembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider''s; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published "0" response key to "200" (see overlays/).'
+  version: 1.0.0
+  contact:
+    name: ShipFinder Support
+    email: support@elaneglobal.com
+    url: https://www.shipfinder.com/help-center
+  termsOfService: https://www.shipfinder.com/Home/TermsConditions
+servers:
+- url: https://api.elaneglobal.com
+  description: Production
+security:
+- apiKeyQuery: []
+tags:
+- name: AIS Dataset
+paths:
+  /v1/AIS/FleetPosition:
+    get:
+      summary: 1.1.3 Fleet Position
+      deprecated: false
+      description: ''
+      tags:
+      - AIS Dataset
+      parameters:
+      - name: key
+        in: query
+        description: fleet ID personal Shipfinder API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: fleet_id
+        in: query
+        description: 'All vessel positions under the fleet can be retrieved by the fleet ID maintained in the Dashboard. '
+        required: true
+        example: 98f1f00a-d2d4-431b-90bf-d5471b184ff6
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fleet_id:
+                          type: string
+                          description: Your fleet ID
+                        mmsi:
+                          type: integer
+                          description: 9-digit numeric code of MMSI
+                        imo:
+                          type: integer
+                          description: 7-digit numeric code of IMO
+                        call_sign:
+                          type: string
+                          description: 'Call Sign '
+                        ship_name:
+                          type: string
+                          description: Vessel name
+                        ship_cnname:
+                          type: string
+                          description: Chinese name of the vessel
+                        data_source:
+                          type: string
+                          description: 0=Terrestrial AIS stations or Shipborne AIS; 1=Satellite AIS
+                        lat:
+                          type: number
+                          description: Coordinate latitude, WGS84 coordinate system
+                        lng:
+                          type: number
+                          description: Coordinate longitude, WGS84 coordinate system
+                        ship_type:
+                          type: integer
+                        length:
+                          type: number
+                          description: 'Vessel length in meters, valid value range: 0–1022'
+                        width:
+                          type: number
+                          description: Vessel breadth in meters (nautical standard term)
+                        left:
+                          type: number
+                          description: Port distance in meters
+                        trail:
+                          type: number
+                          description: Stern Distance in meters
+                        draught:
+                          type: number
+                          description: Vessel draught depth in meters
+                        dest:
+                          type: string
+                          description: Standardized destination port names, e.g., SINGAPORE, SG
+                        destcode:
+                          type: string
+                          description: Port code of the destination, e.g., SGSGP
+                        navistat:
+                          type: integer
+                          description: 0, Vessel navigation status; -1=invalid data
+                        sog:
+                          type: number
+                          description: Real-time vessel speed over ground in knots; -1=invalid data
+                        cog:
+                          type: number
+                          description: Course over ground in degrees ; -1=invalid data
+                        hdg:
+                          type: integer
+                          description: Vessel heading in degrees; 511=invalid data
+                        rot:
+                          type: number
+                          description: Rate of turn in degrees per minute
+                        last_time:
+                          type: integer
+                          description: AIS last update time in Unix timestamp
+                        eta:
+                          type: integer
+                          description: Estimated Time of Arrival in Unix timestamp
+                      required:
+                      - fleet_id
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_cnname
+                      - data_source
+                      - last_time
+                      - lat
+                      - lng
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - dest
+                      - destcode
+                      - eta
+                      - navistat
+                      - sog
+                      - cog
+                      - hdg
+                      - rot
+                      x-apifox-orders:
+                      - fleet_id
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_cnname
+                      - data_source
+                      - last_time
+                      - lat
+                      - lng
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - dest
+                      - destcode
+                      - eta
+                      - navistat
+                      - sog
+                      - cog
+                      - hdg
+                      - rot
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example:
+                status: 0
+                msg: ''
+                total: 3
+                data:
+                - fleet_id: 98f1f00a-d2d4-431b-90bf-d5471b184ff6
+                  mmsi: 241673000
+                  imo: 9852119
+                  call_sign: SVDF6
+                  ship_name: SEA EMERALD
+                  ship_cnname: ''
+                  data_source: 1
+                  last_time: 1774950228
+                  lat: 25.622803
+                  lng: 53.367208
+                  ship_type: 80
+                  length: 336
+                  width: 60
+                  left: 31
+                  trail: 55
+                  draught: 20.4
+                  dest: CNZNG
+                  destcode: ''
+                  eta: 1776283200
+                  navistat: 0
+                  sog: 0.7003891
+                  cog: 286.1
+                  hdg: 126
+                  rot: -0.01
+                - fleet_id: 98f1f00a-d2d4-431b-90bf-d5471b184ff6
+                  mmsi: 477985700
+                  imo: 9308479
+                  call_sign: VRDJ3
+                  ship_name: DAPENG SUN
+                  ship_cnname: ''
+                  data_source: 1
+                  last_time: 1774950155
+                  lat: 21.452173
+                  lng: 114.80732
+                  ship_type: 80
+                  length: 291
+                  width: 43
+                  left: 22
+                  trail: 55
+                  draught: 9.6
+                  dest: CN DPGAU DAM
+                  destcode: ''
+                  eta: 1775660400
+                  navistat: 0
+                  sog: 16.2140083
+                  cog: 178.8
+                  hdg: 179
+                  rot: 0
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 1 AIS Dataset/1.1 Vessel Position
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430293359-run
+      operationId: getFleetPosition
+      externalDocs:
+        description: 1.1.3 Fleet Position
+        url: https://docs.shipfinder.com/430293359e0
+  /v1/AIS/VesselFlagInfo:
+    get:
+      summary: 1.5 Vessel Flag Information
+      deprecated: false
+      description: "## Description\nThe Vessel Flag Information queries the flag state (country/region) information of the matching vessel by the vessel’s MMSI number.\n\n## Use Case\n### Maritime Supervision\nUsing the vessel MMSI numbers obtained from area-based vessel search results or port berthing vessel lists, this service quickly matches the country/region of registration for the target vessels. It supports analysis of the proportion and operational behaviors of foreign vessels within the port or specific designated maritime areas.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/AIS/VesselFlagInfo` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/AIS/VesselFlagInfo?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      tags:
+      - AIS Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: mmsi
+        in: query
+        description: 9-digit numeric code of MMSI
+        required: true
+        example: 477172700
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                  data:
+                    type: object
+                    properties:
+                      mmsi:
+                        type: integer
+                        description: 9-digit numeric code of MMSI
+                      registry:
+                        type: string
+                        description: Name of the vessel’s flag state (country/region)
+                    required:
+                    - mmsi
+                    - registry
+                    x-apifox-orders:
+                    - mmsi
+                    - registry
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  mmsi: 477172700
+                  registry: Panama
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 1 AIS Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-429919472-run
+      operationId: getVesselFlagInfo
+      externalDocs:
+        description: 1.5 Vessel Flag Information
+        url: https://docs.shipfinder.com/429919472e0
+  /v1/AIS/VesselPositionMulti:
+    get:
+      summary: 1.1.2 Multi-vessel Position
+      deprecated: false
+      description: '
+
+        '
+      tags:
+      - AIS Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: mmsis
+        in: query
+        description: For Multi-Vessel Search, 9-digit MMSIs shall be separated by English commas, with a maximum of 100 vessels per search. <br> **Note:** The required parameter is MMSIs (plural form), not the singular MMSI. For multi-vessel search, requests will still be processed successfully even if invalid parameter content is submitted. However, only valid 9-digit MMSIs will be counted toward your usage credits, and invalid MMSIs will not be recorded as used credits.
+        required: true
+        example: 477232800,477172700
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        mmsi:
+                          type: integer
+                          description: 9-digit numeric code of MMSI
+                        imo:
+                          type: integer
+                          description: 7-digit numeric code of IMO
+                        call_sign:
+                          type: string
+                          description: 'Call Sign '
+                        ship_name:
+                          type: string
+                          description: Vessel name
+                        ship_cnname:
+                          type: string
+                          description: Chinese name of the vessel
+                        data_source:
+                          type: integer
+                          description: 0=Terrestrial AIS stations or Shipborne AIS; 1=Satellite AIS
+                        ship_type:
+                          type: integer
+                          description: 'Numeric code of vessel type: see Appendix  for details '
+                        length:
+                          type: number
+                          description: 'Vessel length in meters, valid value range: 0–1022'
+                        width:
+                          type: number
+                          description: Vessel breadth in meters (nautical standard term)
+                        left:
+                          type: number
+                          description: Port distance in meters
+                        trail:
+                          type: number
+                          description: Stern Distance in meters
+                        draught:
+                          type: number
+                          description: Vessel draught depth in meters
+                        dest:
+                          type: string
+                          description: Standardized destination port names, e.g., SINGAPORE, SG
+                        destcode:
+                          type: string
+                          description: Port code of the destination, e.g., SGSGP
+                        navistat:
+                          type: integer
+                          description: 0, Vessel navigation status; -1=invalid data
+                        lat:
+                          type: number
+                          description: Coordinate latitude, WGS84 coordinate system
+                        lng:
+                          type: number
+                          description: Coordinate longitude, WGS84 coordinate system
+                        sog:
+                          type: number
+                          description: Real-time vessel speed over ground in knots; -1=invalid data
+                        cog:
+                          type: number
+                          description: Course over ground in degrees ; -1=invalid data
+                        hdg:
+                          type: number
+                          description: Vessel heading in degrees; 511=invalid data
+                        rot:
+                          type: number
+                          description: Rate of turn in degrees per minute
+                        last_time:
+                          type: integer
+                          description: AIS last update time in Unix timestamp
+                        eta:
+                          type: integer
+                          description: Estimated Time of Arrival in Unix timestamp
+                      required:
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_cnname
+                      - data_source
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - dest
+                      - destcode
+                      - eta
+                      - navistat
+                      - lat
+                      - lng
+                      - sog
+                      - cog
+                      - hdg
+                      - rot
+                      - last_time
+                      x-apifox-orders:
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_cnname
+                      - data_source
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - dest
+                      - destcode
+                      - eta
+                      - navistat
+                      - lat
+                      - lng
+                      - sog
+                      - cog
+                      - hdg
+                      - rot
+                      - last_time
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                - mmsi: 477232800
+                  imo: 9789647
+                  call_sign: VRSG2
+                  ship_name: COSCO PISCES
+                  ship_cnname: ''
+                  data_source: 1
+                  ship_type: 100
+                  length: 400
+                  width: 59
+                  left: 24
+                  trail: 241
+                  draught: 12.5
+                  dest: 'ESVLC > SGSIN-PWBGA '
+                  destcode: ''
+                  eta: 1775145600
+                  navistat: 0
+                  lat: 4.095627
+                  lng: 92.529245
+                  sog: 12.7
+                  cog: 48.5
+                  hdg: 49
+                  rot: 0
+                  last_time: 1774945102
+                - mmsi: 477172700
+                  imo: 9783538
+                  call_sign: VRRV4
+                  ship_name: COSCO SHIPPING LIBRA
+                  ship_cnname: ''
+                  data_source: 1
+                  ship_type: 100
+                  length: 399
+                  width: 59
+                  left: 33
+                  trail: 256
+                  draught: 13
+                  dest: SHANGHAI,CN
+                  destcode: CNSHG
+                  eta: 1776691800
+                  navistat: 0
+                  lat: -21.220912
+                  lng: 6.866182
+                  sog: 17.9
+                  cog: 142.9
+                  hdg: 143
+                  rot: 0
+                  last_time: 1774945234
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 1 AIS Dataset/1.1 Vessel Position
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430292321-run
+      operationId: getVesselPositionMulti
+      externalDocs:
+        description: 1.1.2 Multi-vessel Position
+        url: https://docs.shipfinder.com/430292321e0
+  /v1/AIS/VesselPositionSingle:
+    get:
+      summary: 1.1.1 Single Vessel Position
+      deprecated: false
+      description: ''
+      tags:
+      - AIS Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinder API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: mmsi
+        in: query
+        description: '9-digit numeric code of MMSI '
+        required: true
+        example: '413149000'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                  data:
+                    type: object
+                    properties:
+                      mmsi:
+                        type: integer
+                        description: 9-digit numeric code of MMSI
+                      imo:
+                        type: integer
+                        description: 7-digit numeric code of IMO
+                      call_sign:
+                        type: string
+                        description: 'Call Sign '
+                      ship_name:
+                        type: string
+                        description: Vessel name
+                      ship_cnname:
+                        type: string
+                        description: Chinese name of the vessel
+                      data_source:
+                        type: integer
+                        description: 0=Terrestrial AIS stations or Shipborne AIS; 1=Satellite AIS
+                      ship_type:
+                        type: integer
+                        description: 'Numeric code of vessel type: see Appendix for details '
+                      length:
+                        type: number
+                        description: 'Vessel length in meters, valid value range: 0–1022'
+                      width:
+                        type: number
+                        description: Vessel breadth in meters (nautical standard term)
+                      left:
+                        type: number
+                        description: Port distance in meters
+                      trail:
+                        type: number
+                        description: Stern Distance in meters
+                      draught:
+                        type: number
+                        description: Vessel draught depth in meters
+                      dest:
+                        type: string
+                        description: Standardized destination port names, e.g., SINGAPORE, SG
+                      destcode:
+                        type: string
+                        description: Port code of the destination, e.g., SGSGP
+                      eta:
+                        type: string
+                        description: 'Estimated Time of Arrival. Format: YYYY-MM-DD HH:MM:SS, UTC'
+                      navistat:
+                        type: integer
+                        description: 0, Vessel navigation status; -1=invalid data
+                      lat:
+                        type: number
+                        description: Coordinate latitude, WGS84 coordinate system
+                      lng:
+                        type: number
+                        description: Coordinate longitude, WGS84 coordinate system
+                      sog:
+                        type: number
+                        description: Real-time vessel speed over ground in knots; -1=invalid data
+                      cog:
+                        type: number
+                        description: Course over ground in degrees ; -1=invalid data
+                      hdg:
+                        type: number
+                        description: Vessel heading in degrees; 511=invalid data
+                      rot:
+                        type: number
+                        description: Rate of turn in degrees per minute
+                      last_time:
+                        type: integer
+                        description: AIS last update time in Unix timestamp
+                    required:
+                    - mmsi
+                    - imo
+                    - call_sign
+                    - ship_name
+                    - ship_cnname
+                    - data_source
+                    - ship_type
+                    - length
+                    - width
+                    - left
+                    - trail
+                    - draught
+                    - dest
+                    - destcode
+                    - eta
+                    - navistat
+                    - lat
+                    - lng
+                    - sog
+                    - cog
+                    - hdg
+                    - rot
+                    - last_time
+                    x-apifox-orders:
+                    - mmsi
+                    - imo
+                    - call_sign
+                    - ship_name
+                    - ship_cnname
+                    - data_source
+                    - ship_type
+                    - length
+                    - width
+                    - left
+                    - trail
+                    - draught
+                    - dest
+                    - destcode
+                    - eta
+                    - navistat
+                    - lat
+                    - lng
+                    - sog
+                    - cog
+                    - hdg
+                    - rot
+                    - last_time
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  mmsi: 413961925
+                  imo: 0
+                  call_sign: P
+                  ship_name: WANHONGYUAN369
+                  ship_cnname: 皖鸿远369
+                  data_source: 0
+                  ship_type: 70
+                  length: 68
+                  width: 13
+                  left: 8
+                  trail: 18
+                  draught: 4.8
+                  dest: TAIZHOU,CN
+                  destcode: CNTZO
+                  eta: 1745827548
+                  navistat: 0
+                  lat: 32.192517
+                  lng: 119.628093
+                  sog: 6.2
+                  cog: 80.8
+                  hdg: 511
+                  rot: 0
+                  last_time: 1745827548
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 1 AIS Dataset/1.1 Vessel Position
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-428990613-run
+      operationId: getVesselPositionSingle
+      externalDocs:
+        description: 1.1.1 Single Vessel Position
+        url: https://docs.shipfinder.com/428990613e0
+  /v1/AIS/VesselSearch:
+    get:
+      summary: 1.2 Vessel Search
+      deprecated: false
+      description: "## Description\nThe Vessel Search  API performs partial matching searches against keywords (MMSI, IMO Number, Vessel Name, Call Sign, etc.) to retrieve eligible vessel static records. It returns all historical MMSI records linked to a specified IMO Number, or information of all vessels that have ever used the given vessel name in history.\n\n**Note:**  \nMaritime Mobile Service Identity (MMSI) is a 9-digit numeric code used in maritime radio communication systems for unique identification of individual and group call stations. Unique to each vessel, an MMSI code may be changed upon vessel sale; its first three digits indicate the country or region of registration.  \nIMO Number (International Maritime Organization Number) is a unique 7-digit identifier assigned to each vessel by the International Maritime Organization, used for global tracking and administration of vessel identity, technical specifications and safety records.\n\n## Use Cases\nThis service is generally integrated into systems or platforms. Returned MMSI numbers can act as input parameters for Single Vessel Position Query and Vessel Historical Track Query, to retrieve real-time vessel position, operational status and historical voyage track.  \nIf you have a defined vessel MMSI list, you may skip this service and use Single Vessel Position  API or Multi-Vessel Position  API directly for fleet monitoring and management.\n\n## Request Limits\nAn API key must be created before using this service. This API has no access frequency limits—unlimited calls are allowed once access permission is granted. To apply for or inquire about your access permission, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method | Remarks |\n| --- | --- | --- |\n|  `https://api.elaneglobal.com/v1/AIS/VesselSearch`  | GET | When using partial matching with vessel name or IMO number, multiple results will be returned. You can distinguish them by referring to the latest AIS report time. Vessels may have their MMSI changed during ownership transfers or certain leasing processes. Old MMSI numbers will still be retained in records—filter them based on your specific use case. |\n\n## Example API Call\nhttps://api.elaneglobal.com/apicall/v3/VesselSearch?key=1F6D701272402D1E7D8D316CCE519123&keywords=DENEBLEADER&max=5\nNote:\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      tags:
+      - AIS Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: "The input keywords for vessel query can be vessel name, call sign, MMSI, IMO, etc. \nMatching Rule: MMSI is a 9-digit code; IMO is a 7-digit code."
+        required: true
+        example: DENEB LEADER
+        schema:
+          type: string
+      - name: max
+        in: query
+        description: The maximum number of results to return, with a maximum value of 100.
+        required: false
+        example: 5
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                    title: Status code
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                    title: Message
+                  total:
+                    type: integer
+                    title: Total
+                    description: Number of query results
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        match_type:
+                          type: integer
+                          description: "Type of keyword matching results, matching types: \n1=Ship name; 2=Call sign; 3=MMSI; 5=IMO "
+                          title: Match Type
+                        mmsi:
+                          type: integer
+                          title: 'MMSI Number '
+                          description: 9-digit numeric code of MMSI
+                        imo:
+                          type: integer
+                          title: IMO number
+                          description: 7-digit numeric code of IMO
+                        call_sign:
+                          type: string
+                          title: 'Call Sign '
+                          description: 'Call Sign '
+                        ship_name:
+                          type: string
+                          title: 'Vessel Name '
+                          description: Vessel name
+                        data_source:
+                          type: integer
+                          title: AIS Data Source
+                          description: "0=Terrestrial AIS stations or Shipborne AIS; \n1=Satellite AIS"
+                        last_time:
+                          type: integer
+                          title: Last Update Time (UTC)
+                          description: AIS last update time in Unix timestamp
+                      required:
+                      - match_type
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - data_source
+                      - last_time
+                      x-apifox-orders:
+                      - match_type
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - data_source
+                      - last_time
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example:
+                status: 0
+                msg: ''
+                total: 3
+                data:
+                - match_type: 1
+                  mmsi: 356688000
+                  imo: 9738777
+                  call_sign: 3EKQ
+                  ship_name: DENEB LEADER
+                  data_source: 0
+                  last_time: 1773728217
+                - match_type: 1
+                  mmsi: 346559616
+                  imo: 9738777
+                  call_sign: 3EKQ
+                  ship_name: DENEB LEADER
+                  data_source: 0
+                  last_time: 1772838361
+                - match_type: 1
+                  mmsi: 525007112
+                  imo: 0
+                  call_sign: ''
+                  ship_name: DENEB LEADER
+                  data_source: 0
+                  last_time: 1765181535
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 1 AIS Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-428749512-run
+      operationId: getVesselSearch
+      externalDocs:
+        description: 1.2 Vessel Search
+        url: https://docs.shipfinder.com/428749512e0
+  /v1/AIS/VesselsInZone:
+    get:
+      summary: 1.4 Vessels in Zone
+      deprecated: false
+      description: "## Description\nThe Vessels in Zone retrieves all AIS data of vessels within a specified geographic area in a single request. You may pass multiple latitude and longitude coordinates to define a custom polygonal search area.\n\nThe recommended area size for a single request is within 1°×1° to ensure full data return in one call; otherwise, you will need to make multiple requests with the scode token to fetch all vessel data in the target area.\n\nThe JSON format returns approximately 2,600 vessel records per response, while the binary format returns around 8,000 records. For large search areas, you may split the area into smaller subareas and request data sequentially, and use the scode token to retrieve remaining vessel data iteratively.\n\nWe also provide customized push services for Vessels in Zone, supporting integration via TCP/IP or Kafka. Please contact our support team for more information: support@elaneglobal.com\n\n## Use Cases\n1. **Customs and Border Inspection Area Monitoring**  \n   Monitor all vessels in coastal or key designated areas, track the vessel watchlist, and oversee vessel operating behaviors.\n2. **Port Vessel Density Analysis**  \n   Define a zone near the port to capture all vessel information within the scope, filter vessels by category and destination port data, and analyze the vessel distribution density around the port.\n3. **Logistics Vessel Matching**  \n   Specify a zone around the departure port/warehouse, filter information and destination ports of all cargo vessels, and generate a shortlist of qualified cargo vessels by combining vessel profile queries, historical behavior, ETA and other datasets.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n\n## Endpoint\n| Endpoint | HTTP Method | Remarks |\n|----------|-------------|---------|\n|  `https://api.elaneglobal.com/v1/AIS/VesselsInZone`  | GET | Vessels that have not reported AIS data for more than 2 hours will be excluded from the area-based search results, as their presence in the target area cannot be verified.TCP/IP custom push services can be customized to your actual needs, supporting multiple filtering rules: designated geographic area, vessel type/length, and custom dedicated fleet lists. Push frequency and returned data fields can also be defined as required. |\n\n## Example API call\nhttps://api.elaneglobal.com/v1/AIS/VesselsInZone?key=1F6D701272402D1E7D8D316CCE519123&region=121.289063,35.424868-122.783203,35.281501-122.167969,33.979809&output=1\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.\nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      tags:
+      - AIS Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: region
+        in: query
+        description: "Geographic area defined by coordinates. Longitude and latitude are separated by a comma; multiple coordinate points are separated by a hyphen. \nExample: lng,lat-lng,lat-lng,lat-lng,lat\nNote: \n1. Multiple coordinate points must be listed sequentially in clockwise or counterclockwise order.\n2. A minimum of 3 coordinate points is required; 2 points only form a straight line and cannot define a closed geographic area.\n3. Longitude must be entered before latitude for every coordinate pair.\n4. The queried geographic area shall not exceed the assigned permission scope.\n5. Within the authorized scope, users may split the target area into multiple smaller subareas to request data based on actual business scenarios."
+        required: true
+        example: 121.289063,35.424868-122.783203,35.281501-122.167969,33.979809
+        schema:
+          type: string
+      - name: output
+        in: query
+        description: 'Data output format selector: 0 = Binary data encoded in Base64 1 = JSON format Default value: 1'
+        required: false
+        example: 1
+        schema:
+          type: integer
+      - name: scode
+        in: query
+        description: "Session token for area-based vessel query . Used to retrieve remaining vessel data when the full dataset cannot be returned in a single request due to an oversized search area.\nNote: \n1. A single HTTP request returns a maximum of 2,666 vessel records. Use the scode returned from the initial query to fetch remaining data. The query region must remain unchanged; otherwise, a new query session will be generated.\n2. Check the continue field in the response. A value of 0 indicates all vessel data in the target area has been fully retrieved, and no additional requests are needed."
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                  data:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        description: "Number of vessel records returned in the current request only; does not represent the total number of vessels in the target area. \nFor large areas requiring multiple requests with the scode token, sum the total values of all requests to get the full vessel count of the area."
+                      scode:
+                        type: integer
+                        description: Session token for paginated data retrieval. If the full vessel data of the area cannot be returned in a single request, use the scode returned from the initial request to fetch the remaining vessel records until full data is obtained.
+                      continue:
+                        type: integer
+                        description: 'Flag indicating whether all vessel data in the area has been fully returned:
+
+                          0= All data returned (query completed)
+
+                          1= Partial data remaining (query not completed, continue requesting with scode)'
+                      ship_list:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            mmsi:
+                              type: integer
+                              description: 9-digit numeric code of MMSI
+                            imo:
+                              type: integer
+                              description: 7-digit numeric code of IMO
+                            call_sign:
+                              type: string
+                              description: 'Call Sign '
+                            ship_name:
+                              type: string
+                              description: Vessel name
+                            ship_cnname:
+                              type: string
+                              description: Chinese name of the vessel
+                            data_source:
+                              type: integer
+                              description: 0=Terrestrial AIS stations or Shipborne AIS; 1=Satellite AIS
+                            ship_type:
+                              type: integer
+                              description: 'Numeric code of vessel type: see Appendix for details '
+                            length:
+                              type: number
+                              description: 'Vessel length in meters, valid value range: 0–1022'
+                            width:
+                              type: number
+                              description: Vessel breadth in meters (nautical standard term)
+                            left:
+                              type: number
+                              description: Port distance in meters
+                            trail:
+                              type: number
+                              description: Stern Distance in meters
+                            draught:
+                              type: number
+                              description: Vessel draught depth in meters
+                            dest:
+                              type: string
+                              description: Standardized destination port names, e.g., SINGAPORE, SG
+                            destcode:
+                              type: string
+                              description: Port code of the destination, e.g., SGSGP
+                            eta:
+                              type: string
+                              description: 'Estimated Time of Arrival.Format: YYYY-MM-DD HH:MM:SS, UTC'
+                            navistat:
+                              type: integer
+                              description: 0, Vessel navigation status; -1=invalid data
+                            lat:
+                              type: number
+                              description: Coordinate latitude, WGS84 coordinate system
+                            lng:
+                              type: number
+                              description: Coordinate longitude, WGS84 coordinate system
+                            sog:
+                              type: number
+                              description: Real-time vessel speed over ground in knots; -1=invalid data
+                            cog:
+                              type: number
+                              description: Course over ground in degrees ; -1=invalid data
+                            hdg:
+                              type: integer
+                              description: Vessel heading in degrees; 511=invalid data
+                            rot:
+                              type: integer
+                              description: Rate of turn in degrees per minute
+                            last_time:
+                              type: integer
+                              description: AIS last update time in Unix timestamp
+                          required:
+                          - mmsi
+                          - imo
+                          - call_sign
+                          - ship_name
+                          - ship_cnname
+                          - data_source
+                          - ship_type
+                          - length
+                          - width
+                          - left
+                          - trail
+                          - draught
+                          - dest
+                          - destcode
+                          - eta
+                          - navistat
+                          - lat
+                          - lng
+                          - sog
+                          - cog
+                          - hdg
+                          - rot
+                          - last_time
+                          x-apifox-orders:
+                          - mmsi
+                          - imo
+                          - call_sign
+                          - ship_name
+                          - ship_cnname
+                          - data_source
+                          - ship_type
+                          - length
+                          - width
+                          - left
+                          - trail
+                          - draught
+                          - dest
+                          - destcode
+                          - eta
+                          - navistat
+                          - lat
+                          - lng
+                          - sog
+                          - cog
+                          - hdg
+                          - rot
+                          - last_time
+                        description: Vessel List
+                    required:
+                    - total
+                    - scode
+                    - continue
+                    - ship_list
+                    x-apifox-orders:
+                    - total
+                    - scode
+                    - continue
+                    - ship_list
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  total: 54
+                  scode: 20
+                  continue: 0
+                  ship_list:
+                  - mmsi: 370286000
+                    imo: 9844100
+                    call_sign: HOLO
+                    ship_name: SEA VICTORIA
+                    ship_cnname: ''
+                    data_source: 0
+                    ship_type: 70
+                    length: 340
+                    width: 62
+                    left: 36
+                    trail: 51
+                    draught: 12.7
+                    dest: SINGAPORE,SG
+                    destcode: SGSIN
+                    eta: '1746547200'
+                    navistat: 0
+                    lat: 34.606657
+                    lng: 121.966072
+                    sog: 12.8
+                    cog: 111.4
+                    hdg: 114
+                    rot: 0
+                    last_time: 1745904185
+                  - mmsi: 412304788
+                    imo: 0
+                    call_sign: ''
+                    ship_name: SUGANYU04788
+                    ship_cnname: 苏赣渔04788
+                    data_source: 0
+                    ship_type: 30
+                    length: 0
+                    width: 0
+                    left: 0
+                    trail: 0
+                    draught: 0
+                    dest: ''
+                    destcode: ''
+                    eta: ''
+                    navistat: 0
+                    lat: 34.507535
+                    lng: 121.96778
+                    sog: 8.6
+                    cog: 246.9
+                    hdg: 511
+                    rot: 0
+                    last_time: 1745902562
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 1 AIS Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-429583708-run
+      operationId: getVesselsInZone
+      externalDocs:
+        description: 1.4 Vessels in Zone
+        url: https://docs.shipfinder.com/429583708e0
+  /v1/AIS/VesselsNearby:
+    get:
+      summary: 1.3 Vessels Nearby
+      deprecated: false
+      description: "## Description\nThe Vessels Nearby retrieves vessel data within a 10 nautical mile radius circular area centered on the position of a target vessel by querying the vessel’s MMSI. The returned vessel dataset is sorted by distance in ascending order (from nearest to farthest).\n\nThe response includes IMO number, call sign, vessel name , vessel type, length and breadth. It also contains the latest real time AIS updates: vessel position, navigation status, destination port, speed over ground, estimated time of arrival at the destination port, vessel heading, course over ground and other standard AIS parameters.\n\n## Use Cases\n1. **Offshore Construction Safety Monitoring**  \n   Centered on construction vessels, the service returns a list of vessels within a 10 nautical mile radius to monitor their positions and trajectories. If any vessel approaches the construction zone, the construction team can issue timely warnings or adjust construction plans accordingly.\n\n2. **Maritime Collision Avoidance Early Warning**  \n   Centered on underway vessels, the service monitors the positions and courses of nearby vessels to assess collision risks. If potential collision risks are detected, the vessel operator can implement immediate collision avoidance maneuvers.\n\n3. **Maritime Emergency Search and Rescue**  \n   Centered on distressed vessels, the service locates and coordinates nearby vessels to conduct search and rescue (SAR) operations.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/AIS/VesselsNearby` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/AIS/VesselsNearby?key=1F6D701272402D1E7D8D316CCE519123&mmsi=413881597\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.\nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      tags:
+      - AIS Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: mmsi
+        in: query
+        description: 9-digit numeric code of MMSI
+        required: true
+        example: 413149000
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: API call status code,0 means success
+                  msg:
+                    type: string
+                    description: Exception prompt message
+                  total:
+                    type: integer
+                    description: Total number of proximity vessels
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        mmsi:
+                          type: integer
+                          description: 9-digit numeric code of MMSI
+                        imo:
+                          type: integer
+                          description: 7-digit numeric code of IMO
+                        call_sign:
+                          type: string
+                          description: 'Call Sign '
+                        ship_name:
+                          type: string
+                          description: Vessel name
+                        ship_cnname:
+                          type: string
+                          description: Chinese name of the vessel
+                        data_source:
+                          type: integer
+                          description: 0=Terrestrial AIS stations or Shipborne AIS; 1=Satellite AIS
+                        lat:
+                          type: number
+                          description: Coordinate latitude, WGS84 coordinate system
+                        lng:
+                          type: number
+                          description: Coordinate longitude, WGS84 coordinate system
+                        ship_type:
+                          type: integer
+                          description: 'Numeric code of vessel type: see Appendix for details '
+                        length:
+                          type: number
+                          description: 'Vessel length in meters, valid value range: 0–1022'
+                        width:
+                          type: number
+                          description: Vessel breadth in meters (nautical standard term)
+                        left:
+                          type: number
+                          description: Port distance in meters
+                        trail:
+                          type: number
+                          description: Stern Distance in meters
+                        draught:
+                          type: number
+                          description: Vessel draught depth in meters
+                        dest:
+                          type: string
+                          description: Standardized destination port names, e.g., SINGAPORE, SG
+                        destcode:
+                          type: string
+                          description: Port code of the destination, e.g., SGSGP
+                        navistat:
+                          type: integer
+                          description: 0, Vessel navigation status; -1=invalid data
+                        sog:
+                          type: number
+                          description: Real-time vessel speed over ground in knots; -1=invalid data
+                        cog:
+                          type: number
+                          description: Course over ground in degrees ; -1=invalid data
+                        hdg:
+                          type: number
+                          description: Vessel heading in degrees; 511=invalid data
+                        rot:
+                          type: number
+                          description: Rate of turn in degrees per minute
+                        eta:
+                          type: integer
+                          description: Estimated Time of Arrival in Unix timestamp
+                        last_time:
+                          type: integer
+                          description: AIS last update time in Unix timestamp
+                      required:
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - data_source
+                      - last_time
+                      - lat
+                      - lng
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - dest
+                      - destcode
+                      - eta
+                      - navistat
+                      - sog
+                      - cog
+                      - hdg
+                      - rot
+                      x-apifox-orders:
+                      - mmsi
+                      - imo
+                      - call_sign
+                      - ship_name
+                      - ship_cnname
+                      - data_source
+                      - last_time
+                      - lat
+                      - lng
+                      - ship_type
+                      - length
+                      - width
+                      - left
+                      - trail
+                      - draught
+                      - dest
+                      - destcode
+                      - eta
+                      - navistat
+                      - sog
+                      - cog
+                      - hdg
+                      - rot
+                    description: List of detailed proximity vessel data
+                required:
+                - status
+                - msg
+                - total
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - total
+                - data
+              example:
+                status: 0
+                msg: ''
+                total: 221
+                data:
+                - mmsi: 413761246
+                  imo: 0
+                  call_sign: YR0
+                  ship_name: PINGNANHONGSHUN3778
+                  ship_cnname: 平南宏顺3778
+                  data_source: 0
+                  last_time: 1747292158
+                  lat: 23.453682
+                  lng: 110.52463
+                  ship_type: 70
+                  length: 81
+                  width: 16
+                  left: 10
+                  trail: 5
+                  draught: 4.3
+                  dest: GUANGZHOU,CN
+                  destcode: CNGZG
+                  eta: 1744896600
+                  navistat: 1
+                  sog: 0
+                  cog: 0
+                  hdg: 0
+                  rot: 0
+                - mmsi: 413761521
+                  imo: 0
+                  call_sign: YR7
+                  ship_name: PINGNANRONGDA333
+                  ship_cnname: 平南荣达333
+                  data_source: 0
+                  last_time: 1747292207
+                  lat: 23.472812
+                  lng: 110.50188
+                  ship_type: 70
+                  length: 82
+                  width: 16
+                  left: 7
+                  trail: 9
+                  draught: 1.2
+                  dest: 'XZ                  '
+                  destcode: ''
+                  eta: 1748394000
+                  navistat: 1
+                  sog: 0
+                  cog: 0
+                  hdg: 0
+                  rot: 0
+                - mmsi: 413762746
+                  imo: 0
+                  call_sign: JKKKJK
+                  ship_name: GUIPINGHANGKAI3358
+                  ship_cnname: 桂平航凯3358
+                  data_source: 0
+                  last_time: 1747292077
+                  lat: 23.468075
+                  lng: 110.513635
+                  ship_type: 70
+                  length: 61
+                  width: 13
+                  left: 7
+                  trail: 8
+                  draught: 0
+                  dest: ''
+                  destcode: ''
+                  eta: 0
+                  navistat: 255
+                  sog: 0
+                  cog: 18.2
+                  hdg: 511
+                  rot: -2.77
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 1 AIS Dataset
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-429003024-run
+      operationId: getVesselsNearby
+      externalDocs:
+        description: 1.3 Vessels Nearby
+        url: https://docs.shipfinder.com/429003024e0
+components:
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: ShipFinder API key, created in the console at https://open.shipfinder.com/v1/console/overview. Starter (trial) keys are self-service; Custom (production) keys require per-service enablement by the ShipFinder business team. Keys may be bound to a domain (return code 14 = request from unbound domain).
+externalDocs:
+  description: Global Maritime Data API Documentation
+  url: https://docs.shipfinder.com/
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  index: https://docs.shipfinder.com/llms.txt
+  operations: 40
+  note: Path/operation content verbatim from provider-published fragments; see -openapi-original.yml.

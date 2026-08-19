@@ -1,0 +1,1363 @@
+openapi: 3.2.0
+info:
+  title: ShipFinder Global Maritime Data Event Dataset API
+  description: 'REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the "key" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.
+
+
+    Assembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider''s; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published "0" response key to "200" (see overlays/).'
+  version: 1.0.0
+  contact:
+    name: ShipFinder Support
+    email: support@elaneglobal.com
+    url: https://www.shipfinder.com/help-center
+  termsOfService: https://www.shipfinder.com/Home/TermsConditions
+servers:
+- url: https://api.elaneglobal.com
+  description: Production
+security:
+- apiKeyQuery: []
+tags:
+- name: Event Dataset
+paths:
+  /v1/Event/AddFleet:
+    post:
+      summary: 7.1.1 Create Fleet
+      deprecated: false
+      description: "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Event/AddFleet`  | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/AddFleet?key=1F6D701272402D1E7D8D316CCE519123&fleet_name=myfleet123&mmsis=477985700,412751690&monitor=6\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard.\n\n\nNote:\nEach monitoring type selected in the monitor field requires corresponding permissions to be enabled first.If you lack the required permissions, the system will return:\"You do not have access permission\".\nIf your services are already activated but the number of monitored vessels exceeds your permitted quota, the system will return:\"The number of queryable vessels exceeds the limit\".\nYou may check your current permission quota in the Permission section of the dashboard. To upgrade your services or expand your vessel monitoring quota, please contact our support team."
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions.
+                fleet_name:
+                  type: string
+                  description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                mmsis:
+                  type: string
+                  description: Add vessels to the fleet. Enter multiple MMSI numbers separated by commas.
+                monitor:
+                  type: string
+                  description: 'Specifies the monitoring content for the fleet.
+
+                    1 = Fleet Vessel Query
+
+                    2 = Real-time Vessel Position Push
+
+                    3 = Vessel Arrival/Departure Event Push
+
+                    4 = Dynamic ETA Push
+
+                    5 = AIS Abnormal Event Push
+
+                    6 = Geofence Monitoring Push
+
+                    7 = Vessel Alongside Event Push
+
+                    Separate multiple values by commas.'
+              required:
+              - key
+              - fleet_name
+              - mmsis
+              - monitor
+              x-apifox-orders:
+              - key
+              - fleet_name
+              - mmsis
+              - monitor
+              - 01KMD0YYBXC401EWT6S1717M4X
+            example:
+              key: 1F6D701272402D1E7D8D316CCE519123
+              fleet_name: myfleet123
+              mmsis: 477985700,412751690
+              monitor: '6'
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      fleet_id:
+                        type: string
+                        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                      fleet_name:
+                        type: string
+                        description: Add vessels to the fleet. Enter multiple MMSI numbers separated by commas.
+                      mmsis:
+                        type: string
+                        description: Vessels MMSIs to be managed under the fleet.
+                      monitor:
+                        type: string
+                        description: Monitored content associated with the fleet; can be modified via the Update Fleet Information API or the Dashboard.
+                    required:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                    x-apifox-orders:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+                  fleet_name: 自有船队在途监控
+                  mmsis: 412751690,477985700
+                  monitor: '6'
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.1 Monitored Fleet Management
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-432035260-run
+      operationId: postAddFleet
+      externalDocs:
+        description: 7.1.1 Create Fleet
+        url: https://docs.shipfinder.com/432035260e0
+  /v1/Event/AddGeofence:
+    post:
+      summary: 7.2.1 Geofence Creation
+      deprecated: false
+      description: ''
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                area_bounds:
+                  type: string
+                  description: 'Longitude and latitude separated by comma, multiple points separated by hyphen. Format: lng,lat-lng,lat-lng,lat. Multiple coordinate points must be entered clockwise or counter-clockwise order.'
+                area_name:
+                  type: string
+                  description: Name of the created geofence, used for later query and identification.
+                filter_type:
+                  type: string
+                  description: 'Monitoring filter type for the geofence: 1=All vessels; 2=Filter by vessel type and length; 3=Fleet vessels
+
+                    - For value 1: Vessel type, length and fleet ID are optional and will be ignored if provided.
+
+                    - For value 2: Vessel type and vessel length are required.
+
+                    - For value 3: Fleet ID is required.'
+                fleet_id:
+                  type: string
+                  description: Fleet to be monitored by the geofence.You may create a fleet to monitor entry/exit of one or more vessels in the area.If fleet_id is provided, only vessels in the fleet are monitored; ship_type will be ignored.
+                url:
+                  type: string
+                  description: URL to which data is pushed when a monitoring condition is triggered.
+                ship_type:
+                  type: string
+                  description: Vessel type used for filtering and monitoring.Multiple types separated by a comma. Leave empty to include all types. See Appendix for vessel type list.
+                length:
+                  type: string
+                  description: 'The vessel length range is used for filtering and monitoring. Multiple values separated by a comma. Leave empty to include all lengths.
+
+                    1=0–40m
+
+                    2=40–80m
+
+                    3=80–160m
+
+                    4=160–240m
+
+                    5=240–320m
+
+                    6=Above 320m'
+              required:
+              - key
+              - area_bounds
+              - area_name
+              - filter_type
+              - url
+              x-apifox-orders:
+              - key
+              - area_bounds
+              - area_name
+              - filter_type
+              - url
+              - ship_type
+              - length
+              - fleet_id
+            example:
+              key: 1F6D701272402D1E7D8D316CCE519123
+              area_bounds: 119.846180,32.345143-119.814280,32.311867-119.4661,32.291067-119.375887,32.213847
+              area_name: area-1
+              filter_type: '3'
+              fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+              url: http://192.186.1.1:8000/shipxy/testdemo
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      area_id:
+                        type: string
+                        description: Unique identifier of the geofence, used for subsequent query, update and deletion operations.
+                    x-apifox-orders:
+                    - area_id
+                    required:
+                    - area_id
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+                required:
+                - status
+                - msg
+                - data
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.2 Geofence Monitoring Push
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433382008-run
+      operationId: postAddGeofence
+      externalDocs:
+        description: 7.2.1 Geofence Creation
+        url: https://docs.shipfinder.com/433382008e0
+  /v1/Event/AddVesselSpeedAlert:
+    post:
+      summary: 7.3.1 Add Vessel Speed Alert Subscription
+      deprecated: false
+      description: ''
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                mmsi:
+                  type: string
+                  description: Enter multiple MMSI numbers separated by commas.
+                speed_limit:
+                  type: string
+                  description: 'Value format: 3-18, Min speed – Max speed, in knots.
+
+                    Separate the range with “-”. A push alert will be triggered after the vessel’s speed stays outside the allowed range for a continuous period.
+
+                    The alert is pushed only once when the speed is out of range. The next alert will be triggered only after the vessel returns to the allowed range and then exceeds it again.
+
+                    Min speed ≥ 0, max speed ≤ 50.'
+                speed_duration:
+                  type: string
+                  description: "Speed duration in minutes. \nSet the trigger duration for the speed alert. Default value=5 minutes. A push alert is triggered when the vessel’s speed remains outside the configured range for the specified duration.\nNote: An excessively short duration may not work. For example, if speed duration is set to 0.1 minutes, no alert can be generated if AIS does not report position and speed information within that time window."
+              x-apifox-orders:
+              - key
+              - mmsi
+              - speed_limit
+              - speed_duration
+              required:
+              - key
+              - mmsi
+              - speed_limit
+              - speed_duration
+            examples: {}
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                x-apifox-orders:
+                - status
+                - msg
+                required:
+                - status
+                - msg
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.3 Vessel Speed Alert Push
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433460139-run
+      operationId: postAddVesselSpeedAlert
+      externalDocs:
+        description: 7.3.1 Add Vessel Speed Alert Subscription
+        url: https://docs.shipfinder.com/433460139e0
+  /v1/Event/AddVesselToFleet:
+    post:
+      summary: 7.1.5  Add Vessels to Fleet
+      deprecated: false
+      description: "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n|`https://api.elaneglobal.com/v1/Event/AddVesselToFleet` | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/AddVesselToFleet?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86&mmsis=413983657\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.\n\n**Note:** When adding vessels to a fleet, the system will validate your vessel monitoring quota. If the total number of vessels exceeds your permitted limit, the system will return the error: \"The number of vessels exceeds the permission limit.\" You may add an unlimited number of vessels to a fleet that has no monitoring permissions bound (this option is available when creating fleets via the dashboard). However, such fleets will not support any query or monitoring functions. The same quota validation will apply if you bind monitoring permissions to this fleet at a later stage, and the same over-limit error will be triggered if applicable. |"
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                fleet_id:
+                  type: string
+                  description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                mmsis:
+                  type: string
+                  description: Add vessels to the fleet. Enter multiple MMSI numbers separated by commas. This is an incremental update that does not modify existing vessels in the fleet.Duplicate MMSI numbers will be ignored and not added again.
+              required:
+              - key
+              - fleet_id
+              - mmsis
+              x-apifox-orders:
+              - key
+              - fleet_id
+              - mmsis
+            example:
+              key: 1F6D701272402D1E7D8D316CCE519123
+              fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+              mmsis: '413983657'
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      fleet_id:
+                        type: string
+                        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                      fleet_name:
+                        type: string
+                        description: Add vessels to the fleet. Enter multiple MMSI numbers separated by commas.
+                      mmsis:
+                        type: string
+                        description: Vessels MMSIs to be managed under the fleet.
+                      monitor:
+                        type: string
+                        description: Monitored content associated with the fleet; can be modified via the Update Fleet Information API or the Dashboard.
+                    required:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                    x-apifox-orders:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+                  fleet_name: myfleet123
+                  mmsis: 412751690,413983657,477985700
+                  monitor: '6'
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.1 Monitored Fleet Management
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-432100231-run
+      operationId: postAddVesselToFleet
+      externalDocs:
+        description: 7.1.5  Add Vessels to Fleet
+        url: https://docs.shipfinder.com/432100231e0
+  /v1/Event/DeleteFleet:
+    post:
+      summary: '7.1.4 Delete Fleet '
+      deprecated: false
+      description: "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n|`https://api.elaneglobal.com/v1/Event/DeleteFleet` | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/DeleteFleet?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.\n\n**Note:**  \nAfter a fleet is deleted, all related push services will stop including data from this fleet, including: fleet vessel queries, real-time position push, arrival/departure event push, ETA push, and AIS event push. If no other fleets remain bound to the push service, no further messages will be pushed.  \nThe geofence alert push follows a different logic: if the bound fleet is deleted, the system will push alerts for all vessels entering or exiting the geofence. To modify geofence alerts, you must bind a new fleet or set new filters. To disable geofence alerts entirely, you must delete the geofence."
+      tags:
+      - Event Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: fleet_id
+        in: query
+        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+        required: true
+        example: 3f2062c6-b796-4a03-b923-48628794dd86
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      fleet_id:
+                        type: string
+                        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                      fleet_name:
+                        type: string
+                        description: Add vessels to the fleet. Enter multiple MMSI numbers separated by commas.
+                      mmsis:
+                        type: string
+                        description: Vessels MMSIs to be managed under the fleet.
+                      monitor:
+                        type: string
+                        description: Monitored content associated with the fleet; can be modified via the Update Fleet Information API or the Dashboard.
+                    required:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                    x-apifox-orders:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+                  fleet_name: 自有船队在途监控
+                  mmsis: 413983657,412751690
+                  monitor: '6'
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.1 Monitored Fleet Management
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-432076110-run
+      operationId: postDeleteFleet
+      externalDocs:
+        description: 7.1.4 Delete Fleet
+        url: https://docs.shipfinder.com/432076110e0
+  /v1/Event/DeleteFleetVessel:
+    post:
+      summary: 7.1.7 Remove Vessels from Fleet
+      deprecated: false
+      description: "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| https://api.elaneglobal.com/v1/Event/DeleteFleetVessel | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/DeleteFleetVessel?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86&mmsis=413461440\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation."
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                fleet_id:
+                  type: string
+                  description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                mmsis:
+                  type: string
+                  description: Add vessels to the fleet. Enter vessel MMSI numbers separated by commas. Removes one or more vessels from the fleet. Only vessels already present in the fleet will be deleted; invalid or non-existent MMSIs will not affect other vessels.
+              required:
+              - key
+              - fleet_id
+              - mmsis
+              x-apifox-orders:
+              - key
+              - fleet_id
+              - mmsis
+            example:
+              key: 1F6D701272402D1E7D8D316CCE519123
+              fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+              mmsis: '413461440'
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      fleet_id:
+                        type: string
+                        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                      fleet_name:
+                        type: string
+                        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                      mmsis:
+                        type: string
+                        description: Vessels MMSIs to be managed under the fleet.
+                      monitor:
+                        type: string
+                        description: Monitored content associated with the fleet; can be modified via the Update Fleet Information API or the Dashboard.
+                    required:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                    x-apifox-orders:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+                  fleet_name: 自有船队在途监控
+                  mmsis: 413983657,412751690
+                  monitor: '6'
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.1 Monitored Fleet Management
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-432106004-run
+      operationId: postDeleteFleetVessel
+      externalDocs:
+        description: 7.1.7 Remove Vessels from Fleet
+        url: https://docs.shipfinder.com/432106004e0
+  /v1/Event/DeleteGeofence:
+    delete:
+      summary: 7.2.4 Geofence Deletion
+      deprecated: false
+      description: ''
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                area_id:
+                  type: string
+                  description: Unique identifier of the geofence, used for subsequent query, update and deletion operations.
+              required:
+              - key
+              - area_id
+              x-apifox-orders:
+              - key
+              - area_id
+            example:
+              key: 1F6D701272402D1E7D8D316CCE519123
+              area_id: 65a03820-31dd-4db6-afd4-9517b81f94e1
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                x-apifox-orders:
+                - status
+                - msg
+                required:
+                - status
+                - msg
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.2 Geofence Monitoring Push
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433422419-run
+      operationId: deleteGeofence
+      externalDocs:
+        description: 7.2.4 Geofence Deletion
+        url: https://docs.shipfinder.com/433422419e0
+  /v1/Event/DeleteVesselSpeedAlert:
+    post:
+      summary: 7.3.2 Delete Vessel Speed Alert Subscription
+      deprecated: false
+      description: ''
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                mmsi:
+                  type: string
+                  description: MMSI numbers of monitored vessels.
+              x-apifox-orders:
+              - key
+              - mmsi
+              required:
+              - key
+              - mmsi
+            examples: {}
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                x-apifox-orders:
+                - status
+                - msg
+                required:
+                - status
+                - msg
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.3 Vessel Speed Alert Push
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433471968-run
+      operationId: postDeleteVesselSpeedAlert
+      externalDocs:
+        description: 7.3.2 Delete Vessel Speed Alert Subscription
+        url: https://docs.shipfinder.com/433471968e0
+  /v1/Event/GetFleet:
+    get:
+      summary: 7.1.3 Query Fleet
+      deprecated: false
+      description: "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Event/GetFleet` | Get |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/GetFleet?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.\n"
+      tags:
+      - Event Dataset
+      parameters:
+      - name: key
+        in: query
+        description: ''
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: fleet_id
+        in: query
+        description: ''
+        required: true
+        example: 3f2062c6-b796-4a03-b923-48628794dd86
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      fleet_id:
+                        type: string
+                        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                      fleet_name:
+                        type: string
+                        description: Add vessels to the fleet. Enter multiple MMSI numbers separated by commas.
+                      mmsis:
+                        type: string
+                        description: Vessels MMSIs to be managed under the fleet.
+                      monitor:
+                        type: string
+                        description: Monitored content associated with the fleet; can be modified via the Update Fleet Information API or the Dashboard.
+                    required:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                    x-apifox-orders:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.1 Monitored Fleet Management
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-432057101-run
+      operationId: getFleet
+      externalDocs:
+        description: 7.1.3 Query Fleet
+        url: https://docs.shipfinder.com/432057101e0
+  /v1/Event/GetGeofence:
+    get:
+      summary: 7.2.3 Geofence Query
+      deprecated: false
+      description: ''
+      tags:
+      - Event Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: true
+        example: 1F6D701272402D1E7D8D316CCE519123
+        schema:
+          type: string
+      - name: area_id
+        in: query
+        description: Unique identifier of the geofence, used for subsequent query, update and deletion operations.
+        required: true
+        example: 65a03820-31dd-4db6-afd4-9517b81f94e1
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      area_id:
+                        type: string
+                        description: Unique identifier of the geofence, used for subsequent query, update and deletion operations.
+                      area_bounds:
+                        type: string
+                        description: 'Longitude and latitude separated by comma, multiple points separated by hyphen. Format: lng,lat-lng,lat-lng,lat. Multiple coordinate points must be entered clockwise or counter-clockwise order.'
+                      area_name:
+                        type: string
+                        description: Name of the created geofence, used for later query and identification.
+                      url:
+                        type: string
+                        description: URL to which data is pushed when a monitoring condition is triggered.
+                      filter_type:
+                        type: integer
+                        description: 'Monitoring filter type for the geofence: 1=All vessels; 2=Filter by vessel type and length; 3=Fleet vessels
+
+                          - For value 1: Vessel type, length and fleet ID are optional and will be ignored if provided.
+
+                          - For value 2: Vessel type and vessel length are required.
+
+                          - For value 3: Fleet ID is required.'
+                      ship_type:
+                        type: string
+                        description: Vessel type used for filtering and monitoring.Multiple types separated by a comma. Leave empty to include all types. See Appendix for vessel type list.
+                      length:
+                        type: string
+                        description: 'The vessel length range is used for filtering and monitoring. Multiple values separated by a comma. Leave empty to include all lengths.
+
+                          1=0–40m
+
+                          2=40–80m
+
+                          3=80–160m
+
+                          4=160–240m
+
+                          5=240–320m
+
+                          6=Above 320m'
+                      fleet_id:
+                        type: string
+                        description: Fleet to be monitored by the geofence.You may create a fleet to monitor entry/exit of one or more vessels in the area.If fleet_id is provided, only vessels in the fleet are monitored; ship_type will be ignored.
+                    x-apifox-orders:
+                    - area_id
+                    - area_bounds
+                    - area_name
+                    - url
+                    - filter_type
+                    - ship_type
+                    - length
+                    - fleet_id
+                    required:
+                    - area_id
+                    - area_bounds
+                    - area_name
+                    - url
+                    - filter_type
+                    - ship_type
+                    - length
+                    - fleet_id
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+                required:
+                - status
+                - msg
+                - data
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.2 Geofence Monitoring Push
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433414777-run
+      operationId: getGeofence
+      externalDocs:
+        description: 7.2.3 Geofence Query
+        url: https://docs.shipfinder.com/433414777e0
+  /v1/Event/UpdateFleetInfo:
+    post:
+      summary: 7.1.2 Update Fleet Information
+      deprecated: false
+      description: "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Event/UpdateFleetInfo`  | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/UpdateFleetInfo?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86&mmsis=477985700&monitor=5\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation.\n\nNote:\nWhen updating fleet information, the submitted data will overwrite the existing records entirely, not incrementally. Please use this operation with caution, especially for the vessel list and monitoring content."
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                fleet_id:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                mmsis:
+                  type: string
+                  description: Batch Update of Fleet Vessels. Enter vessel MMSI numbers separated by commas. This is a full overwrite update with no incremental addition or removal of individual vessels.
+                monitor:
+                  type: string
+                  description: 'Update monitoring content for the fleet.
+
+                    1 = Fleet Vessel Query
+
+                    2 = Real-time Vessel Position Push
+
+                    3 = Vessel Arrival/Departure Event Push
+
+                    4 = Dynamic ETA Push
+
+                    5 = AIS Abnormal Event Push
+
+                    6 = Geofence Monitoring Push
+
+                    7 = Vessel Alongside Event Push
+
+                    Separate multiple values by commas.
+
+                    This is a full overwrite update; no incremental addition or removal is performed.'
+                fleet_name:
+                  type: string
+                  description: Enter a name to update the fleet name.
+              required:
+              - key
+              - fleet_id
+              - mmsis
+              - monitor
+              - fleet_name
+              x-apifox-orders:
+              - key
+              - fleet_id
+              - mmsis
+              - monitor
+              - fleet_name
+            example:
+              key: 1F6D701272402D1E7D8D316CCE519123
+              fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+              mmsis: '477985700'
+              monitor: '5'
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      fleet_id:
+                        type: string
+                        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                      fleet_name:
+                        type: string
+                        description: Add vessels to the fleet. Enter multiple MMSI numbers separated by commas.
+                      mmsis:
+                        type: string
+                        description: Vessels MMSIs to be managed under the fleet.
+                      monitor:
+                        type: string
+                        description: Monitored content associated with the fleet; can be modified via the Update Fleet Information API or the Dashboard.
+                    required:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                    x-apifox-orders:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+                  fleet_name: 自有船队在途监控
+                  mmsis: 412751690,477985700
+                  monitor: '4'
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.1 Monitored Fleet Management
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-432048484-run
+      operationId: postUpdateFleetInfo
+      externalDocs:
+        description: 7.1.2 Update Fleet Information
+        url: https://docs.shipfinder.com/432048484e0
+  /v1/Event/UpdateFleetVessel:
+    post:
+      summary: 7.1.6 Batch Update Vessels in Fleet
+      deprecated: false
+      description: "**Endpoint**\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Event/UpdateFleetVessel` | Post |\n\n**Example API Call**\n\nhttps://api.elaneglobal.com/v1/Event/UpdateFleetVessel?key=1F6D701272402D1E7D8D316CCE519123&fleet_id=3f2062c6-b796-4a03-b923-48628794dd86&mmsis=413461440,412751690,413983657\n\n**Note:**  \n- The key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \n- Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \n- To trial the service, please create your own key in the Dashboard. New users receive a complimentary usage quota upon API key creation."
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                fleet_id:
+                  type: string
+                  description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                mmsis:
+                  type: string
+                  description: Add vessels to the fleet. Enter vessel MMSI numbers separated by commas. This is a full overwrite update with no incremental addition or removal of individual vessels.
+              required:
+              - key
+              - fleet_id
+              - mmsis
+              x-apifox-orders:
+              - key
+              - fleet_id
+              - mmsis
+            example:
+              key: 1F6D701272402D1E7D8D316CCE519123
+              fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+              mmsis: 413461440,412751690,413983657
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      fleet_id:
+                        type: string
+                        description: Unique identifier for the fleet, used for subsequent maintenance of fleet information.
+                      fleet_name:
+                        type: string
+                        description: Add vessels to the fleet. Enter multiple MMSI numbers separated by commas.
+                      mmsis:
+                        type: string
+                        description: Vessels MMSIs to be managed under the fleet.
+                      monitor:
+                        type: string
+                        description: Monitored content associated with the fleet; can be modified via the Update Fleet Information API or the Dashboard.
+                    required:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                    x-apifox-orders:
+                    - fleet_id
+                    - fleet_name
+                    - mmsis
+                    - monitor
+                required:
+                - status
+                - msg
+                - data
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+              example:
+                status: 0
+                msg: ''
+                data:
+                  fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+                  fleet_name: myfleet123
+                  mmsis: 413983657,413461440,412751690
+                  monitor: '6'
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.1 Monitored Fleet Management
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-432080706-run
+      operationId: postUpdateFleetVessel
+      externalDocs:
+        description: 7.1.6 Batch Update Vessels in Fleet
+        url: https://docs.shipfinder.com/432080706e0
+  /v1/Event/UpdateGeofence:
+    post:
+      summary: 7.2.2 Geofence Update
+      deprecated: false
+      description: ''
+      tags:
+      - Event Dataset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                area_id:
+                  type: string
+                  description: Unique identifier of the geofence, used for subsequent query, update and deletion operations.
+                area_bounds:
+                  type: string
+                  description: 'Longitude and latitude separated by comma, multiple points separated by hyphen. Format: lng,lat-lng,lat-lng,lat. Multiple coordinate points must be entered clockwise or counter-clockwise order.'
+                area_name:
+                  type: string
+                  description: Name of the created geofence, used for later query and identification.
+                filter_type:
+                  type: string
+                  description: 'Monitoring filter type for the geofence: 1=All vessels; 2=Filter by vessel type and length; 3=Fleet vessels
+
+                    - For value 1: Vessel type, length and fleet ID are optional and will be ignored if provided.
+
+                    - For value 2: Vessel type and vessel length are required.
+
+                    - For value 3: Fleet ID is required.'
+                fleet_id:
+                  type: string
+                  description: Fleet to be monitored by the geofence.You may create a fleet to monitor entry/exit of one or more vessels in the area.If fleet_id is provided, only vessels in the fleet are monitored; ship_type will be ignored.
+                url:
+                  type: string
+                  description: URL to which data is pushed when a monitoring condition is triggered.
+                ship_type:
+                  type: string
+                  description: Vessel type used for filtering and monitoring.Multiple types separated by a comma. Leave empty to include all types. See Appendix for vessel type list.
+                length:
+                  type: string
+                  description: 'The vessel length range is used for filtering and monitoring. Multiple values separated by a comma. Leave empty to include all lengths.
+
+                    1=0–40m
+
+                    2=40–80m
+
+                    3=80–160m
+
+                    4=160–240m
+
+                    5=240–320m
+
+                    6=Above 320m'
+              required:
+              - key
+              - area_id
+              - area_bounds
+              - area_name
+              - filter_type
+              - url
+              x-apifox-orders:
+              - key
+              - area_id
+              - area_bounds
+              - area_name
+              - filter_type
+              - url
+              - ship_type
+              - length
+              - fleet_id
+            example:
+              key: 1F6D701272402D1E7D8D316CCE519123
+              area_id: 65a03820-31dd-4db6-afd4-9517b81f94e1
+              area_bounds: 119.846180,32.345143-119.814280,32.311867-119.4661,32.291067-119.375887,32.213847
+              area_name: area-1
+              filter_type: '3'
+              fleet_id: 3f2062c6-b796-4a03-b923-48628794dd86
+              url: http://192.186.1.1:8000/shipxy/testdemo
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      area_id:
+                        type: string
+                        description: Unique identifier of the geofence, used for subsequent query, update and deletion operations.
+                    x-apifox-orders:
+                    - area_id
+                    required:
+                    - area_id
+                x-apifox-orders:
+                - status
+                - msg
+                - data
+                required:
+                - status
+                - msg
+                - data
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.2 Geofence Monitoring Push
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433396710-run
+      operationId: postUpdateGeofence
+      externalDocs:
+        description: 7.2.2 Geofence Update
+        url: https://docs.shipfinder.com/433396710e0
+  /v1/Event/VesselSpeedAlertList:
+    get:
+      summary: 7.3.3 Query Vessel Speed Alert Subscription List
+      deprecated: false
+      description: ''
+      tags:
+      - Event Dataset
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: false
+        example: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of subscribed vessels
+                  data:
+                    type: object
+                    properties:
+                      mmsi:
+                        type: integer
+                        description: 9-digit numeric code of MMSI
+                      speed_limit:
+                        type: string
+                        description: 'Value format: 3-18, Min speed – Max speed, in knots.'
+                      speed_duration:
+                        type: number
+                        description: 'Speed duration in minutes. Set the trigger duration for the speed alert. Default value=5 minutes. '
+                    x-apifox-orders:
+                    - mmsi
+                    - speed_limit
+                    - speed_duration
+                    description: Vessel information
+                    required:
+                    - mmsi
+                    - speed_limit
+                    - speed_duration
+                x-apifox-orders:
+                - total
+                - data
+                required:
+                - total
+                - data
+          headers: {}
+          x-apifox-name: success
+      security:
+      - apiKeyQuery: []
+      x-apifox-folder: 7 Event Dataset/7.3 Vessel Speed Alert Push
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433473614-run
+      operationId: getVesselSpeedAlertList
+      externalDocs:
+        description: 7.3.3 Query Vessel Speed Alert Subscription List
+        url: https://docs.shipfinder.com/433473614e0
+components:
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: ShipFinder API key, created in the console at https://open.shipfinder.com/v1/console/overview. Starter (trial) keys are self-service; Custom (production) keys require per-service enablement by the ShipFinder business team. Keys may be bound to a domain (return code 14 = request from unbound domain).
+externalDocs:
+  description: Global Maritime Data API Documentation
+  url: https://docs.shipfinder.com/
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  index: https://docs.shipfinder.com/llms.txt
+  operations: 40
+  note: Path/operation content verbatim from provider-published fragments; see -openapi-original.yml.

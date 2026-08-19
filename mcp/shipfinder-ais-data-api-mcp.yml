@@ -2,9 +2,9 @@ generated: '2026-08-09'
 method: derived
 status: candidate
 source: openapi/shipfinder-ais-data-api-openapi.yml
-note: ShipFinder publishes no MCP server. This is a candidate tool surface derived one-to-one from the 40 operations
-  in the harvested OpenAPI, so an agent runtime can be stood up against the real contract. It is not a ShipFinder-operated
-  endpoint and asserts nothing about ShipFinder.
+note: ShipFinder publishes no MCP server. This is a candidate tool surface derived one-to-one from the
+  40 operations in the harvested OpenAPI, so an agent runtime can be stood up against the real contract.
+  It is not a ShipFinder-operated endpoint and asserts nothing about ShipFinder.
 server:
   name: shipfinder
   transport: null
@@ -141,3 +141,9 @@ tools:
 - name: get_navigational_warnings
   description: 6.1 China Region Navigational Warnings
   source_operation: openapi/shipfinder-ais-data-api-openapi.yml#getNavigationalWarnings
+deployment:
+  mode: none
+  verified: derived
+  tools: 40
+  checked: '2026-08-12'
+  source: catalog MCP census

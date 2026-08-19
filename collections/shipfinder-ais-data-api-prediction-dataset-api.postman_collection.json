@@ -1,0 +1,487 @@
+{
+  "item": [
+    {
+      "id": "78b44361-cbc6-4584-858a-1f46d8bbd44f",
+      "name": "Prediction Dataset",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44e7cb10-fd82-4ad8-a3c1-5f3d25c120b5",
+          "name": "4.3 ETA Query",
+          "request": {
+            "name": "4.3 ETA Query",
+            "description": {
+              "content": "## Description\nQuery the berthing information of the vessel at the departure port, the actual departure time, as well as the total voyage, the distance already traveled, and the Estimated Time of Arrival to the next destination port.\n\n## Use Case\n**Logistics Tracking**  \nQuery the berthing time and departure time of the vessel at the departure port, as well as the Estimated Time of Arrival at the destination port. By coordinating with vessel berthing records or vessel arrival and departure event notifications, it is possible to track the arrival and departure times, berthing terminal information, and sailing status of each voyage of the vessel.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Prediction/ETA` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/ETA?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&port_code=CNSHG&speed=20\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Prediction",
+                "ETA"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<integer>",
+                  "description": "(Required) 9-digit numeric code of MMSI"
+                },
+                {
+                  "disabled": false,
+                  "key": "port_code",
+                  "value": "<string>",
+                  "description": "Standard 5-digit port code.\nWhen this parameter is not specified, the endpoint defaults to the next destination port declared in the vessel’s AIS message."
+                },
+                {
+                  "disabled": false,
+                  "key": "speed",
+                  "value": "<number>",
+                  "description": "Sustained speed for the subsequent voyage, unit: knots (kn).\nWhen this parameter is not specified, , ETA is calculated using the vessel’s average sailing speed over the latest month (the average excludes speed data recorded while the vessel was at anchor in port areas)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8bce5b61-b140-4c8d-9cc1-4adb6eed2b2a",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Prediction",
+                    "ETA"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "477172700"
+                    },
+                    {
+                      "key": "port_code",
+                      "value": "CNSHG"
+                    },
+                    {
+                      "key": "speed",
+                      "value": "20"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"ship\": {\n      \"mmsi\": 477172700,\n      \"imo\": 9783538,\n      \"ship_name\": \"COSCO SHIPPING LIBRA\",\n      \"call_sign\": \"VRRV4\",\n      \"ship_type\": 71\n    },\n    \"location\": {\n      \"lng\": 54.659382,\n      \"lat\": 24.813853,\n      \"sog\": 0,\n      \"sea_area\": \"Persian Gulf\",\n      \"sea_area_code\": 4266\n    },\n    \"preport\": {\n      \"port_code\": \"AEKHL\",\n      \"port_cnname\": \"哈里发港\",\n      \"port_name\": \"Khalifa Port\",\n      \"time_zone\": 4,\n      \"port_country_code\": \"AE\",\n      \"port_country_name\": \"United Arab Emirates\",\n      \"port_country_cnname\": \"阿联酋\",\n      \"ata\": 1746707992,\n      \"atb\": 1746716722,\n      \"atd\": 0\n    },\n    \"nextport\": {\n      \"port_code\": \"CNSHG\",\n      \"port_cnname\": \"上海\",\n      \"port_name\": \"Shanghai\",\n      \"time_zone\": 8,\n      \"port_country_code\": \"CN\",\n      \"port_country_name\": \"China\",\n      \"port_country_cnname\": \"中国\",\n      \"sailed_distance\": 0,\n      \"sailed_time\": 0,\n      \"ais_speed\": 7.67,\n      \"speed\": 20,\n      \"eta\": 1747770560,\n      \"remaining_distance\": 5608.53\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b2b014d-9fe2-456a-8cfa-1ac286ff3cb4",
+          "name": "4.1 Point-to-Point Route Planning",
+          "request": {
+            "name": "4.1 Point-to-Point Route Planning",
+            "description": {
+              "content": "# 4.1 Point-to-Point Route Planning\n\n## Description\nThe Point-to-Point Route Planning queries the route plan between two coordinate waypoints, or from a departure waypoint to a destination port. Returns the total nautical distance of the route and the latitude/longitude coordinates of all waypoints along the route.\n\n## Use Cases\n1. **Logistics Tracking**  \n   Save the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the vessel’s real-time position and the planned path. You may also overlay historical vessel tracks with the planned route to visualize and compare discrepancies between the actual voyage track and the planned path.\n\n2. **Navigation Guidance**  \n   During vessel transit, retrieve the recommended sailing route in real time based on the vessel’s current position and destination port. The route can be combined with meteorological data for adverse weather avoidance, or used to plot simulated future sailing routes on electronic charts.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint`  | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint?key=1F6D701272402D1E7D8D316CCE519123&start_point=113.571144,22.844316&end_point=121.58414,31.37979\n\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint?key=1F6D701272402D1E7D8D316CCE519123&start_point=113.571144,22.844316&end_port_code=CNQDG\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Prediction",
+                "RoutePlanPointToPoint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_point",
+                  "value": "<string>",
+                  "description": "(Required) Departure position, formatted as lng,lat (longitude first, latitude second), separated by an English comma."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_point",
+                  "value": "<string>",
+                  "description": "(Required) Destination position, formatted as lng,lat (longitude first, latitude second), separated by an English comma.\nNote: Mutually exclusive with end_port_code; one field is mandatory.\nIf both fields are populated, route planning will be calculated based on end_port_code."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_port_code",
+                  "value": "<string>",
+                  "description": "Standard 5-digit port code of the destination port."
+                },
+                {
+                  "disabled": false,
+                  "key": "avoid",
+                  "value": "<string>",
+                  "description": "Waypoint IDs to be avoided; see Appendix for details\nUse commas to separate multiple IDs; leave blank for no avoidance.\nMaximum 10 avoidance waypoints per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "through",
+                  "value": "<integer>",
+                  "description": "Required waypoints along the route, formatted as lng,lat-lng,lat; use hyphens (-) to separate multiple waypoints.\nLeave blank if no mandatory waypoints are needed.\nMaximum 30 mandatory waypoints per request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c6e91fe0-8d78-4fc0-a251-b8c3c17abe93",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Prediction",
+                    "RoutePlanPointToPoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "start_point",
+                      "value": "113.571144,22.844316"
+                    },
+                    {
+                      "key": "end_point",
+                      "value": "121.58414,31.37979"
+                    },
+                    {
+                      "key": "end_port_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "avoid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "through",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"distance\": 915.22,\n    \"route\": [\n      {\n        \"lng\": 113.571144,\n        \"lat\": 22.844316\n      },\n      {\n        \"lng\": 113.56867,\n        \"lat\": 22.82417\n      },\n      {\n        \"lng\": 113.59017,\n        \"lat\": 22.81067\n      },\n      {\n        \"lng\": 113.6135,\n        \"lat\": 22.78583\n      },\n      {\n        \"lng\": 113.66833,\n        \"lat\": 22.69617\n      },\n      {\n        \"lng\": 113.68733,\n        \"lat\": 22.64817\n      },\n      {\n        \"lng\": 113.80333,\n        \"lat\": 22.52833\n      },\n      {\n        \"lng\": 114,\n        \"lat\": 22\n      },\n      {\n        \"lng\": 116,\n        \"lat\": 22\n      },\n      {\n        \"lng\": 117,\n        \"lat\": 22.5\n      },\n      {\n        \"lng\": 122.5,\n        \"lat\": 28\n      },\n      {\n        \"lng\": 123,\n        \"lat\": 29\n      },\n      {\n        \"lng\": 123,\n        \"lat\": 30\n      },\n      {\n        \"lng\": 122.5,\n        \"lat\": 30.5\n      },\n      {\n        \"lng\": 122.064,\n        \"lat\": 31.1225\n      },\n      {\n        \"lng\": 121.87067,\n        \"lat\": 31.17867\n      },\n      {\n        \"lng\": 121.73775,\n        \"lat\": 31.28425\n      },\n      {\n        \"lng\": 121.58414,\n        \"lat\": 31.37979\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1852860c-5203-4691-8094-3f31b3d4bb84",
+          "name": "4.2 Port-to-Port Route Planning",
+          "request": {
+            "name": "4.2 Port-to-Port Route Planning",
+            "description": {
+              "content": "## Description\nThe Port-to-Port Route Planning queries the route plan between two ports, and obtain the total mileage of the route as well as the latitude and longitude coordinates of the points the route passes through.\n\n## Use Case\n**Logistics Tracking**  \nSave the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the vessel’s real-time position and the planned path. You may also overlay historical vessel tracks with the planned route for visualization, and compare discrepancies between the actual voyage track and the planned path.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort`  | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort?key=1F6D701272402D1E7D8D316CCE519123&start_port_code=CNGZG&end_port_code=CNSHG&avoid=11\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Prediction",
+                "RoutePlanPortToPort"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_port_code",
+                  "value": "<string>",
+                  "description": "(Required) Standard 5-digit port code of the departure port."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_port_code",
+                  "value": "<string>",
+                  "description": "(Required) Standard 5-digit port code of the arrival port."
+                },
+                {
+                  "disabled": false,
+                  "key": "avoid",
+                  "value": "<string>",
+                  "description": "Waypoint IDs to be avoided; see Appendix for details\nUse commas to separate multiple IDs; leave blank for no avoidance.\nMaximum 10 avoidance waypoints per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "through",
+                  "value": "<integer>",
+                  "description": "Required waypoints along the route, formatted as lng,lat-lng,lat; use hyphens (-) to separate multiple waypoints.\nLeave blank if no mandatory waypoints are needed.\nMaximum 30 mandatory waypoints per request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "912e29fe-0174-44fe-a5fc-3260f41f47ed",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Prediction",
+                    "RoutePlanPortToPort"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "start_port_code",
+                      "value": "CNGZG"
+                    },
+                    {
+                      "key": "end_port_code",
+                      "value": "CNSHG"
+                    },
+                    {
+                      "key": "avoid",
+                      "value": "11"
+                    },
+                    {
+                      "key": "through",
+                      "value": "0"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"distance\": 915.22,\n    \"route\": [\n      {\n        \"lng\": 113.571144,\n        \"lat\": 22.844316\n      },\n      {\n        \"lng\": 113.56867,\n        \"lat\": 22.82417\n      },\n      {\n        \"lng\": 113.59017,\n        \"lat\": 22.81067\n      },\n      {\n        \"lng\": 113.6135,\n        \"lat\": 22.78583\n      },\n      {\n        \"lng\": 113.66833,\n        \"lat\": 22.69617\n      },\n      {\n        \"lng\": 113.68733,\n        \"lat\": 22.64817\n      },\n      {\n        \"lng\": 113.80333,\n        \"lat\": 22.52833\n      },\n      {\n        \"lng\": 114,\n        \"lat\": 22\n      },\n      {\n        \"lng\": 116,\n        \"lat\": 22\n      },\n      {\n        \"lng\": 117,\n        \"lat\": 22.5\n      },\n      {\n        \"lng\": 122.5,\n        \"lat\": 28\n      },\n      {\n        \"lng\": 123,\n        \"lat\": 29\n      },\n      {\n        \"lng\": 123,\n        \"lat\": 30\n      },\n      {\n        \"lng\": 122.5,\n        \"lat\": 30.5\n      },\n      {\n        \"lng\": 122.064,\n        \"lat\": 31.1225\n      },\n      {\n        \"lng\": 121.87067,\n        \"lat\": 31.17867\n      },\n      {\n        \"lng\": 121.73775,\n        \"lat\": 31.28425\n      },\n      {\n        \"lng\": 121.58414,\n        \"lat\": 31.37979\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elaneglobal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc9f9280-bf37-45b9-ad10-43980a3992ab",
+    "name": "ShipFinder Global Maritime Data Prediction Dataset API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the \"key\" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.\n\nAssembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider's; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published \"0\" response key to \"200\" (see overlays/).\n\nContact Support:\n Name: ShipFinder Support\n Email: support@elaneglobal.com",
+      "type": "text/plain"
+    }
+  }
+}

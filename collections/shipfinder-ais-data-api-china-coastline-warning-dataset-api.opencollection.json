@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipFinder Global Maritime Data China Coastline Warning Dataset API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "China Coastline Warning Dataset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "6.1 China Region Navigational Warnings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Warning/NavigationalWarnings",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "start_time",
+                "value": "2024-07-21 20:00",
+                "type": "query",
+                "description": "Used to filter the publish time of navigation warnings."
+              },
+              {
+                "name": "end_time",
+                "value": "2024-09-21 20:00",
+                "type": "query",
+                "description": "Used to filter the publish time of navigation warnings."
+              },
+              {
+                "name": "warning_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by warning type.\n0=Default (all types returned); 1=Military operations; 2=Vessel drills; 3=Live-fire exercises; 4=Vessel operations; 5=AtoN (Aids to Navigation) dynamics; 6= Vessel grounding; 7=Vessel sea trials; 8=Sinking / Shipwreck; 9=Casualties; 10=Construction operations; 11=Navigation warning cancellation; 12=Others"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe China Region Navigational Warnings is used to query navigation warning data in China’s coastal areas, including military operations, vessel drills, live-fire exercises, vessel operations, buoy dynamics, vessel grounding, vessel sea trials, shipwrecks, casualties, construction operations and other events.\nThe data is sourced from the China Maritime Safety Administration (MSA).\n\n## Use Cases\n**Vessel Navigation Safety**\n- **Hazard Area Avoidance**\n  Navigation warning data helps"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

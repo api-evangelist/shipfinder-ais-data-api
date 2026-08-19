@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipFinder Global Maritime Data Meteorology Dataset API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Meteorology Dataset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "5.1.2 Tropical Cyclone Details by Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Meteorology/CycloneInfo",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "typhoon_id",
+                "value": "2477927",
+                "type": "query",
+                "description": "Obtained via the Global Tropical Cyclones List. "
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "5.1.2 Tropical Cyclone Details by Point"
+        },
+        {
+          "info": {
+            "name": "5.1.1 Global Tropical Cyclones List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Meteorology/CyclonesList",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "5.1.1 Global Tropical Cyclones List"
+        },
+        {
+          "info": {
+            "name": "5.3 Global Marine Weather",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Meteorology/MarineWeather",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "lng",
+                "value": "123.58414",
+                "type": "query",
+                "description": "Coordinate longitude, WGS84 coordinate system"
+              },
+              {
+                "name": "lat",
+                "value": "27.37979",
+                "type": "query",
+                "description": "Coordinate latitude, WGS84 coordinate system"
+              },
+              {
+                "name": "weather_time",
+                "value": "",
+                "type": "query",
+                "description": "UTC time in Unix timestamp format. When this parameter is not specified, the latest available meteorological data will be returned.\nNote: Only forecast data for the following fixed UTC hours daily is queryable within the next 7 days: 02:00:00, 08:00:00, 14:00:00, 20:00:00."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Global Marine Weather queries global marine meteorological data by geographic coordinates, covering core navigation-critical weather indicators including sea level pressure, pressure-driven current direction, wind direction, wind speed, significant wave height, visibility, etc.\n\nNote: Meteorological monitoring data is incomplete in certain regions. A return value of -32767 for fields such as barometric pressure and swell height indicates no valid meteorological readings are av"
+        },
+        {
+          "info": {
+            "name": "5.2.2 Query Single Tide Gauge Station Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Meteorology/TideStationInfo",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "port_code",
+                "value": "4000189",
+                "type": "query",
+                "description": "Unique ID of the port tide gauge station"
+              },
+              {
+                "name": "start_date",
+                "value": "2025-03-01",
+                "type": "query",
+                "description": "Start date for tidal data query. Format: YYYY-MM-DD. Historical data queries are supported from 2020 onwards."
+              },
+              {
+                "name": "end_date",
+                "value": "2025-03-05",
+                "type": "query",
+                "description": "End date for tidal data query. Format: YYYY-MM-DD. \nNotes:\n1. Single query time range shall not exceed 90 days.\n2. Forecast data is limited to 30 days in advance; requests beyond this range will return an error.\n3. Historical tidal data is available for all dates from 2020 onwards.\n4. Tidal data is updated once daily.\n5. Future timestamps return forecast data; historical timestamps are overwritten with observed tidal data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "5.2.2 Query Single Tide Gauge Station Details"
+        },
+        {
+          "info": {
+            "name": "5.2.1 Request parameters for Global Tide Gauge Stations List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Meteorology/TideStationList",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "5.2.1 Request parameters for Global Tide Gauge Stations List"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1015 @@
+{
+  "item": [
+    {
+      "id": "897114f9-61f0-4e38-8874-5bde36aa8a5b",
+      "name": "History Dataset",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "804d2f40-cf6e-4925-8541-c116253afb21",
+          "name": "3.6 Port Calls Records for Port",
+          "request": {
+            "name": "3.6 Port Calls Records for Port",
+            "description": {
+              "content": "## Description\n\nThis Port Calls Records for Port service retrieves all vessels that have called at a port within a specified time frame by the port’s 5-digit port code. Returned data includes vessel basic details, port call records at the target port, and the corresponding previous/next port of call records for each vessel.\n\n## Use Cases\n\n1. **Logistics Tracking**  \n   Query and analyze the number of calling vessels, their berth distribution and port call time windows at a port during a specified period. Filter and aggregate the average vessel waiting time and operating time by vessel category, and estimate vessel queuing time at the port as a reference for overall voyage timeline calculation.\n\n2. **Port Analytics**\n\n## Request Limits\n\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.\nThis service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/History/PortCallRecordsByPort`  | GET |\n\n## Example API Call\n\n[https://api.elaneglobal.com/v1/History/PortCallRecordsByPort?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG&start_time=1744467589&end_time=1744967589]\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "History",
+                "PortCallRecordsByPort"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "port_code",
+                  "value": "<string>",
+                  "description": "(Required) Standard 5-digit port code"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<integer>",
+                  "description": "(Required) Start time of historical berthing records, represented as a Unix timestamp. Both start_time and end_time are mandatory, defining the closed query interval [start_time, end_time]. A single query is limited to a maximum of 1 year (366 days) of port call records."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<integer>",
+                  "description": "(Required) End time of historical berthing records, represented as a Unix timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<integer>",
+                  "description": "Optional query type:\n1=Query by ATA (Actual Time of Arrival);\n2=Query by ATD (Actual Time of Departure).\nDefault: 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_zone",
+                  "value": "<integer>",
+                  "description": "Time zone type (optional): 1=Local time zone (UTC if unavailable); 2=UTC+8; 3=UTC (Greenwich Mean Time). Default value: 2"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb14cd6f-9ae9-4741-9d6a-889b643f399d",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "History",
+                    "PortCallRecordsByPort"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "port_code",
+                      "value": "CNSHG"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "1744467589"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "1744967589"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"status\\\": 0,\\n  \\\"msg\\\": \\\"\\\",\\n  \\\"total\\\": 5140,\\n  \\\"data\\\": [\\n    {\\n      \\\"imo\\\": 0,\\n      \\\"mmsi\\\": 413842124,\\n      \\\"ship_type\\\": \\\"70\\\",\\n      \\\"ship_name\\\": \\\"ZHEJIAXINGHUO03191\\\",\\n      \\\"call_sign\\\": \\\"0\\\",\\n      \\\"currentport\\\": {\\n        \\\"port_code\\\": \\\"27999\\\",\\n        \\\"port_cnname\\\": \\\"上海\\\",\\n        \\\"port_name\\\": \\\"Shanghai\\\",\\n        \\\"port_time_zone\\\": \\\"+8\\\",\\n        \\\"terminal_name\\\": \\\"\\\",\\n        \\\"berth_name\\\": \\\"\\\",\\n        \\\"arrival_anchorage\\\": ,\\n        \\\"ata\\\": 1744468393,\\n        \\\"atb\\\": 1744468393,\\n        \\\"atd\\\": 1744635846,\\n        \\\"arrival_draught\\\": 0,\\n        \\\"departure_draught\\\": 0,\\n        \\\"stay_time\\\": 46.51,\\n        \\\"stay_terminal_time\\\": 46.51\\n      },\\n      \\\"previousport\\\": {\\n        \\\"port_code\\\": \\\"27999\\\",\\n        \\\"port_cnname\\\": \\\"上海\\\",\\n        \\\"port_name\\\": \\\"Shanghai\\\",\\n        \\\"port_time_zone\\\": \\\"+8\\\",\\n        \\\"arrival_anchorage\\\": \\\"\\\",\\n        \\\"ata\\\": 1744110014,\\n        \\\"atb\\\": 1744110014,\\n        \\\"atd\\\": 1744120857\\n      },\\n      \\\"nextport\\\": {\\n        \\\"port_code\\\": \\\"213479\\\",\\n        \\\"port_cnname\\\": \\\"奉贤\\\",\\n        \\\"port_name\\\": \\\"Fengxian\\\",\\n        \\\"port_time_zone\\\": \\\"+8\\\",\\n        \\\"arrival_anchorage\\\": \\\"\\\",\\n        \\\"ata\\\": 1744484085,\\n        \\\"atb\\\": 1744484085,\\n        \\\"atd\\\": 1744498411\\n      }\\n    },\\n    {\\n      \\\"imo\\\": 9302530,\\n      \\\"mmsi\\\": 412046070,\\n      \\\"ship_type\\\": \\\"90\\\",\\n      \\\"ship_name\\\": \\\"HU JIU 18\\\",\\n      \\\"call_sign\\\": \\\"BSAR\\\",\\n      \\\"currentport\\\": {\\n        \\\"port_code\\\": \\\"27999\\\",\\n        \\\"port_cnname\\\": \\\"上海\\\",\\n        \\\"port_name\\\": \\\"Shanghai\\\",\\n        \\\"port_time_zone\\\": \\\"+8\\\",\\n        \\\"terminal_name\\\": \\\"Eastern Tankstore Shanghai\\\",\\n        \\\"berth_name\\\": \\\"No 2\\\",\\n        \\\"arrival_anchorage\\\": \\\"\\\",\\n        \\\"ata\\\": 1744469305,\\n        \\\"atb\\\": 1744469305,\\n        \\\"atd\\\": 1745489204,\\n        \\\"arrival_draught\\\": 3500,\\n        \\\"departure_draught\\\": 3500,\\n        \\\"stay_time\\\": 283.31,\\n        \\\"stay_terminal_time\\\": 283.31\\n      },\\n      \\\"previousport\\\": {\\n        \\\"port_code\\\": \\\"213784\\\",\\n        \\\"port_cnname\\\": \\\"崇明\\\",\\n        \\\"port_name\\\": \\\"Chongming\\\",\\n        \\\"port_time_zone\\\": \\\"+8\\\",\\n        \\\"arrival_anchorage\\\": \\\"\\\",\\n        \\\"ata\\\": 1744469305,\\n        \\\"atb\\\": 1744469305,\\n        \\\"atd\\\": 1745489204\\n      },\\n      \\\"nextport\\\": {\\n        \\\"port_code\\\": \\\"213784\\\",\\n        \\\"port_cnname\\\": \\\"崇明\\\",\\n        \\\"port_name\\\": \\\"Chongming\\\",\\n        \\\"port_time_zone\\\": \\\"+8\\\",\\n        \\\"arrival_anchorage\\\": \\\"\\\",\\n        \\\"ata\\\": 1744469305,\\n        \\\"atb\\\": 1744469305,\\n        \\\"atd\\\": 1745489204\\n      }\\n    },\\n    ......\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "426ddc8f-9235-4ee1-bdba-2cb209b41332",
+          "name": "3.3 Vessel Port Call History",
+          "request": {
+            "name": "3.3 Vessel Port Call History",
+            "description": {
+              "content": "## Description\nThe Vessel Port Call History queries a vessel’s historical port call records within a specified time period. It returns the vessel’s anchorage arrival time, port limits arrival time, berthing time, port dwell time, inbound and outbound draft conditions, and other relevant details.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Analyze whether foreign vessels have berthed at high-risk ports based on historical berthing records, and verify the authenticity and accuracy of entry declaration information.\n\n2. **Logistics Tracking**  \n   Track vessel voyage information, settle freight and trace logistics records based on actual port call times and voyage durations, and verify cargo loading/unloading activities by changes in vessel draft.\n\n3. **Financial & Insurance**  \n   Compare and verify port call records and draft change records for each vessel voyage against shipping order data, to conduct vessel risk assessment and analysis.\n\n## Request Limits\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.\nThis service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n| --- | --- |\n|  `https://api.elaneglobal.com/v1/History/PortCallRecordsByVessel` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/History/PortCallRecordsByVessel?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1744967589&end_time=1745572389\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "History",
+                "PortCallRecordsByVessel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<integer>",
+                  "description": "(Required) 9-digit numeric code of MMSI\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "imo",
+                  "value": "<integer>",
+                  "description": "7-digit numeric code of IMO"
+                },
+                {
+                  "disabled": false,
+                  "key": "ship_name",
+                  "value": "<string>",
+                  "description": "Vessel name. \nNote: Port call records for all distinct vessels sharing the same name will be returned if duplicate vessel names exist."
+                },
+                {
+                  "disabled": false,
+                  "key": "call_sign",
+                  "value": "<string>",
+                  "description": "Call Sign.\nMatching Rule: Spaces are optional; letters are case-insensitive. The sequence and quantity of letters and digits must be consistent with the queried call sign.\nNote: Port call records for all distinct vessels with an identical call sign will be returned if duplicate call signs exist."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<integer>",
+                  "description": "(Required) Start time of historical berthing records, represented as a Unix timestamp.\nBoth start_time and end_time are mandatory, defining the closed query interval [start_time, end_time]. A single query is limited to a maximum of 1 year (366 days) of port call records."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<integer>",
+                  "description": "(Required) End time of historical berthing records, represented as a Unix timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_zone",
+                  "value": "<integer>",
+                  "description": "Time zone type (optional):\n1=Local time zone (UTC if unavailable);\n2=UTC+8;\n3=UTC (Greenwich Mean Time).\nDefault value: 2"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ff388b83-3bc7-4484-8527-6e9791e7fb3d",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "History",
+                    "PortCallRecordsByVessel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "477172700"
+                    },
+                    {
+                      "key": "imo",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ship_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "call_sign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "1744967589"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "1745572389"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"status\\\": 0,\\n  \\\"msg\\\": \\\"\\\",\\n  \\\"data\\\": [\\n    {\\n      \\\"ship_name\\\": \\\"COSCOSHIPPINGLIBRA\\\",\\n      \\\"call_sign\\\": \\\"VRRV4\\\",\\n      \\\"imo\\\": 9783538,\\n      \\\"mmsi\\\": 477172700,\\n      \\\"ship_type\\\": 71,\\n      \\\"port_cnname\\\": \\\"广州\\\",\\n      \\\"port_name\\\": \\\"Guangzhou\\\",\\n      \\\"port_time_zone\\\": \\\"+8\\\",\\n      \\\"port_code\\\": \\\"CNGZG\\\",\\n      \\\"terminal_name\\\": \\\"\\\",\\n      \\\"berth_name\\\": \\\"\\\",\\n      \\\"port_country_cnname\\\": \\\"中国\\\",\\n      \\\"port_country_name\\\": \\\"China\\\",\\n      \\\"port_country_code\\\": \\\"CN\\\",\\n      \\\"arrval_anchorage\\\": ,\\n      \\\"ata\\\": 1745058319,\\n      \\\"atb\\\": 1745058319,\\n      \\\"atd\\\": 1745120468,\\n      \\\"arrival_draught\\\": 13.5,\\n      \\\"departure_draught\\\": 14.5,\\n      \\\"stay_time\\\": 17.26,\\n      \\\"stay_interminal_time\\\": 17.26\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a177c202-c62b-458b-b5db-2fcdba6a7a95",
+          "name": "3.4 Vessel Port Call Records at Specific Port",
+          "request": {
+            "name": "3.4 Vessel Port Call Records at Specific Port",
+            "description": {
+              "content": "## Description\nThe Vessel Port Call Records queries a vessel’s port call records at a specific designated port within a specified time period. It returns the vessel’s time of arrival at the anchorage, time of arrival within port limits, time of berthing at the berth, port stay duration, as well as the vessel’s draft conditions upon port entry and departure.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Analyze whether foreign vessels have berthed at high-risk ports based on historical port call records, and verify the authenticity and accuracy of the relevant entry declaration information.\n\n2. **Logistics Tracking**  \n   Track vessel voyage details, settle freight and trace logistics records based on actual port entry/departure times and voyage durations, and verify cargo loading/unloading operations through changes in vessel draft.\n\n3. **Finance & Insurance**  \n   Cross-verify port call records and draft fluctuation records of each vessel voyage against shipping order data for vessel risk analysis and authenticity validation.\n\n## Request Limits\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.\nThis service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/History/PortCallRecordsByVesselAtPort`  | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/History/PortCallRecordsByVesselAtPort?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&port_code=CNGZG&start_time=1744967589&end_time=1745572389\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "History",
+                "PortCallRecordsByVesselAtPort"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<integer>",
+                  "description": "(Required) 9-digit numeric code of MMSI\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "imo",
+                  "value": "<integer>",
+                  "description": "7-digit numeric code of IMO"
+                },
+                {
+                  "disabled": false,
+                  "key": "ship_name",
+                  "value": "<string>",
+                  "description": "Vessel name"
+                },
+                {
+                  "disabled": false,
+                  "key": "call_sign",
+                  "value": "<string>",
+                  "description": "Call Sign"
+                },
+                {
+                  "disabled": false,
+                  "key": "port_code",
+                  "value": "<string>",
+                  "description": "(Required) Standard five-digit port code"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<string>",
+                  "description": "(Required) Start time of historical berthing records, represented as a Unix timestamp.\nBoth start_time and end_time are mandatory, defining the closed query interval [start_time, end_time]. A single query is limited to a maximum of 1 year (366 days) of port call records."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<string>",
+                  "description": "(Required) End time of historical berthing records, represented as a Unix timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_zone",
+                  "value": "<integer>",
+                  "description": "Time zone type (optional):\n1=Local time zone (UTC if unavailable);\n2=UTC+8;\n3=UTC (Greenwich Mean Time).\nDefault value: 2"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f4b2c48-3284-4783-850b-eb7d18c12c4e",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "History",
+                    "PortCallRecordsByVesselAtPort"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "477172700"
+                    },
+                    {
+                      "key": "imo",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ship_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "call_sign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "port_code",
+                      "value": "CNGZG"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "1744967589"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "1745572389"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"status\\\": 0,\\n  \\\"msg\\\": \\\"\\\",\\n  \\\"total\\\": 1,\\n  \\\"data\\\": [\\n    {\\n      \\\"ship_name\\\": \\\"COSCO SHIPPING LIBRA\\\",\\n      \\\"call_sign\\\": \\\"VRRV4\\\",\\n      \\\"imo\\\": 9783538,\\n      \\\"mmsi\\\": 477172700,\\n      \\\"ship_type\\\": \\\"60\\\",\\n      \\\"port_cnname\\\": \\\"新加坡\\\",\\n      \\\"port_name\\\": \\\"Singapore\\\",\\n      \\\"port_time_zone\\\": \\\"+8\\\",\\n      \\\"port_code\\\": \\\"SGSIN\\\",\\n      \\\"terminal_name\\\": \\\"\\\",\\n      \\\"berth_name\\\": \\\"\\\",\\n      \\\"port_country_cnname\\\": \\\"新加坡\\\",\\n      \\\"port_country_name\\\": \\\"Singapore\\\",\\n      \\\"port_country_code\\\": \\\"SG\\\",\\n      \\\"arriveanchorage\\\": ,\\n      \\\"ata\\\": 1745058319,\\n      \\\"atb\\\": 1745058319,\\n      \\\"atd\\\": 1745120468,\\n      \\\"arrival_draught\\\": 13500,\\n      \\\"departure_draught\\\": 0,\\n      \\\"stay_time\\\": 17.26,\\n      \\\"stay_terminal_time\\\": 17.26\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9dd92a33-2473-4a07-9539-13370a66a090",
+          "name": "3.5 Vessel Current Port Call",
+          "request": {
+            "name": "3.5 Vessel Current Port Call",
+            "description": {
+              "content": "## Description\nThe Vessel Current Port Call queries whether a vessel has an active port call. If an active port call exists, it returns the details of the current port of call and port entry time.\n\n## Use Cases\n**Logistics Tracking**  \nTrack the vessel’s current berthing status. Combined with the real-time vessel position push service or port arrival/departure event push service, it supports vessel speed variation monitoring, and enables queries of the detailed port information as well as the specific port arrival and berthing times when the vessel calls at a port.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/History/VesselCurrentPortCall` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/History/VesselCurrentPortCall?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "History",
+                "VesselCurrentPortCall"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<string>",
+                  "description": "(Required) 9-digit numeric code of MMSI\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "imo",
+                  "value": "<integer>",
+                  "description": "7-digit numeric code of IMO"
+                },
+                {
+                  "disabled": false,
+                  "key": "ship_name",
+                  "value": "<string>",
+                  "description": "Vessel name"
+                },
+                {
+                  "disabled": false,
+                  "key": "call_sign",
+                  "value": "<string>",
+                  "description": "Call Sign"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_zone",
+                  "value": "<integer>",
+                  "description": "Time zone type (optional):\n1=Local time zone (UTC if unavailable);\n2=UTC+8;\n3=UTC (Greenwich Mean Time).\nDefault value: 2"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f7ccc830-b5b3-48fa-b564-49b50d97c9ff",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "History",
+                    "VesselCurrentPortCall"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "477172700"
+                    },
+                    {
+                      "key": "imo",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ship_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "call_sign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 1,\n  \"data\": [\n    {\n      \"ship_name\": \"COSCO SHIPPING LIBRA\",\n      \"call_sign\": \"VRRV4\",\n      \"imo\": 9783538,\n      \"mmsi\": 477172700,\n      \"ship_type\": \"60\",\n      \"current_sea_area\": \"Persian gulf\",\n      \"sea_area_code\": \"4266\",\n      \"current_city\": \"\",\n      \"current_city_code\": \"\",\n      \"lng\": 54.659412,\n      \"lat\": 24.813847,\n      \"previousport\": {\n        \"port_code\": \"208866\",\n        \"port_name\": \"Jebel Ali\",\n        \"port_cnname\": \"杰贝阿里\",\n        \"port_time_zone\": \"+4\",\n        \"port_country_name\": \"United Arab Emirates\",\n        \"port_country_cnname\": \"阿联酋\",\n        \"port_country_code\": \"AE\",\n        \"arrive_anchorage\": 1746526617,\n        \"ata\": 1746526617,\n        \"atb\": 1746540887,\n        \"atd\": 1746691874\n      },\n      \"currentport\": {\n        \"port_code\": \"337404\",\n        \"port_name\": \"Khalifa Port\",\n        \"port_cnname\": \"哈里发港\",\n        \"port_time_zone\": \"+4\",\n        \"country_en\": \"United Arab Emirates\",\n        \"port_country_cnname\": \"阿联酋\",\n        \"country_code\": \"AE\",\n        \"arriveanchorage\": 1746707992,\n        \"ata\": 1746707992,\n        \"atb\": 1746716722\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f0e3411-6c49-46cb-bc22-15e0cc42f654",
+          "name": "3.1 Vessel History Track",
+          "request": {
+            "name": "3.1 Vessel History Track",
+            "description": {
+              "content": "## Description\n\nThe Vessel History Track retrieves historical track points of a vessel by its MMSI number and a specified time period.\n\n## Use Cases\n\n1. **Logistics Tracking**  \n   Track vessel historical track data, and support track query, track visualization and track playback in combination with nautical charts.\n\n2. **Vessel Behavior Analysis**  \n   Analyze whether a vessel has abnormal navigational behaviors based on each track point in the historical voyage data, combined with meteorological data, navigational warnings and other relevant information.\n\n## Request Limits\n\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.\nThe service only supports querying vessel tracks within the latest month by default. \nTo view your current service access permissions or access vessel track records from an earlier time period, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n\n| Endpoint                                      | HTTP Method |\n|-----------------------------------------------|-------------|\n| `https://api.elaneglobal.com/v1/History/VesselHistoryTrack` | GET         |\n\n## Example API Call\n\nhttps://api.elaneglobal.com/v1/History/VesselHistoryTrack?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1744017189&end_time=1744019589\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "History",
+                "VesselHistoryTrack"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<integer>",
+                  "description": "(Required) 9-digit numeric code of MMSI"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<integer>",
+                  "description": "(Required) Query start time, represented as a Unix timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<integer>",
+                  "description": "(Required) Query end time, represented as a Unix timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<integer>",
+                  "description": "Output data format selection: 0=Binary data in Base64 encoding; 1=JSON format. Default value: 1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e796072-f5ca-4ada-96cf-1cfeb2c4349c",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "History",
+                    "VesselHistoryTrack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "477172700"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "1744017189"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "1744019589"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": [\n    {\n      \"data_source\": 0,\n      \"utc\": 1744017444,\n      \"lng\": 121.730682,\n      \"lat\": 38.272802,\n      \"sog\": 16.6,\n      \"cog\": 295.2\n    },\n    {\n      \"data_source\": 0,\n      \"utc\": 1744017749,\n      \"lng\": 121.703605,\n      \"lat\": 38.282833,\n      \"sog\": 16.7,\n      \"cog\": 294.9\n    },\n    {\n      \"data_source\": 0,\n      \"utc\": 1744018056,\n      \"lng\": 121.676097,\n      \"lat\": 38.293053,\n      \"sog\": 16.8,\n      \"cog\": 294.5\n    },\n    {\n      \"data_source\": 0,\n      \"utc\": 1744018361,\n      \"lng\": 121.648798,\n      \"lat\": 38.303138,\n      \"sog\": 16.8,\n      \"cog\": 294.7\n    },\n    {\n      \"data_source\": 0,\n      \"utc\": 1744018662,\n      \"lng\": 121.621805,\n      \"lat\": 38.313288,\n      \"sog\": 16.9,\n      \"cog\": 296.8\n    },\n    {\n      \"data_source\": 0,\n      \"utc\": 1744018968,\n      \"lng\": 121.594477,\n      \"lat\": 38.324208,\n      \"sog\": 17,\n      \"cog\": 296.7\n    },\n    {\n      \"data_source\": 0,\n      \"utc\": 1744019268,\n      \"lng\": 121.567605,\n      \"lat\": 38.334835,\n      \"sog\": 17,\n      \"cog\": 296.1\n    },\n    {\n      \"data_source\": 0,\n      \"utc\": 1744019568,\n      \"lng\": 121.540758,\n      \"lat\": 38.345627,\n      \"sog\": 17.1,\n      \"cog\": 297.1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8681f39d-2939-476d-bb81-516ad47c0c7b",
+          "name": "3.2 Ship-to-Ship (STS) Events",
+          "request": {
+            "name": "3.2 Ship-to-Ship (STS) Events",
+            "description": {
+              "content": "## Description\nThe Ship-to-Ship (STS) Events queries whether a specified vessel has had ship-to-ship (STS) operations within a specified time period. If STS events are detected, it will return details of the paired vessel, as well as the STS position, coordinates, start time and end time of the event.\n\n## Applicable Scenarios\n**Freight Logistics**\n1. **Normal STS Transshipment**  \n   Monitor the cargo transfer flow where large vessels transship cargo to small crafts via STS operations. Track and analyze each phase of cargo circulation by combining the small craft details and their subsequent port berthing records.\n2. **Cargo Theft Monitoring**  \n   For non-transshipment scenarios, STS events detected during vessel navigation will trigger key monitoring for potential cargo theft. Determine whether small crafts are involved in cargo theft at the time of the STS event by integrating CCTV and other monitoring tools.\n\n**Maritime Supervision**\n- **Vessel Behavior Analysis**  \n  Maritime regulatory authorities can use vessel STS records to analyze vessel behavior patterns, and identify unauthorized STS operations as abnormal behaviors by combining other comprehensive datasets.\n\n## Request Limits\nThis is a premium service that requires advanced permission application prior to use.\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.To view your current service access permissions or activate service permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/History/VesselStsEvents` | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/History/VesselStsEvents?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1749956794&end_time=1751446602&approach_zone=3\n\n\n**Note:**\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "History",
+                "VesselStsEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "mmsi",
+                  "value": "<integer>",
+                  "description": "(Required) 9-digit numeric code of MMSI"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<integer>",
+                  "description": "(Required) Start time represented as a UTC timestamp. The start time must be later than the current time."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<integer>",
+                  "description": "(Required) End time represented as a UTC timestamp. The interval between the start time and end time shall not exceed 1 week for a single request."
+                },
+                {
+                  "disabled": false,
+                  "key": "approach_zone",
+                  "value": "<integer>",
+                  "description": "STS operation area:\n1=STS in port area;\n2=STS at anchorage;\n3=STS in other areas."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "375b40f8-9972-410a-8c4d-bdbf70afe112",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "History",
+                    "VesselStsEvents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "mmsi",
+                      "value": "477172700"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "1749956794"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "1751446602"
+                    },
+                    {
+                      "key": "approach_zone",
+                      "value": "3"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": {\n    \"ship_data\": {\n      \"mmsi\": 477172700,\n      \"imo\": 9783538,\n      \"call_sign\": \"VRRV4\",\n      \"ship_name\": \"COSCO SHIPPING LIBRA\",\n      \"ship_type\": 70\n    },\n    \"approach_data\": [\n      {\n        \"approach_ship\": {\n          \"mmsi\": 477947300,\n          \"imo\": 9493107,\n          \"call_sign\": \"VRKQ6\",\n          \"ship_name\": \"CSB HERALD\",\n          \"ship_type\": 70\n        },\n        \"approach_event\": {\n          \"approach_time\": 1751260066,\n          \"separation_time\": 1751260429,\n          \"duration\": 6.05,\n          \"approach_zone\": 3,\n          \"lat\": 31.372347,\n          \"lng\": 121.689075,\n          \"port_code\": \"\",\n          \"sog\": 1.75\n        }\n      },\n      {\n        \"approach_ship\": {\n          \"mmsi\": 413372190,\n          \"imo\": 1400704,\n          \"call_sign\": \"BPPZ\",\n          \"ship_name\": \"ZHONG HAI TUO 3\",\n          \"ship_type\": 52\n        },\n        \"approach_event\": {\n          \"approach_time\": 1751260138,\n          \"separation_time\": 1751262848,\n          \"duration\": 45.17,\n          \"approach_zone\": 3,\n          \"lat\": 31.372347,\n          \"lng\": 121.689075,\n          \"port_code\": \"\",\n          \"sog\": 0.82\n        }\n      },\n      {\n        \"approach_ship\": {\n          \"mmsi\": 413377870,\n          \"imo\": 1400704,\n          \"call_sign\": \"BPQJ\",\n          \"ship_name\": \"ZHONG HAI TUO 7\",\n          \"ship_type\": 52\n        },\n        \"approach_event\": {\n          \"approach_time\": 1751260161,\n          \"separation_time\": 1751260467,\n          \"duration\": 5.1,\n          \"approach_zone\": 3,\n          \"lat\": 31.372347,\n          \"lng\": 121.689075,\n          \"port_code\": \"\",\n          \"sog\": 1.75\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elaneglobal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "886f9cdd-7fe1-400f-bbd7-aa4b580f3a33",
+    "name": "ShipFinder Global Maritime Data History Dataset API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the \"key\" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.\n\nAssembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider's; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published \"0\" response key to \"200\" (see overlays/).\n\nContact Support:\n Name: ShipFinder Support\n Email: support@elaneglobal.com",
+      "type": "text/plain"
+    }
+  }
+}

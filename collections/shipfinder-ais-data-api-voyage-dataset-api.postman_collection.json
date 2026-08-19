@@ -1,0 +1,591 @@
+{
+  "item": [
+    {
+      "id": "bacd1872-981c-4355-883b-c3133b21a70e",
+      "name": "Voyage Dataset",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "117e7bf5-7434-42d2-80df-ce1283b2562f",
+          "name": "2.3 Currently Anchored Vessels",
+          "request": {
+            "name": "2.3 Currently Anchored Vessels",
+            "description": {
+              "content": "## Description\n\nThe Currently Anchored Vessels retrieves information of all vessels currently at the port anchorage using the port’s five-digit port code. Returned data includes the total count of vessels waiting at the port anchorage, vessel type, basic vessel details, port arrival time and vessel dwell time.\n\n## Use Cases\n\n1. Analyze the average patterns of vessel operation duration based on the dwell time of different vessel types in the returned dataset.\n2. For logistic operations, filter vessels by type from the list of currently berthed vessels to identify suitable carriers for cargo transportation.\n3. For vessel bunkering and marine equipment upgrade scenarios, obtain the list of in-port vessels first, then query vessel profiles to check equipment and other details, so as to identify targets eligible for bunkering services or equipment upgrade recommendations.\n\n## Request Limits\n\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Voyage/PortAnchoredVessels` | GET |\n\n## Example API Call\n\nhttps://api.elaneglobal.com/v1/Voyage/PortAnchoredVessels?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG\n\n**Note:**  \n\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \nTo trial the service, please create your own key in the Dashboard.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Voyage",
+                "PortAnchoredVessels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "port_code",
+                  "value": "<string>",
+                  "description": "(Required) Standard five-digit port code"
+                },
+                {
+                  "disabled": false,
+                  "key": "ship_type",
+                  "value": "<integer>",
+                  "description": "Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_type",
+                  "value": "<integer>",
+                  "description": "Query filtering type:\n1=Exclude vessels that have not reported AIS data for an extended period; 0=Return all vessels.\nNote: Vessels with modified MMSI numbers may show as staying within the port boundary for a prolonged duration. This parameter can be used to filter out such vessels."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "92873df7-555b-4ee8-b23b-aa440989e0d6",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Voyage",
+                    "PortAnchoredVessels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "port_code",
+                      "value": "CNSHG"
+                    },
+                    {
+                      "key": "ship_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"status\\\": 0,\\n    \\\"msg\\\": \\\"\\\",\\n    \\\"total\\\": 241,\\n    \\\"data\\\": [\\n        {\\n            \\\"mmsi\\\": 413611860,\\n            \\\"imo\\\": 1400704,\\n            \\\"call_sign\\\": \\\"\\\",\\n            \\\"ship_name\\\": \\\"QIANKUN02\\\",\\n            \\\"ship_type\\\": 79,\\n            \\\"length\\\": 102.0,\\n            \\\"width\\\": 18.0,\\n            \\\"left\\\": 9.0,\\n            \\\"trail\\\": 90.0,\\n            \\\"draught\\\": 4.1,\\n            \\\"arrival_time\\\": \\\"1753237238\\\",\\n            \\\"stay_time\\\": 34.6\\n        },\\n        {\\n            \\\"mmsi\\\": 413720847,\\n            \\\"imo\\\": 0,\\n            \\\"call_sign\\\": \\\"NZEXVC\\\",\\n            \\\"ship_name\\\": \\\"WANXUANCHENGHT9678\\\",\\n            \\\"ship_type\\\": 0,\\n            \\\"length\\\": 883.0,\\n            \\\"width\\\": 32.0,\\n            \\\"left\\\": 32.0,\\n            \\\"trail\\\": 387.0,\\n            \\\"draught\\\": 0.0,\\n            \\\"arrival_time\\\": \\\"1753080812\\\",\\n            \\\"stay_time\\\": 2641.7\\n        },\\n        ......\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c12df971-493a-4990-a06d-3f9f7b1967e4",
+          "name": "2.2 Currently Berthed Vessels",
+          "request": {
+            "name": "2.2 Currently Berthed Vessels",
+            "description": {
+              "content": "## Description\n\nThe Currently Berthed Vessels retrieves information on all vessels currently berthed at a target port using the port’s five-digit port code. Returned data includes the total count of berthed vessels, vessel type, basic vessel details, port arrival time, and vessel dwell time.\n\n## Use Cases\n\n1. Analyze the average patterns of vessel operation duration based on the dwell time of different vessel types in the returned dataset.\n2. For logistic operations, filter vessels by type from the list of currently berthed vessels to identify suitable carriers for cargo transportation.\n3. For vessel bunkering and marine equipment upgrade scenarios, obtain the list of in-port vessels first, then query vessel profiles to check equipment and other details, so as to identify targets eligible for bunkering services or equipment upgrade recommendations.\n\n## Request Limits\n\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Voyage/PortBerthedVessels` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Voyage/PortBerthedVessels?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of Shipfinder.com, bound to the domain api.shipfinder.com. Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain. To trial the service, please create your own key in the Dashboard.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Voyage",
+                "PortBerthedVessels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "port_code",
+                  "value": "<string>",
+                  "description": "(Required) Standard five-digit port code"
+                },
+                {
+                  "disabled": false,
+                  "key": "ship_type",
+                  "value": "<integer>",
+                  "description": "Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_type",
+                  "value": "<integer>",
+                  "description": "Query filtering type:\n1=Exclude vessels that have not reported AIS data for an extended period; 0=Return all vessels.\nNote: Vessels with modified MMSI numbers may show as staying within the port boundary for a prolonged duration. This parameter can be used to filter out such vessels."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f55e5295-03ec-492a-a533-3f313572972a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Voyage",
+                    "PortBerthedVessels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "port_code",
+                      "value": "CNSHG"
+                    },
+                    {
+                      "key": "ship_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"status\\\": 0,\\n  \\\"msg\\\": \\\"\\\",\\n  \\\"total\\\": 713,\\n  \\\"data\\\": [\\n    {\\n      \\\"mmsi\\\": 100900006,\\n      \\\"imo\\\": 0,\\n      \\\"call_sign\\\": \\\"YYYY\\\",\\n      \\\"ship_name\\\": \\\"AISTESTSHIP\\\",\\n      \\\"ship_type\\\": 70,\\n      \\\"length\\\": 50,\\n      \\\"width\\\": 6,\\n      \\\"left\\\": 5,\\n      \\\"trail\\\": 10,\\n      \\\"draught\\\": 0,\\n      \\\"arrival_time\\\": \\\"1746484554\\\",\\n      \\\"stay_time\\\": 2166.2\\n    },\\n    {\\n      \\\"mmsi\\\": 100900100,\\n      \\\"imo\\\": 0,\\n      \\\"call_sign\\\": \\\"YYYY\\\",\\n      \\\"ship_name\\\": \\\"AISTESTSHIP\\\",\\n      \\\"ship_type\\\": 70,\\n      \\\"length\\\": 50,\\n      \\\"width\\\": 6,\\n      \\\"left\\\": 5,\\n      \\\"trail\\\": 10,\\n      \\\"draught\\\": 0,\\n      \\\"arrival_time\\\": \\\"1746609269\\\",\\n      \\\"stay_time\\\": 87.7\\n    },\\n    ........\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de8dbe88-a58d-4eb8-99ad-1f6f239e600d",
+          "name": "2.4 Inbound / Expected Arrivals",
+          "request": {
+            "name": "2.4 Inbound / Expected Arrivals",
+            "description": {
+              "content": "## Description\nThe Inbound/Expected Arrivals retrieves the list and detailed information of vessels expected to arrive at a target port within a specified future time period, using the port’s five-digit port code and the query time period.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Filter vessels by type and flag state based on the inbound vessel schedule for a specified future period. It allows advance allocation of customs or border inspection resources, and supports risk vessel analysis by combining historical abnormal AIS events, vessel alongside records and other relevant information.\n\n2. **Logistics Vessel Sourcing**  \n   Filter the list of inbound cargo vessels at ports near the shipping warehouse, and launch cargo booking solicitations by referring to the operating company information in vessel profiles or the vessel contact list maintained in the corporate shipping capacity pool.\n\n3. **Maritime Traffic Analysis**  \n   Analyze port carrying capacity and the attribute profiles of all inbound vessels scheduled to arrive at the port.\n\n## Request Limits\nThis is a premium service that requires advanced permission application prior to use.\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.To view your current service access permissions or activate service permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n|  `https://api.elaneglobal.com/v1/Voyage/PortExpectedArrivals` | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Voyage/PortExpectedArrivals?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG&start_time=1746612218&end_time=1747044218&ship_type=0\n\n**Note:**  \nThe key `1F6D701272402D1E7D8D316CCE519123` is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.  \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.  \nTo trial the service, please create your own key in the Dashboard.\n\n## Request Parameters\n| Parameter | Legend | Type | Required | Description |\n|-----------|--------|------|----------|-------------|\n| key | Authorization Code | string | yes | Your personal Shipfinder API key to verify service permissions |\n| port_code | Standard Port Code | string | yes | Standard five-digit port code |\n| start_time | Start Time | int | yes | Start time represented as a UTC timestamp. The start time must be later than the current time. |\n| end_time | End Time | int | yes | End time represented as a UTC timestamp. The interval between the start time and end time shall not exceed 1 week for a single request. |\n| ship_type | Ship Type | int | no | Filter the type of vessels: see References for details. All vessels will be returned if this parameter is not specified. |",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Voyage",
+                "PortExpectedArrivals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "port_code",
+                  "value": "<string>",
+                  "description": "(Required) Standard five-digit port code"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<integer>",
+                  "description": "(Required) Start time represented as a UTC timestamp. The start time must be later than the current time."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<integer>",
+                  "description": "(Required) End time represented as a UTC timestamp. The interval between the start time and end time shall not exceed 1 week for a single request."
+                },
+                {
+                  "disabled": false,
+                  "key": "ship_type",
+                  "value": "<integer>",
+                  "description": "Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a5cc7157-80ce-43b1-8798-f360906c9804",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Voyage",
+                    "PortExpectedArrivals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "port_code",
+                      "value": "PECLL"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "1746612218"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "1747044218"
+                    },
+                    {
+                      "key": "ship_type",
+                      "value": "0"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 1,\n  \"data\": [\n    {\n      \"mmsi\": 760004503,\n      \"ship_name\": \"TINO 3\",\n      \"imo\": 0,\n      \"dwt\": 0,\n      \"ship_type\": 0,\n      \"length\": 12,\n      \"width\": 33,\n      \"draught\": 5.7,\n      \"preport_name\": \"Manzanillo\",\n      \"last_time\": 1774921277,\n      \"eta\": 1775100580,\n      \"dest\": \"Callao\",\n      \"ship_flag\": \"Peru\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9406df3d-65f6-4fdb-b700-0e029cc33126",
+          "name": "2.1 Port Information",
+          "request": {
+            "name": "2.1 Port Information",
+            "description": {
+              "content": "## Description\n\nThe Port Information supports partial search against the global port database. You can retrieve basic port information via partial search using port names or five-digit port code, time zone, and other related details.The five-digit port code returned in the results serves as the unique identifier for port-level data queries.\n\n## Use Cases\n\nThe five-digit port code obtained from this service can be used in conjunction with the following maritime query services:\n- Vessel Call Records at Specified Port\n- Port Vessel Arrival Notices\n- Port Berthing Vessels Query\n- Port Anchored Vessels Query\n\n## Request Limits\n\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Voyage/PortInfo` | GET |\n\n## Example API Call\n\nhttps://api.elaneglobal.com/v1/Voyage/PortInfo?key=1F6D701272402D1E7D8D316CCE519123&keywords=qingdao&max=6\n\n\n**Note**: \n\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of Shipfinder.com, bound to the domain api.shipfinder.com.\nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please create your own key in the Dashboard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "Voyage",
+                "PortInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Shipfinderer API key to verify service permissions"
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>",
+                  "description": "(Required) The input keyword for port query can be the port name The maximum number of results to return, with a maximum value of 100.(Chinese supported) or the standard five-digit port code. "
+                },
+                {
+                  "disabled": false,
+                  "key": "max",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "09f747d9-4021-4a96-90d0-fdbabee71313",
+              "name": "Success. HTTP 200 with a JSON envelope whose \"status\" field is 0.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "Voyage",
+                    "PortInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "1F6D701272402D1E7D8D316CCE519123"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "qingdao"
+                    },
+                    {
+                      "key": "max",
+                      "value": "6"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 1,\n  \"data\": [\n    {\n      \"port_code\": \"SGSGP\",\n      \"port_name\": \"Sigapore\",\n      \"port_cnname\": \"新加坡\",\n      \"port_time_zone\": \"+8\",\n      \"port_country_name\": \"Singapore\",\n      \"port_country_cnname\": \"新加坡\",\n      \"port_country_code\": \"SG\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elaneglobal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "238ca118-4fe2-459c-bb64-95bcb6e9a845",
+    "name": "ShipFinder Global Maritime Data Voyage Dataset API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the \"key\" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.\n\nAssembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider's; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published \"0\" response key to \"200\" (see overlays/).\n\nContact Support:\n Name: ShipFinder Support\n Email: support@elaneglobal.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipFinder Global Maritime Data Voyage Dataset API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Voyage Dataset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "2.3 Currently Anchored Vessels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Voyage/PortAnchoredVessels",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "port_code",
+                "value": "CNSHG",
+                "type": "query",
+                "description": "Standard five-digit port code"
+              },
+              {
+                "name": "ship_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified."
+              },
+              {
+                "name": "search_type",
+                "value": "",
+                "type": "query",
+                "description": "Query filtering type:\n1=Exclude vessels that have not reported AIS data for an extended period; 0=Return all vessels.\nNote: Vessels with modified MMSI numbers may show as staying within the port boundary for a prolonged duration. This parameter can be used to filter out such vessels."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\n\nThe Currently Anchored Vessels retrieves information of all vessels currently at the port anchorage using the port’s five-digit port code. Returned data includes the total count of vessels waiting at the port anchorage, vessel type, basic vessel details, port arrival time and vessel dwell time.\n\n## Use Cases\n\n1. Analyze the average patterns of vessel operation duration based on the dwell time of different vessel types in the returned dataset.\n2. For logistic operations, filter ve"
+        },
+        {
+          "info": {
+            "name": "2.2 Currently Berthed Vessels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Voyage/PortBerthedVessels",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "port_code",
+                "value": "CNSHG",
+                "type": "query",
+                "description": "Standard five-digit port code"
+              },
+              {
+                "name": "ship_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified."
+              },
+              {
+                "name": "search_type",
+                "value": "",
+                "type": "query",
+                "description": "Query filtering type:\n1=Exclude vessels that have not reported AIS data for an extended period; 0=Return all vessels.\nNote: Vessels with modified MMSI numbers may show as staying within the port boundary for a prolonged duration. This parameter can be used to filter out such vessels."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\n\nThe Currently Berthed Vessels retrieves information on all vessels currently berthed at a target port using the port’s five-digit port code. Returned data includes the total count of berthed vessels, vessel type, basic vessel details, port arrival time, and vessel dwell time.\n\n## Use Cases\n\n1. Analyze the average patterns of vessel operation duration based on the dwell time of different vessel types in the returned dataset.\n2. For logistic operations, filter vessels by type from "
+        },
+        {
+          "info": {
+            "name": "2.4 Inbound / Expected Arrivals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Voyage/PortExpectedArrivals",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "port_code",
+                "value": "PECLL",
+                "type": "query",
+                "description": "Standard five-digit port code"
+              },
+              {
+                "name": "start_time",
+                "value": "1746612218",
+                "type": "query",
+                "description": "Start time represented as a UTC timestamp. The start time must be later than the current time."
+              },
+              {
+                "name": "end_time",
+                "value": "1747044218",
+                "type": "query",
+                "description": "End time represented as a UTC timestamp. The interval between the start time and end time shall not exceed 1 week for a single request."
+              },
+              {
+                "name": "ship_type",
+                "value": "0",
+                "type": "query",
+                "description": "Filter the type of vessels: see Appendix for details. All vessels will be returned if this parameter is not specified."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Inbound/Expected Arrivals retrieves the list and detailed information of vessels expected to arrive at a target port within a specified future time period, using the port’s five-digit port code and the query time period.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Filter vessels by type and flag state based on the inbound vessel schedule for a specified future period. It allows advance allocation of customs or border inspection resources, and supports risk vessel analysis b"
+        },
+        {
+          "info": {
+            "name": "2.1 Port Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Voyage/PortInfo",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "keywords",
+                "value": "qingdao",
+                "type": "query",
+                "description": "The input keyword for port query can be the port name The maximum number of results to return, with a maximum value of 100.(Chinese supported) or the standard five-digit port code. "
+              },
+              {
+                "name": "max",
+                "value": "6",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\n\nThe Port Information supports partial search against the global port database. You can retrieve basic port information via partial search using port names or five-digit port code, time zone, and other related details.The five-digit port code returned in the results serves as the unique identifier for port-level data queries.\n\n## Use Cases\n\nThe five-digit port code obtained from this service can be used in conjunction with the following maritime query services:\n- Vessel Call Recor"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipFinder Global Maritime Data Prediction Dataset API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prediction Dataset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "4.3 ETA Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Prediction/ETA",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "mmsi",
+                "value": "477172700",
+                "type": "query",
+                "description": "9-digit numeric code of MMSI"
+              },
+              {
+                "name": "port_code",
+                "value": "CNSHG",
+                "type": "query",
+                "description": "Standard 5-digit port code.\nWhen this parameter is not specified, the endpoint defaults to the next destination port declared in the vessel’s AIS message."
+              },
+              {
+                "name": "speed",
+                "value": "20",
+                "type": "query",
+                "description": "Sustained speed for the subsequent voyage, unit: knots (kn).\nWhen this parameter is not specified, , ETA is calculated using the vessel’s average sailing speed over the latest month (the average excludes speed data recorded while the vessel was at anchor in port areas)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nQuery the berthing information of the vessel at the departure port, the actual departure time, as well as the total voyage, the distance already traveled, and the Estimated Time of Arrival to the next destination port.\n\n## Use Case\n**Logistics Tracking**  \nQuery the berthing time and departure time of the vessel at the departure port, as well as the Estimated Time of Arrival at the destination port. By coordinating with vessel berthing records or vessel arrival and departure event"
+        },
+        {
+          "info": {
+            "name": "4.1 Point-to-Point Route Planning",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "start_point",
+                "value": "113.571144,22.844316",
+                "type": "query",
+                "description": "Departure position, formatted as lng,lat (longitude first, latitude second), separated by an English comma."
+              },
+              {
+                "name": "end_point",
+                "value": "121.58414,31.37979",
+                "type": "query",
+                "description": "Destination position, formatted as lng,lat (longitude first, latitude second), separated by an English comma.\nNote: Mutually exclusive with end_port_code; one field is mandatory.\nIf both fields are populated, route planning will be calculated based on end_port_code."
+              },
+              {
+                "name": "end_port_code",
+                "value": "",
+                "type": "query",
+                "description": "Standard 5-digit port code of the destination port."
+              },
+              {
+                "name": "avoid",
+                "value": "",
+                "type": "query",
+                "description": "Waypoint IDs to be avoided; see Appendix for details\nUse commas to separate multiple IDs; leave blank for no avoidance.\nMaximum 10 avoidance waypoints per request."
+              },
+              {
+                "name": "through",
+                "value": "",
+                "type": "query",
+                "description": "Required waypoints along the route, formatted as lng,lat-lng,lat; use hyphens (-) to separate multiple waypoints.\nLeave blank if no mandatory waypoints are needed.\nMaximum 30 mandatory waypoints per request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "# 4.1 Point-to-Point Route Planning\n\n## Description\nThe Point-to-Point Route Planning queries the route plan between two coordinate waypoints, or from a departure waypoint to a destination port. Returns the total nautical distance of the route and the latitude/longitude coordinates of all waypoints along the route.\n\n## Use Cases\n1. **Logistics Tracking**  \n   Save the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with t"
+        },
+        {
+          "info": {
+            "name": "4.2 Port-to-Port Route Planning",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort",
+            "params": [
+              {
+                "name": "key",
+                "value": "1F6D701272402D1E7D8D316CCE519123",
+                "type": "query",
+                "description": "Your personal Shipfinderer API key to verify service permissions"
+              },
+              {
+                "name": "start_port_code",
+                "value": "CNGZG",
+                "type": "query",
+                "description": "Standard 5-digit port code of the departure port."
+              },
+              {
+                "name": "end_port_code",
+                "value": "CNSHG",
+                "type": "query",
+                "description": "Standard 5-digit port code of the arrival port."
+              },
+              {
+                "name": "avoid",
+                "value": "11",
+                "type": "query",
+                "description": "Waypoint IDs to be avoided; see Appendix for details\nUse commas to separate multiple IDs; leave blank for no avoidance.\nMaximum 10 avoidance waypoints per request."
+              },
+              {
+                "name": "through",
+                "value": "0",
+                "type": "query",
+                "description": "Required waypoints along the route, formatted as lng,lat-lng,lat; use hyphens (-) to separate multiple waypoints.\nLeave blank if no mandatory waypoints are needed.\nMaximum 30 mandatory waypoints per request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "key",
+              "value": "{{key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "## Description\nThe Port-to-Port Route Planning queries the route plan between two ports, and obtain the total mileage of the route as well as the latitude and longitude coordinates of the points the route passes through.\n\n## Use Case\n**Logistics Tracking**  \nSave the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the ve"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
