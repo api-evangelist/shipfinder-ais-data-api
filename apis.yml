@@ -36,6 +36,25 @@ tags:
   - Compliance
   - Risk
   - Event Streaming
+  - Webhook
+tags_raw:
+  - AIS
+  - Maritime Data
+  - Vessel Tracking
+  - Ship Tracking
+  - Vessel Data
+  - Historical AIS
+  - Geospatial
+  - GIS
+  - Logistics
+  - Supply Chain
+  - Weather
+  - Meteorology
+  - Trade
+  - Commodities
+  - Compliance
+  - Risk
+  - Event Streaming
   - Webhooks
 apis:
 - aid: shipfinder-ais-data-api:shipfinder-ais-data-api-ais-dataset-api
