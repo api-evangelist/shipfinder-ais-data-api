@@ -210,6 +210,9 @@ generated:
   confidence: 88
   at: '2026-08-04T07:42:52.160Z'
 common:
+  - type: CapabilityMap
+    url: capabilities/shipfinder-ais-data-api-capability-edges.yml
+    name: ShipFinder AIS Data API Business Capability Map
   - type: DeveloperPortal
     url: https://open.shipfinder.com/
   - type: Documentation
