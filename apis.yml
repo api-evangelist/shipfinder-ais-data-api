@@ -210,7 +210,8 @@ apis:
     for 5 meteorology dataset/5.2 global port tide predictions.
   humanURL: https://www.shipfinder.com/ais-data-api
   baseURL: https://api.elaneglobal.com
-  tags:
+  tags: []
+  tags_raw:
   - 5 Meteorology Dataset/5.2 Global Port Tide Predictions
   properties:
   - type: OpenAPI
@@ -316,7 +317,8 @@ apis:
     for 7 event dataset/7.3 vessel speed alert push.
   humanURL: https://www.shipfinder.com/ais-data-api
   baseURL: https://api.elaneglobal.com
-  tags:
+  tags: []
+  tags_raw:
   - 7 Event Dataset/7.3 Vessel Speed Alert Push
   properties:
   - type: OpenAPI
