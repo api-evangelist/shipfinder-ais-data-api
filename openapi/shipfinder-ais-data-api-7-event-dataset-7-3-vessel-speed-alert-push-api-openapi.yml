@@ -1,0 +1,361 @@
+openapi: 3.2.0
+info:
+  title: ShipFinder Global Maritime Data 7 Event Dataset/7.3 Vessel…
+  description: Verbatim assembly of the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com (one fragment per endpoint page, indexed by the provider llms.txt). Path items are reproduced exactly as published; only the enclosing document (info/servers/tags) is API Evangelist assembly. No operation content was altered.
+  version: 1.0.0
+servers: []
+tags:
+- name: 7 Event Dataset/7.3 Vessel Speed Alert Push
+paths:
+  /v1/Event/AddVesselSpeedAlert:
+    post:
+      summary: 7.3.1 Add Vessel Speed Alert Subscription
+      deprecated: false
+      description: ''
+      tags:
+      - 7 Event Dataset/7.3 Vessel Speed Alert Push
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                mmsi:
+                  type: string
+                  description: Enter multiple MMSI numbers separated by commas.
+                speed_limit:
+                  type: string
+                  description: 'Value format: 3-18, Min speed – Max speed, in knots.
+
+                    Separate the range with “-”. A push alert will be triggered after the vessel’s speed stays outside the allowed range for a continuous period.
+
+                    The alert is pushed only once when the speed is out of range. The next alert will be triggered only after the vessel returns to the allowed range and then exceeds it again.
+
+                    Min speed ≥ 0, max speed ≤ 50.'
+                speed_duration:
+                  type: string
+                  description: "Speed duration in minutes. \nSet the trigger duration for the speed alert. Default value=5 minutes. A push alert is triggered when the vessel’s speed remains outside the configured range for the specified duration.\nNote: An excessively short duration may not work. For example, if speed duration is set to 0.1 minutes, no alert can be generated if AIS does not report position and speed information within that time window."
+              x-apifox-orders:
+              - key
+              - mmsi
+              - speed_limit
+              - speed_duration
+              required:
+              - key
+              - mmsi
+              - speed_limit
+              - speed_duration
+            examples: {}
+      responses:
+        '0':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                x-apifox-orders:
+                - status
+                - msg
+                required:
+                - status
+                - msg
+          headers: {}
+          x-apifox-name: success
+      security: []
+      x-apifox-folder: 7 Event Dataset/7.3 Vessel Speed Alert Push
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433460139-run
+      operationId: postV1EventAddVesselSpeedAlert
+      x-operation-id-source: derived
+  /v1/Event/DeleteVesselSpeedAlert:
+    post:
+      summary: 7.3.2 Delete Vessel Speed Alert Subscription
+      deprecated: false
+      description: ''
+      tags:
+      - 7 Event Dataset/7.3 Vessel Speed Alert Push
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your personal Shipfinderer API key to verify service permissions
+                mmsi:
+                  type: string
+                  description: MMSI numbers of monitored vessels.
+              x-apifox-orders:
+              - key
+              - mmsi
+              required:
+              - key
+              - mmsi
+            examples: {}
+      responses:
+        '0':
+          description: ''
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  msg:
+                    type: string
+                x-apifox-orders:
+                - status
+                - msg
+                required:
+                - status
+                - msg
+          headers: {}
+          x-apifox-name: success
+      security: []
+      x-apifox-folder: 7 Event Dataset/7.3 Vessel Speed Alert Push
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433471968-run
+      operationId: postV1EventDeleteVesselSpeedAlert
+      x-operation-id-source: derived
+  /v1/Event/VesselSpeedAlertList:
+    get:
+      summary: 7.3.3 Query Vessel Speed Alert Subscription List
+      deprecated: false
+      description: ''
+      tags:
+      - 7 Event Dataset/7.3 Vessel Speed Alert Push
+      parameters:
+      - name: key
+        in: query
+        description: Your personal Shipfinderer API key to verify service permissions
+        required: false
+        example: ''
+        schema:
+          type: string
+      responses:
+        '0':
+          description: ''
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of subscribed vessels
+                  data:
+                    type: object
+                    properties:
+                      mmsi:
+                        type: integer
+                        description: 9-digit numeric code of MMSI
+                      speed_limit:
+                        type: string
+                        description: 'Value format: 3-18, Min speed – Max speed, in knots.'
+                      speed_duration:
+                        type: number
+                        description: 'Speed duration in minutes. Set the trigger duration for the speed alert. Default value=5 minutes. '
+                    x-apifox-orders:
+                    - mmsi
+                    - speed_limit
+                    - speed_duration
+                    description: Vessel information
+                    required:
+                    - mmsi
+                    - speed_limit
+                    - speed_duration
+                x-apifox-orders:
+                - total
+                - data
+                required:
+                - total
+                - data
+          headers: {}
+          x-apifox-name: success
+      security: []
+      x-apifox-folder: 7 Event Dataset/7.3 Vessel Speed Alert Push
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-433473614-run
+      operationId: getV1EventVesselSpeedAlertList
+      x-operation-id-source: derived
+x-evidence:
+  harvested: '2026-08-09'
+  index: https://docs.shipfinder.com/llms.txt
+  index_http_status: 200
+  fragments: 40
+  note: Each path item was extracted verbatim from the "## OpenAPI Specification" yaml block on the corresponding docs page. The provider publishes no consolidated OpenAPI document.
+  sources:
+  - path: /v1/AIS/FleetPosition
+    method: GET
+    title: 1.1.3 Fleet Position
+    source: https://docs.shipfinder.com/430293359e0.md
+  - path: /v1/AIS/VesselFlagInfo
+    method: GET
+    title: 1.5 Vessel Flag Information
+    source: https://docs.shipfinder.com/429919472e0.md
+  - path: /v1/AIS/VesselPositionMulti
+    method: GET
+    title: 1.1.2 Multi-vessel Position
+    source: https://docs.shipfinder.com/430292321e0.md
+  - path: /v1/AIS/VesselPositionSingle
+    method: GET
+    title: 1.1.1 Single Vessel Position
+    source: https://docs.shipfinder.com/428990613e0.md
+  - path: /v1/AIS/VesselSearch
+    method: GET
+    title: 1.2 Vessel Search
+    source: https://docs.shipfinder.com/428749512e0.md
+  - path: /v1/AIS/VesselsInZone
+    method: GET
+    title: 1.4 Vessels in Zone
+    source: https://docs.shipfinder.com/429583708e0.md
+  - path: /v1/AIS/VesselsNearby
+    method: GET
+    title: 1.3 Vessels Nearby
+    source: https://docs.shipfinder.com/429003024e0.md
+  - path: /v1/Event/AddFleet
+    method: POST
+    title: 7.1.1 Create Fleet
+    source: https://docs.shipfinder.com/432035260e0.md
+  - path: /v1/Event/AddGeofence
+    method: POST
+    title: 7.2.1 Geofence Creation
+    source: https://docs.shipfinder.com/433382008e0.md
+  - path: /v1/Event/AddVesselSpeedAlert
+    method: POST
+    title: 7.3.1 Add Vessel Speed Alert Subscription
+    source: https://docs.shipfinder.com/433460139e0.md
+  - path: /v1/Event/AddVesselToFleet
+    method: POST
+    title: 7.1.5  Add Vessels to Fleet
+    source: https://docs.shipfinder.com/432100231e0.md
+  - path: /v1/Event/DeleteFleet
+    method: POST
+    title: 7.1.4 Delete Fleet
+    source: https://docs.shipfinder.com/432076110e0.md
+  - path: /v1/Event/DeleteFleetVessel
+    method: POST
+    title: 7.1.7 Remove Vessels from Fleet
+    source: https://docs.shipfinder.com/432106004e0.md
+  - path: /v1/Event/DeleteGeofence
+    method: DELETE
+    title: 7.2.4 Geofence Deletion
+    source: https://docs.shipfinder.com/433422419e0.md
+  - path: /v1/Event/DeleteVesselSpeedAlert
+    method: POST
+    title: 7.3.2 Delete Vessel Speed Alert Subscription
+    source: https://docs.shipfinder.com/433471968e0.md
+  - path: /v1/Event/GetFleet
+    method: GET
+    title: 7.1.3 Query Fleet
+    source: https://docs.shipfinder.com/432057101e0.md
+  - path: /v1/Event/GetGeofence
+    method: GET
+    title: 7.2.3 Geofence Query
+    source: https://docs.shipfinder.com/433414777e0.md
+  - path: /v1/Event/UpdateFleetInfo
+    method: POST
+    title: 7.1.2 Update Fleet Information
+    source: https://docs.shipfinder.com/432048484e0.md
+  - path: /v1/Event/UpdateFleetVessel
+    method: POST
+    title: 7.1.6 Batch Update Vessels in Fleet
+    source: https://docs.shipfinder.com/432080706e0.md
+  - path: /v1/Event/UpdateGeofence
+    method: POST
+    title: 7.2.2 Geofence Update
+    source: https://docs.shipfinder.com/433396710e0.md
+  - path: /v1/Event/VesselSpeedAlertList
+    method: GET
+    title: 7.3.3 Query Vessel Speed Alert Subscription List
+    source: https://docs.shipfinder.com/433473614e0.md
+  - path: /v1/History/PortCallRecordsByPort
+    method: GET
+    title: 3.6 Port Calls Records for Port
+    source: https://docs.shipfinder.com/430531632e0.md
+  - path: /v1/History/PortCallRecordsByVessel
+    method: GET
+    title: 3.3 Vessel Port Call History
+    source: https://docs.shipfinder.com/430426234e0.md
+  - path: /v1/History/PortCallRecordsByVesselAtPort
+    method: GET
+    title: 3.4 Vessel Port Call Records at Specific Port
+    source: https://docs.shipfinder.com/430484162e0.md
+  - path: /v1/History/VesselCurrentPortCall
+    method: GET
+    title: 3.5 Vessel Current Port Call
+    source: https://docs.shipfinder.com/430498718e0.md
+  - path: /v1/History/VesselHistoryTrack
+    method: GET
+    title: 3.1 Vessel History Track
+    source: https://docs.shipfinder.com/430346103e0.md
+  - path: /v1/History/VesselStsEvents
+    method: GET
+    title: 3.2 Ship-to-Ship (STS) Events
+    source: https://docs.shipfinder.com/430352093e0.md
+  - path: /v1/Meteorology/CycloneInfo
+    method: GET
+    title: 5.1.2 Tropical Cyclone Details by Point
+    source: https://docs.shipfinder.com/431698143e0.md
+  - path: /v1/Meteorology/CyclonesList
+    method: GET
+    title: 5.1.1 Global Tropical Cyclones List
+    source: https://docs.shipfinder.com/431698053e0.md
+  - path: /v1/Meteorology/MarineWeather
+    method: GET
+    title: 5.3 Global Marine Weather
+    source: https://docs.shipfinder.com/431272522e0.md
+  - path: /v1/Meteorology/TideStationInfo
+    method: GET
+    title: 5.2.2 Query Single Tide Gauge Station Details
+    source: https://docs.shipfinder.com/431865286e0.md
+  - path: /v1/Meteorology/TideStationList
+    method: GET
+    title: 5.2.1 Request parameters for Global Tide Gauge Stations List
+    source: https://docs.shipfinder.com/431857907e0.md
+  - path: /v1/Prediction/ETA
+    method: GET
+    title: 4.3 ETA Query
+    source: https://docs.shipfinder.com/431244206e0.md
+  - path: /v1/Prediction/RoutePlanPointToPoint
+    method: GET
+    title: 4.1 Point-to-Point Route Planning
+    source: https://docs.shipfinder.com/431124483e0.md
+  - path: /v1/Prediction/RoutePlanPortToPort
+    method: GET
+    title: 4.2 Port-to-Port Route Planning
+    source: https://docs.shipfinder.com/431244012e0.md
+  - path: /v1/Voyage/PortAnchoredVessels
+    method: GET
+    title: 2.3 Currently Anchored Vessels
+    source: https://docs.shipfinder.com/430236145e0.md
+  - path: /v1/Voyage/PortBerthedVessels
+    method: GET
+    title: 2.2 Currently Berthed Vessels
+    source: https://docs.shipfinder.com/430197412e0.md
+  - path: /v1/Voyage/PortExpectedArrivals
+    method: GET
+    title: 2.4 Inbound / Expected Arrivals
+    source: https://docs.shipfinder.com/430249182e0.md
+  - path: /v1/Voyage/PortInfo
+    method: GET
+    title: 2.1 Port Information
+    source: https://docs.shipfinder.com/429932201e0.md
+  - path: /v1/Warning/NavigationalWarnings
+    method: GET
+    title: 6.1 China Region Navigational Warnings
+    source: https://docs.shipfinder.com/431872073e0.md

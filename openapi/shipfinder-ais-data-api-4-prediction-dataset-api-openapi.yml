@@ -1,31 +1,56 @@
 openapi: 3.2.0
 info:
-  title: ShipFinder Global Maritime Data Prediction Dataset API
-  description: 'REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the "key" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.
-
-
-    Assembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider''s; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published "0" response key to "200" (see overlays/).'
+  title: ShipFinder Global Maritime Data 4 Prediction Dataset API
+  description: Verbatim assembly of the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com (one fragment per endpoint page, indexed by the provider llms.txt). Path items are reproduced exactly as published; only the enclosing document (info/servers/tags) is API Evangelist assembly. No operation content was altered.
   version: 1.0.0
-  contact:
-    name: ShipFinder Support
-    email: support@elaneglobal.com
-    url: https://www.shipfinder.com/help-center
-  termsOfService: https://www.shipfinder.com/Home/TermsConditions
-servers:
-- url: https://api.elaneglobal.com
-  description: Production
-security:
-- apiKeyQuery: []
+servers: []
 tags:
-- name: Prediction Dataset
+- name: 4 Prediction Dataset
 paths:
   /v1/Prediction/ETA:
     get:
       summary: 4.3 ETA Query
       deprecated: false
-      description: "## Description\nQuery the berthing information of the vessel at the departure port, the actual departure time, as well as the total voyage, the distance already traveled, and the Estimated Time of Arrival to the next destination port.\n\n## Use Case\n**Logistics Tracking**  \nQuery the berthing time and departure time of the vessel at the departure port, as well as the Estimated Time of Arrival at the destination port. By coordinating with vessel berthing records or vessel arrival and departure event notifications, it is possible to track the arrival and departure times, berthing terminal information, and sailing status of each voyage of the vessel.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Prediction/ETA` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/ETA?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&port_code=CNSHG&speed=20\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '## Description
+
+        Query the berthing information of the vessel at the departure port, the actual departure time, as well as the total voyage, the distance already traveled, and the Estimated Time of Arrival to the next destination port.
+
+
+        ## Use Case
+
+        **Logistics Tracking**
+
+        Query the berthing time and departure time of the vessel at the departure port, as well as the Estimated Time of Arrival at the destination port. By coordinating with vessel berthing records or vessel arrival and departure event notifications, it is possible to track the arrival and departure times, berthing terminal information, and sailing status of each voyage of the vessel.
+
+
+        ## Request Limits
+
+        An API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+        | Endpoint | HTTP Method |
+
+        |----------|-------------|
+
+        | `https://api.elaneglobal.com/v1/Prediction/ETA` | GET |
+
+
+        ## Example API Call
+
+        https://api.elaneglobal.com/v1/Prediction/ETA?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&port_code=CNSHG&speed=20
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - Prediction Dataset
+      - 4 Prediction Dataset
       parameters:
       - name: key
         in: query
@@ -60,8 +85,8 @@ paths:
         schema:
           type: number
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -324,22 +349,67 @@ paths:
                     remaining_distance: 5608.53
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 4 Prediction Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431244206-run
-      operationId: getETA
-      externalDocs:
-        description: 4.3 ETA Query
-        url: https://docs.shipfinder.com/431244206e0
+      operationId: getV1PredictionETA
+      x-operation-id-source: derived
   /v1/Prediction/RoutePlanPointToPoint:
     get:
       summary: 4.1 Point-to-Point Route Planning
       deprecated: false
-      description: "# 4.1 Point-to-Point Route Planning\n\n## Description\nThe Point-to-Point Route Planning queries the route plan between two coordinate waypoints, or from a departure waypoint to a destination port. Returns the total nautical distance of the route and the latitude/longitude coordinates of all waypoints along the route.\n\n## Use Cases\n1. **Logistics Tracking**  \n   Save the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the vessel’s real-time position and the planned path. You may also overlay historical vessel tracks with the planned route to visualize and compare discrepancies between the actual voyage track and the planned path.\n\n2. **Navigation Guidance**  \n   During vessel transit, retrieve the recommended sailing route in real time based on the vessel’s current position and destination port. The route can be combined with meteorological data for adverse weather avoidance, or used to plot simulated future sailing routes on electronic charts.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint`  | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint?key=1F6D701272402D1E7D8D316CCE519123&start_point=113.571144,22.844316&end_point=121.58414,31.37979\n\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint?key=1F6D701272402D1E7D8D316CCE519123&start_point=113.571144,22.844316&end_port_code=CNQDG\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '# 4.1 Point-to-Point Route Planning
+
+
+        ## Description
+
+        The Point-to-Point Route Planning queries the route plan between two coordinate waypoints, or from a departure waypoint to a destination port. Returns the total nautical distance of the route and the latitude/longitude coordinates of all waypoints along the route.
+
+
+        ## Use Cases
+
+        1. **Logistics Tracking**
+
+        Save the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the vessel’s real-time position and the planned path. You may also overlay historical vessel tracks with the planned route to visualize and compare discrepancies between the actual voyage track and the planned path.
+
+
+        2. **Navigation Guidance**
+
+        During vessel transit, retrieve the recommended sailing route in real time based on the vessel’s current position and destination port. The route can be combined with meteorological data for adverse weather avoidance, or used to plot simulated future sailing routes on electronic charts.
+
+
+        ## Request Limits
+
+        An API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+        | Endpoint | HTTP Method |
+
+        | --- | --- |
+
+        | `https://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint` | GET |
+
+
+        ## Example API Call
+
+        https://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint?key=1F6D701272402D1E7D8D316CCE519123&start_point=113.571144,22.844316&end_point=121.58414,31.37979
+
+
+        https://api.elaneglobal.com/v1/Prediction/RoutePlanPointToPoint?key=1F6D701272402D1E7D8D316CCE519123&start_point=113.571144,22.844316&end_port_code=CNQDG
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - Prediction Dataset
+      - 4 Prediction Dataset
       parameters:
       - name: key
         in: query
@@ -393,8 +463,8 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -486,22 +556,56 @@ paths:
                     lat: 31.37979
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 4 Prediction Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431124483-run
-      operationId: getRoutePlanPointToPoint
-      externalDocs:
-        description: 4.1 Point-to-Point Route Planning
-        url: https://docs.shipfinder.com/431124483e0
+      operationId: getV1PredictionRoutePlanPointToPoint
+      x-operation-id-source: derived
   /v1/Prediction/RoutePlanPortToPort:
     get:
       summary: 4.2 Port-to-Port Route Planning
       deprecated: false
-      description: "## Description\nThe Port-to-Port Route Planning queries the route plan between two ports, and obtain the total mileage of the route as well as the latitude and longitude coordinates of the points the route passes through.\n\n## Use Case\n**Logistics Tracking**  \nSave the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the vessel’s real-time position and the planned path. You may also overlay historical vessel tracks with the planned route for visualization, and compare discrepancies between the actual voyage track and the planned path.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort`  | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort?key=1F6D701272402D1E7D8D316CCE519123&start_port_code=CNGZG&end_port_code=CNSHG&avoid=11\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '## Description
+
+        The Port-to-Port Route Planning queries the route plan between two ports, and obtain the total mileage of the route as well as the latitude and longitude coordinates of the points the route passes through.
+
+
+        ## Use Case
+
+        **Logistics Tracking**
+
+        Save the planned fixed route and match it against the vessel’s real-time position to monitor whether the vessel sails in compliance with the predefined route. Route deviation alerts can be triggered by calculating the distance between the vessel’s real-time position and the planned path. You may also overlay historical vessel tracks with the planned route for visualization, and compare discrepancies between the actual voyage track and the planned path.
+
+
+        ## Request Limits
+
+        An API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+        | Endpoint | HTTP Method |
+
+        |----------|-------------|
+
+        | `https://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort` | Get |
+
+
+        ## Example API Call
+
+        https://api.elaneglobal.com/v1/Prediction/RoutePlanPortToPort?key=1F6D701272402D1E7D8D316CCE519123&start_port_code=CNGZG&end_port_code=CNSHG&avoid=11
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - Prediction Dataset
+      - 4 Prediction Dataset
       parameters:
       - name: key
         in: query
@@ -547,8 +651,8 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -640,28 +744,176 @@ paths:
                     lat: 31.37979
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 4 Prediction Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-431244012-run
-      operationId: getRoutePlanPortToPort
-      externalDocs:
-        description: 4.2 Port-to-Port Route Planning
-        url: https://docs.shipfinder.com/431244012e0
-components:
-  securitySchemes:
-    apiKeyQuery:
-      type: apiKey
-      in: query
-      name: key
-      description: ShipFinder API key, created in the console at https://open.shipfinder.com/v1/console/overview. Starter (trial) keys are self-service; Custom (production) keys require per-service enablement by the ShipFinder business team. Keys may be bound to a domain (return code 14 = request from unbound domain).
-externalDocs:
-  description: Global Maritime Data API Documentation
-  url: https://docs.shipfinder.com/
+      operationId: getV1PredictionRoutePlanPortToPort
+      x-operation-id-source: derived
 x-evidence:
   harvested: '2026-08-09'
-  method: searched
   index: https://docs.shipfinder.com/llms.txt
-  operations: 40
-  note: Path/operation content verbatim from provider-published fragments; see -openapi-original.yml.
+  index_http_status: 200
+  fragments: 40
+  note: Each path item was extracted verbatim from the "## OpenAPI Specification" yaml block on the corresponding docs page. The provider publishes no consolidated OpenAPI document.
+  sources:
+  - path: /v1/AIS/FleetPosition
+    method: GET
+    title: 1.1.3 Fleet Position
+    source: https://docs.shipfinder.com/430293359e0.md
+  - path: /v1/AIS/VesselFlagInfo
+    method: GET
+    title: 1.5 Vessel Flag Information
+    source: https://docs.shipfinder.com/429919472e0.md
+  - path: /v1/AIS/VesselPositionMulti
+    method: GET
+    title: 1.1.2 Multi-vessel Position
+    source: https://docs.shipfinder.com/430292321e0.md
+  - path: /v1/AIS/VesselPositionSingle
+    method: GET
+    title: 1.1.1 Single Vessel Position
+    source: https://docs.shipfinder.com/428990613e0.md
+  - path: /v1/AIS/VesselSearch
+    method: GET
+    title: 1.2 Vessel Search
+    source: https://docs.shipfinder.com/428749512e0.md
+  - path: /v1/AIS/VesselsInZone
+    method: GET
+    title: 1.4 Vessels in Zone
+    source: https://docs.shipfinder.com/429583708e0.md
+  - path: /v1/AIS/VesselsNearby
+    method: GET
+    title: 1.3 Vessels Nearby
+    source: https://docs.shipfinder.com/429003024e0.md
+  - path: /v1/Event/AddFleet
+    method: POST
+    title: 7.1.1 Create Fleet
+    source: https://docs.shipfinder.com/432035260e0.md
+  - path: /v1/Event/AddGeofence
+    method: POST
+    title: 7.2.1 Geofence Creation
+    source: https://docs.shipfinder.com/433382008e0.md
+  - path: /v1/Event/AddVesselSpeedAlert
+    method: POST
+    title: 7.3.1 Add Vessel Speed Alert Subscription
+    source: https://docs.shipfinder.com/433460139e0.md
+  - path: /v1/Event/AddVesselToFleet
+    method: POST
+    title: 7.1.5  Add Vessels to Fleet
+    source: https://docs.shipfinder.com/432100231e0.md
+  - path: /v1/Event/DeleteFleet
+    method: POST
+    title: 7.1.4 Delete Fleet
+    source: https://docs.shipfinder.com/432076110e0.md
+  - path: /v1/Event/DeleteFleetVessel
+    method: POST
+    title: 7.1.7 Remove Vessels from Fleet
+    source: https://docs.shipfinder.com/432106004e0.md
+  - path: /v1/Event/DeleteGeofence
+    method: DELETE
+    title: 7.2.4 Geofence Deletion
+    source: https://docs.shipfinder.com/433422419e0.md
+  - path: /v1/Event/DeleteVesselSpeedAlert
+    method: POST
+    title: 7.3.2 Delete Vessel Speed Alert Subscription
+    source: https://docs.shipfinder.com/433471968e0.md
+  - path: /v1/Event/GetFleet
+    method: GET
+    title: 7.1.3 Query Fleet
+    source: https://docs.shipfinder.com/432057101e0.md
+  - path: /v1/Event/GetGeofence
+    method: GET
+    title: 7.2.3 Geofence Query
+    source: https://docs.shipfinder.com/433414777e0.md
+  - path: /v1/Event/UpdateFleetInfo
+    method: POST
+    title: 7.1.2 Update Fleet Information
+    source: https://docs.shipfinder.com/432048484e0.md
+  - path: /v1/Event/UpdateFleetVessel
+    method: POST
+    title: 7.1.6 Batch Update Vessels in Fleet
+    source: https://docs.shipfinder.com/432080706e0.md
+  - path: /v1/Event/UpdateGeofence
+    method: POST
+    title: 7.2.2 Geofence Update
+    source: https://docs.shipfinder.com/433396710e0.md
+  - path: /v1/Event/VesselSpeedAlertList
+    method: GET
+    title: 7.3.3 Query Vessel Speed Alert Subscription List
+    source: https://docs.shipfinder.com/433473614e0.md
+  - path: /v1/History/PortCallRecordsByPort
+    method: GET
+    title: 3.6 Port Calls Records for Port
+    source: https://docs.shipfinder.com/430531632e0.md
+  - path: /v1/History/PortCallRecordsByVessel
+    method: GET
+    title: 3.3 Vessel Port Call History
+    source: https://docs.shipfinder.com/430426234e0.md
+  - path: /v1/History/PortCallRecordsByVesselAtPort
+    method: GET
+    title: 3.4 Vessel Port Call Records at Specific Port
+    source: https://docs.shipfinder.com/430484162e0.md
+  - path: /v1/History/VesselCurrentPortCall
+    method: GET
+    title: 3.5 Vessel Current Port Call
+    source: https://docs.shipfinder.com/430498718e0.md
+  - path: /v1/History/VesselHistoryTrack
+    method: GET
+    title: 3.1 Vessel History Track
+    source: https://docs.shipfinder.com/430346103e0.md
+  - path: /v1/History/VesselStsEvents
+    method: GET
+    title: 3.2 Ship-to-Ship (STS) Events
+    source: https://docs.shipfinder.com/430352093e0.md
+  - path: /v1/Meteorology/CycloneInfo
+    method: GET
+    title: 5.1.2 Tropical Cyclone Details by Point
+    source: https://docs.shipfinder.com/431698143e0.md
+  - path: /v1/Meteorology/CyclonesList
+    method: GET
+    title: 5.1.1 Global Tropical Cyclones List
+    source: https://docs.shipfinder.com/431698053e0.md
+  - path: /v1/Meteorology/MarineWeather
+    method: GET
+    title: 5.3 Global Marine Weather
+    source: https://docs.shipfinder.com/431272522e0.md
+  - path: /v1/Meteorology/TideStationInfo
+    method: GET
+    title: 5.2.2 Query Single Tide Gauge Station Details
+    source: https://docs.shipfinder.com/431865286e0.md
+  - path: /v1/Meteorology/TideStationList
+    method: GET
+    title: 5.2.1 Request parameters for Global Tide Gauge Stations List
+    source: https://docs.shipfinder.com/431857907e0.md
+  - path: /v1/Prediction/ETA
+    method: GET
+    title: 4.3 ETA Query
+    source: https://docs.shipfinder.com/431244206e0.md
+  - path: /v1/Prediction/RoutePlanPointToPoint
+    method: GET
+    title: 4.1 Point-to-Point Route Planning
+    source: https://docs.shipfinder.com/431124483e0.md
+  - path: /v1/Prediction/RoutePlanPortToPort
+    method: GET
+    title: 4.2 Port-to-Port Route Planning
+    source: https://docs.shipfinder.com/431244012e0.md
+  - path: /v1/Voyage/PortAnchoredVessels
+    method: GET
+    title: 2.3 Currently Anchored Vessels
+    source: https://docs.shipfinder.com/430236145e0.md
+  - path: /v1/Voyage/PortBerthedVessels
+    method: GET
+    title: 2.2 Currently Berthed Vessels
+    source: https://docs.shipfinder.com/430197412e0.md
+  - path: /v1/Voyage/PortExpectedArrivals
+    method: GET
+    title: 2.4 Inbound / Expected Arrivals
+    source: https://docs.shipfinder.com/430249182e0.md
+  - path: /v1/Voyage/PortInfo
+    method: GET
+    title: 2.1 Port Information
+    source: https://docs.shipfinder.com/429932201e0.md
+  - path: /v1/Warning/NavigationalWarnings
+    method: GET
+    title: 6.1 China Region Navigational Warnings
+    source: https://docs.shipfinder.com/431872073e0.md

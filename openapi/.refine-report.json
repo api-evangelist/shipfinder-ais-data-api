@@ -1,35 +1,56 @@
 {
   "provider": "shipfinder-ais-data-api",
   "sources": [
-    "shipfinder-ais-data-api-ais-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-china-coastline-warning-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-event-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-history-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-meteorology-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-prediction-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-voyage-dataset-api-openapi.yml"
+    "_original/shipfinder-ais-data-api-openapi-original.yml"
   ],
   "outputs": [
-    "shipfinder-ais-data-api-ais-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-china-coastline-warning-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-event-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-history-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-meteorology-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-prediction-dataset-api-openapi.yml",
-    "shipfinder-ais-data-api-voyage-dataset-api-openapi.yml"
+    "shipfinder-ais-data-api-1-ais-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-1-ais-dataset-1-1-vessel-position-api-openapi.yml",
+    "shipfinder-ais-data-api-2-voyage-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-3-history-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-4-prediction-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-5-meteorology-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-5-meteorology-dataset-5-1-global-tropical-cyclone-api-openapi.yml",
+    "shipfinder-ais-data-api-5-meteorology-dataset-5-2-global-port-tide-predictions-api-openapi.yml",
+    "shipfinder-ais-data-api-6-china-region-coastline-warning-dataset-api-openapi.yml",
+    "shipfinder-ais-data-api-7-event-dataset-7-1-monitored-fleet-management-api-openapi.yml",
+    "shipfinder-ais-data-api-7-event-dataset-7-2-geofence-monitoring-push-api-openapi.yml",
+    "shipfinder-ais-data-api-7-event-dataset-7-3-vessel-speed-alert-push-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "shipfinder-ais-data-api-ais-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "shipfinder-ais-data-api-china-coastline-warning-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "shipfinder-ais-data-api-event-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "shipfinder-ais-data-api-history-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "shipfinder-ais-data-api-meteorology-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "shipfinder-ais-data-api-prediction-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "shipfinder-ais-data-api-voyage-dataset-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "shipfinder-ais-data-api-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 1 AIS Dataset",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 1 AIS Dataset/1.1 Vessel Position",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 2 Voyage Dataset",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 3 History Dataset",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 4 Prediction Dataset",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 5 Meteorology Dataset",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 5 Meteorology Dataset/5.1 Global Tropical Cyclone",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 5 Meteorology Dataset/5.2 Global Port Tide Predictions",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 6 China Region Coastline Warning Dataset",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 7 Event Dataset/7.1 Monitored Fleet Management",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 7 Event Dataset/7.2 Geofence Monitoring Push",
+    "shipfinder-ais-data-api-openapi-original.yml: declared missing tag: 7 Event Dataset/7.3 Vessel Speed Alert Push",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "_original/shipfinder-ais-data-api-openapi.yml: archived document superseded by a larger archived document",
+    "shipfinder-ais-data-api-1-ais-dataset-1-1-vessel-position-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-1-ais-dataset-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-2-voyage-dataset-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-3-history-dataset-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-4-prediction-dataset-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-5-meteorology-dataset-5-1-global-tropical-cyclone-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-5-meteorology-dataset-5-2-global-port-tide-predictions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-5-meteorology-dataset-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-6-china-region-coastline-warning-dataset-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-7-event-dataset-7-1-monitored-fleet-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-7-event-dataset-7-2-geofence-monitoring-push-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipfinder-ais-data-api-7-event-dataset-7-3-vessel-speed-alert-push-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

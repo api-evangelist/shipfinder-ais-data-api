@@ -1,31 +1,68 @@
 openapi: 3.2.0
 info:
-  title: ShipFinder Global Maritime Data History Dataset API
-  description: 'REST/HTTP API for global AIS vessel tracking and maritime intelligence, organised into seven datasets: AIS (real-time vessel positioning, search, nearby, in-zone, flag), Voyage (port information, berthed/anchored vessels, expected arrivals), History (position tracks, ship-to-ship events, port-call records), Prediction (point-to-point and port-to-port route planning, ETA), Meteorology (tropical cyclones, tide gauge stations, marine weather), China Region Coastline Warnings, and Event (monitored fleet management, geofences and speed-alert subscriptions that drive push streams). All requests carry the API key as the "key" query parameter; all responses are JSON with a {status, msg, data} envelope where status 0 means success.
-
-
-    Assembled by API Evangelist from the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com. Operation content is the provider''s; API Evangelist added operationIds, servers, securitySchemes, dataset tags, externalDocs, and remapped the published "0" response key to "200" (see overlays/).'
+  title: ShipFinder Global Maritime Data 3 History Dataset API
+  description: Verbatim assembly of the per-endpoint OpenAPI 3.0.1 fragments ShipFinder publishes on docs.shipfinder.com (one fragment per endpoint page, indexed by the provider llms.txt). Path items are reproduced exactly as published; only the enclosing document (info/servers/tags) is API Evangelist assembly. No operation content was altered.
   version: 1.0.0
-  contact:
-    name: ShipFinder Support
-    email: support@elaneglobal.com
-    url: https://www.shipfinder.com/help-center
-  termsOfService: https://www.shipfinder.com/Home/TermsConditions
-servers:
-- url: https://api.elaneglobal.com
-  description: Production
-security:
-- apiKeyQuery: []
+servers: []
 tags:
-- name: History Dataset
+- name: 3 History Dataset
 paths:
   /v1/History/PortCallRecordsByPort:
     get:
       summary: 3.6 Port Calls Records for Port
       deprecated: false
-      description: "## Description\n\nThis Port Calls Records for Port service retrieves all vessels that have called at a port within a specified time frame by the port’s 5-digit port code. Returned data includes vessel basic details, port call records at the target port, and the corresponding previous/next port of call records for each vessel.\n\n## Use Cases\n\n1. **Logistics Tracking**  \n   Query and analyze the number of calling vessels, their berth distribution and port call time windows at a port during a specified period. Filter and aggregate the average vessel waiting time and operating time by vessel category, and estimate vessel queuing time at the port as a reference for overall voyage timeline calculation.\n\n2. **Port Analytics**\n\n## Request Limits\n\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.\nThis service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/History/PortCallRecordsByPort`  | GET |\n\n## Example API Call\n\n[https://api.elaneglobal.com/v1/History/PortCallRecordsByPort?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG&start_time=1744467589&end_time=1744967589]\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '## Description
+
+
+        This Port Calls Records for Port service retrieves all vessels that have called at a port within a specified time frame by the port’s 5-digit port code. Returned data includes vessel basic details, port call records at the target port, and the corresponding previous/next port of call records for each vessel.
+
+
+        ## Use Cases
+
+
+        1. **Logistics Tracking**
+
+        Query and analyze the number of calling vessels, their berth distribution and port call time windows at a port during a specified period. Filter and aggregate the average vessel waiting time and operating time by vessel category, and estimate vessel queuing time at the port as a reference for overall voyage timeline calculation.
+
+
+        2. **Port Analytics**
+
+
+        ## Request Limits
+
+
+        An API key must be created before using this service.
+
+        Service calls are subject to quota restrictions according to your permission type.
+
+        This service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+
+        | Endpoint | HTTP Method |
+
+        |----------|-------------|
+
+        | `https://api.elaneglobal.com/v1/History/PortCallRecordsByPort` | GET |
+
+
+        ## Example API Call
+
+
+        [https://api.elaneglobal.com/v1/History/PortCallRecordsByPort?key=1F6D701272402D1E7D8D316CCE519123&port_code=CNSHG&start_time=1744467589&end_time=1744967589]
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - History Dataset
+      - 3 History Dataset
       parameters:
       - name: key
         in: query
@@ -74,8 +111,8 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -301,22 +338,70 @@ paths:
               example: "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 5140,\n  \"data\": [\n    {\n      \"imo\": 0,\n      \"mmsi\": 413842124,\n      \"ship_type\": \"70\",\n      \"ship_name\": \"ZHEJIAXINGHUO03191\",\n      \"call_sign\": \"0\",\n      \"currentport\": {\n        \"port_code\": \"27999\",\n        \"port_cnname\": \"上海\",\n        \"port_name\": \"Shanghai\",\n        \"port_time_zone\": \"+8\",\n        \"terminal_name\": \"\",\n        \"berth_name\": \"\",\n        \"arrival_anchorage\": ,\n        \"ata\": 1744468393,\n        \"atb\": 1744468393,\n        \"atd\": 1744635846,\n        \"arrival_draught\": 0,\n        \"departure_draught\": 0,\n        \"stay_time\": 46.51,\n        \"stay_terminal_time\": 46.51\n      },\n      \"previousport\": {\n        \"port_code\": \"27999\",\n        \"port_cnname\": \"上海\",\n        \"port_name\": \"Shanghai\",\n        \"port_time_zone\": \"+8\",\n        \"arrival_anchorage\": \"\",\n        \"ata\": 1744110014,\n        \"atb\": 1744110014,\n        \"atd\": 1744120857\n      },\n      \"nextport\": {\n        \"port_code\": \"213479\",\n        \"port_cnname\": \"奉贤\",\n        \"port_name\": \"Fengxian\",\n        \"port_time_zone\": \"+8\",\n        \"arrival_anchorage\": \"\",\n        \"ata\": 1744484085,\n        \"atb\": 1744484085,\n        \"atd\": 1744498411\n      }\n    },\n    {\n      \"imo\": 9302530,\n      \"mmsi\": 412046070,\n      \"ship_type\": \"90\",\n      \"ship_name\": \"HU JIU 18\",\n      \"call_sign\": \"BSAR\",\n      \"currentport\": {\n        \"port_code\": \"27999\",\n        \"port_cnname\": \"上海\",\n        \"port_name\": \"Shanghai\",\n        \"port_time_zone\": \"+8\",\n        \"terminal_name\": \"Eastern Tankstore Shanghai\",\n        \"berth_name\": \"No 2\",\n        \"arrival_anchorage\": \"\",\n        \"ata\": 1744469305,\n        \"atb\": 1744469305,\n        \"atd\": 1745489204,\n        \"arrival_draught\": 3500,\n        \"departure_draught\": 3500,\n        \"stay_time\": 283.31,\n        \"stay_terminal_time\": 283.31\n      },\n      \"previousport\": {\n        \"port_code\": \"213784\",\n        \"port_cnname\": \"崇明\",\n        \"port_name\": \"Chongming\",\n        \"port_time_zone\": \"+8\",\n        \"arrival_anchorage\": \"\",\n        \"ata\": 1744469305,\n        \"atb\": 1744469305,\n        \"atd\": 1745489204\n      },\n      \"nextport\": {\n        \"port_code\": \"213784\",\n        \"port_cnname\": \"崇明\",\n        \"port_name\": \"Chongming\",\n        \"port_time_zone\": \"+8\",\n        \"arrival_anchorage\": \"\",\n        \"ata\": 1744469305,\n        \"atb\": 1744469305,\n        \"atd\": 1745489204\n      }\n    },\n    ......\n  ]\n}"
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 3 History Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430531632-run
-      operationId: getPortCallRecordsByPort
-      externalDocs:
-        description: 3.6 Port Calls Records for Port
-        url: https://docs.shipfinder.com/430531632e0
+      operationId: getV1HistoryPortCallRecordsByPort
+      x-operation-id-source: derived
   /v1/History/PortCallRecordsByVessel:
     get:
       summary: 3.3 Vessel Port Call History
       deprecated: false
-      description: "## Description\nThe Vessel Port Call History queries a vessel’s historical port call records within a specified time period. It returns the vessel’s anchorage arrival time, port limits arrival time, berthing time, port dwell time, inbound and outbound draft conditions, and other relevant details.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Analyze whether foreign vessels have berthed at high-risk ports based on historical berthing records, and verify the authenticity and accuracy of entry declaration information.\n\n2. **Logistics Tracking**  \n   Track vessel voyage information, settle freight and trace logistics records based on actual port call times and voyage durations, and verify cargo loading/unloading activities by changes in vessel draft.\n\n3. **Financial & Insurance**  \n   Compare and verify port call records and draft change records for each vessel voyage against shipping order data, to conduct vessel risk assessment and analysis.\n\n## Request Limits\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.\nThis service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n| --- | --- |\n|  `https://api.elaneglobal.com/v1/History/PortCallRecordsByVessel` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/History/PortCallRecordsByVessel?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1744967589&end_time=1745572389\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '## Description
+
+        The Vessel Port Call History queries a vessel’s historical port call records within a specified time period. It returns the vessel’s anchorage arrival time, port limits arrival time, berthing time, port dwell time, inbound and outbound draft conditions, and other relevant details.
+
+
+        ## Use Cases
+
+        1. **Maritime Supervision**
+
+        Analyze whether foreign vessels have berthed at high-risk ports based on historical berthing records, and verify the authenticity and accuracy of entry declaration information.
+
+
+        2. **Logistics Tracking**
+
+        Track vessel voyage information, settle freight and trace logistics records based on actual port call times and voyage durations, and verify cargo loading/unloading activities by changes in vessel draft.
+
+
+        3. **Financial & Insurance**
+
+        Compare and verify port call records and draft change records for each vessel voyage against shipping order data, to conduct vessel risk assessment and analysis.
+
+
+        ## Request Limits
+
+        An API key must be created before using this service.
+
+        Service calls are subject to quota restrictions according to your permission type.
+
+        This service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+        | Endpoint | HTTP Method |
+
+        | --- | --- |
+
+        | `https://api.elaneglobal.com/v1/History/PortCallRecordsByVessel` | GET |
+
+
+        ## Example API Call
+
+        https://api.elaneglobal.com/v1/History/PortCallRecordsByVessel?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1744967589&end_time=1745572389
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - History Dataset
+      - 3 History Dataset
       parameters:
       - name: key
         in: query
@@ -387,8 +472,8 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -523,22 +608,70 @@ paths:
               example: "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"data\": [\n    {\n      \"ship_name\": \"COSCOSHIPPINGLIBRA\",\n      \"call_sign\": \"VRRV4\",\n      \"imo\": 9783538,\n      \"mmsi\": 477172700,\n      \"ship_type\": 71,\n      \"port_cnname\": \"广州\",\n      \"port_name\": \"Guangzhou\",\n      \"port_time_zone\": \"+8\",\n      \"port_code\": \"CNGZG\",\n      \"terminal_name\": \"\",\n      \"berth_name\": \"\",\n      \"port_country_cnname\": \"中国\",\n      \"port_country_name\": \"China\",\n      \"port_country_code\": \"CN\",\n      \"arrval_anchorage\": ,\n      \"ata\": 1745058319,\n      \"atb\": 1745058319,\n      \"atd\": 1745120468,\n      \"arrival_draught\": 13.5,\n      \"departure_draught\": 14.5,\n      \"stay_time\": 17.26,\n      \"stay_interminal_time\": 17.26\n    }\n  ]\n}"
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 3 History Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430426234-run
-      operationId: getPortCallRecordsByVessel
-      externalDocs:
-        description: 3.3 Vessel Port Call History
-        url: https://docs.shipfinder.com/430426234e0
+      operationId: getV1HistoryPortCallRecordsByVessel
+      x-operation-id-source: derived
   /v1/History/PortCallRecordsByVesselAtPort:
     get:
       summary: 3.4 Vessel Port Call Records at Specific Port
       deprecated: false
-      description: "## Description\nThe Vessel Port Call Records queries a vessel’s port call records at a specific designated port within a specified time period. It returns the vessel’s time of arrival at the anchorage, time of arrival within port limits, time of berthing at the berth, port stay duration, as well as the vessel’s draft conditions upon port entry and departure.\n\n## Use Cases\n1. **Maritime Supervision**  \n   Analyze whether foreign vessels have berthed at high-risk ports based on historical port call records, and verify the authenticity and accuracy of the relevant entry declaration information.\n\n2. **Logistics Tracking**  \n   Track vessel voyage details, settle freight and trace logistics records based on actual port entry/departure times and voyage durations, and verify cargo loading/unloading operations through changes in vessel draft.\n\n3. **Finance & Insurance**  \n   Cross-verify port call records and draft fluctuation records of each vessel voyage against shipping order data for vessel risk analysis and authenticity validation.\n\n## Request Limits\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.\nThis service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/History/PortCallRecordsByVesselAtPort`  | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/History/PortCallRecordsByVesselAtPort?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&port_code=CNGZG&start_time=1744967589&end_time=1745572389\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '## Description
+
+        The Vessel Port Call Records queries a vessel’s port call records at a specific designated port within a specified time period. It returns the vessel’s time of arrival at the anchorage, time of arrival within port limits, time of berthing at the berth, port stay duration, as well as the vessel’s draft conditions upon port entry and departure.
+
+
+        ## Use Cases
+
+        1. **Maritime Supervision**
+
+        Analyze whether foreign vessels have berthed at high-risk ports based on historical port call records, and verify the authenticity and accuracy of the relevant entry declaration information.
+
+
+        2. **Logistics Tracking**
+
+        Track vessel voyage details, settle freight and trace logistics records based on actual port entry/departure times and voyage durations, and verify cargo loading/unloading operations through changes in vessel draft.
+
+
+        3. **Finance & Insurance**
+
+        Cross-verify port call records and draft fluctuation records of each vessel voyage against shipping order data for vessel risk analysis and authenticity validation.
+
+
+        ## Request Limits
+
+        An API key must be created before using this service.
+
+        Service calls are subject to quota restrictions according to your permission type.
+
+        This service queries port call records within the latest month by default. To view your current service access permissions or enable the query for port call records covering 6 months, 12 months or a longer period, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+        | Endpoint | HTTP Method |
+
+        |----------|-------------|
+
+        | `https://api.elaneglobal.com/v1/History/PortCallRecordsByVesselAtPort` | Get |
+
+
+        ## Example API Call
+
+        https://api.elaneglobal.com/v1/History/PortCallRecordsByVesselAtPort?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&port_code=CNGZG&start_time=1744967589&end_time=1745572389
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - History Dataset
+      - 3 History Dataset
       parameters:
       - name: key
         in: query
@@ -612,8 +745,8 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -732,22 +865,56 @@ paths:
               example: "{\n  \"status\": 0,\n  \"msg\": \"\",\n  \"total\": 1,\n  \"data\": [\n    {\n      \"ship_name\": \"COSCO SHIPPING LIBRA\",\n      \"call_sign\": \"VRRV4\",\n      \"imo\": 9783538,\n      \"mmsi\": 477172700,\n      \"ship_type\": \"60\",\n      \"port_cnname\": \"新加坡\",\n      \"port_name\": \"Singapore\",\n      \"port_time_zone\": \"+8\",\n      \"port_code\": \"SGSIN\",\n      \"terminal_name\": \"\",\n      \"berth_name\": \"\",\n      \"port_country_cnname\": \"新加坡\",\n      \"port_country_name\": \"Singapore\",\n      \"port_country_code\": \"SG\",\n      \"arriveanchorage\": ,\n      \"ata\": 1745058319,\n      \"atb\": 1745058319,\n      \"atd\": 1745120468,\n      \"arrival_draught\": 13500,\n      \"departure_draught\": 0,\n      \"stay_time\": 17.26,\n      \"stay_terminal_time\": 17.26\n    }\n  ]\n}"
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 3 History Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430484162-run
-      operationId: getPortCallRecordsByVesselAtPort
-      externalDocs:
-        description: 3.4 Vessel Port Call Records at Specific Port
-        url: https://docs.shipfinder.com/430484162e0
+      operationId: getV1HistoryPortCallRecordsByVesselAtPort
+      x-operation-id-source: derived
   /v1/History/VesselCurrentPortCall:
     get:
       summary: 3.5 Vessel Current Port Call
       deprecated: false
-      description: "## Description\nThe Vessel Current Port Call queries whether a vessel has an active port call. If an active port call exists, it returns the details of the current port of call and port entry time.\n\n## Use Cases\n**Logistics Tracking**  \nTrack the vessel’s current berthing status. Combined with the real-time vessel position push service or port arrival/departure event push service, it supports vessel speed variation monitoring, and enables queries of the detailed port information as well as the specific port arrival and berthing times when the vessel calls at a port.\n\n## Request Limits\nAn API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n|----------|-------------|\n| `https://api.elaneglobal.com/v1/History/VesselCurrentPortCall` | GET |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/History/VesselCurrentPortCall?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700\n\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '## Description
+
+        The Vessel Current Port Call queries whether a vessel has an active port call. If an active port call exists, it returns the details of the current port of call and port entry time.
+
+
+        ## Use Cases
+
+        **Logistics Tracking**
+
+        Track the vessel’s current berthing status. Combined with the real-time vessel position push service or port arrival/departure event push service, it supports vessel speed variation monitoring, and enables queries of the detailed port information as well as the specific port arrival and berthing times when the vessel calls at a port.
+
+
+        ## Request Limits
+
+        An API key must be created before using this service. API calls are subject to quota restrictions according to your permission type. To view your current service access permissions, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+        | Endpoint | HTTP Method |
+
+        |----------|-------------|
+
+        | `https://api.elaneglobal.com/v1/History/VesselCurrentPortCall` | GET |
+
+
+        ## Example API Call
+
+        https://api.elaneglobal.com/v1/History/VesselCurrentPortCall?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - History Dataset
+      - 3 History Dataset
       parameters:
       - name: key
         in: query
@@ -798,8 +965,8 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -1032,22 +1199,72 @@ paths:
                     atb: 1746716722
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 3 History Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430498718-run
-      operationId: getVesselCurrentPortCall
-      externalDocs:
-        description: 3.5 Vessel Current Port Call
-        url: https://docs.shipfinder.com/430498718e0
+      operationId: getV1HistoryVesselCurrentPortCall
+      x-operation-id-source: derived
   /v1/History/VesselHistoryTrack:
     get:
       summary: 3.1 Vessel History Track
       deprecated: false
-      description: "## Description\n\nThe Vessel History Track retrieves historical track points of a vessel by its MMSI number and a specified time period.\n\n## Use Cases\n\n1. **Logistics Tracking**  \n   Track vessel historical track data, and support track query, track visualization and track playback in combination with nautical charts.\n\n2. **Vessel Behavior Analysis**  \n   Analyze whether a vessel has abnormal navigational behaviors based on each track point in the historical voyage data, combined with meteorological data, navigational warnings and other relevant information.\n\n## Request Limits\n\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.\nThe service only supports querying vessel tracks within the latest month by default. \nTo view your current service access permissions or access vessel track records from an earlier time period, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n\n| Endpoint                                      | HTTP Method |\n|-----------------------------------------------|-------------|\n| `https://api.elaneglobal.com/v1/History/VesselHistoryTrack` | GET         |\n\n## Example API Call\n\nhttps://api.elaneglobal.com/v1/History/VesselHistoryTrack?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1744017189&end_time=1744019589\n\n**Note:**  \nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '## Description
+
+
+        The Vessel History Track retrieves historical track points of a vessel by its MMSI number and a specified time period.
+
+
+        ## Use Cases
+
+
+        1. **Logistics Tracking**
+
+        Track vessel historical track data, and support track query, track visualization and track playback in combination with nautical charts.
+
+
+        2. **Vessel Behavior Analysis**
+
+        Analyze whether a vessel has abnormal navigational behaviors based on each track point in the historical voyage data, combined with meteorological data, navigational warnings and other relevant information.
+
+
+        ## Request Limits
+
+
+        An API key must be created before using this service.
+
+        Service calls are subject to quota restrictions according to your permission type.
+
+        The service only supports querying vessel tracks within the latest month by default.
+
+        To view your current service access permissions or access vessel track records from an earlier time period, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+
+        | Endpoint | HTTP Method |
+
+        |-----------------------------------------------|-------------|
+
+        | `https://api.elaneglobal.com/v1/History/VesselHistoryTrack` | GET |
+
+
+        ## Example API Call
+
+
+        https://api.elaneglobal.com/v1/History/VesselHistoryTrack?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1744017189&end_time=1744019589
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - History Dataset
+      - 3 History Dataset
       parameters:
       - name: key
         in: query
@@ -1084,8 +1301,8 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -1194,22 +1411,73 @@ paths:
                   cog: 297.1
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 3 History Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430346103-run
-      operationId: getVesselHistoryTrack
-      externalDocs:
-        description: 3.1 Vessel History Track
-        url: https://docs.shipfinder.com/430346103e0
+      operationId: getV1HistoryVesselHistoryTrack
+      x-operation-id-source: derived
   /v1/History/VesselStsEvents:
     get:
       summary: 3.2 Ship-to-Ship (STS) Events
       deprecated: false
-      description: "## Description\nThe Ship-to-Ship (STS) Events queries whether a specified vessel has had ship-to-ship (STS) operations within a specified time period. If STS events are detected, it will return details of the paired vessel, as well as the STS position, coordinates, start time and end time of the event.\n\n## Applicable Scenarios\n**Freight Logistics**\n1. **Normal STS Transshipment**  \n   Monitor the cargo transfer flow where large vessels transship cargo to small crafts via STS operations. Track and analyze each phase of cargo circulation by combining the small craft details and their subsequent port berthing records.\n2. **Cargo Theft Monitoring**  \n   For non-transshipment scenarios, STS events detected during vessel navigation will trigger key monitoring for potential cargo theft. Determine whether small crafts are involved in cargo theft at the time of the STS event by integrating CCTV and other monitoring tools.\n\n**Maritime Supervision**\n- **Vessel Behavior Analysis**  \n  Maritime regulatory authorities can use vessel STS records to analyze vessel behavior patterns, and identify unauthorized STS operations as abnormal behaviors by combining other comprehensive datasets.\n\n## Request Limits\nThis is a premium service that requires advanced permission application prior to use.\nAn API key must be created before using this service. \nService calls are subject to quota restrictions according to your permission type.To view your current service access permissions or activate service permissions, please contact our support team: support@elaneglobal.com. \n\n## Endpoint\n| Endpoint | HTTP Method |\n| --- | --- |\n| `https://api.elaneglobal.com/v1/History/VesselStsEvents` | Get |\n\n## Example API Call\nhttps://api.elaneglobal.com/v1/History/VesselStsEvents?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1749956794&end_time=1751446602&approach_zone=3\n\n\n**Note:**\nThe key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com. \nUsers are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.\nTo trial the service, please contact our support team: support@elaneglobal.com. "
+      description: '## Description
+
+        The Ship-to-Ship (STS) Events queries whether a specified vessel has had ship-to-ship (STS) operations within a specified time period. If STS events are detected, it will return details of the paired vessel, as well as the STS position, coordinates, start time and end time of the event.
+
+
+        ## Applicable Scenarios
+
+        **Freight Logistics**
+
+        1. **Normal STS Transshipment**
+
+        Monitor the cargo transfer flow where large vessels transship cargo to small crafts via STS operations. Track and analyze each phase of cargo circulation by combining the small craft details and their subsequent port berthing records.
+
+        2. **Cargo Theft Monitoring**
+
+        For non-transshipment scenarios, STS events detected during vessel navigation will trigger key monitoring for potential cargo theft. Determine whether small crafts are involved in cargo theft at the time of the STS event by integrating CCTV and other monitoring tools.
+
+
+        **Maritime Supervision**
+
+        - **Vessel Behavior Analysis**
+
+        Maritime regulatory authorities can use vessel STS records to analyze vessel behavior patterns, and identify unauthorized STS operations as abnormal behaviors by combining other comprehensive datasets.
+
+
+        ## Request Limits
+
+        This is a premium service that requires advanced permission application prior to use.
+
+        An API key must be created before using this service.
+
+        Service calls are subject to quota restrictions according to your permission type.To view your current service access permissions or activate service permissions, please contact our support team: support@elaneglobal.com.
+
+
+        ## Endpoint
+
+        | Endpoint | HTTP Method |
+
+        | --- | --- |
+
+        | `https://api.elaneglobal.com/v1/History/VesselStsEvents` | Get |
+
+
+        ## Example API Call
+
+        https://api.elaneglobal.com/v1/History/VesselStsEvents?key=1F6D701272402D1E7D8D316CCE519123&mmsi=477172700&start_time=1749956794&end_time=1751446602&approach_zone=3
+
+
+        **Note:**
+
+        The key 1F6D701272402D1E7D8D316CCE519123 is the official key of elaneglobal.com, bound to the domain api.elaneglobal.com.
+
+        Users are not authorized to use this key for data access—utilizing it will return a status code 14, indicating an error in the source domain.
+
+        To trial the service, please contact our support team: support@elaneglobal.com.'
       tags:
-      - History Dataset
+      - 3 History Dataset
       parameters:
       - name: key
         in: query
@@ -1253,8 +1521,8 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
-          description: Success. HTTP 200 with a JSON envelope whose "status" field is 0.
+        '0':
+          description: ''
           content:
             application/json:
               schema:
@@ -1465,28 +1733,176 @@ paths:
                       sog: 1.75
           headers: {}
           x-apifox-name: success
-      security:
-      - apiKeyQuery: []
+      security: []
       x-apifox-folder: 3 History Dataset
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/7948067/apis/api-430352093-run
-      operationId: getVesselStsEvents
-      externalDocs:
-        description: 3.2 Ship-to-Ship (STS) Events
-        url: https://docs.shipfinder.com/430352093e0
-components:
-  securitySchemes:
-    apiKeyQuery:
-      type: apiKey
-      in: query
-      name: key
-      description: ShipFinder API key, created in the console at https://open.shipfinder.com/v1/console/overview. Starter (trial) keys are self-service; Custom (production) keys require per-service enablement by the ShipFinder business team. Keys may be bound to a domain (return code 14 = request from unbound domain).
-externalDocs:
-  description: Global Maritime Data API Documentation
-  url: https://docs.shipfinder.com/
+      operationId: getV1HistoryVesselStsEvents
+      x-operation-id-source: derived
 x-evidence:
   harvested: '2026-08-09'
-  method: searched
   index: https://docs.shipfinder.com/llms.txt
-  operations: 40
-  note: Path/operation content verbatim from provider-published fragments; see -openapi-original.yml.
+  index_http_status: 200
+  fragments: 40
+  note: Each path item was extracted verbatim from the "## OpenAPI Specification" yaml block on the corresponding docs page. The provider publishes no consolidated OpenAPI document.
+  sources:
+  - path: /v1/AIS/FleetPosition
+    method: GET
+    title: 1.1.3 Fleet Position
+    source: https://docs.shipfinder.com/430293359e0.md
+  - path: /v1/AIS/VesselFlagInfo
+    method: GET
+    title: 1.5 Vessel Flag Information
+    source: https://docs.shipfinder.com/429919472e0.md
+  - path: /v1/AIS/VesselPositionMulti
+    method: GET
+    title: 1.1.2 Multi-vessel Position
+    source: https://docs.shipfinder.com/430292321e0.md
+  - path: /v1/AIS/VesselPositionSingle
+    method: GET
+    title: 1.1.1 Single Vessel Position
+    source: https://docs.shipfinder.com/428990613e0.md
+  - path: /v1/AIS/VesselSearch
+    method: GET
+    title: 1.2 Vessel Search
+    source: https://docs.shipfinder.com/428749512e0.md
+  - path: /v1/AIS/VesselsInZone
+    method: GET
+    title: 1.4 Vessels in Zone
+    source: https://docs.shipfinder.com/429583708e0.md
+  - path: /v1/AIS/VesselsNearby
+    method: GET
+    title: 1.3 Vessels Nearby
+    source: https://docs.shipfinder.com/429003024e0.md
+  - path: /v1/Event/AddFleet
+    method: POST
+    title: 7.1.1 Create Fleet
+    source: https://docs.shipfinder.com/432035260e0.md
+  - path: /v1/Event/AddGeofence
+    method: POST
+    title: 7.2.1 Geofence Creation
+    source: https://docs.shipfinder.com/433382008e0.md
+  - path: /v1/Event/AddVesselSpeedAlert
+    method: POST
+    title: 7.3.1 Add Vessel Speed Alert Subscription
+    source: https://docs.shipfinder.com/433460139e0.md
+  - path: /v1/Event/AddVesselToFleet
+    method: POST
+    title: 7.1.5  Add Vessels to Fleet
+    source: https://docs.shipfinder.com/432100231e0.md
+  - path: /v1/Event/DeleteFleet
+    method: POST
+    title: 7.1.4 Delete Fleet
+    source: https://docs.shipfinder.com/432076110e0.md
+  - path: /v1/Event/DeleteFleetVessel
+    method: POST
+    title: 7.1.7 Remove Vessels from Fleet
+    source: https://docs.shipfinder.com/432106004e0.md
+  - path: /v1/Event/DeleteGeofence
+    method: DELETE
+    title: 7.2.4 Geofence Deletion
+    source: https://docs.shipfinder.com/433422419e0.md
+  - path: /v1/Event/DeleteVesselSpeedAlert
+    method: POST
+    title: 7.3.2 Delete Vessel Speed Alert Subscription
+    source: https://docs.shipfinder.com/433471968e0.md
+  - path: /v1/Event/GetFleet
+    method: GET
+    title: 7.1.3 Query Fleet
+    source: https://docs.shipfinder.com/432057101e0.md
+  - path: /v1/Event/GetGeofence
+    method: GET
+    title: 7.2.3 Geofence Query
+    source: https://docs.shipfinder.com/433414777e0.md
+  - path: /v1/Event/UpdateFleetInfo
+    method: POST
+    title: 7.1.2 Update Fleet Information
+    source: https://docs.shipfinder.com/432048484e0.md
+  - path: /v1/Event/UpdateFleetVessel
+    method: POST
+    title: 7.1.6 Batch Update Vessels in Fleet
+    source: https://docs.shipfinder.com/432080706e0.md
+  - path: /v1/Event/UpdateGeofence
+    method: POST
+    title: 7.2.2 Geofence Update
+    source: https://docs.shipfinder.com/433396710e0.md
+  - path: /v1/Event/VesselSpeedAlertList
+    method: GET
+    title: 7.3.3 Query Vessel Speed Alert Subscription List
+    source: https://docs.shipfinder.com/433473614e0.md
+  - path: /v1/History/PortCallRecordsByPort
+    method: GET
+    title: 3.6 Port Calls Records for Port
+    source: https://docs.shipfinder.com/430531632e0.md
+  - path: /v1/History/PortCallRecordsByVessel
+    method: GET
+    title: 3.3 Vessel Port Call History
+    source: https://docs.shipfinder.com/430426234e0.md
+  - path: /v1/History/PortCallRecordsByVesselAtPort
+    method: GET
+    title: 3.4 Vessel Port Call Records at Specific Port
+    source: https://docs.shipfinder.com/430484162e0.md
+  - path: /v1/History/VesselCurrentPortCall
+    method: GET
+    title: 3.5 Vessel Current Port Call
+    source: https://docs.shipfinder.com/430498718e0.md
+  - path: /v1/History/VesselHistoryTrack
+    method: GET
+    title: 3.1 Vessel History Track
+    source: https://docs.shipfinder.com/430346103e0.md
+  - path: /v1/History/VesselStsEvents
+    method: GET
+    title: 3.2 Ship-to-Ship (STS) Events
+    source: https://docs.shipfinder.com/430352093e0.md
+  - path: /v1/Meteorology/CycloneInfo
+    method: GET
+    title: 5.1.2 Tropical Cyclone Details by Point
+    source: https://docs.shipfinder.com/431698143e0.md
+  - path: /v1/Meteorology/CyclonesList
+    method: GET
+    title: 5.1.1 Global Tropical Cyclones List
+    source: https://docs.shipfinder.com/431698053e0.md
+  - path: /v1/Meteorology/MarineWeather
+    method: GET
+    title: 5.3 Global Marine Weather
+    source: https://docs.shipfinder.com/431272522e0.md
+  - path: /v1/Meteorology/TideStationInfo
+    method: GET
+    title: 5.2.2 Query Single Tide Gauge Station Details
+    source: https://docs.shipfinder.com/431865286e0.md
+  - path: /v1/Meteorology/TideStationList
+    method: GET
+    title: 5.2.1 Request parameters for Global Tide Gauge Stations List
+    source: https://docs.shipfinder.com/431857907e0.md
+  - path: /v1/Prediction/ETA
+    method: GET
+    title: 4.3 ETA Query
+    source: https://docs.shipfinder.com/431244206e0.md
+  - path: /v1/Prediction/RoutePlanPointToPoint
+    method: GET
+    title: 4.1 Point-to-Point Route Planning
+    source: https://docs.shipfinder.com/431124483e0.md
+  - path: /v1/Prediction/RoutePlanPortToPort
+    method: GET
+    title: 4.2 Port-to-Port Route Planning
+    source: https://docs.shipfinder.com/431244012e0.md
+  - path: /v1/Voyage/PortAnchoredVessels
+    method: GET
+    title: 2.3 Currently Anchored Vessels
+    source: https://docs.shipfinder.com/430236145e0.md
+  - path: /v1/Voyage/PortBerthedVessels
+    method: GET
+    title: 2.2 Currently Berthed Vessels
+    source: https://docs.shipfinder.com/430197412e0.md
+  - path: /v1/Voyage/PortExpectedArrivals
+    method: GET
+    title: 2.4 Inbound / Expected Arrivals
+    source: https://docs.shipfinder.com/430249182e0.md
+  - path: /v1/Voyage/PortInfo
+    method: GET
+    title: 2.1 Port Information
+    source: https://docs.shipfinder.com/429932201e0.md
+  - path: /v1/Warning/NavigationalWarnings
+    method: GET
+    title: 6.1 China Region Navigational Warnings
+    source: https://docs.shipfinder.com/431872073e0.md
