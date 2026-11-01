@@ -1,4 +1,4 @@
-# ShipFinder AIS Data API (shipfinder-ais-data-api)
+# ShipFinder AIS Data API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,222 +66,178 @@
 
 ShipFinder, operated by Singapore-based ELANE GLOBAL PTE. LTD., publishes a REST/HTTP maritime data API that turns the global AIS feed into queryable vessel intelligence. Forty documented operations are organised into seven datasets: AIS (single, multi and fleet vessel positions, vessel search, vessels nearby, vessels in a zone, flag information), Voyage (port information, currently berthed and anchored vessels, expected arrivals), History (position tracks, ship-to-ship rendezvous, port-call records by vessel and by port), Prediction (point-to-point and port-to-port route planning with deviation-node constraints, and ETA), Meteorology (global tropical cyclones, tide gauge stations, marine weather), China region coastline navigational warnings, and an Event dataset whose fleet, geofence and speed-alert operations drive seven documented webhook push streams. Authentication is a single API key carried as the "key" query parameter (or body property on writes); every response is JSON in a {status, msg, data} envelope where status 0 means success and errors arrive with HTTP 200. ShipFinder publishes per-endpoint OpenAPI 3.0.1 fragments on its documentation host plus an llms.txt index, and several controlled vocabularies (AIS vessel type, navigation status, sea areas, deviation nodes, AtoN types, service return codes).
 
-**APIs.json:** [https://shipfinder-ais-data-api.apievangelist.com/apis.yml](https://shipfinder-ais-data-api.apievangelist.com/apis.yml)
+**Areas:** AIS · Maritime Data · Vessel Tracking · Ship Tracking · Vessel Data · Historical AIS · Geospatial · GIS · Logistics · Supply Chain · Weather · Meteorology
 
-## Tags
+## ShipFinder AIS Data API on APIs.io
 
-- AIS
-- Maritime Data
-- Vessel Tracking
-- Ship Tracking
-- Vessel Data
-- Historical AIS
-- Geospatial
-- GIS
-- Logistics
-- Supply Chain
-- Weather
-- Meteorology
-- Trade
-- Commodities
-- Compliance
-- Risk
-- Event Streaming
-- Webhooks
+Everything profiled for ShipFinder AIS Data API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/shipfinder-ais-data-api/](https://apis.io/providers/shipfinder-ais-data-api/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (12)
 
-- **Created:** 2026-08-04
-- **Modified:** 2026-08-09
+- [ShipFinder AIS Data API 1 AIS Dataset/1.1 Vessel Position API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-1-ais-dataset-1-1-vessel-position-api/) — The 1 AIS Dataset/1.1 Vessel Position API from ShipFinder AIS Data API — 3 operation(s) for 1 ais dataset/1.1 vessel position.
+- [ShipFinder AIS Data API 1 AIS Dataset API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-1-ais-dataset-api/) — The 1 AIS Dataset API from ShipFinder AIS Data API — 4 operation(s) for 1 ais dataset.
+- [ShipFinder AIS Data API 2 Voyage Dataset API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-2-voyage-dataset-api/) — The 2 Voyage Dataset API from ShipFinder AIS Data API — 4 operation(s) for 2 voyage dataset.
+- [ShipFinder AIS Data API 3 History Dataset API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-3-history-dataset-api/) — The 3 History Dataset API from ShipFinder AIS Data API — 6 operation(s) for 3 history dataset.
+- [ShipFinder AIS Data API 4 Prediction Dataset API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-4-prediction-dataset-api/) — The 4 Prediction Dataset API from ShipFinder AIS Data API — 3 operation(s) for 4 prediction dataset.
+- [ShipFinder AIS Data API 5 Meteorology Dataset/5.1 Global Tropical Cyclone API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-5-meteorology-dataset-5-1-global-tropical-cyclone-api/) — The 5 Meteorology Dataset/5.1 Global Tropical Cyclone API from ShipFinder AIS Data API — 2 operation(s) for 5 meteorology dataset/5.1 global tropical cyclone.
+- [ShipFinder AIS Data API 5 Meteorology Dataset/5.2 Global Port Tide Predictions API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-5-meteorology-dataset-5-2-global-port-tide-predictions-api/) — The 5 Meteorology Dataset/5.2 Global Port Tide Predictions API from ShipFinder AIS Data API — 2 operation(s) for 5 meteorology dataset/5.2 global port tide…
+- [ShipFinder AIS Data API 5 Meteorology Dataset API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-5-meteorology-dataset-api/) — The 5 Meteorology Dataset API from ShipFinder AIS Data API — 1 operation(s) for 5 meteorology dataset.
+- [ShipFinder AIS Data API 6 China Region Coastline Warning Dataset API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-6-china-region-coastline-warning-dataset-api/) — The 6 China Region Coastline Warning Dataset API from ShipFinder AIS Data API — 1 operation(s) for 6 china region coastline warning dataset.
+- [ShipFinder AIS Data API 7 Event Dataset/7.1 Monitored Fleet Management API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-7-event-dataset-7-1-monitored-fleet-management-api/) — The 7 Event Dataset/7.1 Monitored Fleet Management API from ShipFinder AIS Data API — 7 operation(s) for 7 event dataset/7.1 monitored fleet management.
+- [ShipFinder AIS Data API 7 Event Dataset/7.2 Geofence Monitoring Push API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-7-event-dataset-7-2-geofence-monitoring-push-api/) — The 7 Event Dataset/7.2 Geofence Monitoring Push API from ShipFinder AIS Data API — 4 operation(s) for 7 event dataset/7.2 geofence monitoring push.
+- [ShipFinder AIS Data API 7 Event Dataset/7.3 Vessel Speed Alert Push API](https://apis.io/apis/shipfinder-ais-data-api/shipfinder-ais-data-api-7-event-dataset-7-3-vessel-speed-alert-push-api/) — The 7 Event Dataset/7.3 Vessel Speed Alert Push API from ShipFinder AIS Data API — 3 operation(s) for 7 event dataset/7.3 vessel speed alert push.
 
-## APIs
+### Published properties
 
-### ShipFinder AIS Data API AIS Dataset API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The AIS Dataset API from ShipFinder AIS Data API — 7 operation(s) for ais dataset.
+#### Arazzo workflows (3)
 
-- **Human URL:** [https://www.shipfinder.com/ais-data-api](https://www.shipfinder.com/ais-data-api)
-- **Base URL:** `https://api.elaneglobal.com`
+Multi-step workflows that chain operations into a business task.
 
-#### Tags
+- [Resolve a port and read berthed, anchored and inbound vessels](https://apis.io/arazzos/shipfinder-ais-data-api/port-congestion-snapshot/)
+- [Find a vessel and read its position and recent track](https://apis.io/arazzos/shipfinder-ais-data-api/track-a-vessel/)
+- [Plan a port-to-port route, predict ETA and check active tropical cyclones](https://apis.io/arazzos/shipfinder-ais-data-api/voyage-plan-and-eta/)
 
-- AIS Dataset
+#### AsyncAPI (2)
 
-#### Properties
+Event-driven and webhook contracts.
 
-- [OpenAPI](openapi/shipfinder-ais-data-api-ais-dataset-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shipfinder-ais-data-api-ais-dataset-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shipfinder-ais-data-api-ais-dataset-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [ShipFinder Event Dataset (push)](https://apis.io/asyncapis/shipfinder-ais-data-api/shipfinder-ais-data-api-events-asyncapi/)
+- [Shipfinder Ais Data Api Webhooks](https://apis.io/asyncapis/shipfinder-ais-data-api/shipfinder-ais-data-api-webhooks/)
+
+#### Event channels (7)
+
+Individual events and webhooks the provider emits.
+
+- [/](https://apis.io/channels/shipfinder-ais-data-api/arrivaldeparturepush/)
+- [/](https://apis.io/channels/shipfinder-ais-data-api/geofencemonitoringpush/)
+- [/](https://apis.io/channels/shipfinder-ais-data-api/realtimevesselpositionpush/)
+- [/](https://apis.io/channels/shipfinder-ais-data-api/vesselaissignallosspush/)
+- [/](https://apis.io/channels/shipfinder-ais-data-api/vesseldynamicetapush/)
+- [/](https://apis.io/channels/shipfinder-ais-data-api/vesselspeedanomalypush/)
+- [/](https://apis.io/channels/shipfinder-ais-data-api/vesselstseventpush/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [shipfinder](https://apis.io/servers/shipfinder-ais-data-api/shipfinder/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Shipfinder Ais Data Api Agentic Access](https://apis.io/agentic-access/shipfinder-ais-data-api/shipfinder-ais-data-api-agentic-access/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [ShipFinder maritime reference vocabularies](https://apis.io/vocabularies/shipfinder-ais-data-api/shipfinder-ais-data-api-vocabulary/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [ShipFinder Global Maritime Data AIS Dataset API](https://apis.io/collections/shipfinder-ais-data-api/open-shipfinder-ais-data-api-ais-dataset-api/)
+- [ShipFinder Global Maritime Data China Coastline Warning Dataset API](https://apis.io/collections/shipfinder-ais-data-api/open-shipfinder-ais-data-api-china-coastline-warning-dataset-api/)
+- [ShipFinder Global Maritime Data Event Dataset API](https://apis.io/collections/shipfinder-ais-data-api/open-shipfinder-ais-data-api-event-dataset-api/)
+- [ShipFinder Global Maritime Data History Dataset API](https://apis.io/collections/shipfinder-ais-data-api/open-shipfinder-ais-data-api-history-dataset-api/)
+- [ShipFinder Global Maritime Data Meteorology Dataset API](https://apis.io/collections/shipfinder-ais-data-api/open-shipfinder-ais-data-api-meteorology-dataset-api/)
+- [ShipFinder Global Maritime Data Prediction Dataset API](https://apis.io/collections/shipfinder-ais-data-api/open-shipfinder-ais-data-api-prediction-dataset-api/)
+- [ShipFinder Global Maritime Data Voyage Dataset API](https://apis.io/collections/shipfinder-ais-data-api/open-shipfinder-ais-data-api-voyage-dataset-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Shipfinder Ais Data Api Openapi Overlay](https://apis.io/overlays/shipfinder-ais-data-api/shipfinder-ais-data-api-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Shipfinder Ais Data Api Authentication](https://apis.io/security/shipfinder-ais-data-api/shipfinder-ais-data-api-authentication/)
+- [Shipfinder Ais Data Api Domain Security](https://apis.io/security/shipfinder-ais-data-api/shipfinder-ais-data-api-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Shipfinder Ais Data Api Plans](https://apis.io/plans/shipfinder-ais-data-api/shipfinder-ais-data-api-plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Shipfinder Ais Data Api Rate Limits](https://apis.io/rate-limits/shipfinder-ais-data-api/shipfinder-ais-data-api-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.shipfinder.com/)
 - [Documentation](https://docs.shipfinder.com/)
-- [API Reference](https://docs.shipfinder.com/8952919m0)
-- [Getting Started](https://docs.shipfinder.com/9177505m0)
-- [L L M S Txt](https://docs.shipfinder.com/llms.txt)
-
-### ShipFinder AIS Data API China Coastline Warning Dataset API
-
-The China Coastline Warning Dataset API from ShipFinder AIS Data API — 1 operation(s) for china coastline warning dataset.
-
-- **Human URL:** [https://www.shipfinder.com/ais-data-api](https://www.shipfinder.com/ais-data-api)
-- **Base URL:** `https://api.elaneglobal.com`
-
-#### Tags
-
-- China Coastline Warning Dataset
-
-#### Properties
-
-- [OpenAPI](openapi/shipfinder-ais-data-api-china-coastline-warning-dataset-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shipfinder-ais-data-api-china-coastline-warning-dataset-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shipfinder-ais-data-api-china-coastline-warning-dataset-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.shipfinder.com/)
-- [API Reference](https://docs.shipfinder.com/8952919m0)
-- [Getting Started](https://docs.shipfinder.com/9177505m0)
-- [L L M S Txt](https://docs.shipfinder.com/llms.txt)
-
-### ShipFinder AIS Data API Event Dataset API
-
-The Event Dataset API from ShipFinder AIS Data API — 14 operation(s) for event dataset.
-
-- **Human URL:** [https://www.shipfinder.com/ais-data-api](https://www.shipfinder.com/ais-data-api)
-- **Base URL:** `https://api.elaneglobal.com`
-
-#### Tags
-
-- Event Dataset
-
-#### Properties
-
-- [OpenAPI](openapi/shipfinder-ais-data-api-event-dataset-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shipfinder-ais-data-api-event-dataset-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shipfinder-ais-data-api-event-dataset-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.shipfinder.com/)
-- [API Reference](https://docs.shipfinder.com/8952919m0)
-- [Getting Started](https://docs.shipfinder.com/9177505m0)
-- [L L M S Txt](https://docs.shipfinder.com/llms.txt)
-
-### ShipFinder AIS Data API History Dataset API
-
-The History Dataset API from ShipFinder AIS Data API — 6 operation(s) for history dataset.
-
-- **Human URL:** [https://www.shipfinder.com/ais-data-api](https://www.shipfinder.com/ais-data-api)
-- **Base URL:** `https://api.elaneglobal.com`
-
-#### Tags
-
-- History Dataset
-
-#### Properties
-
-- [OpenAPI](openapi/shipfinder-ais-data-api-history-dataset-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shipfinder-ais-data-api-history-dataset-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shipfinder-ais-data-api-history-dataset-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.shipfinder.com/)
-- [API Reference](https://docs.shipfinder.com/8952919m0)
-- [Getting Started](https://docs.shipfinder.com/9177505m0)
-- [L L M S Txt](https://docs.shipfinder.com/llms.txt)
-
-### ShipFinder AIS Data API Meteorology Dataset API
-
-The Meteorology Dataset API from ShipFinder AIS Data API — 5 operation(s) for meteorology dataset.
-
-- **Human URL:** [https://www.shipfinder.com/ais-data-api](https://www.shipfinder.com/ais-data-api)
-- **Base URL:** `https://api.elaneglobal.com`
-
-#### Tags
-
-- Meteorology Dataset
-
-#### Properties
-
-- [OpenAPI](openapi/shipfinder-ais-data-api-meteorology-dataset-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shipfinder-ais-data-api-meteorology-dataset-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shipfinder-ais-data-api-meteorology-dataset-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.shipfinder.com/)
-- [API Reference](https://docs.shipfinder.com/8952919m0)
-- [Getting Started](https://docs.shipfinder.com/9177505m0)
-- [L L M S Txt](https://docs.shipfinder.com/llms.txt)
-
-### ShipFinder AIS Data API Prediction Dataset API
-
-The Prediction Dataset API from ShipFinder AIS Data API — 3 operation(s) for prediction dataset.
-
-- **Human URL:** [https://www.shipfinder.com/ais-data-api](https://www.shipfinder.com/ais-data-api)
-- **Base URL:** `https://api.elaneglobal.com`
-
-#### Tags
-
-- Prediction Dataset
-
-#### Properties
-
-- [OpenAPI](openapi/shipfinder-ais-data-api-prediction-dataset-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shipfinder-ais-data-api-prediction-dataset-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shipfinder-ais-data-api-prediction-dataset-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.shipfinder.com/)
-- [API Reference](https://docs.shipfinder.com/8952919m0)
-- [Getting Started](https://docs.shipfinder.com/9177505m0)
-- [L L M S Txt](https://docs.shipfinder.com/llms.txt)
-
-### ShipFinder AIS Data API Voyage Dataset API
-
-The Voyage Dataset API from ShipFinder AIS Data API — 4 operation(s) for voyage dataset.
-
-- **Human URL:** [https://www.shipfinder.com/ais-data-api](https://www.shipfinder.com/ais-data-api)
-- **Base URL:** `https://api.elaneglobal.com`
-
-#### Tags
-
-- Voyage Dataset
-
-#### Properties
-
-- [OpenAPI](openapi/shipfinder-ais-data-api-voyage-dataset-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shipfinder-ais-data-api-voyage-dataset-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shipfinder-ais-data-api-voyage-dataset-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.shipfinder.com/)
-- [API Reference](https://docs.shipfinder.com/8952919m0)
-- [Getting Started](https://docs.shipfinder.com/9177505m0)
-- [L L M S Txt](https://docs.shipfinder.com/llms.txt)
-
-## Common Properties
-
-- [Developer Portal](https://open.shipfinder.com/)
-- [Documentation](https://docs.shipfinder.com/)
-- [API Reference](https://docs.shipfinder.com/8952919m0)
-- [Getting Started](https://docs.shipfinder.com/9177505m0)
-- [Support](https://www.shipfinder.com/help-center)
-- [Sign Up](https://www.shipfinder.com/home/register)
-- [Login](https://www.shipfinder.com/home/login)
+- [Getting started](https://docs.shipfinder.com/9177505m0)
+- [API reference](https://docs.shipfinder.com/8952919m0)
 - [Pricing](https://www.shipfinder.com/home/plans_pricing)
-- [Terms of Service](https://www.shipfinder.com/Home/TermsConditions)
-- [Privacy Policy](https://www.shipfinder.com/Home/Privacy)
-- [Console](https://open.shipfinder.com/v1/console/overview)
-- [L L Ms Txt](llms/shipfinder-ais-data-api-llms.txt)
-- [Plans](plans/shipfinder-ais-data-api-plans.yml)
-- [Rate Limits](rate-limits/shipfinder-ais-data-api-rate-limits.yml)
-- [Authentication](authentication/shipfinder-ais-data-api-authentication.yml)
-- [Conventions](conventions/shipfinder-ais-data-api-conventions.yml)
-- [Error Catalog](errors/shipfinder-ais-data-api-error-codes.yml)
-- [Vocabulary](vocabulary/shipfinder-ais-data-api-vocabulary.yml)
-- [Examples](examples/shipfinder-ais-data-api-examples.yml)
-- [Data Model](data-model/shipfinder-ais-data-api-data-model.yml)
-- [Lifecycle](lifecycle/shipfinder-ais-data-api-lifecycle.yml)
-- [Conformance](conformance/shipfinder-ais-data-api-conformance.yml)
-- [Overlay](overlays/shipfinder-ais-data-api-openapi-overlay.yaml)
-- [Packages](packages/shipfinder-ais-data-api-packages.yml)
-- [Well Known](well-known/shipfinder-ais-data-api-well-known.yml)
-- [AsyncAPI](asyncapi/shipfinder-ais-data-api-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Webhooks](asyncapi/shipfinder-ais-data-api-webhooks.yml)
-- [M C P Server](mcp/shipfinder-ais-data-api-mcp.yml)
-- [Agent Skill](skills/_index.yml)
-- [Arazzo](arazzo/track-a-vessel.yml) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Arazzo](arazzo/port-congestion-snapshot.yml) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Arazzo](arazzo/voyage-plan-and-eta.yml) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Agentic Access](agentic-access/shipfinder-ais-data-api-agentic-access.yml)
-- [Domain Security](security/shipfinder-ais-data-api-domain-security.yml)
+- [Sign up](https://www.shipfinder.com/home/register)
+- [Support](https://www.shipfinder.com/help-center)
+- [Terms of service](https://www.shipfinder.com/Home/TermsConditions)
+- [Privacy policy](https://www.shipfinder.com/Home/Privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** ShipFinder AIS Data API
-**Email:** support@elaneglobal.com
-**URL:** https://www.shipfinder.com/
+**Kin Score 47.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 44.3 |
+| Contract governance | 19.7 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 65.8 |
+
+**Agent readiness 33.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/shipfinder-ais-data-api/](https://apis.io/providers/shipfinder-ais-data-api/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ShipFinder AIS Data API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/shipfinder-ais-data-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
