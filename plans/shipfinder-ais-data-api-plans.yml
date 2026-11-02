@@ -1,0 +1,82 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://www.shipfinder.com/home/plans_pricing
+sources:
+- https://www.shipfinder.com/home/plans_pricing
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T161713
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+published: true
+note: Prices cover the ShipFinder web platform only; API data services are stated to be priced separately
+  with no numbers published (contact email for API pricing). Struck-through list prices $348 and $1,199
+  shown next to yearly prices.
+plan_count: 4
+currency: USD
+plans:
+- name: Basic
+  price_text: FREE
+  period: none
+  included_quota: Registration required; 1 vessel satellite AIS; 3 days historical track; Fleet Management
+    10 vessels
+- name: Standard
+  price_text: $ 290 /yr
+  price: 290
+  currency: USD
+  period: year
+  included_quota: 14 days historical track/playback/port calls; Fleet Management 20 vessels; 1 concurrent
+    user
+- name: Professional
+  price_text: $ 990 /yr
+  price: 990
+  currency: USD
+  period: year
+  included_quota: 6 months history; Fleet Management 100 vessels; 1 concurrent user
+- name: Enterprise
+  price_text: Contact us for a quote
+  period: none
+  included_quota: 10 years+ history; Fleet Management 5000 vessels; Custom concurrent users
+rate_limit_statements:
+- Both Standard and Professional support 1 concurrent user at a time.
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Basic
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Standard
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Professional
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
