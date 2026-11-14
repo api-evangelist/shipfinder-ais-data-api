@@ -29,6 +29,12 @@ artifacts:
   capabilities/shipfinder-ais-data-api-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/shipfinder-ais-data-api-ais-dataset-api.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -80,6 +86,9 @@ artifacts:
   data-model/shipfinder-ais-data-api-data-model.yml:
     method: derived
     evidence: declared in the artifact
+  eligibility/shipfinder-ais-data-api-eligibility.yml:
+    method: harvested
+    evidence: declared in the artifact
   errors/shipfinder-ais-data-api-error-codes.yml:
     method: searched
     evidence: declared in the artifact
@@ -95,7 +104,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -159,6 +168,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-11-02T082323.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/shipfinder-ais-data-api-lifecycle.yml:
@@ -229,6 +241,9 @@ artifacts:
   plans/shipfinder-ais-data-api-price-estimates.yml:
     method: unknown
     evidence: no authorship recorded
+  privacy/shipfinder-ais-data-api-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/shipfinder-ais-data-api-rate-limits.yml:
     method: searched
     evidence: declared in the artifact
@@ -258,6 +273,9 @@ artifacts:
     evidence: declared in the artifact
   sla/shipfinder-ais-data-api-sla.yml:
     method: generated
+    evidence: declared in the artifact
+  terms/shipfinder-ais-data-api-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   vocabulary/shipfinder-ais-data-api-vocabulary.yml:
     method: searched
